@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint:check && npx pretty-quick --staged
+yarn lint-staged && npx pretty-quick --staged
