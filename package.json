@@ -1,37 +1,53 @@
 {
-  "name": "vi-rme",
-  "version": "1.0.0",
-  "private": true,
-  "description": "vi-rme",
-  "author": "HoaLe",
-  "keywords": [
-    "gatsby"
-  ],
-  "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "gatsby": "^5.0.0",
-    "gatsby-plugin-google-analytics": "^5.0.0",
-    "gatsby-plugin-image": "^3.0.0",
-    "gatsby-plugin-sass": "^6.0.0",
-    "gatsby-plugin-sharp": "^5.0.0",
-    "gatsby-source-filesystem": "^5.0.0",
-    "gatsby-transformer-remark": "^6.0.0",
-    "gatsby-transformer-sharp": "^5.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.56.1"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
-    "typescript": "^4.8.4"
-  }
+    "name": "vi-rme",
+    "version": "1.0.0",
+    "private": true,
+    "description": "vi-rme",
+    "author": "HoaLe",
+    "keywords": [
+        "gatsby"
+    ],
+    "scripts": {
+        "develop": "gatsby develop",
+        "start": "gatsby develop",
+        "build": "gatsby build",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean",
+        "typecheck": "tsc --noEmit",
+        "prettier": "prettier --write .",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix ."
+    },
+    "dependencies": {
+        "gatsby": "^5.0.0",
+        "gatsby-plugin-image": "^3.0.0",
+        "gatsby-plugin-sass": "^6.0.0",
+        "gatsby-plugin-sharp": "^5.0.0",
+        "gatsby-source-filesystem": "^5.0.0",
+        "gatsby-transformer-remark": "^6.0.0",
+        "gatsby-transformer-sharp": "^5.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sass": "^1.56.1"
+    },
+    "devDependencies": {
+        "@types/node": "^18.11.9",
+        "@types/react": "^18.0.25",
+        "@types/react-dom": "^18.0.8",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "eslint": "^8.0.1",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard-with-typescript": "^23.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-n": "^15.0.0",
+        "eslint-plugin-promise": "^6.0.0",
+        "eslint-plugin-react": "^7.31.11",
+        "husky": "^8.0.2",
+        "lint-staged": "^13.0.3",
+        "prettier": "^2.7.1",
+        "typescript": "*"
+    },
+    "engines": {
+        "node": ">=18.9.1"
+    }
 }
