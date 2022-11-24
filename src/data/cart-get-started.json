@@ -1,0 +1,17 @@
+[
+    {
+        "image": "/images/cards/setup.png",
+        "title": "Setup Your wallet",
+        "content": "Set up your wallet of choice. Connect it to the ViRME by clicking the wallet icon in the top right corner."
+    },
+    {
+        "image": "/images/cards/create.png",
+        "title": "Create NFT",
+        "content": "Upload your estate. Add a description, social links and extra information."
+    },
+    {
+        "image": "/images/cards/start.png",
+        "title": "Start Earning",
+        "content": "Start earning by selling your NFTs or trading others."
+    }
+]

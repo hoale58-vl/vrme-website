@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+@import url('./font-icon-moon/iconmoon-custom/style.css');
+
+body {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    @apply bg-black text-white min-h-screen;
+}
+
+.custom-font {
+    font-family: 'Space Mono', monospace;
+}
+
+.custom-button {
+    @apply rounded-3xl box-border gap-3 flex w-fit border-2 justify-center items-center object-contain border-solid border-purple-custom align-middle cursor-pointer;
+}

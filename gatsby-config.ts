@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
     // Learn more at: https://gatsby.dev/graphql-typegen
     graphqlTypegen: true,
     plugins: [
+        'gatsby-plugin-postcss',
         'gatsby-plugin-sass',
         'gatsby-plugin-image',
         'gatsby-transformer-remark',
@@ -19,7 +20,7 @@ const config: GatsbyConfig = {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'images',
-                path: './src/images/',
+                path: './public/images',
             },
             __key: 'images',
         },

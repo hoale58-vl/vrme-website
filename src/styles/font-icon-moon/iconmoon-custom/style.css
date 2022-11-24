@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?aw2cbx');
+    src: url('fonts/icomoon.eot?aw2cbx#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?aw2cbx') format('truetype'),
+        url('fonts/icomoon.woff?aw2cbx') format('woff'),
+        url('fonts/icomoon.svg?aw2cbx#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 20px;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ArrowLeft:before {
+    content: '\e900';
+}
+.icon-ArrowRight:before {
+    content: '\e901';
+}
+.icon-Copy:before {
+    content: '\e902';
+}
+.icon-DiscordLogo:before {
+    content: '\e903';
+}
+.icon-EnvelopeSimple:before {
+    content: '\e904';
+}
+.icon-Eye:before {
+    content: '\e905';
+}
+.icon-EyeSlash:before {
+    content: '\e906';
+}
+.icon-Globe:before {
+    content: '\e907';
+}
+.icon-InstagramLogo:before {
+    content: '\e908';
+}
+.icon-List:before {
+    content: '\e909';
+}
+.icon-LockKey:before {
+    content: '\e90a';
+}
+.icon-MagnifyingGlass:before {
+    content: '\e90b';
+}
+.icon-Plus:before {
+    content: '\e90c';
+}
+.icon-Rocket:before {
+    content: '\e90d';
+}
+.icon-RocketLaunch:before {
+    content: '\e90e';
+}
+.icon-Storefront:before {
+    content: '\e90f';
+}
+.icon-TrendUp:before {
+    content: '\e910';
+}
+.icon-TwitterLogo:before {
+    content: '\e911';
+}
+.icon-User:before {
+    content: '\e912';
+}
+.icon-UserCircle:before {
+    content: '\e913';
+}
+.icon-Wallet:before {
+    content: '\e914';
+}
+.icon-YoutubeLogo:before {
+    content: '\e915';
+}
