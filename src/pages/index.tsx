@@ -32,7 +32,7 @@ const IndexPage: React.FC<PageProps> = () => {
                                 size={ButtonSize.MEDIUM}
                                 background={ButtonBackground.DARK}
                                 icon={'icon-RocketLaunch'}
-                                attribute={'0xl:max-md:w-full w-fit'}
+                                attribute={'0xl:max-md:w-full w-fit '}
                             />
                         </div>
                         <div className="main-introduce-image w-1/2 0xl:max-md:w-full">
