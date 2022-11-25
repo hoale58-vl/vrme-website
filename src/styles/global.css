@@ -16,5 +16,5 @@ body {
 }
 
 .custom-button {
-    @apply rounded-3xl box-border gap-3 flex w-fit border-2 justify-center items-center object-contain border-solid border-purple-custom align-middle cursor-pointer;
+    @apply rounded-3xl box-border gap-3 flex border-2 justify-center items-center object-contain border-solid border-purple-custom align-middle cursor-pointer;
 }

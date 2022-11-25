@@ -17,10 +17,10 @@ const IndexPage: React.FC<PageProps> = () => {
             <div className="max-w-screen-xl mx-auto">
                 <Header />
 
-                <main className="px-28">
-                    <div className="main-introduce flex justify-between gap-7 my-20">
-                        <div className="main-introduce-content w-1/2">
-                            <div className="main-introduce-content-header text-7xl">
+                <main className="px-28 0xl:max-md:p-8">
+                    <div className="main-introduce flex justify-between gap-7 my-20 0xl:max-md:flex-col">
+                        <div className="main-introduce-content w-1/2 0xl:max-md:w-full">
+                            <div className="main-introduce-content-header text-7xl 0xl:max-md:text-3xl md:max-xl:text-5xl">
                                 Vietnamese Metaverse Real Estate
                             </div>
                             <div className="main-introduct-content-body mt-5 text-2xl mb-8 text-gray-custon2 font-normal">
@@ -32,9 +32,10 @@ const IndexPage: React.FC<PageProps> = () => {
                                 size={ButtonSize.MEDIUM}
                                 background={ButtonBackground.DARK}
                                 icon={'icon-RocketLaunch'}
-                            />{' '}
+                                attribute={'0xl:max-md:w-full w-fit'}
+                            />
                         </div>
-                        <div className="main-introduce-image w-1/2">
+                        <div className="main-introduce-image w-1/2 0xl:max-md:w-full">
                             <img className="w-full" src="/images/introduce/introduce.png" alt="" />
                         </div>
                     </div>
@@ -54,11 +55,11 @@ const IndexPage: React.FC<PageProps> = () => {
                                     background={ButtonBackground.LIGHT}
                                     content={'See All'}
                                     icon={'icon-Eye'}
-                                    attribute={'absolute bottom-0 right-0'}
+                                    attribute={'absolute bottom-0 right-0 0xl:max-md:hidden'}
                                 />
                             </div>
                         </div>
-                        <div className="card-NFT-group grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 w-full">
+                        <div className="card-NFT-group grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
                             {dataCardNFT.map(
                                 (
                                     item: {
@@ -83,6 +84,13 @@ const IndexPage: React.FC<PageProps> = () => {
                                 }
                             )}
                         </div>
+                        <Button
+                            size={ButtonSize.MEDIUM}
+                            background={ButtonBackground.LIGHT}
+                            content={'See All'}
+                            icon={'icon-Eye'}
+                            attribute={'inline-block md:hidden w-full mt-10'}
+                        />
                     </div>
 
                     <div className="gap-7 my-20 inline-block w-full">
@@ -92,7 +100,7 @@ const IndexPage: React.FC<PageProps> = () => {
                                 Find out how to get started
                             </div>
                         </div>
-                        <div className="card-group grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 w-full">
+                        <div className="card-group grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
                             {dataCardGetStarted.map(
                                 (
                                     item: { image: string; title: string; content: string },
@@ -104,11 +112,34 @@ const IndexPage: React.FC<PageProps> = () => {
                                             image={item.image}
                                             title={item.title}
                                             content={item.content}
+                                            attribute={'0xl:max-md:flex-row'}
                                         />
                                     );
                                 }
                             )}
                         </div>
+                    </div>
+
+                    <div className="gap-7 my-20 inline-block w-full md:hidden">
+                        <img className="w-full mx-auto" src="/images/introduce/joinus.png" alt="" />
+                        <div className="join-us custom-font text-2xl font-bold mt-8">
+                            Join our weekly digest
+                        </div>
+                        <div className="join-us-content text-gray-custon2 mt-6 leading-6 w-72">
+                            Get exclusive promotions & updates straight to your inbox.
+                        </div>
+                        <input
+                            className="w-full rounded-3xl p-4 leading-7 text-base visible cursor-text mt-10"
+                            type=""
+                            placeholder="Enter your email here"
+                        />
+                        <Button
+                            size={ButtonSize.MEDIUM}
+                            background={ButtonBackground.DARK}
+                            icon={'icon-EnvelopeSimple'}
+                            content={'Subcribe'}
+                            attribute={'mt-4'}
+                        />
                     </div>
                 </main>
 

@@ -13,7 +13,7 @@ interface CardProps {
 
 const CardNFT: React.FC<CardProps> = ({ image, content, avatar, author, price }) => {
     return (
-        <div className="bg-darkGray h-fit pb-6 rounded-3xl text-white w-full">
+        <div className="bg-darkGray h-fit pb-6 rounded-3xl text-white w-fit mx-auto">
             <img src={image} alt="" />
             <div className="content text-2xl mx-5 mt-5">{content}</div>
             <div className="author mt-1.5 mx-5 gap-3 flex flex-row items-center justify-start">

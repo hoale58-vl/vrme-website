@@ -8,9 +8,9 @@ module.exports = {
         },
 
         screens: {
-            sm: '640px',
+            '0xl': '0px',
+            sm: '375px',
             md: '768px',
-            lg: '1024px',
             xl: '1280px',
             '2xl': '1536px',
         },
