@@ -35,7 +35,7 @@ const Footer = () => {
                 </div>
                 <div className="join-us-group w-5/12 0xl:max-md:hidden md:max-xl:w-full 0xl:max-xl:mt-10">
                     <div className="join-us custom-font text-2xl font-bold">
-                        Join our weekly digest
+                        Join Our Weekly Digest
                     </div>
                     <div className="join-us-content text-gray-custon2 mt-6 leading-6 w-72">
                         Get exclusive promotions & updates straight to your inbox.
