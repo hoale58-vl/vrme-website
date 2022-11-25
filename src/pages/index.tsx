@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { Button, CardNFT, CartGetStarted, Layout } from '../components/';
-import { Header, Footer } from './partials';
+import { Header, Footer } from '../components/partials';
 import { dataCardNFT, dataCardGetStarted } from '../data';
 
 import { ButtonBackground, ButtonSize } from '../enum/button-size';
@@ -14,7 +14,7 @@ const IndexPage: React.FC<PageProps> = () => {
                     <div className="text-7xl 0xl:max-md:text-3xl md:max-xl:text-5xl">
                         Vietnamese Metaverse Real Estate
                     </div>
-                    <div className="mt-5 text-2xl mb-8 text-gray-custon2 font-normal">
+                    <div className="mt-5 text-2xl mb-8 text-gray-custon2 font-normal 0xl:max-md:text-base">
                         ViMRE - Collect, buy and sell Vietnamese digital real estate from more than
                         20k NFT Landlord.
                     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/button';
+import Button from '../button';
 import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
 const Header = () => {
@@ -19,7 +19,7 @@ const Header = () => {
                         size={ButtonSize.MEDIUM}
                         background={ButtonBackground.DARK}
                         icon="icon-User"
-                        attribute='w-fit'
+                        attribute="w-fit"
                     />
                 </div>
                 <div className="burger-menu md:hidden ">

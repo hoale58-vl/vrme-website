@@ -1,6 +1,6 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { Header, Footer } from '../pages/partials';
+import { Header, Footer } from './partials';
 
 interface AuxProps {
     children?: React.ReactNode;
