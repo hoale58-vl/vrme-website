@@ -30,7 +30,7 @@ const IndexPage: React.FC<PageProps> = () => {
                     <img className="w-full" src="/images/introduce/introduce.png" alt="" />
                 </div>
             </div>
-            <div className="gap-7 my-20 inline-block w-full">
+            <div className="gap-7 my-20 w-full hidden">
                 <div className="w-full mb-16">
                     <div className="flex justify-between discover-body relative w-full">
                         <div className="discover-main">
@@ -77,7 +77,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 <div className="mb-12">
                     <div className="text-4xl mb-3">How it works</div>
                     <div className="font-normal text-xl text-gray-custon2">
-                        Find out how to get started
+                        Find Out How To Get Started
                     </div>
                 </div>
                 <div className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8">
