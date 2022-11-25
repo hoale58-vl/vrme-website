@@ -14,7 +14,7 @@ const Footer = () => {
                         <div className="brand text-4xl leading-10 font-semibold">ViMRE</div>
                     </div>
                     <div className="introduce text-base text-gray-custon2 mt-8 font-extralight leading-6">
-                        ViRME - Vietnamese Real Estate NFT marketplace
+                        ViMRE - Vietnamese Real Estate NFT marketplace
                     </div>
                     <div className="join-community text-base text-gray-custon2 mt-5">
                         Join our community
