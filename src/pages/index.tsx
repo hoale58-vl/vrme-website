@@ -9,7 +9,7 @@ import { ButtonBackground, ButtonSize } from '../enum/button-size';
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <Layout>
-            <div className="flex justify-between gap-7 my-20 0xl:max-md:flex-col">
+            <div className="flex justify-between gap-7 my-20 0xl:max-md:flex-col 0xl:max-md:my-8">
                 <div className="w-1/2 0xl:max-md:w-full">
                     <div className="text-7xl 0xl:max-md:text-3xl md:max-xl:text-5xl">
                         Vietnamese Metaverse Real Estate
@@ -75,8 +75,8 @@ const IndexPage: React.FC<PageProps> = () => {
 
             <div className="gap-7 my-20 inline-block w-full">
                 <div className="mb-12">
-                    <div className="text-4xl mb-3">How it works</div>
-                    <div className="font-normal text-xl text-gray-custon2">
+                    <div className="text-4xl mb-3 0xl:max-md:text-3xl">How It Works</div>
+                    <div className="font-normal text-xl text-gray-custon2 0xl:max-md:text-base">
                         Find Out How To Get Started
                     </div>
                 </div>
@@ -94,8 +94,8 @@ const IndexPage: React.FC<PageProps> = () => {
 
             <div className="gap-7 my-20 inline-block w-full md:hidden">
                 <img className="w-full mx-auto" src="/images/introduce/joinus.png" alt="" />
-                <div className="custom-font text-2xl font-bold mt-8">Join our weekly digest</div>
-                <div className="text-gray-custon2 mt-6 leading-6 w-72">
+                <div className="text-2xl font-bold mt-8">Join our weekly digest</div>
+                <div className="text-gray-custon2 mt-6 leading-6 w-72 font-normal 0xl:max-md:text-base">
                     Get exclusive promotions & updates straight to your inbox.
                 </div>
                 <input
