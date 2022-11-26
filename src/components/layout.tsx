@@ -12,7 +12,7 @@ const Layout = ({ children }: AuxProps) => {
             <div id="root">
                 <div className="max-w-screen-xl mx-auto">
                     <Header />
-                    <main className="px-28 0xl:max-md:px-8">{children}</main>
+                    <main className="px-28 0xl:max-md:px-8 mt-44 0xl:max-md:mt-24">{children}</main>
                     <Footer />
                 </div>
             </div>
