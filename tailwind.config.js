@@ -49,6 +49,14 @@ module.exports = {
                     'font-size': '16px',
                     'line-height': '22.4px',
                 },
+                '.background-gradient-1': {
+                    'background-image':
+                        'linear-gradient(128.15deg, #A259FF 49.75%, #377DF7 136.56%);',
+                },
+                '.background-gradient-2': {
+                    'background-image':
+                        'linear-gradient(100.92deg, #A259FF 13.57%, #FF6250 97.65%);',
+                },
             });
         }),
     ],
