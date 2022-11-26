@@ -7,7 +7,7 @@ interface BtnProps {
 }
 
 const Avatar: React.FC<BtnProps> = ({ url }) => {
-    return <img className='w-6' src={url} alt="" />;
+    return <img className="w-6" src={url} alt="" />;
 };
 
 export default Avatar;
