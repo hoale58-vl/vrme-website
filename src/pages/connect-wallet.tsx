@@ -4,7 +4,7 @@ import { Layout } from '../components';
 export default function Blog() {
     return (
         <Layout>
-            <h1>Connect a Wallet</h1>
+            <img src="/images/introduce/connect-wallet.png" alt="" />
         </Layout>
     );
 }

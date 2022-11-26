@@ -4,7 +4,7 @@ import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
 const Header = () => {
     return (
-        <header className="px-12 box-border 0xl:max-md:px-8">
+        <header className="px-12 box-border 0xl:max-md:px-8 bg-black fixed top-0 w-full xl:max-w-screen-xl">
             <nav className="flex justify-between items-center py-6">
                 <div className="flex items-center gap-3">
                     <div className="logo">
