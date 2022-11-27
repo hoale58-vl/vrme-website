@@ -6,6 +6,7 @@ module.exports = {
     theme: {
         extend: {},
         screens: {
+            '0xl': '0px',
             sm: '375px',
             md: '768px',
             xl: '1280px',
@@ -13,8 +14,11 @@ module.exports = {
         colors: {
             black: '#2B2B2B',
             white: '#FFFFFF',
-            darkGray: '3B3B3B',
-            lightGray: '#858584',
+            gray: {
+                200: '#858584',
+                400: '#3B3B3B',
+                300: '#CCCCCC',
+            },
             purple: '#A259FF',
         },
     },

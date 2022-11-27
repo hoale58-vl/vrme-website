@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
-import { Header } from '../components/partials';
+import { Header, Footer } from '../components/partials';
 
 const pageStyles = {
     color: '#232129',
@@ -11,7 +11,9 @@ const pageStyles = {
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <div className="max-w-screen-xl mx-auto">
-            <Header />
+        <Header />
+        <div className="m-32"></div>
+            <Footer />
         </div>
     );
 };

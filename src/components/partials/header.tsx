@@ -7,7 +7,7 @@ const Header = () => {
                 <div className="flex items-center gap-3">
                     <div className="logo">
                         <img
-                            className="w-12 h-auto 0xl:max-md:w-8 0xl:max-md:h-auto"
+                            className="w-12 h-auto 0xl:max-md:w-8 "
                             src="/images/logo/vector.png"
                             alt=""
                         />
@@ -17,12 +17,12 @@ const Header = () => {
                 <div className="user-group flex justify-end items-center gap-8 0xl:max-md:hidden">
                     <div className="market-place">Marketplace</div>
                     <button className="btn btn-dark btn-medium">
-                        <img className='w-5' src="/images/icon/rocket-launch.png" alt="" />
+                        <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                         <div className="">Connect a wallet</div>
                     </button>
                 </div>
-                <div className="burger-menu md:hidden ">
-                    <span className={'icon-List'}></span>
+                <div className="md:hidden">
+                    <img src="/images/icon/list.png" alt="" />
                 </div>
             </nav>
         </header>
