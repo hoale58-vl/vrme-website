@@ -12,7 +12,7 @@ const pageStyles = {
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <Layout>
-            <div className="flex mb-20 justify-between gap-7 0xl:max-md:flex-col 0xl:max-md:my-[101px]">
+            <div className="flex mb-20 0xl:max-md:mb-10 justify-between gap-7 0xl:max-md:flex-col 0xl:max-md:my-[101px]">
                 <div className="w-1/2 0xl:max-md:w-full">
                     <div className="text-7xl 0xl:max-md:text-3xl md:max-xl:text-5xl">
                         Vietnamese Metaverse Real Estate
@@ -31,7 +31,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 </div>
             </div>
 
-            <div className="gap-7 my-20 inline-block w-full">
+            <div className="gap-7 my-20 inline-block w-full 0xl:max-md:my-10">
                 <div className="mb-12">
                     <div className="text-4xl mb-3 0xl:max-md:text-3xl">How It Works</div>
                     <div className="font-normal text-xl text-gray-custon2 0xl:max-md:text-base">
