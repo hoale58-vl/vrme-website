@@ -61,6 +61,10 @@ module.exports = {
                     'background-image':
                         'linear-gradient(100.92deg, #A259FF 13.57%, #FF6250 97.65%);',
                 },
+                '.icon': {
+                    width: '20px',
+                    height: '20px',
+                },
             });
         }),
     ],
