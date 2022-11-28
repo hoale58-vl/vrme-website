@@ -6,8 +6,8 @@ import { CartGetStartedData } from '../data';
 const IndexPage: React.FC<PageProps> = () => {
     return (
         <Layout>
-            <main className="md:px-[115px] md:py-20 px-[30px] py-10">
-                <div className="flex mb-20 0xl:max-md:mb-10 justify-between gap-7 0xl:max-md:flex-col 0xl:max-md:my-[101px]">
+            <main className="md:px-[115px] md:py-20 px-[30px]">
+                <div className="flex mb-20 0xl:max-md:mb-10 justify-between gap-7 0xl:max-md:flex-col 0xl:max-md:my-[40px]">
                     <div className="w-1/2 0xl:max-md:w-full">
                         <div className="text-7xl 0xl:max-md:text-3xl md:max-xl:text-5xl">
                             Vietnamese Metaverse Real Estate
