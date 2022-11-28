@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 const Header = () => {
     return (
-        <header className="px-[50px] box-border 0xl:max-md:px-8 bg-black fixed top-0 w-full xl:max-w-screen-xl m-auto">
+        <header className="px-[50px] box-border 0xl:max-md:px-8 bg-black sticky top-0 w-full xl:max-w-screen-xl m-auto">
             <nav className="flex justify-between items-center py-[25px]">
                 <Link to="/">
                     <div className="flex items-center gap-3">
