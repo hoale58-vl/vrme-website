@@ -12,30 +12,37 @@ body {
 
 h1 {
     font-size: 67px;
+    line-height: 73.7px;
 }
 
 h2 {
     font-size: 51px;
+    line-height: 56.1px;
 }
 
 h3 {
     font-size: 38px;
+    line-height: 45.6px;
 }
 
 h4 {
     font-size: 28px;
+    line-height: 39.2px;
 }
 
 h5 {
     font-size: 22px;
+    line-height: 35.2px;
 }
 
 .text-base {
     font-size: 16px;
+    line-height: 22.4px;
 }
 
 .text-caption {
     font-size: 12px;
+    line-height: 13.2px;
 }
 
 .text-space-mono {

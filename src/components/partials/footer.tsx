@@ -5,24 +5,6 @@ import React from 'react';
 const Footer = () => {
     return (
         <>
-            <div className="px-[30px] md:hidden w-full mb-10">
-                <img className="w-full mb-[30px]" src="/images/introduce/joinus.png" alt="" />
-                <div className="text-[28px] font-semibold">Join Our Weekly Digest</div>
-                <div className="text-gray-300 mt-6 leading-[22.4px] font-normal">
-                    Get exclusive promotions & updates straight to your inbox.
-                </div>
-                <div className="email-input mt-5 relative max-w-3xl">
-                    <input
-                        className="mb-4 w-full rounded-3xl px-5 py-[19px] leading-[22.4px] text-base visible cursor-text"
-                        type=""
-                        placeholder="Enter your email here"
-                    />
-                    <button className="btn btn-dark btn-small w-full flex justify-center items-center">
-                        <img src="/images/icon/envelope-simple.png" alt="" />
-                        <div className="font-semibold leading-[22.4px]">Subscribe</div>
-                    </button>
-                </div>
-            </div>
             <footer className="px-[115px] bg-gray-400 py-10 0xl:max-md:p-8">
                 <div className="contact flex font-normal 0xl:max-xl:flex-col">
                     <div className="about-us w-3/12 0xl:max-xl:w-full">
@@ -37,10 +19,10 @@ const Footer = () => {
                         </div>
                         <div className="text-base text-gray-300 mt-5">Join our community</div>
                         <div className="social-community-logo flex mt-4 gap-3">
-                            <img src="/images/social-media-logo/DiscordLogo.png" alt="" />
-                            <img src="/images/social-media-logo/YoutubeLogo.png" alt="" />
-                            <img src="/images/social-media-logo/TwitterLogo.png" alt="" />
-                            <img src="/images/social-media-logo/InstagramLogo.png" alt="" />
+                            <img src="/images/social-media-logo/discord-logo.png" alt="" />
+                            <img src="/images/social-media-logo/youtube-logo.png" alt="" />
+                            <img src="/images/social-media-logo/twitter-logo.png" alt="" />
+                            <img src="/images/social-media-logo/instagram-logo.png" alt="" />
                         </div>
                     </div>
                     <div className="w-3/12 xl:ml-28 mr-7 0xl:max-xl:w-full 0xl:max-xl:mt-10">
