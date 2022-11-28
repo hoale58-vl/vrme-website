@@ -5,7 +5,7 @@ import { Layout, CartGetStarted } from '../components/';
 const ConnectWalletPage: React.FC<PageProps> = () => {
     return (
         <Layout>
-            <div className="flex xl:flex-row flex-col xl:mt-[100px] gap-[60px] ">
+            <div className="flex xl:flex-row flex-col gap-[60px] ">
                 <img
                     className="xl:w-1/2 w-full"
                     src="/images/introduce/connect-wallet.png"
