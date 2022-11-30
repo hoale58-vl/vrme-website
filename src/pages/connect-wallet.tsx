@@ -1,9 +1,9 @@
-import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
-import { Layout, CartGetStarted } from '../components/';
+import * as React from 'react'
+import type { HeadFC, PageProps } from 'gatsby'
+import { Layout } from '../components/'
 
 const ConnectWalletPage: React.FC<PageProps> = () => {
-    return (
+  return (
         <Layout>
             <div className="flex xl:flex-row flex-col gap-[60px] ">
                 <img
@@ -43,9 +43,9 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default ConnectWalletPage;
+export default ConnectWalletPage
 
-export const Head: HeadFC = () => <title>Connect a wallet</title>;
+export const Head: HeadFC = () => <title>Connect a wallet</title>

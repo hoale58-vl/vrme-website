@@ -1,0 +1,87 @@
+@media only screen and (min-width: 481px) and (max-width: 834px) {
+    .header-main {
+        @apply px-[50px] py-[15px];
+    }
+    .header-connect-wallet {
+        @apply hidden;
+    }
+    .logo {
+        @apply w-[40px];
+    }
+    .brand {
+        @apply text-[28px] leading-[39.2px];
+    }
+    .landing-main {
+        @apply px-[72px];
+    }
+    .landing-main-intro {
+        font-size: 38px;
+        line-height: 45.6px;
+    }
+    .landing-main-group {
+        @apply flex gap-[30px] pt-[40px] py-[80px];
+    }
+    .landing-main-intro-block {
+        @apply w-1/2;
+    }
+    .landing-main-intro-content {
+        font-size: 16px;
+        line-height: 25.6px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .how-it-work-group {
+        @apply pt-[40px] py-[80px] inline-block;
+    }
+    .how-it-work-intro {
+        @apply mb-[40px];
+    }
+    .header-content {
+        font-size: 28px;
+        line-height: 22.4px;
+        margin-bottom: 10px;
+    }
+    .landing-content {
+        font-size: 16px;
+        line-height: 22.4px;
+        font-weight: 400;
+    }
+    .how-it-work-grid {
+        @apply grid-cols-3 gap-[30px];
+    }
+    .footer {
+        @apply px-[30px] py-[40px];
+    }
+    .card-get-started {
+        @apply px-[25px] pt-[10px] pb-[30px];
+    }
+    .card-get-started-image {
+        @apply mb-[20px];
+    }
+    .card-get-started-group {
+        @apply mx-[-5px];
+    }
+    .card-get-started-title {
+        font-size: 16px;
+        line-height: 22.4px;
+        @apply text-center;
+    }
+    .card-get-started-content {
+        @apply text-center font-normal mt-[10px] text-[12px] leading-[16.8px];
+    }
+    .footer-contact {
+        @apply flex-col;
+    }
+    .email-input {
+        @apply max-w-[420px];
+    }
+    .footer-intro {
+        @apply mt-[20px];
+    }
+    .footer-explore-group {
+        @apply my-[30px];
+    }
+    .join-us-mobile {
+        @apply hidden;
+    }
+}

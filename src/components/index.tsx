@@ -1,4 +1,4 @@
 import Layout from './layout';
-import CartGetStarted from './cart-get-started';
+import CardGetStarted from './card-get-started';
 
-export { Layout, CartGetStarted };
+export { Layout, CardGetStarted };

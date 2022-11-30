@@ -1,5 +1,87 @@
-@media only screen and (min-width: 375px) {
-    body {
-      background-color: lightgreen;
+@media only screen and (min-width: 835px) {
+    .header-main {
+        @apply max-w-screen-xl px-[50px] py-[25px] box-border sticky top-0 w-full m-auto;
+    }
+    .header-icon-list {
+        @apply hidden;
+    }
+    .logo {
+        @apply w-[50px];
+    }
+    .brand {
+        @apply text-[36px] leading-[50.4px];
+    }
+    .landing-main {
+        @apply px-[115px];
+    }
+    .landing-main-intro {
+        font-size: 67px;
+        line-height: 73.7px;
+    }
+    .landing-main-group {
+        @apply flex gap-[30px] py-[80px];
+    }
+    .landing-main-intro-block {
+        @apply w-1/2;
+    }
+    .landing-main-intro-content {
+        font-size: 22px;
+        line-height: 35.2px;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+    .how-it-work-group {
+        @apply py-[80px] inline-block;
+    }
+    .how-it-work-intro {
+        @apply mb-[60px];
+    }
+    .header-content {
+        font-size: 38px;
+        line-height: 45.6px;
+        margin-bottom: 10px;
+    }
+    .landing-content {
+        font-size: 22px;
+        line-height: 35.2px;
+        font-weight: 400;
+    }
+    .how-it-work-grid {
+        @apply grid-cols-3 gap-[30px];
+    }
+    .card-get-started {
+        @apply px-10 pt-[10px] pb-[30px];
+    }
+    .card-get-started-image {
+        @apply mb-[20px];
+    }
+    .card-get-started-group {
+        @apply mx-[-10px];
+    }
+    .card-get-started-title {
+        font-size: 22px;
+        line-height: 30.8px;
+        @apply text-center;
+    }
+    .card-get-started-content {
+        @apply text-center font-normal mt-[10px];
+    }
+    .footer {
+        @apply px-[115px] py-10;
+    }
+    .about-us {
+        @apply w-3/12;
+    }
+    .footer-explore-group {
+        @apply w-3/12;
+    }
+    .footer-joinus-group {
+        @apply w-5/12;
+    }
+    .footer-intro {
+        @apply mt-[30px];
+    }
+    .join-us-mobile {
+        @apply hidden;
     }
 }

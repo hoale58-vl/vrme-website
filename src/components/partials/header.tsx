@@ -1,26 +1,28 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const Header = () => {
+interface Props {}
+
+const Header: React.FunctionComponent<Props> = () => {
     return (
-        <header className="px-[50px] box-border 0xl:max-md:px-8 bg-black sticky top-0 w-full xl:max-w-screen-xl m-auto">
-            <nav className="flex justify-between items-center py-[25px]">
+        <header className="header-main">
+            <nav className="header-main-nav">
                 <Link to="/">
-                    <div className="flex items-center gap-3">
-                        <div className="logo">
+                    <div className="header-logo-group">
+                        <div className="">
                             <img
-                                className="w-[50px] h-auto 0xl:max-md:w-8 "
+                                className="logo"
                                 src="/images/logo/vector.png"
                                 alt=""
                             />
                         </div>
-                        <div className="brand text-[36px] leading-[50.4px] 0xl:max-md:text-2xl">
+                        <div className="brand">
                             ViMRE
                         </div>
                     </div>
                 </Link>
-                <div className="user-group flex justify-end items-center gap-8 0xl:max-md:hidden">
-                    <div className="market-place leading-[22.4px]">Marketplace</div>
+                <div className="header-connect-wallet">
+                    <div className="market-place">Marketplace</div>
                     <Link to="/connect-wallet">
                         <button className="btn btn-dark btn-medium">
                             <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
@@ -28,7 +30,7 @@ const Header = () => {
                         </button>
                     </Link>
                 </div>
-                <div className="md:hidden">
+                <div className="header-icon-list">
                     <img src="/images/icon/list.png" alt="" />
                 </div>
             </nav>
