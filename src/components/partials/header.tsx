@@ -1,24 +1,16 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-interface Props {}
-
-const Header: React.FunctionComponent<Props> = () => {
+const Header: React.FunctionComponent<{}> = () => {
     return (
         <header className="header-main">
             <nav className="header-main-nav">
                 <Link to="/">
                     <div className="header-logo-group">
                         <div className="">
-                            <img
-                                className="logo"
-                                src="/images/logo/vector.png"
-                                alt=""
-                            />
+                            <img className="logo" src="/images/logo/vector.png" alt="" />
                         </div>
-                        <div className="brand">
-                            ViMRE
-                        </div>
+                        <div className="brand">ViMRE</div>
                     </div>
                 </Link>
                 <div className="header-connect-wallet">

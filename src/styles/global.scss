@@ -10,27 +10,27 @@ body {
     @apply bg-black text-white min-h-screen;
 }
 
-.h1 {
+h1 {
     font-size: 67px;
     line-height: 73.7px;
 }
 
-.h2 {
+h2 {
     font-size: 51px;
     line-height: 56.1px;
 }
 
-.h3 {
+h3 {
     font-size: 38px;
     line-height: 45.6px;
 }
 
-.h4 {
+h4 {
     font-size: 28px;
     line-height: 39.2px;
 }
 
-.h5 {
+h5 {
     font-size: 22px;
     line-height: 35.2px;
 }
@@ -94,4 +94,9 @@ body {
 }
 .footer-copyright {
     @apply h-9 flex items-end border-t border-gray-200 mt-8 text-xs text-gray-300 font-normal;
+}
+.connect-wallet-image {
+    background-image: url('/images/introduce/connect-wallet.png');
+    background-size: cover;
+    background-position: center;
 }

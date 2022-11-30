@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 // import Button from '../button';
 // import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
-const Footer = () => {
-  return (
+const Footer: React.FunctionComponent = () => {
+    return (
         <>
             <footer className="footer">
                 <div className="footer-contact">
@@ -26,7 +26,9 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="footer-explore-group">
-                        <div className="footer-explore text-2xl text-space-mono font-bold">Explore</div>
+                        <div className="footer-explore text-2xl text-space-mono font-bold">
+                            Explore
+                        </div>
                         <div className="footer-marketplace mt-6 footer-text">Marketplace</div>
                         <div className="footer-connect-wallet mt-5 footer-text">
                             Connect a wallet
@@ -51,12 +53,10 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="footer-copyright">
-                    Ⓒ ViMRE - Copyright 2022
-                </div>
+                <div className="footer-copyright">Ⓒ ViMRE - Copyright 2022</div>
             </footer>
         </>
-  )
-}
+    );
+};
 
-export default Footer
+export default Footer;

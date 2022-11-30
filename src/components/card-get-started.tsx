@@ -9,7 +9,7 @@ interface CardProps {
 
 const CardGetStarted: React.FC<CardProps> = ({ image, title, content, attribute }) => {
     return (
-        <div className={`card-get-started`}>
+        <div className={'card-get-started'}>
             <img className="card-get-started-image" src={image} alt="" />
             <div className="card-get-started-group">
                 <div className="card-get-started-title">{title}</div>

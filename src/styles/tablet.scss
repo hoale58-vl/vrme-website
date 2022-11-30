@@ -84,4 +84,28 @@
     .join-us-mobile {
         @apply hidden;
     }
+    .connect-wallet-body {
+        @apply flex gap-10;
+    }
+    .connect-wallet-image {
+        @apply w-1/2;
+    }
+    .connect-wallet-content {
+        @apply w-1/2 py-[80px] pr-[72px];
+    }
+    .connect-wallet-title {
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 45.6px;
+    }
+    .connect-wallet-intro {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22.4px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    .connect-wallet-btn {
+        @apply w-full py-[14px] pl-[40px] pr-[20px] mb-5 gap-5;
+    }
 }

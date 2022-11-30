@@ -128,4 +128,25 @@
         align-items: center;
         gap: 12px;
     }
+    .connect-wallet-image {
+        height: 232px;
+        width: 100%;
+    }
+    .connect-wallet-content {
+        @apply px-[30px] pt-[30px] pb-[20px];
+    }
+    .connect-wallet-title {
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 45.6px;
+    }
+    .connect-wallet-intro {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22.4px;
+        margin: 20px 0 30px 0;
+    }
+    .connect-wallet-btn {
+        @apply w-full py-[14px] pl-[40px] pr-[20px] mb-5 gap-5;
+    }
 }
