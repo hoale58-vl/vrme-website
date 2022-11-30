@@ -2,59 +2,43 @@ import React from 'react';
 // import Button from '../button';
 // import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
-const Footer = () => {
+const Footer: React.FunctionComponent = () => {
     return (
         <>
-            <div className="px-[30px] md:hidden w-full mb-10">
-                <img className="w-full mb-[30px]" src="/images/introduce/joinus.png" alt="" />
-                <div className="text-[28px] font-semibold">Join Our Weekly Digest</div>
-                <div className="text-gray-300 mt-6 leading-[22.4px] font-normal">
-                    Get exclusive promotions & updates straight to your inbox.
-                </div>
-                <div className="email-input mt-5 relative max-w-3xl">
-                    <input
-                        className="mb-4 w-full rounded-3xl px-5 py-[19px] leading-[22.4px] text-base visible cursor-text"
-                        type=""
-                        placeholder="Enter your email here"
-                    />
-                    <button className="btn btn-dark btn-small w-full flex justify-center items-center">
-                        <img src="/images/icon/envelope-simple.png" alt="" />
-                        <div className="font-semibold leading-[22.4px]">Subscribe</div>
-                    </button>
-                </div>
-            </div>
-            <footer className="px-[115px] bg-gray-400 py-10 0xl:max-md:p-8">
-                <div className="contact flex font-normal 0xl:max-xl:flex-col">
-                    <div className="about-us w-3/12 0xl:max-xl:w-full">
-                        <div className="brand-group flex items-center gap-3">
+            <footer className="footer">
+                <div className="footer-contact">
+                    <div className="about-us">
+                        <div className="brand-group">
                             <div className="logo">
-                                <img className="w-12 h-12" src="/images/logo/vector.png" alt="" />
+                                <img className="" src="/images/logo/vector.png" alt="" />
                             </div>
-                            <div className="brand text-4xl leading-10 font-semibold">ViMRE</div>
+                            <div className="brand">ViMRE</div>
                         </div>
-                        <div className="text-base text-gray-300 mt-8 font-extralight leading-[22.4px]">
+                        <div className="footer-text footer-intro">
                             ViMRE - Vietnamese Real Estate NFT marketplace
                         </div>
-                        <div className="text-base text-gray-300 mt-5">Join our community</div>
+                        <div className="footer-text mt-5">Join our community</div>
                         <div className="social-community-logo flex mt-4 gap-3">
-                            <img src="/images/social-media-logo/DiscordLogo.png" alt="" />
-                            <img src="/images/social-media-logo/YoutubeLogo.png" alt="" />
-                            <img src="/images/social-media-logo/TwitterLogo.png" alt="" />
-                            <img src="/images/social-media-logo/InstagramLogo.png" alt="" />
+                            <img src="/images/social-media-logo/discord-logo.png" alt="" />
+                            <img src="/images/social-media-logo/youtube-logo.png" alt="" />
+                            <img src="/images/social-media-logo/twitter-logo.png" alt="" />
+                            <img src="/images/social-media-logo/instagram-logo.png" alt="" />
                         </div>
                     </div>
-                    <div className="w-3/12 xl:ml-28 mr-7 0xl:max-xl:w-full 0xl:max-xl:mt-10">
-                        <div className="explore text-2xl text-space-mono font-bold">Explore</div>
-                        <div className="marketplace mt-6 text-base text-gray-300">Marketplace</div>
-                        <div className="connect-wallet mt-5 text-base text-gray-300">
+                    <div className="footer-explore-group">
+                        <div className="footer-explore text-2xl text-space-mono font-bold">
+                            Explore
+                        </div>
+                        <div className="footer-marketplace mt-6 footer-text">Marketplace</div>
+                        <div className="footer-connect-wallet mt-5 footer-text">
                             Connect a wallet
                         </div>
                     </div>
-                    <div className="w-5/12 0xl:max-md:hidden md:max-xl:w-full 0xl:max-xl:mt-10">
-                        <div className="text-space-mono text-2xl font-bold">
+                    <div className="footer-joinus-group">
+                        <div className="footer-joinus-title text-space-mono text-2xl font-bold">
                             Join Our Weekly Digest
                         </div>
-                        <div className="text-gray-300 mt-6 leading-[22.4px] w-72">
+                        <div className="footer-joinus-content text-gray-300 mt-6 leading-[22.4px] w-72">
                             Get exclusive promotions & updates straight to your inbox.
                         </div>
                         <div className="email-input mt-5 relative max-w-3xl">
@@ -63,15 +47,13 @@ const Footer = () => {
                                 type=""
                                 placeholder="Enter your email here"
                             />
-                            <button className="btn btn-dark btn-medium absolute top-0 right-0">
+                            <button className="footer-btn-subcribe btn btn-dark btn-medium absolute top-0 right-0">
                                 <div className="font-semibold leading-[22.4px]">Subscribe</div>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div className="h-9 flex items-end border-t border-gray-200 mt-8 text-xs text-gray-300 font-normal">
-                    Ⓒ ViMRE - Copyright 2022
-                </div>
+                <div className="footer-copyright">Ⓒ ViMRE - Copyright 2022</div>
             </footer>
         </>
     );

@@ -1,29 +1,28 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
-const Header = () => {
+const Header: React.FunctionComponent<{}> = () => {
     return (
-        <header className="px-[50px] box-border 0xl:max-md:px-8 bg-black fixed top-0 w-full xl:max-w-screen-xl m-auto">
-            <nav className="flex justify-between items-center py-[25px]">
-                <div className="flex items-center gap-3">
-                    <div className="logo">
-                        <img
-                            className="w-[50px] h-auto 0xl:max-md:w-8 "
-                            src="/images/logo/vector.png"
-                            alt=""
-                        />
+        <header className="header-main">
+            <nav className="header-main-nav">
+                <Link to="/">
+                    <div className="header-logo-group">
+                        <div className="">
+                            <img className="logo" src="/images/logo/vector.png" alt="" />
+                        </div>
+                        <div className="brand">ViMRE</div>
                     </div>
-                    <div className="brand text-[36px] leading-[50.4px] 0xl:max-md:text-2xl">
-                        ViMRE
-                    </div>
+                </Link>
+                <div className="header-connect-wallet">
+                    <div className="market-place">Marketplace</div>
+                    <Link to="/connect-wallet">
+                        <button className="btn btn-dark btn-medium">
+                            <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
+                            <div className="">Connect a wallet</div>
+                        </button>
+                    </Link>
                 </div>
-                <div className="user-group flex justify-end items-center gap-8 0xl:max-md:hidden">
-                    <div className="market-place leading-[22.4px]">Marketplace</div>
-                    <button className="btn btn-dark btn-medium">
-                        <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
-                        <div className="">Connect a wallet</div>
-                    </button>
-                </div>
-                <div className="md:hidden">
+                <div className="header-icon-list">
                     <img src="/images/icon/list.png" alt="" />
                 </div>
             </nav>

@@ -1,3 +1,3 @@
-import CartGetStartedData from '../data/cart-get-started.json';
+import CardGetStartedData from '../data/cart-get-started.json';
 
-export { CartGetStartedData };
+export { CardGetStartedData };

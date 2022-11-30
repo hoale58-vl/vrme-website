@@ -35,7 +35,7 @@ module.exports = {
                     'border-radius': '20px',
                 },
                 '.btn-light': {
-                    'background-color': '#FFFFFF',
+                    border: '1px solid #A259FF',
                     'border-radius': '20px',
                 },
                 '.btn-large': {
