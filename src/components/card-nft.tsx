@@ -25,7 +25,7 @@ const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, pr
                 </div>
                 <div className="card-nft-price-group">
                     <div className="price-label">Price</div>
-                    <div className="card-nft-price">{price + '  '} ETH</div>
+                    <div className="card-nft-price gap-1">{price} ETH</div>
                 </div>
                 <button className="btn btn-dark card-nft-btn">
                     <img className="w-5 h-5" src="/images/icon/rocket-launch.png" alt="" />
