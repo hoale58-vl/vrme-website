@@ -25,7 +25,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     />
                 </div>
             </div>
-            <Tabs defaultActiveKey="2" centered={true} className="marketplace-tabs">
+            <Tabs defaultActiveKey="1" centered={true} className="marketplace-tabs">
                 <Tabs.TabPane
                     className="tabpane"
                     tab={
