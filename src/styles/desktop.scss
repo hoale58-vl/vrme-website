@@ -29,6 +29,8 @@
         line-height: 35.2px;
         margin-bottom: 30px;
         margin-top: 20px;
+        color: #ffffff;
+        font-weight: 400;
     }
     .how-it-work-group {
         @apply py-[80px] inline-block;
@@ -98,5 +100,134 @@
     }
     .connect-wallet-btn {
         @apply mb-5 w-[320px] px-10 py-4 gap-5 text-[22px] leading-[30.8px];
+    }
+    .connect-wallet-title {
+        font-size: 51px;
+        line-height: 51.6px;
+        font-weight: 600;
+    }
+    .connect-wallet-intro {
+        font-size: 22px;
+        line-height: 35.2px;
+        font-weight: 400;
+        color: #ffffff !important;
+    }
+    .tabpane {
+        color: #ffffff !important;
+    }
+    .collection-tab {
+        color: #ffffff !important;
+    }
+    .ant-tabs-nav {
+        margin-bottom: 0px !important;
+    }
+    .ant-tabs-nav-wrap {
+        background-color: #2b2b2b !important;
+    }
+    .ant-tabs-nav-list {
+        flex: 1;
+        padding: 0 115px;
+    }
+    .ant-tabs-tab {
+        flex: 1;
+        justify-content: center;
+        color: #858584 !important;
+    }
+    .ant-tabs-tab + .ant-tabs-tab {
+        margin: 0 0 0 0px !important;
+    }
+    .ant-tabs-ink-bar {
+        background-color: #858584 !important;
+        padding: 0 115px !important;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color: #fff !important;
+    }
+    .marketplace-tabs {
+        @apply px-[115px];
+    }
+    .browse-marketplace {
+        @apply px-[115px] py-[80px];
+    }
+    .browse-marketplace-title {
+        //styleName: H2 - Work Sans;
+        font-family: Work Sans;
+        font-size: 51px;
+        font-weight: 600;
+        line-height: 56px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .browse-market-place-content {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+    .browse-marketplace-search-bar {
+        @apply relative;
+    }
+    .browse-marketplace-search-bar-input {
+        width: 100%;
+        background-color: transparent;
+        height: 60px;
+        border: 1px solid #3b3b3b;
+        border-radius: 20px;
+        box-sizing: border-box;
+        padding: 0px 12px;
+    }
+    .browse-marketplace-search-bar-icon {
+        width: 24px;
+        @apply absolute right-[12px] top-[18.5px] hover:cursor-pointer;
+    }
+    .ant-tabs {
+        padding: 0 115px;
+    }
+    .tabpane-count {
+        //styleName: Base (Body) - Space Mono;
+        font-family: Space Mono;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        background-color: #3b3b3b;
+        border-radius: 20px;
+        padding: 5px 10px;
+    }
+    .ant-tabs-tab-active .tabpane-count {
+        background-color: #858584;
+    }
+    .tabpane-title {
+        @apply flex gap-4;
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: center;
+        @apply flex items-center;
+    }
+    .tabpane-content {
+        @apply px-[115px] py-[60px] grid grid-cols-3 gap-[30px];
+        background-color: #3b3b3b;
+    }
+    .card-nft {
+        @apply bg-black rounded-[20px];
+    }
+    .card-nft-info {
+        @apply mx-[30px] mt-5 mb-[23px];
+    }
+    .card-nft-name {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
     }
 }

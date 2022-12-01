@@ -10,10 +10,10 @@ const IndexPage: React.FC<PageProps> = () => {
                 <div className="landing-main-group">
                     <div className="landing-main-intro-block">
                         <div className="landing-main-intro">Vietnamese Metaverse Real Estate</div>
-                        <h5 className="landing-main-intro-content">
+                        <div className="landing-main-intro-content">
                             ViMRE - Collect, buy and sell Vietnamese digital real estate from more
                             than 20k NFT Landlord.
-                        </h5>
+                        </div>
                         <button className="btn-get-started btn btn-dark btn-medium">
                             <img className="icon" src="/images/icon/rocket-launch.png" alt="" />
                             <div className="">Get Started</div>
