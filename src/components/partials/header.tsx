@@ -14,7 +14,9 @@ const Header: React.FunctionComponent<{}> = () => {
                     </div>
                 </Link>
                 <div className="header-connect-wallet">
-                    <div className="market-place">Marketplace</div>
+                    <Link to="/marketplace">
+                        <div className="market-place">Marketplace</div>
+                    </Link>
                     <Link to="/connect-wallet">
                         <button className="btn btn-dark btn-medium">
                             <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />

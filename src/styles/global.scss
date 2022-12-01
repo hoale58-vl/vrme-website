@@ -5,11 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
 
 body {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif !important;
     font-weight: 600;
-    @apply bg-black text-white min-h-screen;
+    @apply text-white min-h-screen;
+    background-color: #2b2b2b !important;
+    color: #ffffff !important;
+    min-height: 100vh !important;
 }
-
 h1 {
     font-size: 67px;
     line-height: 73.7px;
@@ -34,7 +36,9 @@ h5 {
     font-size: 22px;
     line-height: 35.2px;
 }
-
+a {
+    color: #ffffff !important;
+}
 .text-base {
     font-size: 16px;
     line-height: 22.4px;
@@ -50,19 +54,21 @@ h5 {
 }
 
 .header-main {
-    @apply bg-black sticky top-0;
+    @apply bg-black sticky top-0 z-50;
 }
 
 .header-main-nav {
     @apply flex justify-between items-center;
 }
 .header-logo-group {
+    color: #ffffff !important;
     @apply flex items-center gap-3;
 }
 .logo {
     @apply h-auto;
 }
 .header-connect-wallet {
+    color: #ffffff !important;
     @apply flex justify-end items-center gap-8;
 }
 .header-icon-list {
@@ -99,4 +105,38 @@ h5 {
     background-image: url('/images/introduce/connect-wallet.png');
     background-size: cover;
     background-position: center;
+}
+.card-nft-author-group {
+    @apply flex gap-[12px];
+}
+.card-nft-price {
+    font-family: Space Mono;
+}
+.price-label {
+    color: #858584;
+}
+.card-nft-price {
+    //styleName: Base (Body) - Space Mono;
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.card-nft-name {
+    @apply mb-[5px];
+}
+.card-nft-price-group {
+    margin-top: 27px;
+}
+.card-nft-info {
+    @apply relative;
+}
+.card-nft-btn {
+    padding: 12px 21.5px;
+    @apply absolute bottom-0 right-0;
+}
+.card-nft {
+    @apply inline-block;
 }

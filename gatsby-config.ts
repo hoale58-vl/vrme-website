@@ -12,6 +12,7 @@ const config: GatsbyConfig = {
     plugins: [
         'gatsby-plugin-postcss',
         'gatsby-plugin-sass',
+        'gatsby-plugin-antd',
         'gatsby-plugin-image',
         'gatsby-transformer-remark',
         'gatsby-plugin-sharp',

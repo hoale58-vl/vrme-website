@@ -8,7 +8,7 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
             <div className="connect-wallet-body">
                 <div className="connect-wallet-image"></div>
                 <div className="connect-wallet-content">
-                    <h2 className="connect-wallet-title">Connect a wallet</h2>
+                    <div className="connect-wallet-title">Connect a wallet</div>
                     <h5 className="connect-wallet-intro">
                         Choose a wallet you want to connect. There are several wallet providers.
                     </h5>
