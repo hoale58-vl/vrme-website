@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
-import { Layout, CardNFT } from '../components/';
-import { CardNFTData } from '../data/';
+import { Layout, CardNFT, Collection } from '../components/';
+import { CardNFTData, CollectionData } from '../data/';
 import { Tabs } from 'antd';
 
 const Marketplace: React.FC<PageProps> = () => {
@@ -25,7 +25,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     />
                 </div>
             </div>
-            <Tabs defaultActiveKey="1" centered={true} className="marketplace-tabs">
+            <Tabs defaultActiveKey="2" centered={true} className="marketplace-tabs">
                 <Tabs.TabPane
                     className="tabpane"
                     tab={
@@ -61,7 +61,21 @@ const Marketplace: React.FC<PageProps> = () => {
                     }
                     key="2"
                 >
-                    <div className="tabpane-content">Ken</div>
+                    <div className="tabpane-content">
+                        {CollectionData.map(
+                            (
+                                item: {
+                                    name: string;
+                                    avatar: string;
+                                    author: string;
+                                    images: string[];
+                                },
+                                index
+                            ) => {
+                                return <Collection key={index} {...item} />;
+                            }
+                        )}
+                    </div>
                 </Tabs.TabPane>
             </Tabs>
         </Layout>

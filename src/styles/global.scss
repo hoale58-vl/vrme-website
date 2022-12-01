@@ -140,3 +140,37 @@ a {
 .card-nft {
     @apply inline-block;
 }
+.collection-image {
+    @apply rounded-[20px] block mx-auto h-full;
+}
+.market-place {
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.collection-small-image-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.collection-small-image {
+    flex: 1;
+    aspect-ratio: 1/1;
+}
+.collection-author-name {
+    margin-bottom: 10px;
+}
+.collection-small-image-count {
+    background-color: #a259ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collection-main-image {
+    aspect-ratio: 1/1;
+}
