@@ -24,12 +24,10 @@ const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images })
                     1025+
                 </div>
             </div>
-            <div className="collection-author-name">{name}</div>
-            <div className="card-nft-author-group">
-                <div className="card-nft-author-avatar">
-                    <img className="w-6 h-6" src={avatar} alt="" />
-                </div>
-                <div className="card-nft-author-name">{author}</div>
+            <div className="collection-name">{name}</div>
+            <div className="collection-author-group">
+                <img className="w-6 h-6" src={avatar} alt="" />
+                <div className="collection-author-name h-full">{author}</div>
             </div>
         </div>
     );
