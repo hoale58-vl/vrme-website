@@ -1,18 +1,17 @@
-import React from 'react'
-import CollectionSkeleton from '../components/collection-skeleton'
+import React from 'react';
+import CollectionSkeleton from '../components/collection-skeleton';
 
 interface CollectionProps {
-  name: string
-  avatar: string
-  author: string
-  images: string[]
+    name: string;
+    avatar: string;
+    author: string;
+    images: string[];
 }
 
 const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images }) => {
-  return (
+    return (
         <>
-            {images[0]
-              ? (
+            {images[0] ? (
                 <div className="collection">
                     <div className="collection-main-image">
                         <img className="collection-image" src={images[0]} alt="" />
@@ -34,12 +33,11 @@ const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images })
                         <div className="collection-author-name h-full">{author}</div>
                     </div>
                 </div>
-                )
-              : (
+            ) : (
                 <CollectionSkeleton />
-                )}
+            )}
         </>
-  )
-}
+    );
+};
 
-export default Collection
+export default Collection;

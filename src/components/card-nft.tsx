@@ -1,20 +1,19 @@
-import React from 'react'
-import CardNFTSkeleton from './card-nft-skeleton'
+import React from 'react';
+import CardNFTSkeleton from './card-nft-skeleton';
 
 interface CardProps {
-  image?: string
-  name?: string
-  content?: string
-  avatar?: string
-  author: string
-  price?: string
+    image?: string;
+    name?: string;
+    content?: string;
+    avatar?: string;
+    author: string;
+    price?: string;
 }
 
 const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, price }) => {
-  return (
+    return (
         <>
-            {image
-              ? (
+            {image ? (
                 <div className="card-nft">
                     <div className="card-nft-img">
                         <img className="w-full" src={image} alt="" />
@@ -37,12 +36,11 @@ const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, pr
                         </button>
                     </div>
                 </div>
-                )
-              : (
+            ) : (
                 <CardNFTSkeleton />
-                )}
+            )}
         </>
-  )
-}
+    );
+};
 
-export default CardNFT
+export default CardNFT;
