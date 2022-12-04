@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from 'react'
+import { Link } from 'gatsby'
 
 const Header: React.FunctionComponent<{}> = () => {
-    return (
+  return (
         <header className="header-main">
             <nav className="header-main-nav">
                 <Link to="/">
@@ -18,7 +18,7 @@ const Header: React.FunctionComponent<{}> = () => {
                         <div className="market-place">Marketplace</div>
                     </Link>
                     <Link to="/connect-wallet">
-                        <button className="btn btn-dark btn-medium">
+                        <button className="btn btn-dark btn-medium h-[60px]">
                             <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                             <div className="">Connect a wallet</div>
                         </button>
@@ -29,7 +29,7 @@ const Header: React.FunctionComponent<{}> = () => {
                 </div>
             </nav>
         </header>
-    );
-};
+  )
+}
 
-export default Header;
+export default Header

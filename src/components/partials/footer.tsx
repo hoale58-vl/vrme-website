@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 // import Button from '../button';
 // import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
 const Footer: React.FunctionComponent = () => {
-    return (
+  return (
         <>
             <footer className="footer">
                 <div className="footer-contact">
@@ -43,12 +43,12 @@ const Footer: React.FunctionComponent = () => {
                         </div>
                         <div className="email-input mt-5 relative max-w-3xl">
                             <input
-                                className="w-full rounded-3xl px-5 py-[19px] leading-[22.4px] text-base visible cursor-text"
+                                className="w-full rounded-3xl px-5 py-[19px] leading-[22px] text-base visible cursor-text text-black"
                                 type=""
                                 placeholder="Enter your email here"
                             />
-                            <button className="footer-btn-subcribe btn btn-dark btn-medium absolute top-0 right-0">
-                                <div className="font-semibold leading-[22.4px]">Subscribe</div>
+                            <button className="footer-btn-subcribe btn btn-dark btn-medium absolute top-0 right-0 h-[60px] hover:bg-gray-400">
+                                <div className="font-semibold leading-[22px]">Subscribe</div>
                             </button>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ const Footer: React.FunctionComponent = () => {
                 <div className="footer-copyright">Ⓒ ViMRE - Copyright 2022</div>
             </footer>
         </>
-    );
-};
+  )
+}
 
-export default Footer;
+export default Footer
