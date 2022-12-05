@@ -201,3 +201,13 @@ a {
     letter-spacing: 0em;
     text-align: left;
 }
+
+.btn-light:hover {
+    @apply bg-purple;
+}
+
+.btn-dark:hover {
+    background-color: transparent;
+    border: 2px solid #a259ff;
+    box-sizing: border-box;
+}

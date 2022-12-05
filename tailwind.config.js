@@ -29,6 +29,7 @@ module.exports = {
                     display: 'flex',
                     'align-items': 'center',
                     gap: '12px',
+                    'box-sizing': 'border-box',
                 },
                 '.btn-dark': {
                     'background-color': '#A259FF',
@@ -46,7 +47,7 @@ module.exports = {
                 '.btn-medium': {
                     padding: '19px 50px',
                     'font-size': '16px',
-                    'line-height': '22.4px',
+                    'line-height': '22px',
                 },
                 '.btn-small': {
                     padding: '12px 50px',

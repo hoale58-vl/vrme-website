@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
-import { Layout, CardNFT, Collection } from '../components/';
+import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components/';
 import { CardNFTData, CollectionData } from '../data/';
 import { Tabs } from 'antd';
 
@@ -75,6 +75,7 @@ const Marketplace: React.FC<PageProps> = () => {
                                 return <Collection key={index} {...item} />;
                             }
                         )}
+                        <CollectionSkeleton />
                     </div>
                 </Tabs.TabPane>
             </Tabs>
