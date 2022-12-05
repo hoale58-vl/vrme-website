@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+@import '~glightbox/dist/css/glightbox.css';
 
 body {
     font-family: 'Work Sans', sans-serif !important;
@@ -11,6 +12,7 @@ body {
     background-color: #2b2b2b !important;
     color: #ffffff !important;
     min-height: 100vh !important;
+    user-select: none;
 }
 h1 {
     font-size: 67px;
@@ -69,7 +71,7 @@ a {
 }
 .header-connect-wallet {
     color: #ffffff !important;
-    @apply flex justify-end items-center gap-8;
+    @apply flex justify-end items-center;
 }
 .header-icon-list {
     @apply w-6;
@@ -150,6 +152,11 @@ a {
     line-height: 22px;
     letter-spacing: 0em;
     text-align: center;
+    padding: 19px 30px;
+}
+.market-place:hover {
+    background-color: #a259ff;
+    border-radius: 20px;
 }
 .collection-small-image-group {
     display: flex;
@@ -204,10 +211,47 @@ a {
 
 .btn-light:hover {
     @apply bg-purple;
+    transition: all 0.05s linear 0.05s;
 }
 
 .btn-dark:hover {
     background-color: transparent;
     border: 2px solid #a259ff;
+    transition: all 0.05s linear 0.05s;
     box-sizing: border-box;
+}
+
+.ant-pagination {
+    background-color: #3b3b3b;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ant-pagination-item-link {
+    background: none !important;
+    color: #ffffff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.ant-pagination-prev .ant-pagination-item-link {
+    justify-content: end;
+}
+.ant-pagination-next .ant-pagination-item-link {
+    justify-content: center;
+}
+.ant-pagination-item {
+    background: none !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+.ant-pagination-item-ellipsis {
+    background: none !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+.ant-select-selector {
+    background: none !important;
+    color: #ffffff !important;
+    border: none !important;
 }

@@ -1,30 +1,45 @@
-import React from 'react';
-import CardNFTSkeleton from './card-nft-skeleton';
+import { Link } from 'gatsby'
+import React, { useEffect } from 'react'
+import CardNFTSkeleton from './card-nft-skeleton'
 
 interface CardProps {
-    image?: string;
-    name?: string;
-    content?: string;
-    avatar?: string;
-    author: string;
-    price?: string;
+  image?: string
+  name: string
+  content?: string
+  avatar?: string
+  author: string
+  price?: string
 }
 
 const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, price }) => {
-    return (
+  useEffect(() => {
+    setTimeout(() => {
+      import('glightbox')
+        .then(({ default: GLightbox }) => new GLightbox({}))
+        .catch((err) => console.log(err))
+    })
+  }, [])
+  return (
         <>
             {image ? (
                 <div className="card-nft">
                     <div className="card-nft-img">
-                        <img className="w-full" src={image} alt="" />
+                        {/* <img className="w-full" src={image} alt="" /> */}
+                        <a href={image} className="glightbox" draggable="false">
+                            <img src={image} alt="image" />
+                        </a>
                     </div>
                     <div className="card-nft-info">
-                        <div className="card-nft-name">{name}</div>
+                        <Link to={`card-nft/${name}`}>
+                            <div className="card-nft-name">{name}</div>
+                        </Link>
                         <div className="card-nft-author-group">
                             <div className="card-nft-author-avatar">
                                 <img className="w-6 h-6" src={avatar} alt="" />
                             </div>
-                            <div className="card-nft-author-name">{author}</div>
+                            <Link to={`author/${author}`}>
+                                <div className="card-nft-author-name">{author}</div>
+                            </Link>
                         </div>
                         <div className="card-nft-price-group">
                             <div className="price-label">Price</div>
@@ -40,7 +55,7 @@ const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, pr
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFT;
+export default CardNFT

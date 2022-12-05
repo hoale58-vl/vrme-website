@@ -1,10 +1,16 @@
 import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
+import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components/';
 import { CardNFTData, CollectionData } from '../data/';
-import { Tabs } from 'antd';
+import { Tabs, Pagination } from 'antd';
 
 const Marketplace: React.FC<PageProps> = () => {
+    const [tab, setTab] = React.useState<number>(1);
+
+    const handleChangeTabKey = async (id: string): Promise<void> => {
+        setTab(+id);
+        return await navigate(`?tab=${id}`);
+    };
     return (
         <Layout>
             <div className="browse-marketplace">
@@ -25,32 +31,45 @@ const Marketplace: React.FC<PageProps> = () => {
                     />
                 </div>
             </div>
-            <Tabs defaultActiveKey="1" centered={true} className="marketplace-tabs">
+            <Tabs
+                defaultActiveKey="1"
+                activeKey={String(tab)}
+                centered={true}
+                className="marketplace-tabs"
+                onChange={handleChangeTabKey}
+            >
                 <Tabs.TabPane
                     className="tabpane"
                     tab={
-                        <span className="tabpane-title">
-                            NFTs <div className="tabpane-count">302</div>
-                        </span>
+                        <>
+                            <span className="tabpane-title">
+                                NFTs <div className="tabpane-count">302</div>
+                            </span>
+                        </>
                     }
                     key="1"
                 >
-                    <div className="tabpane-content">
-                        {CardNFTData.map(
-                            (
-                                item: {
-                                    avatar: string;
-                                    image: string;
-                                    name: string;
-                                    price: string;
-                                    author: string;
-                                },
-                                index: number
-                            ) => {
-                                return <CardNFT key={index} {...item} />;
-                            }
-                        )}
-                    </div>
+                    {tab === 1 && (
+                        <>
+                            <div className="tabpane-content">
+                                {CardNFTData.map(
+                                    (
+                                        item: {
+                                            avatar: string;
+                                            image: string;
+                                            name: string;
+                                            price: string;
+                                            author: string;
+                                        },
+                                        index: number
+                                    ) => {
+                                        return <CardNFT key={index} {...item} />;
+                                    }
+                                )}
+                            </div>
+                            <Pagination defaultCurrent={6} total={500} />
+                        </>
+                    )}
                 </Tabs.TabPane>
                 <Tabs.TabPane
                     className="tabpane"
@@ -61,22 +80,29 @@ const Marketplace: React.FC<PageProps> = () => {
                     }
                     key="2"
                 >
-                    <div className="tabpane-content">
-                        {CollectionData.map(
-                            (
-                                item: {
-                                    name: string;
-                                    avatar: string;
-                                    author: string;
-                                    images: string[];
-                                },
-                                index
-                            ) => {
-                                return <Collection key={index} {...item} />;
-                            }
-                        )}
-                        <CollectionSkeleton />
-                    </div>
+                    {tab === 2 && (
+                        <>
+                            <div className="tabpane-content">
+                                {CollectionData.map(
+                                    (
+                                        item: {
+                                            name: string;
+                                            avatar: string;
+                                            author: string;
+                                            images: string[];
+                                        },
+                                        index
+                                    ) => {
+                                        return (
+                                            <Collection onSetTab={setTab} key={index} {...item} />
+                                        );
+                                    }
+                                )}
+                                <CollectionSkeleton />
+                            </div>
+                            <Pagination defaultCurrent={6} total={500} />
+                        </>
+                    )}
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
