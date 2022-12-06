@@ -3,3 +3,4 @@ node_modules
 images
 public
 gatsby-config.ts
+*.scss
