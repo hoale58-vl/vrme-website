@@ -7,9 +7,9 @@ import { Tabs, Pagination } from 'antd'
 const Marketplace: React.FC<PageProps> = () => {
   const [tab, setTab] = React.useState<number>(1)
 
-  const handleChangeTabKey = async (id: string): Promise<void> => {
+  const handleChangeTabKey = (id: string): void => {
     setTab(+id)
-    return await navigate(`?tab=${id}`)
+    return navigate(`?tab=${id}`)
   }
   return (
         <Layout>
@@ -56,7 +56,7 @@ const Marketplace: React.FC<PageProps> = () => {
                                   (
                                     item: {
                                       avatar: string
-                                      image: string
+                                      image?: string
                                       name: string
                                       price: string
                                       author: string

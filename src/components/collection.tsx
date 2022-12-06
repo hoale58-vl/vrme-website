@@ -18,8 +18,10 @@ const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, o
         .catch((err) => console.log(err))
     })
   }, [])
-  const handleNFT = async (): Promise<void> => {
-    await navigate('/marketplace/?tab=1')
+  const handleNFT = (): void => {
+    navigate('/marketplace/?tab=1')
+      .then()
+      .catch((err) => console.log(err))
     onSetTab(1)
   }
 

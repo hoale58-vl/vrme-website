@@ -5,13 +5,12 @@ import CardNFTSkeleton from './card-nft-skeleton'
 interface CardProps {
   image?: string
   name: string
-  content?: string
   avatar?: string
   author: string
   price?: string
 }
 
-const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, price }) => {
+const CardNFT: React.FC<CardProps> = ({ image, name, avatar, author, price }) => {
   useEffect(() => {
     setTimeout(() => {
       import('glightbox')
