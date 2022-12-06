@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 interface CardProps {
-    image: string;
-    title: string;
-    content: string;
-    attribute?: string;
+  image: string
+  title: string
+  content: string
+  attribute?: string
 }
 
 const CardGetStarted: React.FC<CardProps> = ({ image, title, content, attribute }) => {
-    return (
+  return (
         <div className={'card-get-started'}>
             <img className="card-get-started-image" src={image} alt="" />
             <div className="card-get-started-group">
@@ -16,7 +16,7 @@ const CardGetStarted: React.FC<CardProps> = ({ image, title, content, attribute 
                 <div className="card-get-started-content">{content}</div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default CardGetStarted;
+export default CardGetStarted

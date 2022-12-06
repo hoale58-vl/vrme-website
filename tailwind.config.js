@@ -30,13 +30,22 @@ module.exports = {
                     'align-items': 'center',
                     gap: '12px',
                     'box-sizing': 'border-box',
+                    'box-shadow:hover': 'none',
+                    'box-shadow': '0 18px 39px #6201ff',
+                    transition: '.35s',
+                },
+                '.btn:hover': {
+                    'box-shadow': 'none',
                 },
                 '.btn-dark': {
                     'background-color': '#A259FF',
                     'border-radius': '20px',
+                    border: '2px solid #A259FF',
+                    'box-sizing': 'border-box',
                 },
                 '.btn-light': {
-                    border: '1px solid #A259FF',
+                    border: '2px solid #A259FF',
+                    'box-sizing': 'border-box',
                     'border-radius': '20px',
                 },
                 '.btn-large': {

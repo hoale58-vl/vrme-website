@@ -7,11 +7,15 @@
 body {
     font-family: 'Work Sans', sans-serif !important;
     font-weight: 600;
+
     @apply text-white min-h-screen;
+
     background-color: #2b2b2b !important;
-    color: #ffffff !important;
+    color: #fff !important;
     min-height: 100vh !important;
+    user-select: none;
 }
+
 h1 {
     font-size: 67px;
     line-height: 73.7px;
@@ -36,9 +40,11 @@ h5 {
     font-size: 22px;
     line-height: 35.2px;
 }
+
 a {
-    color: #ffffff !important;
+    color: #fff !important;
 }
+
 .text-base {
     font-size: 16px;
     line-height: 22.4px;
@@ -60,97 +66,130 @@ a {
 .header-main-nav {
     @apply flex justify-between items-center;
 }
+
 .header-logo-group {
-    color: #ffffff !important;
+    color: #fff !important;
+
     @apply flex items-center gap-3;
 }
+
 .logo {
     @apply h-auto;
 }
+
 .header-connect-wallet {
-    color: #ffffff !important;
-    @apply flex justify-end items-center gap-8;
+    color: #fff !important;
+
+    @apply flex justify-end items-center;
 }
+
 .header-icon-list {
     @apply w-6;
 }
+
 .how-it-work-grid {
     @apply grid;
 }
+
 .footer {
     @apply bg-gray-400;
 }
+
 .footer-text {
     @apply text-base text-gray-300 max-w-[238px];
 }
+
 .brand {
     @apply font-semibold;
 }
+
 .card-get-started {
     @apply bg-gray-400 box-border rounded-[20px];
 }
+
 .footer-contact {
     @apply flex font-normal justify-between;
 }
+
 .brand-group {
     @apply flex items-center gap-3;
 }
+
 .email-input {
     @apply relative;
 }
+
 .footer-copyright {
     @apply h-9 flex items-end border-t border-gray-200 mt-8 text-xs text-gray-300 font-normal;
 }
+
 .connect-wallet-image {
     background-image: url('/images/introduce/connect-wallet.png');
     background-size: cover;
     background-position: center;
 }
+
 .card-nft-author-group {
     @apply flex gap-[12px];
 }
+
 .card-nft-price {
-    font-family: Space Mono;
+    font-family: 'Space Mono';
 }
+
 .price-label {
     color: #858584;
 }
+
 .card-nft-price {
-    //styleName: Base (Body) - Space Mono;
-    font-family: Space Mono;
+    font-family: 'Space Mono';
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
 }
+
 .card-nft-name {
     @apply mb-[5px];
 }
+
 .card-nft-price-group {
     margin-top: 27px;
 }
+
 .card-nft-info {
     @apply relative;
 }
+
 .card-nft-btn {
     padding: 12px 21.5px;
+
     @apply absolute bottom-0 right-0;
 }
+
 .card-nft {
     @apply inline-block;
 }
+
 .collection-image {
     @apply rounded-[20px] block mx-auto h-full;
 }
+
 .market-place {
-    font-family: Work Sans;
+    font-family: 'Work Sans';
     font-size: 16px;
     font-weight: 600;
     line-height: 22px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: center;
+    padding: 19px 30px;
 }
+
+.market-place:hover {
+    color: #858584;
+}
+
 .collection-small-image-group {
     display: flex;
     justify-content: space-between;
@@ -158,56 +197,91 @@ a {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
 .collection-small-image {
     flex: 1;
     aspect-ratio: 1/1;
 }
+
 .collection-small-image-count {
     background-color: #a259ff;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Space Mono;
+    font-family: 'Space Mono';
     font-size: 22px;
     font-weight: 700;
     line-height: 35px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: center;
 }
+
 .collection-main-image {
     aspect-ratio: 1/1;
 }
+
 .ant-tabs-tab:active {
     color: pink;
 }
+
 .collection-name {
-    //styleName: H5 - Work Sans;
-    font-family: Work Sans;
+    font-family: 'Work Sans';
     font-size: 22px;
     font-weight: 600;
     line-height: 31px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
 }
+
 .collection-author-group {
     @apply flex items-center gap-3 mt-[10px];
 }
+
 .collection-author-name {
-    //styleName: Base(Body) - Work Sans;
-    font-family: Work Sans;
+    font-family: 'Work Sans';
     font-size: 16px;
     font-weight: 400;
     line-height: 22px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
 }
 
-.btn-light:hover {
-    @apply bg-purple;
+.ant-pagination {
+    background-color: #3b3b3b;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.btn-dark:hover {
-    background-color: transparent;
-    border: 2px solid #a259ff;
-    box-sizing: border-box;
+.ant-pagination-item-link {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link {
+    justify-content: end;
+}
+
+.ant-pagination-next .ant-pagination-item-link {
+    justify-content: center;
+}
+
+.ant-pagination-item {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.ant-pagination-item-ellipsis {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.ant-select-selector {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
 }
