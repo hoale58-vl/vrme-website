@@ -2,175 +2,221 @@
     .header-main {
         @apply max-w-screen-xl px-[50px] py-[25px] box-border sticky top-0 w-full m-auto;
     }
+
     .header-icon-list {
         @apply hidden;
     }
+
     .logo {
         @apply w-[50px];
     }
+
     .brand {
         @apply text-[36px] leading-[50.4px];
     }
+
     .landing-main {
         @apply px-[115px];
     }
+
     .landing-main-intro {
         font-size: 67px;
         line-height: 73.7px;
     }
+
     .landing-main-group {
         @apply flex gap-[30px] py-[80px];
     }
+
     .landing-main-intro-block {
         @apply w-1/2;
     }
+
     .landing-main-intro-content {
         font-size: 22px;
         line-height: 35.2px;
         margin-bottom: 30px;
         margin-top: 20px;
-        color: #ffffff;
+        color: #fff;
         font-weight: 400;
     }
+
     .how-it-work-group {
         @apply py-[80px] inline-block;
     }
+
     .how-it-work-intro {
         @apply mb-[60px];
     }
+
     .header-content {
         font-size: 38px;
         line-height: 45.6px;
         margin-bottom: 10px;
     }
+
     .landing-content {
         font-size: 22px;
         line-height: 35.2px;
         font-weight: 400;
     }
+
     .how-it-work-grid {
         @apply grid-cols-3 gap-[30px];
     }
+
     .card-get-started {
         @apply px-10 pt-[10px] pb-[30px];
     }
+
     .card-get-started-image {
         @apply mb-[20px];
     }
+
     .card-get-started-group {
         @apply mx-[-10px];
     }
+
     .card-get-started-title {
         font-size: 22px;
         line-height: 30.8px;
+
         @apply text-center;
     }
+
     .card-get-started-content {
         @apply text-center font-normal mt-[10px];
     }
+
     .footer {
         @apply px-[115px] py-10;
     }
+
     .about-us {
         @apply w-3/12;
     }
+
     .footer-explore-group {
         @apply w-3/12;
     }
+
     .footer-joinus-group {
         @apply w-5/12;
     }
+
     .footer-intro {
         @apply mt-[30px];
     }
+
     .join-us-mobile {
         @apply hidden;
     }
+
     .connect-wallet-body {
         @apply flex gap-[60px];
     }
+
     .connect-wallet-image {
         @apply w-1/2 h-auto;
     }
+
     .connect-wallet-content {
         @apply w-1/2 py-[100px];
     }
+
     .connect-wallet-intro {
         @apply text-[16px] leading-[22.4px] font-normal mt-5 mb-10 max-w-[460px];
     }
+
     .connect-wallet-btn {
         @apply mb-5 w-[320px] px-10 py-4 gap-5 text-[22px] leading-[30.8px];
     }
+
     .connect-wallet-title {
         font-size: 51px;
         line-height: 51.6px;
         font-weight: 600;
     }
+
     .connect-wallet-intro {
         font-size: 22px;
         line-height: 35.2px;
         font-weight: 400;
-        color: #ffffff !important;
+        color: #fff !important;
     }
+
     .tabpane {
-        color: #ffffff !important;
+        color: #fff !important;
     }
+
     .collection-tab {
-        color: #ffffff !important;
+        color: #fff !important;
     }
+
     .ant-tabs-nav {
-        margin-bottom: 0px !important;
+        margin-bottom: 0 !important;
     }
+
     .ant-tabs-nav-wrap {
         background-color: #2b2b2b !important;
     }
+
     .ant-tabs-nav-list {
         flex: 1;
         padding: 0 115px;
     }
+
     .ant-tabs-tab {
         flex: 1;
         justify-content: center;
         color: #858584 !important;
     }
+
     .ant-tabs-tab + .ant-tabs-tab {
-        margin: 0 0 0 0px !important;
+        margin: 0 !important;
     }
+
     .ant-tabs-ink-bar {
         background-color: #858584 !important;
         padding: 0 115px !important;
     }
+
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
         color: #fff !important;
     }
+
     .marketplace-tabs {
         @apply px-[115px];
     }
+
     .browse-marketplace {
         @apply px-[115px] py-[80px];
     }
+
     .browse-marketplace-title {
-        //styleName: H2 - Work Sans;
-        font-family: Work Sans;
+        font-family: 'Work Sans';
         font-size: 51px;
         font-weight: 600;
         line-height: 56px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: left;
     }
+
     .browse-market-place-content {
-        font-family: Work Sans;
+        font-family: 'Work Sans';
         font-size: 22px;
         font-weight: 400;
         line-height: 35px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: left;
         margin-top: 10px;
         margin-bottom: 30px;
     }
+
     .browse-marketplace-search-bar {
         @apply relative;
     }
+
     .browse-marketplace-search-bar-input {
         width: 100%;
         background-color: transparent;
@@ -178,58 +224,71 @@
         border: 1px solid #3b3b3b;
         border-radius: 20px;
         box-sizing: border-box;
-        padding: 0px 12px;
+        padding: 0 12px;
     }
+
     .browse-marketplace-search-bar-icon {
         width: 24px;
+
         @apply absolute right-[12px] top-[18.5px] hover:cursor-pointer;
     }
+
     .ant-tabs {
         padding: 0 115px;
     }
+
     .tabpane-count {
-        //styleName: Base (Body) - Space Mono;
-        font-family: Space Mono;
+        font-family: 'Space Mono';
         font-size: 16px;
         font-weight: 400;
         line-height: 22px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: left;
         background-color: #3b3b3b;
         border-radius: 20px;
         padding: 5px 10px;
     }
+
     .ant-tabs-tab-active .tabpane-count {
         background-color: #858584;
     }
+
     .tabpane-title {
         @apply flex gap-4;
-        font-family: Work Sans;
+
+        font-family: 'Work Sans';
         font-size: 22px;
         font-weight: 600;
         line-height: 31px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: center;
+
         @apply flex items-center;
     }
+
     .tabpane-content {
         @apply px-[115px] py-[60px] grid grid-cols-3 gap-[30px];
+
         background-color: #3b3b3b;
     }
+
     .card-nft {
         @apply bg-black rounded-[20px];
     }
+
     .card-nft-info {
         @apply mx-[30px] mt-5 mb-[23px];
     }
+
     .card-nft-name {
-        font-family: Work Sans;
+        font-family: 'Work Sans';
         font-size: 22px;
         font-weight: 700;
         line-height: 31px;
-        letter-spacing: 0em;
+        letter-spacing: 0;
         text-align: left;
     }
+
     .ant-pagination {
         padding: 0 115px !important;
     }

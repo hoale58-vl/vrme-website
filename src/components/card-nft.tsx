@@ -1,25 +1,15 @@
-import { Link } from 'gatsby'
-import React, { useEffect } from 'react'
-import CardNFTSkeleton from './card-nft-skeleton'
+import { Link } from 'gatsby';
+import React from 'react';
+import { IToken } from '../types/token';
+import CardNFTSkeleton from './card-nft-skeleton';
 
 interface CardProps {
-  image?: string
-  name: string
-  content?: string
-  avatar?: string
-  author: string
-  price?: string
+    token: IToken;
 }
 
-const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, price }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      import('glightbox')
-        .then(({ default: GLightbox }) => new GLightbox({}))
-        .catch((err) => console.log(err))
-    })
-  }, [])
-  return (
+const CardNFT: React.FC<CardProps> = ({ token }) => {
+    const { image, name, avatar, author, price } = token;
+    return (
         <>
             {image ? (
                 <div className="card-nft">
@@ -55,7 +45,7 @@ const CardNFT: React.FC<CardProps> = ({ image, name, content, avatar, author, pr
                 <CardNFTSkeleton />
             )}
         </>
-  )
-}
+    );
+};
 
-export default CardNFT
+export default CardNFT;

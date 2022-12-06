@@ -1,17 +1,18 @@
-import * as React from 'react'
-import { HeadFC, navigate, PageProps } from 'gatsby'
-import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components/'
-import { CardNFTData, CollectionData } from '../data/'
-import { Tabs, Pagination } from 'antd'
+import * as React from 'react';
+import { HeadFC, navigate, PageProps } from 'gatsby';
+import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components';
+import { CardNFTData, CollectionData } from '../data/';
+import { Tabs, Pagination } from 'antd';
+import { IToken } from '../types/token';
 
 const Marketplace: React.FC<PageProps> = () => {
-  const [tab, setTab] = React.useState<number>(1)
+    const [tab, setTab] = React.useState<number>(1);
 
-  const handleChangeTabKey = async (id: string): Promise<void> => {
-    setTab(+id)
-    return await navigate(`?tab=${id}`)
-  }
-  return (
+    const handleChangeTabKey = async (id: string) => {
+        setTab(+id);
+        navigate(`?tab=${id}`);
+    };
+    return (
         <Layout>
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
@@ -52,20 +53,9 @@ const Marketplace: React.FC<PageProps> = () => {
                     {tab === 1 && (
                         <>
                             <div className="tabpane-content">
-                                {CardNFTData.map(
-                                  (
-                                    item: {
-                                      avatar: string
-                                      image: string
-                                      name: string
-                                      price: string
-                                      author: string
-                                    },
-                                    index: number
-                                  ) => {
-                                    return <CardNFT key={index} {...item} />
-                                  }
-                                )}
+                                {CardNFTData.map((token: IToken, index: number) => {
+                                    return <CardNFT key={index} token={token} />;
+                                })}
                             </div>
                             <Pagination defaultCurrent={6} total={500} />
                         </>
@@ -84,19 +74,19 @@ const Marketplace: React.FC<PageProps> = () => {
                         <>
                             <div className="tabpane-content">
                                 {CollectionData.map(
-                                  (
-                                    item: {
-                                      name: string
-                                      avatar: string
-                                      author: string
-                                      images: string[]
-                                    },
-                                    index
-                                  ) => {
-                                    return (
+                                    (
+                                        item: {
+                                            name: string;
+                                            avatar: string;
+                                            author: string;
+                                            images: string[];
+                                        },
+                                        index
+                                    ) => {
+                                        return (
                                             <Collection onSetTab={setTab} key={index} {...item} />
-                                    )
-                                  }
+                                        );
+                                    }
                                 )}
                                 <CollectionSkeleton />
                             </div>
@@ -106,9 +96,9 @@ const Marketplace: React.FC<PageProps> = () => {
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
-  )
-}
+    );
+};
 
-export default Marketplace
+export default Marketplace;
 
-export const Head: HeadFC = () => <title>Marketplace</title>
+export const Head: HeadFC = () => <title>Marketplace</title>;

@@ -1,32 +1,25 @@
-import { navigate } from 'gatsby'
-import React, { useEffect } from 'react'
-import CollectionSkeleton from '../components/collection-skeleton'
+import { navigate } from 'gatsby';
+import React from 'react';
+import CollectionSkeleton from '../components/collection-skeleton';
 
 interface CollectionProps {
-  name: string
-  avatar: string
-  author: string
-  images: string[]
-  onSetTab: (tab: number) => void
+    name: string;
+    avatar: string;
+    author: string;
+    images: string[];
+    onSetTab: (tab: number) => void;
 }
 
 const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, onSetTab }) => {
-  useEffect(() => {
-    setTimeout(() => {
-      import('glightbox')
-        .then(({ default: GLightbox }) => new GLightbox())
-        .catch((err) => console.log(err))
-    })
-  }, [])
-  const handleNFT = async (): Promise<void> => {
-    await navigate('/marketplace/?tab=1')
-    onSetTab(1)
-  }
+    const handleNFT = () => {
+        navigate('/marketplace/?tab=1').then(() => {
+            onSetTab(1);
+        });
+    };
 
-  return (
+    return (
         <>
-            {images[0]
-              ? (
+            {images[0] ? (
                 <div className="collection">
                     <div className="collection-main-image">
                         <img className="collection-image glightbox" src={images[0]} alt="" />
@@ -51,12 +44,11 @@ const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, o
                         <div className="collection-author-name h-full">{author}</div>
                     </div>
                 </div>
-                )
-              : (
+            ) : (
                 <CollectionSkeleton />
-                )}
+            )}
         </>
-  )
-}
+    );
+};
 
-export default Collection
+export default Collection;

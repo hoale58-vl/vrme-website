@@ -5,26 +5,23 @@
     .collection-author-group-skeleton,
     h2,
     p {
-        // background: #3b3b3b;
-        // background: linear-gradient(110deg, #3b3b3b 8%, #2b2b2b 18%, #ececec 33%);
-        background: rgba(130, 130, 130, 0.2);
+        background: rgb(130 130 130 / 20%);
         background: -webkit-gradient(
             linear,
             left top,
             right top,
-            color-stop(8%, rgba(130, 130, 130, 0.2)),
-            color-stop(18%, rgba(130, 130, 130, 0.3)),
-            color-stop(33%, rgba(130, 130, 130, 0.2))
+            color-stop(8%, rgb(130 130 130 / 20%)),
+            color-stop(18%, rgb(130 130 130 / 30%)),
+            color-stop(33%, rgb(130 130 130 / 20%))
         );
         background: linear-gradient(
             to right,
-            rgba(130, 130, 130, 0.2) 8%,
-            rgba(130, 130, 130, 0.3) 18%,
-            rgba(130, 130, 130, 0.2) 33%
+            rgb(130 130 130 / 20%) 8%,
+            rgb(130 130 130 / 30%) 18%,
+            rgb(130 130 130 / 20%) 33%
         );
         border-radius: 5px;
         background-size: 200% 100%;
-        // animation: 1.5s shine linear infinite;
         animation: wave-lines 1s infinite ease-out;
     }
 
@@ -43,11 +40,13 @@
         aspect-ratio: 1/1;
         border-radius: 20px;
     }
+
     .collection-author-group-skeleton {
         height: 22px;
         margin-top: 10px;
         width: 40%;
     }
+
     h2 {
         height: 30px;
     }
@@ -60,15 +59,11 @@
         height: 300px;
     }
 
-    // @keyframes shine {
-    //     to {
-    //         background-position-x: -200%;
-    //     }
-    // }
     @keyframes wave-lines {
         0% {
             background-position: -330px 0;
         }
+
         100% {
             background-position: 330px 0;
         }
@@ -84,26 +79,23 @@
     .card-nft-name-skeleton,
     .card-nft-author-group-skeleton,
     .card-nft-price-group-skeleton {
-        // background: #3b3b3b;
-        // background: linear-gradient(110deg, #3b3b3b 8%, #2b2b2b 18%, #ececec 33%);
         background: #3b3b3b;
         background: -webkit-gradient(
             linear,
             left top,
             right top,
-            color-stop(8%, rgba(130, 130, 130, 0.2)),
-            color-stop(18%, rgba(130, 130, 130, 0.3)),
-            color-stop(33%, rgba(130, 130, 130, 0.2))
+            color-stop(8%, rgb(130 130 130 / 20%)),
+            color-stop(18%, rgb(130 130 130 / 30%)),
+            color-stop(33%, rgb(130 130 130 / 20%))
         );
         background: linear-gradient(
             to right,
-            rgba(130, 130, 130, 0.2) 8%,
-            rgba(130, 130, 130, 0.3) 18%,
-            rgba(130, 130, 130, 0.2) 33%
+            rgb(130 130 130 / 20%) 8%,
+            rgb(130 130 130 / 30%) 18%,
+            rgb(130 130 130 / 20%) 33%
         );
         border-radius: 5px;
         background-size: 200% 100%;
-        // animation: 1.5s shine linear infinite;
         animation: wave-lines 1s infinite ease-out;
     }
 
@@ -127,20 +119,17 @@
         height: 20px;
         border-radius: 20px;
     }
+
     .card-nft-price-group-skeleton {
         height: 46px;
         margin-top: 27px;
     }
 
-    // @keyframes shine {
-    //     to {
-    //         background-position-x: -200%;
-    //     }
-    // }
     @keyframes wave-lines {
         0% {
             background-position: -330px 0;
         }
+
         100% {
             background-position: 330px 0;
         }
