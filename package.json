@@ -20,6 +20,8 @@
         "lint:style": "stylelint \"**/*.scss\" --fix"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.9.1",
+        "axios": "^1.2.1",
         "gatsby": "^5.0.0",
         "gatsby-plugin-antd": "^2.2.0",
         "gatsby-plugin-image": "^3.0.0",
@@ -32,6 +34,7 @@
         "npm": "^9.1.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-redux": "^8.0.5",
         "react-router": "^6.4.4",
         "sass": "^1.56.1"
     },

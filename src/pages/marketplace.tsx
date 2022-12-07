@@ -1,104 +1,120 @@
-import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
-import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components';
-import { CardNFTData, CollectionData } from '../data/';
-import { Tabs, Pagination } from 'antd';
-import { IToken } from '../types/token';
+import * as React from 'react'
+import { HeadFC, navigate, PageProps } from 'gatsby'
+import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components'
+import { CardNFTData, CollectionData } from '../data/'
+import { Tabs, Pagination } from 'antd'
+import { IToken } from '../types/token'
+import { Provider, useDispatch, useSelector } from 'react-redux'
+import { getCardNFT } from '../modules/slices/card-nft-slice'
+import store from '../app/store'
 
 const Marketplace: React.FC<PageProps> = () => {
-    const [tab, setTab] = React.useState<number>(1);
+  const dispatch = useDispatch<any>()
+  const [tab, setTab] = React.useState<number>(1)
+  const { data } = useSelector((state: any) => state.cardReducer)
 
-    const handleChangeTabKey = async (id: string) => {
-        setTab(+id);
-        navigate(`?tab=${id}`);
-    };
-    return (
+  const handleChangeTabKey = async (id: string) => {
+    setTab(+id)
+    navigate(`?tab=${id}`)
+  }
+
+  React.useEffect(() => {
+    dispatch(getCardNFT())
+  }, [])
+
+  return (
         <Layout>
-            <div className="browse-marketplace">
-                <div className="browse-marketplace-title">Browse Marketplace</div>
-                <div className="browse-market-place-content">
-                    Browse ViRME NFTs on the NFT Marketplace.
+            <Provider store={store}>
+                <div className="browse-marketplace">
+                    <div className="browse-marketplace-title">Browse Marketplace</div>
+                    <div className="browse-market-place-content">
+                        Browse ViRME NFTs on the NFT Marketplace.
+                    </div>
+                    <div className="browse-marketplace-search-bar">
+                        <input
+                            className="browse-marketplace-search-bar-input"
+                            type="text"
+                            placeholder="Search your favourite NFTs"
+                        />
+                        <img
+                            className="browse-marketplace-search-bar-icon"
+                            src="/images/icon/magnifying-glass.png"
+                            alt=""
+                        />
+                    </div>
                 </div>
-                <div className="browse-marketplace-search-bar">
-                    <input
-                        className="browse-marketplace-search-bar-input"
-                        type="text"
-                        placeholder="Search your favourite NFTs"
-                    />
-                    <img
-                        className="browse-marketplace-search-bar-icon"
-                        src="/images/icon/magnifying-glass.png"
-                        alt=""
-                    />
-                </div>
-            </div>
-            <Tabs
-                defaultActiveKey="1"
-                activeKey={String(tab)}
-                centered={true}
-                className="marketplace-tabs"
-                onChange={handleChangeTabKey}
-            >
-                <Tabs.TabPane
-                    className="tabpane"
-                    tab={
-                        <>
+                <Tabs
+                    defaultActiveKey="1"
+                    activeKey={String(tab)}
+                    centered={true}
+                    className="marketplace-tabs"
+                    onChange={handleChangeTabKey}
+                >
+                    <Tabs.TabPane
+                        className="tabpane"
+                        tab={
+                            <>
+                                <span className="tabpane-title">
+                                    NFTs <div className="tabpane-count">302</div>
+                                </span>
+                            </>
+                        }
+                        key="1"
+                    >
+                        {tab === 1 && (
+                            <>
+                                <div className="tabpane-content">
+                                    {CardNFTData.map((token: IToken, index: number) => {
+                                      return <CardNFT key={index} token={token} />
+                                    })}
+                                </div>
+                                <Pagination defaultCurrent={6} total={500} />
+                            </>
+                        )}
+                    </Tabs.TabPane>
+                    <Tabs.TabPane
+                        className="tabpane"
+                        tab={
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">302</div>
+                                Collections <div className="tabpane-count">67</div>
                             </span>
-                        </>
-                    }
-                    key="1"
-                >
-                    {tab === 1 && (
-                        <>
-                            <div className="tabpane-content">
-                                {CardNFTData.map((token: IToken, index: number) => {
-                                    return <CardNFT key={index} token={token} />;
-                                })}
-                            </div>
-                            <Pagination defaultCurrent={6} total={500} />
-                        </>
-                    )}
-                </Tabs.TabPane>
-                <Tabs.TabPane
-                    className="tabpane"
-                    tab={
-                        <span className="tabpane-title">
-                            Collections <div className="tabpane-count">67</div>
-                        </span>
-                    }
-                    key="2"
-                >
-                    {tab === 2 && (
-                        <>
-                            <div className="tabpane-content">
-                                {CollectionData.map(
-                                    (
+                        }
+                        key="2"
+                    >
+                        {tab === 2 && (
+                            <>
+                                <div className="tabpane-content">
+                                    {CollectionData.map(
+                                      (
                                         item: {
-                                            name: string;
-                                            avatar: string;
-                                            author: string;
-                                            images: string[];
+                                          name: string
+                                          avatar: string
+                                          author: string
+                                          images: string[]
                                         },
                                         index
-                                    ) => {
+                                      ) => {
                                         return (
-                                            <Collection onSetTab={setTab} key={index} {...item} />
-                                        );
-                                    }
-                                )}
-                                <CollectionSkeleton />
-                            </div>
-                            <Pagination defaultCurrent={6} total={500} />
-                        </>
-                    )}
-                </Tabs.TabPane>
-            </Tabs>
+                                                <Collection
+                                                    onSetTab={setTab}
+                                                    key={index}
+                                                    {...item}
+                                                />
+                                        )
+                                      }
+                                    )}
+                                    <CollectionSkeleton />
+                                </div>
+                                <Pagination defaultCurrent={6} total={500} />
+                            </>
+                        )}
+                    </Tabs.TabPane>
+                </Tabs>
+            </Provider>
         </Layout>
-    );
-};
+  )
+}
 
-export default Marketplace;
+export default Marketplace
 
-export const Head: HeadFC = () => <title>Marketplace</title>;
+export const Head: HeadFC = () => <title>Marketplace</title>

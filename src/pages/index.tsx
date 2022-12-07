@@ -2,6 +2,8 @@ import * as React from 'react'
 import { HeadFC, Link, PageProps } from 'gatsby'
 import { Layout, CardGetStarted } from '../components/'
 import { CardGetStartedData } from '../data'
+import { Provider } from 'react-redux'
+import store from '../app/store'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
