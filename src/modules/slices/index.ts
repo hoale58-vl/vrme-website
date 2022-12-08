@@ -1,2 +1,0 @@
-
-import moduleName from 'module'

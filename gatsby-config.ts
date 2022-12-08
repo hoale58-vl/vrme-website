@@ -33,6 +33,16 @@ const config: GatsbyConfig = {
             },
             __key: 'pages',
         },
+        {
+            resolve: `gatsby-plugin-react-redux`,
+            options: {
+                pathToCreateStoreModule: './src/state/store',
+                cleanupOnClient: false,
+                serialize: {
+                    isJSON: false,
+                },
+            },
+        },
     ],
 };
 
