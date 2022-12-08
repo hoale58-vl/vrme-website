@@ -5,18 +5,21 @@ import CardNFTSkeleton from './card-nft-skeleton';
 
 interface CardProps {
     token: IToken;
+    loading: boolean;
 }
 
-const CardNFT: React.FC<CardProps> = ({ token }) => {
-    const { image, name, avatar, author, price } = token;
+const CardNFT: React.FC<CardProps> = ({ token, loading }) => {
+    const { uri, name, avatar, author, price } = token;
+    console.log(token);
+
     return (
         <>
-            {image ? (
+            {uri ? (
                 <div className="card-nft">
                     <div className="card-nft-img">
                         {/* <img className="w-full" src={image} alt="" /> */}
-                        <a href={image} className="glightbox" draggable="false">
-                            <img src={image} alt="image" />
+                        <a href={uri} className="glightbox" draggable="false">
+                            <img src={uri} alt="image" />
                         </a>
                     </div>
                     <div className="card-nft-info">
@@ -41,7 +44,7 @@ const CardNFT: React.FC<CardProps> = ({ token }) => {
                         </button>
                     </div>
                 </div>
-            ) : (
+            ) :  (
                 <CardNFTSkeleton />
             )}
         </>

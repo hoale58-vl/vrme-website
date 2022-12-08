@@ -20,6 +20,7 @@
         "lint:style": "stylelint \"**/*.scss\" --fix"
     },
     "dependencies": {
+        "axios": "^1.2.1",
         "gatsby": "^5.0.0",
         "gatsby-plugin-antd": "^2.2.0",
         "gatsby-plugin-image": "^3.0.0",

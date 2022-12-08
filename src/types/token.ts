@@ -1,6 +1,7 @@
 export interface IToken {
+    id: number;
     name: string;
-    image: string;
+    uri: string;
     avatar: string;
     author: string;
     price: string;

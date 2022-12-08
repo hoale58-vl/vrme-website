@@ -1,23 +1,23 @@
-import { navigate } from 'gatsby';
-import React from 'react';
-import CollectionSkeleton from '../components/collection-skeleton';
+import { navigate } from 'gatsby'
+import React from 'react'
+import CollectionSkeleton from '../components/collection-skeleton'
 
 interface CollectionProps {
-    name: string;
-    avatar: string;
-    author: string;
-    images: string[];
-    onSetTab: (tab: number) => void;
+  name: string
+  avatar: string
+  author: string
+  images: string[]
+  onSetTab: (tab: number) => void
 }
 
 const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, onSetTab }) => {
-    const handleNFT = () => {
-        navigate('/marketplace/?tab=1').then(() => {
-            onSetTab(1);
-        });
-    };
+  const handleNFT = () => {
+    navigate('/marketplace/?tab=1').then(() => {
+      onSetTab(1)
+    })
+  }
 
-    return (
+  return (
         <>
             {images[0] ? (
                 <div className="collection">
@@ -48,7 +48,7 @@ const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, o
                 <CollectionSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default Collection;
+export default Collection

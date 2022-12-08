@@ -1,12 +1,37 @@
 import * as React from 'react';
 import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components';
-import { CardNFTData, CollectionData } from '../data/';
+import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
+import axios from 'axios';
 
 const Marketplace: React.FC<PageProps> = () => {
     const [tab, setTab] = React.useState<number>(1);
+const [isLoading, setLoading]=React.useState<boolean>(false)
+    const [cardNFTList, setCardNFTList] = React.useState<IToken[]>([]);
+
+    React.useEffect(() => {
+        const fetchCardNFTListData = async () => {
+setLoading(true)
+            const data = await axios.get('https://virme-api.hoalv.tk/offers');
+            const convertedData = data.data.data.map((item: any) => (
+                {
+                    id: item.id,
+                    name: item.token.name,
+                    uri: item.token.uri,
+                    avatar: item.token.uri,
+                    author: item.token.name,
+                    price: item.price
+
+                }
+            ))
+            setCardNFTList(convertedData);
+            setLoading(false)
+        };
+        fetchCardNFTListData();
+    }, []);
+    console.log(cardNFTList);
 
     const handleChangeTabKey = async (id: string) => {
         setTab(+id);
@@ -53,8 +78,8 @@ const Marketplace: React.FC<PageProps> = () => {
                     {tab === 1 && (
                         <>
                             <div className="tabpane-content">
-                                {CardNFTData.map((token: IToken, index: number) => {
-                                    return <CardNFT key={index} token={token} />;
+                                {cardNFTList.map((token: IToken) => {
+                                    return <CardNFT key={token.id} token={token} loading={isLoading} />;
                                 })}
                             </div>
                             <Pagination defaultCurrent={6} total={500} />
