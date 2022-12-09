@@ -139,6 +139,12 @@ a {
 
 .price-label {
     color: #858584;
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 .card-nft-price {
@@ -293,4 +299,16 @@ a {
 }
 .anticon-double-left {
     color: #fff !important;
+}
+.card-nft-author-avatar {
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card-nft-author-name {
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
 }

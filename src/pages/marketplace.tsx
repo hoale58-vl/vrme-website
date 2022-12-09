@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { HeadFC, navigate, PageProps } from 'gatsby';
-import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components';
+import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
 import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
@@ -71,9 +71,23 @@ const Marketplace: React.FC<PageProps> = () => {
                     {tab === 1 && (
                         <>
                             <div className="tabpane-content">
-                                {cardNftList.map((token: IToken) => {
-                                    return <CardNFT key={token.id} token={token} />;
-                                })}
+                                {!isLoading ? (
+                                    cardNftList.map((token: IToken) => {
+                                        return (
+                                            <CardNFT
+                                                key={token.id}
+                                                token={token}
+                                                isLoading={isLoading}
+                                            />
+                                        );
+                                    })
+                                ) : (
+                                    <>
+                                        <CardNFTSkeleton />
+                                        <CardNFTSkeleton />
+                                        <CardNFTSkeleton />
+                                    </>
+                                )}
                             </div>
                             <Pagination defaultCurrent={6} total={500} />
                         </>

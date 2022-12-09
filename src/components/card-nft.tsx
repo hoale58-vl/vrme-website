@@ -1,15 +1,16 @@
-import { Link } from 'gatsby'
-import React from 'react'
-import { IToken } from '../types/token'
-import CardNFTSkeleton from './card-nft-skeleton'
+import { Link } from 'gatsby';
+import React from 'react';
+import { IToken } from '../types/token';
+import CardNFTSkeleton from './card-nft-skeleton';
 
 interface CardProps {
-  token: IToken
+    token: IToken;
+    isLoading: boolean;
 }
 
-const CardNFT: React.FC<CardProps> = ({ token }) => {
-  const { image, name, avatar, author, price } = token
-  return (
+const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
+    const { image, name, avatar, author, price } = token;
+    return (
         <>
             {image ? (
                 <div className="card-nft">
@@ -45,7 +46,7 @@ const CardNFT: React.FC<CardProps> = ({ token }) => {
                 <CardNFTSkeleton />
             )}
         </>
-  )
-}
+    );
+};
 
-export default CardNFT
+export default CardNFT;
