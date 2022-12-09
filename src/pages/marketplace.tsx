@@ -1,36 +1,36 @@
-import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
-import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
-import { CollectionData } from '../data/';
-import { Tabs, Pagination } from 'antd';
-import { IToken } from '../types/token';
-import { useDispatch, useSelector } from 'react-redux';
-import { getList, nftSelector } from '../state/nft';
+import * as React from 'react'
+import { HeadFC, navigate, PageProps } from 'gatsby'
+import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components'
+import { CollectionData } from '../data/'
+import { Tabs, Pagination } from 'antd'
+import { IToken } from '../types/token'
+import { useDispatch, useSelector } from 'react-redux'
+import { getList, nftSelector } from '../state/nft'
 
 const Marketplace: React.FC<PageProps> = () => {
-    const dispatch = useDispatch<any>();
-    const [tab, setTab] = React.useState<number>(1);
-    const { dataNFT, isLoading, error } = useSelector(nftSelector);
+  const dispatch = useDispatch<any>()
+  const [tab, setTab] = React.useState<number>(1)
+  const { dataNFT, isLoading } = useSelector(nftSelector)
 
-    const cardNftList: IToken[] = dataNFT.map((item: any) => ({
-        id: item?.id,
-        name: item?.token?.name,
-        image: item?.token?.uri,
-        avatar: item?.token?.uri,
-        author: item?.token?.name,
-        price: item?.price,
-    }));
+  const cardNftList: IToken[] = dataNFT.map((item: any) => ({
+    id: item?.id,
+    name: item?.token?.name,
+    image: item?.token?.uri,
+    avatar: item?.token?.uri,
+    author: item?.token?.name,
+    price: item?.price
+  }))
 
-    const handleChangeTabKey = async (id: string) => {
-        setTab(+id);
-        navigate(`?tab=${id}`);
-    };
+  const handleChangeTabKey = async (id: string) => {
+    setTab(+id)
+    navigate(`?tab=${id}`)
+  }
 
-    React.useEffect(() => {
-        dispatch(getList());
-    }, []);
+  React.useEffect(() => {
+    dispatch(getList())
+  }, [])
 
-    return (
+  return (
         <Layout>
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
@@ -72,15 +72,15 @@ const Marketplace: React.FC<PageProps> = () => {
                         <>
                             <div className="tabpane-content">
                                 {!isLoading ? (
-                                    cardNftList.map((token: IToken) => {
-                                        return (
+                                  cardNftList.map((token: IToken) => {
+                                    return (
                                             <CardNFT
                                                 key={token.id}
                                                 token={token}
                                                 isLoading={isLoading}
                                             />
-                                        );
-                                    })
+                                    )
+                                  })
                                 ) : (
                                     <>
                                         <CardNFTSkeleton />
@@ -106,19 +106,19 @@ const Marketplace: React.FC<PageProps> = () => {
                         <>
                             <div className="tabpane-content">
                                 {CollectionData.map(
-                                    (
-                                        item: {
-                                            name: string;
-                                            avatar: string;
-                                            author: string;
-                                            images: string[];
-                                        },
-                                        index
-                                    ) => {
-                                        return (
+                                  (
+                                    item: {
+                                      name: string
+                                      avatar: string
+                                      author: string
+                                      images: string[]
+                                    },
+                                    index
+                                  ) => {
+                                    return (
                                             <Collection onSetTab={setTab} key={index} {...item} />
-                                        );
-                                    }
+                                    )
+                                  }
                                 )}
                                 <CollectionSkeleton />
                             </div>
@@ -128,9 +128,9 @@ const Marketplace: React.FC<PageProps> = () => {
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
-    );
-};
+  )
+}
 
-export default Marketplace;
+export default Marketplace
 
-export const Head: HeadFC = () => <title>Marketplace</title>;
+export const Head: HeadFC = () => <title>Marketplace</title>
