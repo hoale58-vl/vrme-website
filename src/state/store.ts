@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const rootReducer = combineReducers({
     nft: nftReducer,
+  
 });
 
 const persistConfig = {

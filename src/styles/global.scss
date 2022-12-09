@@ -169,7 +169,7 @@ a {
 }
 
 .card-nft {
-    @apply inline-block;
+    @apply inline-block overflow-hidden;
 }
 
 .collection-image {

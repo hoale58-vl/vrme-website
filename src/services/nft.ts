@@ -5,4 +5,5 @@ export const getListNft = async () => {
     return await axios.get(LIST_NFT, {
         params: {},
     });
+ 
 };

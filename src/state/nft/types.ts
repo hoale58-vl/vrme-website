@@ -1,5 +1,5 @@
 export interface INftState {
-    data: any[];
+    dataNFT: {}[];
     isLoading: boolean;
     error: string | null;
 }

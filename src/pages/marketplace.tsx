@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton } from '../components';
-import { CardNFTData, CollectionData } from '../data/';
+import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,16 @@ import { getList, nftSelector } from '../state/nft';
 const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
-    const { data } = useSelector(nftSelector);
-    console.log(data);
+    const { dataNFT, isLoading, error } = useSelector(nftSelector);
+
+    const cardNftList: IToken[] = dataNFT.map((item: any) => ({
+        id: item?.id,
+        name: item?.token?.name,
+        image: item?.token?.uri,
+        avatar: item?.token?.uri,
+        author: item?.token?.name,
+        price: item?.price,
+    }));
 
     const handleChangeTabKey = async (id: string) => {
         setTab(+id);
@@ -63,8 +71,8 @@ const Marketplace: React.FC<PageProps> = () => {
                     {tab === 1 && (
                         <>
                             <div className="tabpane-content">
-                                {CardNFTData.map((token: IToken, index: number) => {
-                                    return <CardNFT key={index} token={token} />;
+                                {cardNftList.map((token: IToken) => {
+                                    return <CardNFT key={token.id} token={token} />;
                                 })}
                             </div>
                             <Pagination defaultCurrent={6} total={500} />
