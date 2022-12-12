@@ -229,7 +229,6 @@
 
     .browse-marketplace-search-bar-icon {
         width: 24px;
-
         @apply absolute right-[12px] top-[18.5px] hover:cursor-pointer;
     }
 
@@ -291,5 +290,28 @@
 
     .ant-pagination {
         padding: 0 115px !important;
+    }
+    .update-profile-body {
+        gap: 60px;
+    }
+    .update-profile-title {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 120%;
+    }
+    .update-profile-content {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 160%;
+    }
+    .update-profile-content-group {
+        @apply py-[100px] pr-[150px];
+    }
+    .update-profile-form {
+        @apply mt-10 mb-[30px];
     }
 }

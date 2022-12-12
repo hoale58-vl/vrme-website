@@ -1,10 +1,10 @@
-import { Link } from 'gatsby'
-import React from 'react'
+import { Link } from 'gatsby';
+import React from 'react';
 // import Button from '../button';
 // import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
 const Footer: React.FunctionComponent = () => {
-  return (
+    return (
         <>
             <footer className="footer">
                 <div className="footer-contact">
@@ -43,9 +43,22 @@ const Footer: React.FunctionComponent = () => {
                         <Link to="/marketplace">
                             <div className="footer-marketplace mt-6 footer-text">Marketplace</div>
                         </Link>
+                        <Link to="/marketplace">
+                            <div className="footer-marketplace mt-5 footer-text">Profile</div>
+                        </Link>
                         <Link to="/connect-wallet/">
                             <div className="footer-connect-wallet mt-5 footer-text">
                                 Connect a wallet
+                            </div>
+                        </Link>
+                        <Link to="/marketplace">
+                            <div className="footer-marketplace mt-6 footer-text">
+                                Privacy Policies
+                            </div>
+                        </Link>
+                        <Link to="/marketplace">
+                            <div className="footer-marketplace mt-6 footer-text">
+                                Terms & Conditions
                             </div>
                         </Link>
                     </div>
@@ -71,7 +84,7 @@ const Footer: React.FunctionComponent = () => {
                 <div className="footer-copyright">Ⓒ ViMRE - Copyright 2022</div>
             </footer>
         </>
-  )
-}
+    );
+};
 
-export default Footer
+export default Footer;

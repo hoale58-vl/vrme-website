@@ -271,7 +271,6 @@
 
     .browse-marketplace-search-bar-icon {
         width: 24px;
-
         @apply absolute right-[12px] top-[18.5px] hover:cursor-pointer;
     }
 
@@ -339,5 +338,43 @@
         .card-nft-img {
             height: 238px;
         }
+    }
+    .browse-marketplace-filter {
+        @apply hidden;
+    }
+    .update-profile-body {
+        gap: 30px;
+    }
+    .update-profile-title {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 120%;
+    }
+    .update-profile-body {
+        flex-direction: column;
+    }
+    .update-profile-image {
+        height: 232px;
+        width: 100%;
+    }
+    .update-profile-form-item-spec {
+        width: 100%;
+    }
+    .update-profile-form-item {
+        width: 100%;
+    }
+    .update-profile-btn {
+        width: 100%;
+    }
+    .update-profile-content-group {
+        width: 100%;
+    }
+    .update-profile-form {
+        @apply my-[30px];
+    }
+    .update-profile-body {
+        padding: 30px 30px 30px 40px;
     }
 }
