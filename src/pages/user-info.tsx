@@ -1,5 +1,5 @@
 import { HeadFC, PageProps } from 'gatsby';
-import React, { useState } from 'react';
+import React from 'react';
 import { CardNFT, Layout } from '../components';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
@@ -15,7 +15,6 @@ const UserInfoPage: React.FC<PageProps> = () => {
         price: '1000000',
         status: NFTStatus.ON_GOING,
     };
-    const [tab, setTab] = useState<number>(1);
 
     return (
         <Layout>

@@ -29,12 +29,12 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
                             <img
                                 className="w-5 h-5"
                                 src={
-                                    status == NFTStatus.ON_GOING
+                                    status === NFTStatus.ON_GOING
                                         ? '/images/icon/unverified.png'
                                         : '/images/icon/verified.png'
                                 }
                                 alt={
-                                    status == NFTStatus.ON_GOING
+                                    status === NFTStatus.ON_GOING
                                         ? 'This token has been unverified'
                                         : 'This token has been verifed'
                                 }

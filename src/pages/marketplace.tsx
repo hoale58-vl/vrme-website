@@ -69,7 +69,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">{ dataNFT.length }</div>
+                                NFTs <div className="tabpane-count">{dataNFT.length}</div>
                             </span>
                         </>
                     }

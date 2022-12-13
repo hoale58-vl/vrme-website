@@ -20,7 +20,7 @@ const nftSlice = createSlice({
         },
         [getList.fulfilled.toString()]: (state: INftState, action: PayloadAction<Array<{}>>) => {
             // state = { ...state, isLoading: false, dataNFT: action.payload };
-            return { ...state, isLoading: false, dataNFT: action.payload }
+            return { ...state, isLoading: false, dataNFT: action.payload };
         },
         [getList.rejected.toString()]: (state: INftState, action: PayloadAction<{}>) => {
             console.log(3);

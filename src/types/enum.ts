@@ -1,3 +1,3 @@
 export enum NFTStatus {
-    ON_GOING = 'ongoing'
+    ON_GOING = 'ongoing',
 }
