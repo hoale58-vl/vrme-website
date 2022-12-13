@@ -3,6 +3,10 @@
         @apply max-w-screen-xl px-[50px] py-[25px] box-border sticky top-0 w-full m-auto;
     }
 
+    .header-main-nav {
+        @apply h-[50px];
+    }
+
     .header-icon-list {
         @apply hidden;
     }
@@ -313,5 +317,54 @@
     }
     .update-profile-form {
         @apply mt-10 mb-[30px];
+    }
+    .user-info-background-group {
+        height: 370px;
+        position: relative;
+    }
+    .user-info-background-image {
+        height: 320px;
+    }
+    .user-info-avatar {
+        position: absolute;
+        bottom: 0;
+        left: 115px;
+    }
+    .user-info-main-username {
+        font-family: Work Sans;
+        font-size: 51px;
+        font-weight: 400;
+        line-height: 56px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin: 10px 10px 40px 10px;
+    }
+    .user-info-main-group {
+        margin: 40px 115px;
+        position: relative;
+    }
+    .user-info-btn-group {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .user-info-social-item-quantity {
+        font-family: Space Mono;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 39px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-social-item-desc {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-social-item {
+        min-width: 160px;
     }
 }

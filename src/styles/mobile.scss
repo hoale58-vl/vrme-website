@@ -377,4 +377,97 @@
     .update-profile-body {
         padding: 30px 30px 30px 40px;
     }
+    .user-info-background-group {
+        height: 425px;
+        position: relative;
+    }
+    .user-info-background-image {
+        height: 375px;
+        background-position: center; /* Center the image */
+        // background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover; /* Resize the background image to cover the entire container */
+    }
+    .user-info-avatar {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .user-info-main-group {
+        margin: 30px;
+    }
+    .user-info-btn-group {
+        flex-direction: column;
+    }
+    .token-btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .follow-btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .user-info-main-username {
+        //styleName: H4 - Work Sans;
+        font-family: Work Sans;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 39px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-main-username-group {
+        margin: 10px 10px 40px 10px;
+    }
+    .user-info-desc-info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .user-info-social-item-quantity {
+        //styleName: H5 - Space Mono;
+        font-family: Space Mono;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-social-item-desc {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-header {
+        //styleName: Base (Body) - Space Mono;
+        font-family: Space Mono;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-bio-content {
+        //styleName: Body Text- Work Sans;
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .tabpane-count-user-info-page {
+        @apply hidden;
+    }
+    .ant-tabs-nav-list {
+        @apply px-[30px];
+    }
 }

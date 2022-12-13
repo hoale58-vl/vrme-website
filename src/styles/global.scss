@@ -406,3 +406,67 @@ a {
 .update-profile-btn:hover {
     box-shadow: none;
 }
+.user-info-avatar {
+    border: 2px solid #2b2b2b;
+    border-radius: 20px;
+    width: fit-content;
+}
+.user-info-background-image {
+    background-image: url('/images/introduce/user-info.png');
+}
+.token-btn {
+    width: fit-content;
+}
+.user-info-btn-group {
+    display: flex;
+    gap: 20px;
+}
+.token-btn-content {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #ffffff;
+}
+.user-info-main-username-group {
+    display: flex;
+    gap: 13px;
+}
+.user-info-social-group {
+    display: flex;
+    gap: 20px;
+}
+.user-info-desc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.user-info-header {
+    font-family: Space Mono;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #858584;
+    margin-bottom: 10px;
+}
+.user-info-bio-content {
+    font-family: Work Sans;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.user-info-social-logo-group {
+    display: flex;
+    gap: 10px;
+}
+.user-info-hline {
+    height: 0.8px;
+    background-color: #3b3b3b;
+    margin-bottom: 10px;
+}

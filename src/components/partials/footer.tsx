@@ -43,7 +43,7 @@ const Footer: React.FunctionComponent = () => {
                         <Link to="/marketplace">
                             <div className="footer-marketplace mt-6 footer-text">Marketplace</div>
                         </Link>
-                        <Link to="/marketplace">
+                        <Link to="/user-info">
                             <div className="footer-marketplace mt-5 footer-text">Profile</div>
                         </Link>
                         <Link to="/connect-wallet/">
