@@ -148,6 +148,12 @@ a {
 
 .price-label {
     color: #858584;
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 
 .card-nft-price {
@@ -157,10 +163,6 @@ a {
     line-height: 22px;
     letter-spacing: 0;
     text-align: left;
-}
-
-.card-nft-name {
-    @apply mb-[5px];
 }
 
 .card-nft-price-group {
@@ -178,7 +180,7 @@ a {
 }
 
 .card-nft {
-    @apply inline-block;
+    @apply inline-block overflow-hidden;
 }
 
 .collection-image {
@@ -293,4 +295,178 @@ a {
     background: none !important;
     color: #fff !important;
     border: none !important;
+}
+.anticon-double-right {
+    color: #fff !important;
+    position: relative;
+    top: -3px;
+    right: -8px;
+}
+.anticon-double-left {
+    color: #fff !important;
+}
+.card-nft-author-avatar {
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card-nft-author-name {
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.card-nft-name-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @apply mb-[5px];
+}
+.browse-marketplace-search-bar {
+    position: relative;
+}
+.browse-marketplace-search-bar-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.browse-marketplace-filter {
+    padding: 10px 20px;
+    border: 2px solid #858584;
+    border-radius: 20px;
+    @apply hover:cursor-pointer;
+}
+.browse-marketplace-search-bar-input {
+    border-color: #858584;
+}
+.update-profile-body {
+    display: flex;
+}
+.update-profile-image {
+    background-image: url('/images/introduce/update-profile.png');
+    background-size: cover;
+    background-position: center;
+    width: 50%;
+}
+.update-profile-content-group {
+    width: 50%;
+}
+.update-profile-title {
+    margin-bottom: 20px;
+}
+.update-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.update-profile-form-item {
+    box-sizing: border-box;
+    height: 46px;
+    width: 330px;
+    border-radius: 20px;
+    padding: 16px 20px 16px 52px;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #2b2b2b;
+}
+.update-profile-form-item-spec {
+    background-color: #858584;
+    box-sizing: border-box;
+    height: 46px;
+    width: 330px;
+    border-radius: 20px;
+    padding: 16px 20px 16px 52px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #ffffff;
+}
+.update-profile-form-item-group {
+    position: relative;
+}
+.update-profile-btn {
+    height: 46px;
+    width: 330px;
+    border-radius: 20px;
+    padding: 0px 50px 0px 50px;
+    background-color: #a259ff;
+    box-shadow: 0 18px 39px #6201ff;
+    transition: 0.35s;
+}
+.update-profile-btn:hover {
+    box-shadow: none;
+}
+.user-info-avatar {
+    border: 2px solid #2b2b2b;
+    border-radius: 20px;
+    width: fit-content;
+}
+.user-info-background-image {
+    background-image: url('/images/introduce/user-info.png');
+}
+.token-btn {
+    width: fit-content;
+}
+.user-info-btn-group {
+    display: flex;
+    gap: 20px;
+}
+.token-btn-content {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #ffffff;
+}
+.user-info-main-username-group {
+    display: flex;
+    gap: 13px;
+}
+.user-info-social-group {
+    display: flex;
+    gap: 20px;
+}
+.user-info-desc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.user-info-header {
+    font-family: Space Mono;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #858584;
+    margin-bottom: 10px;
+}
+.user-info-bio-content {
+    font-family: Work Sans;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.user-info-social-logo-group {
+    display: flex;
+    gap: 10px;
+}
+.user-info-hline {
+    height: 0.8px;
+    background-color: #3b3b3b;
+    margin-bottom: 10px;
 }

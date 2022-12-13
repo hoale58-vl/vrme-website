@@ -1,14 +1,16 @@
 import { Link } from 'gatsby';
 import React from 'react';
+import { NFTStatus } from '../types/enum';
 import { IToken } from '../types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
 
 interface CardProps {
     token: IToken;
+    isLoading: boolean;
 }
 
-const CardNFT: React.FC<CardProps> = ({ token }) => {
-    const { image, name, avatar, author, price } = token;
+const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
+    const { image, name, avatar, author, price, status } = token;
     return (
         <>
             {image ? (
@@ -20,9 +22,24 @@ const CardNFT: React.FC<CardProps> = ({ token }) => {
                         </a>
                     </div>
                     <div className="card-nft-info">
-                        <Link to={`card-nft/${name}`}>
-                            <div className="card-nft-name">{name}</div>
-                        </Link>
+                        <div className="card-nft-name-group">
+                            <Link to={`card-nft/${name}`}>
+                                <div className="card-nft-name">{name}</div>
+                            </Link>
+                            <img
+                                className="w-5 h-5"
+                                src={
+                                    status === NFTStatus.ON_GOING
+                                        ? '/images/icon/unverified.png'
+                                        : '/images/icon/verified.png'
+                                }
+                                alt={
+                                    status === NFTStatus.ON_GOING
+                                        ? 'This token has been unverified'
+                                        : 'This token has been verifed'
+                                }
+                            />
+                        </div>
                         <div className="card-nft-author-group">
                             <div className="card-nft-author-avatar">
                                 <img className="w-6 h-6" src={avatar} alt="" />

@@ -12,9 +12,8 @@ interface CollectionProps {
 
 const Collection: React.FC<CollectionProps> = ({ name, avatar, author, images, onSetTab }) => {
     const handleNFT = () => {
-        navigate('/marketplace/?tab=1').then(() => {
-            onSetTab(1);
-        });
+        navigate('/marketplace/?tab=1');
+        onSetTab(1);
     };
 
     return (

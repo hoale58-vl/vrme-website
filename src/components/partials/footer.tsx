@@ -43,9 +43,22 @@ const Footer: React.FunctionComponent = () => {
                         <Link to="/marketplace">
                             <div className="footer-marketplace mt-6 footer-text">Marketplace</div>
                         </Link>
+                        <Link to="/user-info">
+                            <div className="footer-marketplace mt-5 footer-text">Profile</div>
+                        </Link>
                         <Link to="/connect-wallet/">
                             <div className="footer-connect-wallet mt-5 footer-text">
                                 Connect a wallet
+                            </div>
+                        </Link>
+                        <Link to="/marketplace">
+                            <div className="footer-marketplace mt-6 footer-text">
+                                Privacy Policies
+                            </div>
+                        </Link>
+                        <Link to="/marketplace">
+                            <div className="footer-marketplace mt-6 footer-text">
+                                Terms & Conditions
                             </div>
                         </Link>
                     </div>

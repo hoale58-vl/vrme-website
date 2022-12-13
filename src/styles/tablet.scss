@@ -225,7 +225,6 @@
 
     .browse-marketplace-search-bar-icon {
         width: 24px;
-
         @apply absolute right-[12px] top-[18.5px] hover:cursor-pointer;
     }
 
@@ -282,6 +281,97 @@
         font-weight: 700;
         line-height: 31px;
         letter-spacing: 0;
+        text-align: left;
+    }
+    .browse-marketplace-filter {
+        @apply hidden;
+    }
+    .update-profile-body {
+        gap: 40px;
+    }
+    .update-profile-title {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 120%;
+    }
+    .update-profile-content-group {
+        @apply py-[80px] pr-[72px];
+    }
+    .update-profile-content-group {
+        @apply py-20 pr-[72px];
+    }
+    .update-profile-form {
+        @apply pt-10 pb-[30px];
+    }
+    .user-info-background-group {
+        height: 330px;
+        position: relative;
+    }
+    .user-info-background-image {
+        height: 280px;
+        background: linear-gradient(180deg, rgba(151, 71, 255, 0) 21.88%, #9747ff 95.31%),
+            url('/images/introduce/user-info.png');
+    }
+    .user-info-avatar {
+        position: absolute;
+        bottom: 0;
+        left: 72px;
+    }
+    .user-info-main-group {
+        margin: 30px 72px;
+    }
+    .user-info-main-username-group {
+        margin: 10px 10px 40px 10px;
+    }
+    .user-info-main-username {
+        font-family: Work Sans;
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 46px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-desc-info {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .user-info-social-item-quantity {
+        //styleName: H5 - Space Mono;
+        font-family: Space Mono;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    .user-info-social-item-desc {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-header {
+        //styleName: Base (Body) - Space Mono;
+        font-family: Space Mono;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .user-info-bio-content {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
         text-align: left;
     }
 }
