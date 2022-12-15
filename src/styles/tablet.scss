@@ -374,4 +374,111 @@
         letter-spacing: 0em;
         text-align: left;
     }
+    .nft-detail-background-image {
+        height: 420px;
+    }
+    .nft-detail-name {
+        //styleName: H3 - Work Sans;
+        font-family: Work Sans;
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 46px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-release-date {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-onsalenow-title {
+        //styleName: Caption - Space Mono;
+        font-family: Space Mono;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 13px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-price {
+        font-family: Space Mono;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-price-unit {
+        //styleName: Caption - Space Mono;
+        font-family: Space Mono;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 13px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-buynow-btn-group {
+        padding: 19px 40px;
+    }
+    .nft-detail-collection-title {
+        //styleName: Base (Body) - Space Mono;
+        font-family: Space Mono;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-collection-name {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-detail-title {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-detail-icon {
+        @apply w-6 h-6;
+    }
+    .nft-detail-tags-group {
+        flex-direction: column;
+    }
+    .nft-detail-tags-button {
+        width: fit-content;
+    }
+    .nft-detail-google-maps {
+        height: 448px;
+    }
+    .nft-detail-main {
+        margin: 40px 72px;
+    }
+    .nft-detail-more-grid {
+        @apply grid-cols-2;
+    }
+    .nft-detail-slide-image {
+        margin-bottom: 110px;
+    }
+    .nft-detail-more-title {
+        //styleName: H4 - Work Sans;
+        font-family: Work Sans;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 39px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
 }

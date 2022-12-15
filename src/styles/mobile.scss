@@ -470,4 +470,109 @@
     .ant-tabs-nav-list {
         @apply px-[30px];
     }
+    .nft-detail-slide-image {
+        margin-bottom: 95px;
+    }
+    .nft-detail-background-image {
+        height: 320px;
+    }
+    .nft-detail-main {
+        margin: 40px 30px;
+    }
+    .nft-detail-name {
+        font-family: Work Sans;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-release-date {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-collection-title {
+        //styleName: Base (Body) - Space Mono;
+        font-family: Space Mono;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-collection-name {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-price-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    .nft-detail-createby-group {
+        flex-direction: column;
+    }
+    .nft-detail-main-component.nft-detail-main-component-1 {
+        margin-bottom: 20px;
+        padding: 0;
+    }
+    .nft-detail-detail-title {
+        //styleName: Base(Body) - Work Sans;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .nft-detail-tags-group {
+        flex-direction: column;
+    }
+    .nft-detail-google-maps {
+        height: 193px;
+        margin: 0;
+        margin-bottom: 15px;
+    }
+    .nft-detail-image {
+        padding: 10px;
+    }
+    .nft-detail-location-group {
+        margin-bottom: 25px;
+    }
+    .nft-detail-more-grid {
+        @apply grid-cols-1;
+    }
+    .nft-detail-more-title {
+        font-family: Work Sans;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 34px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .nft-detail-go-to-marketplace-btn-group {
+        position: relative;
+        margin-top: 30px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .nft-detail-detail-icon {
+        @apply w-6 h-6;
+    }
+    .nft-detail-detail-component {
+        margin-bottom: 12px;
+    }
+    .nft-detail-tags-button {
+        width: fit-content;
+    }
 }
