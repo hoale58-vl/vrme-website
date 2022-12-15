@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from 'react'
+import { Link } from 'gatsby'
 
 const Header: React.FunctionComponent<{}> = () => {
-    return (
+  return (
         <header className="header-main">
             <nav className="header-main-nav">
                 <Link to="/">
@@ -29,7 +29,7 @@ const Header: React.FunctionComponent<{}> = () => {
                 </div>
             </nav>
         </header>
-    );
-};
+  )
+}
 
-export default Header;
+export default Header
