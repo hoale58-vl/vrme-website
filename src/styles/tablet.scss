@@ -374,9 +374,6 @@
         letter-spacing: 0em;
         text-align: left;
     }
-    .nft-detail-background-image {
-        height: 420px;
-    }
     .nft-detail-name {
         //styleName: H3 - Work Sans;
         font-family: Work Sans;
@@ -480,5 +477,11 @@
         line-height: 39px;
         letter-spacing: 0em;
         text-align: left;
+    }
+    .nft-detail-background-image {
+        height: 280px;
+        background: linear-gradient(180deg, rgba(151, 71, 255, 0) 21.88%, #9747ff 95.31%),
+            url('/images/introduce/nft-detail.png');
+        background-position: center;
     }
 }
