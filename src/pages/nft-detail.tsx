@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { HeadFC, PageProps } from 'gatsby'
-import { CardNFT, Layout } from '../components'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { IToken } from '../types/token'
-import { NFTStatus } from '../types/enum'
+import * as React from 'react';
+import { HeadFC, PageProps } from 'gatsby';
+import { CardNFT, Layout } from '../components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { IToken } from '../types/token';
+import { NFTStatus } from '../types/enum';
 
 const NFTDetail: React.FC<PageProps> = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false
-  }
-  const temp: IToken = {
-    id: 2134,
-    image: '/images/card-nft/image-card-nft-1.png',
-    name: 'NFT Sai Gon 001',
-    avatar: '/images/avatars/avatar-1.png',
-    author: 'HoaLe',
-    price: '1000000',
-    status: NFTStatus.ON_GOING
-  }
-  return (
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
+    const temp: IToken = {
+        id: 2134,
+        image: '/images/card-nft/image-card-nft-1.png',
+        name: 'NFT Sai Gon 001',
+        avatar: '/images/avatars/avatar-1.png',
+        author: 'HoaLe',
+        price: '1000000',
+        status: NFTStatus.ON_GOING,
+    };
+    return (
         <Layout>
             <div className="nft-detail-background-image"></div>
             <div className="nft-detail-main">
@@ -173,9 +173,9 @@ const NFTDetail: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default NFTDetail
+export default NFTDetail;
 
-export const Head: HeadFC = () => <title>NFT Detail</title>
+export const Head: HeadFC = () => <title>NFT Detail</title>;

@@ -1,22 +1,22 @@
-import { HeadFC, PageProps } from 'gatsby'
-import React from 'react'
-import { CardNFT, Layout } from '../components'
-import { Tabs, Pagination } from 'antd'
-import { IToken } from '../types/token'
-import { NFTStatus } from '../types/enum'
+import { HeadFC, PageProps } from 'gatsby';
+import React from 'react';
+import { CardNFT, Layout } from '../components';
+import { Tabs, Pagination } from 'antd';
+import { IToken } from '../types/token';
+import { NFTStatus } from '../types/enum';
 
 const UserInfoPage: React.FC<PageProps> = () => {
-  const temp: IToken = {
-    id: 2134,
-    image: '/images/card-nft/image-card-nft-1.png',
-    name: 'NFT Sai Gon 001',
-    avatar: '/images/avatars/avatar-1.png',
-    author: 'HoaLe',
-    price: '1000000',
-    status: NFTStatus.ON_GOING
-  }
+    const temp: IToken = {
+        id: 2134,
+        image: '/images/card-nft/image-card-nft-1.png',
+        name: 'NFT Sai Gon 001',
+        avatar: '/images/avatars/avatar-1.png',
+        author: 'HoaLe',
+        price: '1000000',
+        status: NFTStatus.ON_GOING,
+    };
 
-  return (
+    return (
         <Layout>
             <div className="user-info-background-group">
                 <div className="user-info-background-image"></div>
@@ -145,9 +145,9 @@ const UserInfoPage: React.FC<PageProps> = () => {
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
-  )
-}
+    );
+};
 
-export default UserInfoPage
+export default UserInfoPage;
 
-export const Head: HeadFC = () => <title>User Info Page</title>
+export const Head: HeadFC = () => <title>User Info Page</title>;
