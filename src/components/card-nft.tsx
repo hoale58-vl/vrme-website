@@ -1,18 +1,18 @@
-import { Link } from 'gatsby';
-import React from 'react';
-import { NFTStatus } from '../types/enum';
-import { IToken } from '../types/token';
-import CardNFTSkeleton from './card-nft-skeleton';
+import { Link } from 'gatsby'
+import React from 'react'
+import { NFTStatus } from '../types/enum'
+import { IToken } from '../types/token'
+import CardNFTSkeleton from './card-nft-skeleton'
 
 interface CardProps {
-    token: IToken;
-    isLoading: boolean;
-    attribute?: string | undefined;
+  token: IToken
+  isLoading: boolean
+  attribute?: string | undefined
 }
 
 const CardNFT: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
-    const { image, name, avatar, author, price, status } = token;
-    return (
+  const { image, name, avatar, author, price, status } = token
+  return (
         <>
             {image ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
@@ -31,13 +31,13 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
                                 className="w-5 h-5"
                                 src={
                                     status === NFTStatus.ON_GOING
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
+                                      ? '/images/icon/unverified.png'
+                                      : '/images/icon/verified.png'
                                 }
                                 alt={
                                     status === NFTStatus.ON_GOING
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
+                                      ? 'This token has been unverified'
+                                      : 'This token has been verifed'
                                 }
                             />
                         </div>
@@ -63,7 +63,7 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFT;
+export default CardNFT
