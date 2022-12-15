@@ -1,9 +1,9 @@
-import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
-import { Layout } from '../components/';
+import * as React from 'react'
+import type { HeadFC, PageProps } from 'gatsby'
+import { Layout } from '../components/'
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-    return (
+  return (
         <Layout>
             <div className="update-profile-body">
                 <div className="update-profile-image"></div>
@@ -66,9 +66,9 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default UpdateProfilePage;
+export default UpdateProfilePage
 
-export const Head: HeadFC = () => <title>Update Profile</title>;
+export const Head: HeadFC = () => <title>Update Profile</title>

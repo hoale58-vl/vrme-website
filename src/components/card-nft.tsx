@@ -1,24 +1,25 @@
-import { Link } from 'gatsby';
-import React from 'react';
-import { NFTStatus } from '../types/enum';
-import { IToken } from '../types/token';
-import CardNFTSkeleton from './card-nft-skeleton';
+import { Link } from 'gatsby'
+import React from 'react'
+import { NFTStatus } from '../types/enum'
+import { IToken } from '../types/token'
+import CardNFTSkeleton from './card-nft-skeleton'
 
 interface CardProps {
-    token: IToken;
-    isLoading: boolean;
+  token: IToken
+  isLoading: boolean
+  attribute?: string | undefined
 }
 
-const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
-    const { image, name, avatar, author, price, status } = token;
-    return (
+const CardNFT: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
+  const { image, name, avatar, author, price, status } = token
+  return (
         <>
             {image ? (
-                <div className="card-nft">
+                <div className={`card-nft ${attribute ?? ''}`}>
                     <div className="card-nft-img">
                         {/* <img className="w-full" src={image} alt="" /> */}
                         <a href={image} className="glightbox" draggable="false">
-                            <img src={image} alt="image" />
+                            <img width="100%" src={image} alt="image" />
                         </a>
                     </div>
                     <div className="card-nft-info">
@@ -30,13 +31,13 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
                                 className="w-5 h-5"
                                 src={
                                     status === NFTStatus.ON_GOING
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
+                                      ? '/images/icon/unverified.png'
+                                      : '/images/icon/verified.png'
                                 }
                                 alt={
                                     status === NFTStatus.ON_GOING
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
+                                      ? 'This token has been unverified'
+                                      : 'This token has been verifed'
                                 }
                             />
                         </div>
@@ -62,7 +63,7 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading }) => {
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFT;
+export default CardNFT

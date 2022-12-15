@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const CardNFTSkeleton: React.FC = () => {
-    return (
+  return (
         <div className="card-nft-skeleton">
             <div className="card-nft-img"></div>
             <div className="card-nft-info">
@@ -17,7 +17,7 @@ const CardNFTSkeleton: React.FC = () => {
                 <div className=""></div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default CardNFTSkeleton;
+export default CardNFTSkeleton
