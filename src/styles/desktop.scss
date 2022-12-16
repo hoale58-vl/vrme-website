@@ -374,6 +374,132 @@
         margin-bottom: 195px;
     }
     .mint-token-page {
-        margin: 50px 60px 200px 60px;
+        margin: 50px 60px 90px 60px;
+        display: flex;
+        gap: 30px;
+    }
+    .mint-token-grid {
+        width: 50%;
+    }
+    .mint-token-title {
+        //styleName: H2 - Work Sans;
+        font-family: Work Sans;
+        font-size: 51px;
+        font-weight: 600;
+        line-height: 56px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .mint-token-grid-1_content {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 35px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 120px;
+    }
+    .mint-token-grid-1_image-child-group {
+        display: grid;
+        @apply grid-cols-4 gap-[15px];
+    }
+    .mint-token-grid-1_image-main {
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+    .mint-token-grid-1_image-child {
+        border-radius: 20px;
+    }
+    .mint-token-grid-1_image-child-2 {
+        background-color: #a259ff;
+        border-radius: 20px;
+        font-family: Space Mono;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 35px;
+        letter-spacing: 0em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mint-token-grid-1_image-child-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px 15px;
+        gap: 10px;
+        width: 130px;
+        height: 100px;
+        background: #ffffff;
+        border-radius: 20px;
+    }
+    .mint-token-user-token-group {
+        display: flex;
+        align-items: center;
+        padding: 16.5px 20px;
+        gap: 13px;
+        background-color: #858584;
+        border-radius: 20px;
+    }
+    .mint-token-input {
+        @apply w-full;
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding: 16px 20px 16px 64px;
+        height: 64px;
+    }
+    .update-profile-form-item-textarea {
+        @apply w-full min-h-[300px];
+    }
+    .mint-token-user-token-group {
+        margin-bottom: 15px;
+    }
+    .mint-token-input-username {
+        margin-bottom: 15px;
+    }
+    .mint-token-textarea {
+        margin-bottom: 40px;
+    }
+    .mint-token-user-token {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .update-profile-form-item-textarea {
+        font-family: Work Sans;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 31px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding: 16px 20px 36px 64px;
+    }
+    .mint-token-submit-btn {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        margin-bottom: 100px;
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 140%;
     }
 }
