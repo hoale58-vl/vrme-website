@@ -30,12 +30,6 @@ module.exports = {
                     'align-items': 'center',
                     gap: '12px',
                     'box-sizing': 'border-box',
-                    'box-shadow:hover': 'none',
-                    'box-shadow': '0 18px 39px #6201ff',
-                    transition: '.35s',
-                },
-                '.btn:hover': {
-                    'box-shadow': 'none',
                 },
                 '.btn-dark': {
                     'background-color': '#A259FF',

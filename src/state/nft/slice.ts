@@ -26,6 +26,7 @@ const nftSlice = createSlice({
             console.log(3);
 
             state.isLoading = true;
+            // state.error = action.error.message);
         },
     },
 });
