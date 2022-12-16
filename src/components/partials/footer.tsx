@@ -1,7 +1,5 @@
 import { Link } from 'gatsby';
 import React from 'react';
-// import Button from '../button';
-// import { ButtonBackground, ButtonSize } from '../../enum/button-size';
 
 const Footer: React.FunctionComponent = () => {
     return (

@@ -384,7 +384,6 @@
     .user-info-background-image {
         height: 375px;
         background-position: center; /* Center the image */
-        // background-repeat: no-repeat; /* Do not repeat the image */
         background-size: cover; /* Resize the background image to cover the entire container */
     }
     .user-info-avatar {
@@ -412,7 +411,6 @@
         align-items: center;
     }
     .user-info-main-username {
-        //styleName: H4 - Work Sans;
         font-family: Work Sans;
         font-size: 28px;
         font-weight: 600;
@@ -429,7 +427,6 @@
         gap: 30px;
     }
     .user-info-social-item-quantity {
-        //styleName: H5 - Space Mono;
         font-family: Space Mono;
         font-size: 22px;
         font-weight: 700;
@@ -438,7 +435,6 @@
         text-align: left;
     }
     .user-info-social-item-desc {
-        //styleName: Base(Body) - Work Sans;
         font-family: Work Sans;
         font-size: 16px;
         font-weight: 400;
@@ -447,7 +443,6 @@
         text-align: left;
     }
     .user-info-header {
-        //styleName: Base (Body) - Space Mono;
         font-family: Space Mono;
         font-size: 16px;
         font-weight: 400;
@@ -456,7 +451,6 @@
         text-align: left;
     }
     .user-info-bio-content {
-        //styleName: Body Text- Work Sans;
         font-family: Work Sans;
         font-size: 22px;
         font-weight: 400;
@@ -488,7 +482,6 @@
         text-align: left;
     }
     .nft-detail-release-date {
-        //styleName: Base(Body) - Work Sans;
         font-family: Work Sans;
         font-size: 16px;
         font-weight: 400;
@@ -497,7 +490,6 @@
         text-align: left;
     }
     .nft-detail-collection-title {
-        //styleName: Base (Body) - Space Mono;
         font-family: Space Mono;
         font-size: 16px;
         font-weight: 400;
@@ -506,7 +498,6 @@
         text-align: left;
     }
     .nft-detail-collection-name {
-        //styleName: Base(Body) - Work Sans;
         font-family: Work Sans;
         font-size: 16px;
         font-weight: 400;
@@ -526,7 +517,6 @@
         padding: 0;
     }
     .nft-detail-detail-title {
-        //styleName: Base(Body) - Work Sans;
         font-family: Work Sans;
         font-size: 16px;
         font-weight: 400;
