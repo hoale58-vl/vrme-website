@@ -472,4 +472,88 @@
             url('/images/introduce/nft-detail.png');
         background-position: center;
     }
+    .mint-token-title {
+        font-family: Work Sans;
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 42px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .mint-token-grid-1_content {
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .mint-token-page {
+        margin: 60px 100px 50px 100px;
+    }
+    .mint-token-grid-1_image-group {
+        display: none;
+    }
+    .mint-token-user-token-group {
+        background-color: #858584;
+        border-radius: 20px;
+        padding: 16px 20px 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 15px;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .mint-token-input {
+        width: 100%;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        height: 54px;
+    }
+    .mint-token-input-username {
+        margin-bottom: 15px;
+    }
+    .update-profile-form-item-textarea {
+        height: 200px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .mint-token-maps {
+        height: 330px;
+        margin-bottom: 70px;
+    }
+    .mint-token-grid-1_image-main {
+        margin-bottom: 15px;
+    }
+    .mint-token-grid-1_image-child-group {
+        display: grid;
+        @apply grid-cols-4 gap-[15px];
+    }
+    .mint-token-grid-1_image-child {
+        border-radius: 20px;
+    }
+    .mint-token-grid-1_image-child-2 {
+        border-radius: 20px;
+    }
+    .mint-token-grid-1_image-child-3 {
+        border-radius: 20px;
+    }
+    .mint-token-grid-1_image-child-group {
+        margin-bottom: 50px;
+    }
+    .mint-token-submit-btn {
+        margin: auto;
+        margin-bottom: 53px;
+    }
 }

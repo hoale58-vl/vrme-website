@@ -1,16 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
 
 body {
     font-family: 'Work Sans', sans-serif !important;
     font-weight: 600;
-
     @apply text-white min-h-screen;
-
     background-color: #2b2b2b !important;
     color: #fff !important;
     min-height: 100vh !important;
@@ -88,7 +85,6 @@ a {
 
 .header-connect-wallet {
     color: #fff !important;
-
     @apply flex justify-end items-center;
 }
 
@@ -175,7 +171,6 @@ a {
 
 .card-nft-btn {
     padding: 12px 21.5px;
-
     @apply absolute bottom-0 right-0;
 }
 
@@ -685,5 +680,36 @@ a {
 }
 .mint-token-grid-1_image-child {
     height: 100%;
+    width: auto;
     margin: auto;
+}
+.mint-token-grid-1_image-child-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 15px;
+    gap: 10px;
+    background: #a259ff;
+    border-radius: 20px;
+    font-family: Space Mono;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.mint-token-grid-1_image-child-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 15px;
+    gap: 10px;
+    background: #ffffff;
+    border-radius: 20px;
+}
+.mint-token-submit-btn {
+    margin: auto;
+    padding: 7.5px 60px;
 }
