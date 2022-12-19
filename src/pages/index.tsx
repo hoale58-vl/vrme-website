@@ -2,7 +2,6 @@ import * as React from 'react';
 import { HeadFC, Link, PageProps } from 'gatsby';
 import { Layout, CardGetStarted } from '../components/';
 import { CardGetStartedData } from '../data';
-import { TriggerNavbar2 } from '../components/';
 
 const IndexPage: React.FC<PageProps> = () => {
     return (

@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 import TriggerNavbar2 from '../triggered-navbar-2';
 
 const Header: React.FunctionComponent<{}> = () => {
-    const [isClick, setIsClick] = useState(false);
     return (
         <header className="header-main">
             <nav className="header-main-nav">
