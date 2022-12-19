@@ -276,7 +276,7 @@
     }
 
     .card-nft {
-        @apply bg-black rounded-[20px];
+        @apply bg-black rounded-[20px] justify-items-stretch;
     }
 
     .card-nft-info {
@@ -501,5 +501,11 @@
         font-weight: 600;
         font-size: 22px;
         line-height: 140%;
+    }
+    .mint-token-grid-1_image-group-2 {
+        display: none;
+    }
+    .trigger-navbar-2 {
+        display: none;
     }
 }

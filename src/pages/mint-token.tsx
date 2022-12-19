@@ -41,8 +41,8 @@ const MintToken: React.FC<PageProps> = () => {
                     </div>
                     <div className="update-profile-form-item-group w-full mint-token-input-username">
                         <img
-                            width="32px"
-                            className="absolute top-[17px] left-[20px]"
+                            width="25px"
+                            className="absolute top-[16px] left-[20px]"
                             src="/images/icon/vector.png"
                             alt=""
                         />
@@ -54,8 +54,8 @@ const MintToken: React.FC<PageProps> = () => {
                     </div>
                     <div className="update-profile-form-item-group w-full mint-token-textarea">
                         <img
-                            width="32px"
-                            className="absolute top-[17px] left-[20px]"
+                            width="25px"
+                            className="absolute top-[16px] left-[20px]"
                             src="/images/icon/escription.png"
                             alt=""
                         />
@@ -65,6 +65,28 @@ const MintToken: React.FC<PageProps> = () => {
                         />
                     </div>
                     <div className="mint-token-maps"></div>
+                    <div className="mint-token-grid-1_image-group-2">
+                        <img
+                            width="100%"
+                            className="mint-token-grid-1_image-main"
+                            src="/images/card-nft/card-nft-3.png"
+                        />
+                        <div className="mint-token-grid-1_image-child-group">
+                            <img
+                                className="mint-token-grid-1_image-child"
+                                src="/images/card-nft/card-nft-3.png"
+                                alt=""
+                            ></img>
+                            <img
+                                className="mint-token-grid-1_image-child"
+                                src="/images/card-nft/card-nft-3.png"
+                            ></img>
+                            <div className="mint-token-grid-1_image-child-2">1025+</div>
+                            <div className="mint-token-grid-1_image-child-3">
+                                <img className="w-8 h-8" src="/images/icon/create.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <button className="btn btn-small btn-dark mint-token-submit-btn">Submit</button>
