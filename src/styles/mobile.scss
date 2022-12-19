@@ -565,4 +565,86 @@
     .nft-detail-tags-button {
         width: fit-content;
     }
+    .mint-token-grid-1_image-group {
+        display: none;
+    }
+    .mint-token-title {
+        font-family: Work Sans;
+        font-size: 38px;
+        font-weight: 600;
+        line-height: 42px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .mint-token-page {
+        padding: 60px 30px 50px 30px;
+    }
+    .mint-token-grid-1_content {
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-bottom: 30px;
+    }
+    .mint-token-user-token-group {
+        display: flex;
+        background-color: #858584;
+        left: 0px;
+        top: 0px;
+        border-radius: 20px;
+        padding: 16px 20px 16px 20px;
+        gap: 13px;
+        margin-bottom: 15px;
+    }
+    .mint-token-input {
+        height: 54px;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+    .mint-token-input-username {
+        margin-bottom: 15px;
+    }
+    .update-profile-form-item-textarea {
+        height: 300px;
+        font-family: Work Sans;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding: 16px 20px 16px 52px;
+        margin-bottom: 40px;
+    }
+    .mint-token-maps {
+        height: 330px;
+        margin-bottom: 70px;
+    }
+    .mint-token-grid-1_image-child {
+        display: none;
+    }
+    .mint-token-grid-1_image-child-2 {
+        width: 50%;
+    }
+    .mint-token-grid-1_image-child-3 {
+        width: 50%;
+    }
+    .mint-token-grid-1_image-child-group {
+        display: flex;
+        gap: 15px;
+    }
+    .mint-token-grid-1_image-main {
+        margin-bottom: 15px;
+    }
+    .mint-token-submit-btn {
+        margin: auto;
+        padding: 7.5px 60px;
+        margin-bottom: 60px;
+    }
 }

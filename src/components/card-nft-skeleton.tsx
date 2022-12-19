@@ -14,7 +14,6 @@ const CardNFTSkeleton: React.FC = () => {
                     <div className="price-label"></div>
                     <div className="card-nft-price gap-1"></div>
                 </div>
-                <div className=""></div>
             </div>
         </div>
     );
