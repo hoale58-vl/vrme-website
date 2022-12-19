@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
+import TriggerNavbar2 from '../triggered-navbar-2';
 
 const Header: React.FunctionComponent<{}> = () => {
+    const [isClick, setIsClick] = useState(false);
     return (
         <header className="header-main">
             <nav className="header-main-nav">
@@ -24,9 +26,17 @@ const Header: React.FunctionComponent<{}> = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="header-icon-list">
+                <input
+                    type="checkbox"
+                    id="nav-mobile-input"
+                    className="nav-mobile-input-checkbox"
+                    hidden
+                />
+                <label className="header-icon-list" htmlFor="nav-mobile-input">
                     <img src="/images/icon/list.png" alt="" />
-                </div>
+                </label>
+                <label htmlFor="nav-mobile-input" className="nav-overlay"></label>
+                <TriggerNavbar2 />
             </nav>
         </header>
     );

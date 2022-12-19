@@ -24,7 +24,7 @@ const CardNFT: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
                     </div>
                     <div className="card-nft-info">
                         <div className="card-nft-name-group">
-                            <Link to={`card-nft/${name}`}>
+                            <Link to={`/nft-detail`}>
                                 <div className="card-nft-name">{name}</div>
                             </Link>
                             <img

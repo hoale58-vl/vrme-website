@@ -713,3 +713,113 @@ a {
     margin: auto;
     padding: 7.5px 60px;
 }
+.trigger-nav_mint-btn {
+    background: #a259ff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 31.5px;
+    margin-bottom: 10px;
+}
+.trigger-nav_mint {
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.trigger-nav_token-btn {
+    border: 2px solid #a259ff;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 32px;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.trigger-nav_token {
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.trigger-nav_hline {
+    height: 2px;
+    background-color: #858584;
+    margin-bottom: 33px;
+}
+.trigger-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.trigger-nav_item {
+    gap: 24px;
+    display: flex;
+    align-items: center;
+}
+.trigger-nav_disconnect-btn {
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid #a259ff;
+    border-radius: 20px;
+    position: absolute;
+    top: 300px;
+    width: calc(100% - 36px);
+}
+.trigger-nav_item-content {
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #2b2b2b;
+    opacity: 0.5;
+    display: none;
+}
+.trigger-navbar-2 {
+    background-color: #3b3b3b;
+    padding: 10px 19.5px;
+    width: 225px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    transform: translateX(100%);
+}
+.nav-mobile-input-checkbox:checked ~ .nav-overlay {
+    display: block;
+}
+.nav-mobile-input-checkbox:checked ~ .trigger-navbar-2 {
+    transform: translateX(0%);
+    transition: all 0.3s ease-in 0.01s;
+}
+.nav-mobile-input-checkbox:not(:checked) ~ .trigger-navbar-2 {
+    transform: translateX(100%);
+    transition: all 0.3s ease-in 0.01s;
+}
