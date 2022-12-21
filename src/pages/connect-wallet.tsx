@@ -22,7 +22,7 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
                             src="/images/connect-wallet/metamask.png"
                             alt=""
                         />
-                        <div className="">Metamask</div>
+                        <div className="">Petra</div>
                     </button>
                     <button
                         className="btn btn-light connect-wallet-btn"
@@ -35,7 +35,7 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
                             src="/images/connect-wallet/wallet-connect.png"
                             alt=""
                         />
-                        <div className="">Wallet Connect</div>
+                        <div className="">Martian</div>
                     </button>
                     <button className="btn btn-light connect-wallet-btn">
                         <img
@@ -43,7 +43,7 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
                             src="/images/connect-wallet/coinbase.png"
                             alt=""
                         />
-                        <div className="">Coinbase</div>
+                        <div className="">Fewcha</div>
                     </button>
                 </div>
             </div>
