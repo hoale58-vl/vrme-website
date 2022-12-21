@@ -11,7 +11,6 @@ const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
     const { dataNFT, isLoading } = useSelector(nftSelector);
-    console.log(dataNFT);
 
     const cardNftList: IToken[] = dataNFT.map((item: any) => ({
         id: item?.id,

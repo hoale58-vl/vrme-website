@@ -2,17 +2,13 @@ import React from 'react';
 import { Header, Footer } from './partials';
 import Favicon from 'react-favicon';
 import {
-    WalletProvider,
-    HippoWalletAdapter,
     AptosWalletAdapter,
-    // HippoExtensionWalletAdapter,
+    FewchaWalletAdapter,
+    MartianWalletAdapter,
+    WalletProvider,
 } from '@manahippo/aptos-wallet-adapter';
 
-const wallets = [
-    new HippoWalletAdapter(),
-    new AptosWalletAdapter(),
-    // new HippoExtensionWalletAdapter(),
-];
+const wallets = [new MartianWalletAdapter(), new AptosWalletAdapter(), new FewchaWalletAdapter()];
 
 interface AuxProps {
     children?: React.ReactNode;
