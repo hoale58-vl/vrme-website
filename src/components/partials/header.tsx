@@ -15,6 +15,9 @@ const Header: React.FunctionComponent<{}> = () => {
                     </div>
                 </Link>
                 <div className="header-connect-wallet">
+                    <Link to="/">
+                        <div className="market-place">Home</div>
+                    </Link>
                     <Link to="/marketplace">
                         <div className="market-place">Marketplace</div>
                     </Link>

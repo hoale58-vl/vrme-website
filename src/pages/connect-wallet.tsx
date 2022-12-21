@@ -1,6 +1,10 @@
 import * as React from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import { Layout } from '../components/';
+import { AptosWalletName, useWallet, WalletName } from '@manahippo/aptos-wallet-adapter';
+const { connect, disconnect, connected } = useWallet();
+
+export const PetraWalletName = 'Petra' as WalletName<'Petra'>;
 
 const ConnectWalletPage: React.FC<PageProps> = () => {
     return (
@@ -20,7 +24,12 @@ const ConnectWalletPage: React.FC<PageProps> = () => {
                         />
                         <div className="">Metamask</div>
                     </button>
-                    <button className="btn btn-light connect-wallet-btn">
+                    <button
+                        className="btn btn-light connect-wallet-btn"
+                        // onClick={() => {
+                        //     connect(PetraWalletName);
+                        // }}
+                    >
                         <img
                             className="w-10 h-auto"
                             src="/images/connect-wallet/wallet-connect.png"

@@ -104,6 +104,10 @@ a {
     @apply text-base text-gray-300 max-w-[238px];
 }
 
+.footer-text:hover {
+    opacity: 0.7;
+}
+
 .brand {
     @apply font-semibold;
 }
