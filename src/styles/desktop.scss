@@ -290,6 +290,7 @@
         line-height: 31px;
         letter-spacing: 0;
         text-align: left;
+        @apply truncate text-ellipsis overflow-hidden w-[240px];
     }
 
     .ant-pagination {

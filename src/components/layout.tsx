@@ -18,9 +18,13 @@ const Layout: React.FC<AuxProps> = ({ children }: AuxProps) => {
     return (
         <WalletProvider
             wallets={wallets}
-            autoConnect={true}
+            autoConnect
             onError={(error: Error) => {
-                console.log('Handle Error Message', error);
+                let text = 'Unknow error';
+                if (error.name === 'WalletNotReadyError') {
+                    text = 'Wallet not ready';
+                }
+                console.log(error);
             }}
         >
             <Favicon url="/images/logo/vector.png" />

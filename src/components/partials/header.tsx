@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import TriggerNavbar2 from '../triggered-navbar-2';
+import { Modal } from 'antd';
 
 const Header: React.FunctionComponent<{}> = () => {
+    const [modal2Open, setModal2Open] = useState(false);
     return (
         <header className="header-main">
             <nav className="header-main-nav">
@@ -27,6 +29,40 @@ const Header: React.FunctionComponent<{}> = () => {
                             <div className="">Connect a wallet</div>
                         </div>
                     </Link>
+                    <button
+                        className="btn btn-dark btn-medium px-[30px]"
+                        onClick={() => setModal2Open(true)}
+                        hidden
+                    >
+                        <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
+                        <div className="">Mint ViRME</div>
+                    </button>
+                    <Modal
+                        title="Listing your token"
+                        centered
+                        open={modal2Open}
+                        onOk={() => setModal2Open(false)}
+                        onCancel={() => setModal2Open(false)}
+                    >
+                        <div className="modal-token-name">RME SaiGon 0001</div>
+                        <img
+                            className="modal-token-image"
+                            src="/images/card-nft/image-card-nft-2.png"
+                            alt=""
+                        />
+                        <div className="modal-token-price-group">
+                            <img
+                                className="w-5 h-5 modal-wallet-icon"
+                                src="/images/icon/wallet-dark.png"
+                                alt=""
+                            />
+                            <input
+                                className="modal-token-price-input"
+                                type="text"
+                                placeholder="Price"
+                            />
+                        </div>
+                    </Modal>
                 </div>
                 <input
                     type="checkbox"

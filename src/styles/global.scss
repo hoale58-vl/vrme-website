@@ -170,7 +170,7 @@ a {
 }
 
 .card-nft-info {
-    @apply relative;
+    @apply relative flex-1 flex flex-col;
 }
 
 .card-nft-btn {
@@ -179,7 +179,8 @@ a {
 }
 
 .card-nft {
-    @apply inline-block overflow-hidden;
+    @apply overflow-hidden flex flex-col;
+    height: 507px;
 }
 
 .collection-image {
@@ -315,6 +316,8 @@ a {
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
+    @apply truncate text-ellipsis overflow-hidden;
+    width: 200px;
 }
 .card-nft-name-group {
     display: flex;
@@ -826,4 +829,94 @@ a {
 .nav-mobile-input-checkbox:not(:checked) ~ .trigger-navbar-2 {
     transform: translateX(100%);
     transition: all 0.3s ease-in 0.01s;
+}
+.ant-modal-content {
+    border-radius: 20px !important;
+    background-color: #3b3b3b !important;
+    width: 359px;
+}
+.ant-modal-header {
+    background-color: #858584 !important;
+    border: none !important;
+    border-radius: 10px 10px 0px 0px !important;
+}
+.ant-modal-title {
+    font-family: Work Sans !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    line-height: 24px !important;
+    color: #ffffff !important;
+}
+.modal-token-name {
+    text-align: center;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    color: white;
+    margin-bottom: 10px;
+}
+.modal-token-image {
+    width: 200px;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+.modal-token-price-group {
+    position: relative;
+}
+.modal-wallet-icon {
+    position: absolute;
+    top: 13px;
+    left: 20px;
+}
+.modal-token-price-input {
+    width: 100%;
+    padding: 12px 20px 12px 50px;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2b2b2b;
+    border: 1px solid #858584;
+    border-radius: 20px;
+}
+.ant-modal-body {
+    margin: 10px 40px !important;
+    padding: 10px 10px 53px 10px !important;
+}
+.ant-modal-footer {
+    border: none !important;
+}
+.ant-modal-close-icon {
+    color: #fff !important;
+    font-size: 20px;
+}
+.ant-pagination-item-active {
+    background-color: #a259ff !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+}
+.ant-pagination-item a {
+    padding: 0 !important;
+}
+.anticon-double-left {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+}
+.anticon-double-right {
+    top: -4px;
+}
+// .card-nft-img {
+// height: 330px;
+// }
+.card-nft-price-group {
+    @apply mt-auto;
+}
+.card-nft-name {
+    @apply truncate text-ellipsis overflow-hidden w-[240px];
 }

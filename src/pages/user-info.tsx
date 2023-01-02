@@ -4,8 +4,16 @@ import { CardNFT, Layout } from '../components';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
 import { NFTStatus } from '../types/enum';
+import {
+    AptosWalletName,
+    FewchaWalletName,
+    MartianWalletName,
+    useWallet,
+} from '@manahippo/aptos-wallet-adapter';
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
 
 const UserInfoPage: React.FC<PageProps> = () => {
+    const { signAndSubmitTransaction, connect } = useWallet();
     const temp: IToken = {
         id: 2134,
         image: '/images/card-nft/image-card-nft-1.png',
@@ -14,6 +22,26 @@ const UserInfoPage: React.FC<PageProps> = () => {
         author: 'HoaLe',
         price: '1000000',
         status: NFTStatus.ON_GOING,
+    };
+
+    const nftList = async () => {
+        await connect(FewchaWalletName);
+        const payload = {
+            arguments: [MARKETPLACE_ADDR_ARG, '0x1', '0', '0', 0, 1, 300000],
+            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
+            type: 'entry_function_payload',
+            type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        };
+        console.log(payload);
+        const result = await signAndSubmitTransaction(payload);
+        console.log(result);
+
+        if (result) {
+            console.log('List Token Transaction Success');
+            // await hippoWallet?.refreshStores();
+        } else {
+            console.log('Errrrrr');
+        }
     };
 
     return (
@@ -105,7 +133,7 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                Created{' '}
+                                Created
                                 <div className="tabpane-count tabpane-count-user-info-page">
                                     302
                                 </div>
@@ -123,19 +151,24 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     className="tabpane"
                     tab={
                         <span className="tabpane-title">
-                            Owned{' '}
+                            Owned
                             <div className="tabpane-count tabpane-count-user-info-page">67</div>
                         </span>
                     }
                     key="2"
                 >
-                    <h1>tab2</h1>
+                    <div className="tabpane-content">
+                        <CardNFT token={temp} isLoading={false} />
+                        <CardNFT token={temp} isLoading={false} />
+                        <CardNFT token={temp} isLoading={false} />
+                    </div>
+                    <Pagination defaultCurrent={6} total={500} />
                 </Tabs.TabPane>
                 <Tabs.TabPane
                     className="tabpane"
                     tab={
                         <span className="tabpane-title">
-                            Activities{' '}
+                            Activities
                             <div className="tabpane-count tabpane-count-user-info-page">67</div>
                         </span>
                     }
