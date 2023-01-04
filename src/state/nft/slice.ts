@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getList } from './action';
-import { INftState } from './types';
+import { INftState, IDataNFT } from './types';
 
 const defaultNftState: INftState = {
-    dataNFT: [],
+    dataNFT: { page: 0, limit: 0, data: [], total: 0 },
     isLoading: false,
     error: null,
 };
@@ -14,17 +14,13 @@ const nftSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getList.pending.toString()]: (state: INftState) => {
-            console.log(1);
-
             state.isLoading = true;
         },
-        [getList.fulfilled.toString()]: (state: INftState, action: PayloadAction<Array<{}>>) => {
+        [getList.fulfilled.toString()]: (state: INftState, action: PayloadAction<{}>) => {
             // state = { ...state, isLoading: false, dataNFT: action.payload };
             return { ...state, isLoading: false, dataNFT: action.payload };
         },
         [getList.rejected.toString()]: (state: INftState, action: PayloadAction<{}>) => {
-            console.log(3);
-
             state.isLoading = true;
             // state.error = action.error.message);
         },

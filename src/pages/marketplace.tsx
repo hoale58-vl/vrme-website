@@ -1,19 +1,103 @@
 import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
+import { HeadFC, Link, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
 import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
 import { useDispatch, useSelector } from 'react-redux';
 import { getList, nftSelector } from '../state/nft';
+import axios from 'axios';
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import {
+    AptosWalletName,
+    FewchaWalletName,
+    MartianWalletName,
+    useWallet,
+} from '@manahippo/aptos-wallet-adapter';
+import { connect } from 'http2';
+
+const ListToken: React.FC = () => {
+    const { signAndSubmitTransaction, wallet, connect } = useWallet();
+
+    const [listToken, setListToken] = React.useState<any>([]);
+
+    React.useEffect(() => {
+        const listTokenQuery = `query MyQuery {
+                                    current_token_ownerships(
+                                    where: {amount: {_eq: 1}, owner_address: {_eq: "0x6b17890d3417fdd45164531d45a3c76182f55a2734cb3e284c1df29fa6e703e7"}}
+                                    limit: 10
+                                    offset: 0
+                                    ) {
+                                    collection_name
+                                    creator_address
+                                    name
+                                    current_token_data {
+                                        metadata_uri
+                                    }
+                                    }
+                                }`;
+
+        const listToken = async () => {
+            try {
+                const res = await axios.post(
+                    'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
+                    {
+                        query: listTokenQuery,
+                    }
+                );
+                setListToken(res.data.data.current_token_ownerships);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        listToken();
+    }, []);
+    const listTokenData = listToken;
+    console.log('list_token', listTokenData);
+
+    const handleConnect = () => {
+        connect(FewchaWalletName);
+    };
+
+    const handleListToken = async () => {
+        const payload = {
+            arguments: [
+                MARKETPLACE_ADDR_ARG,
+                listTokenData[0]?.creator_address,
+                listTokenData[0]?.collection_name,
+                listTokenData[0]?.name,
+                0,
+                1,
+                1,
+            ],
+            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
+            type: 'entry_function_payload',
+            type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        };
+        const result = await signAndSubmitTransaction(payload);
+        console.log(result);
+        if (result) {
+            console.log('List Token Transaction Success');
+            // await hippoWallet?.refreshStores();
+        } else {
+            console.log('Errrrrr');
+        }
+    };
+
+    return (
+        <>
+            <button onClick={handleListToken}>ListToken</button> <br /> <br />
+            <button onClick={handleConnect}>Connect</button>
+        </>
+    );
+};
 
 const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
     const { dataNFT, isLoading } = useSelector(nftSelector);
-    console.log(dataNFT);
 
-    const cardNftList: IToken[] = dataNFT.map((item: any) => ({
+    const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
         id: item?.id,
         name: item?.token?.name,
         image: item?.token?.uri,
@@ -23,17 +107,24 @@ const Marketplace: React.FC<PageProps> = () => {
         status: item?.status,
     }));
 
+    const handleOnChangePagination = (page: number, pageSize: number) => {
+        console.log(page, pageSize);
+        navigate(`?page=${page}`);
+        dispatch(getList(page));
+    };
+
     const handleChangeTabKey = async (id: string) => {
         setTab(+id);
         navigate(`?tab=${id}`);
     };
 
     React.useEffect(() => {
-        dispatch(getList());
+        dispatch(getList(1));
     }, []);
 
     return (
         <Layout>
+            <ListToken />
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
                 <div className="browse-market-place-content">
@@ -69,7 +160,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">{dataNFT.length}</div>
+                                NFTs <div className="tabpane-count">{dataNFT.data.length}</div>
                             </span>
                         </>
                     }
@@ -96,7 +187,12 @@ const Marketplace: React.FC<PageProps> = () => {
                                     </>
                                 )}
                             </div>
-                            <Pagination defaultCurrent={6} total={500} />
+                            <Pagination
+                                defaultCurrent={1}
+                                pageSize={12}
+                                total={dataNFT.total}
+                                onChange={handleOnChangePagination}
+                            />
                         </>
                     )}
                 </Tabs.TabPane>
@@ -129,7 +225,11 @@ const Marketplace: React.FC<PageProps> = () => {
                                 )}
                                 <CollectionSkeleton />
                             </div>
-                            <Pagination defaultCurrent={6} total={500} />
+                            <Pagination
+                                // defaultCurrent={1}
+                                // total={500}
+                                onChange={handleOnChangePagination}
+                            />
                         </>
                     )}
                 </Tabs.TabPane>
