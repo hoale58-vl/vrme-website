@@ -13,23 +13,31 @@ interface CardProps {
     attribute?: string | undefined;
 }
 
-const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
-    const { id, image, name, author, price, status } = token;
+const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
+    const { image, name, author, status } = token;
 
+    //   const [modalOpen, setModalOpen] = useState<boolean>(false)
     const { signAndSubmitTransaction } = useWallet();
 
-    const handleBuyBtn = async (id: number) => {
-        console.log('token_id', id);
+    const handleSellBtn = async (name: string) => {
         const payload = {
-            arguments: [MARKETPLACE_ADDR_ARG, id],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
+            arguments: [
+                MARKETPLACE_ADDR_ARG,
+                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
+                'Vietnamese Metaverse Real Estate',
+                name,
+                0,
+                1,
+                10,
+            ],
+            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
             type: 'entry_function_payload',
             type_arguments: ['0x1::aptos_coin::AptosCoin'],
         };
-        console.log(payload);
         const result = await signAndSubmitTransaction(payload);
+        console.log(result);
         if (result) {
-            console.log('Transaction Success');
+            console.log('List Token Transaction Success');
             // await hippoWallet?.refreshStores();
         } else {
             console.log('Errrrrr');
@@ -68,7 +76,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                 }
                             />
                         </div>
-                        <div className="card-nft-author-group">
+                        <div className="card-nft-author-group" hidden>
                             <div className="card-nft-author-avatar">
                                 <img
                                     className="w-6 h-6"
@@ -88,16 +96,14 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                         </div>
                         <div className="card-nft-price-group">
                             <div className="price-label">Price</div>
-                            <div className="card-nft-price gap-1">
-                                {Number(Number(price) / 100000000).toFixed(2)} ETH
-                            </div>
+                            <div className="card-nft-price gap-1">{Number(1).toFixed(2)} ETH</div>
                         </div>
                         <button
-                            className="btn btn-dark card-nft-btn"
-                            onClick={async (e) => await handleBuyBtn(id)}
+                            className="btn btn-dark card-nft-btn btn-sell"
+                            onClick={async (e) => await handleSellBtn(name)}
                         >
                             <img className="w-5 h-5" src="/images/icon/rocket-launch.png" alt="" />
-                            Buy
+                            Sell
                         </button>
                         {/* <Modal
                             title="Are you sure about this?"
@@ -126,4 +132,4 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
     );
 };
 
-export default CardNFT;
+export default CardNFTOwned;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HeadFC, Link, navigate, PageProps } from 'gatsby';
+import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
 import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
@@ -7,24 +7,20 @@ import { IToken } from '../types/token';
 import { useDispatch, useSelector } from 'react-redux';
 import { getList, nftSelector } from '../state/nft';
 import axios from 'axios';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
-import {
-    AptosWalletName,
-    FewchaWalletName,
-    MartianWalletName,
-    useWallet,
-} from '@manahippo/aptos-wallet-adapter';
-import { connect } from 'http2';
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC, WALLET_ADDRESS } from '../constant/const';
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
+import { useState } from 'react';
 
 const ListToken: React.FC = () => {
-    const { signAndSubmitTransaction, wallet, connect } = useWallet();
+    const { signAndSubmitTransaction, connect } = useWallet();
 
-    const [listToken, setListToken] = React.useState<any>([]);
+    const [listToken, setListToken] = useState<any>([]);
+    // new URLSearchParams(this.props.location.search).get('__firebase_request_key');
 
     React.useEffect(() => {
         const listTokenQuery = `query MyQuery {
                                     current_token_ownerships(
-                                    where: {amount: {_eq: 1}, owner_address: {_eq: "0x6b17890d3417fdd45164531d45a3c76182f55a2734cb3e284c1df29fa6e703e7"}}
+                                    where: {amount: {_eq: 1}, owner_address: {_eq: "${WALLET_ADDRESS}"}}
                                     limit: 10
                                     offset: 0
                                     ) {
@@ -63,12 +59,12 @@ const ListToken: React.FC = () => {
         const payload = {
             arguments: [
                 MARKETPLACE_ADDR_ARG,
-                listTokenData[0]?.creator_address,
-                listTokenData[0]?.collection_name,
-                listTokenData[0]?.name,
+                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
+                'Vietnamese Metaverse Real Estate',
+                'Somebody Home #5',
                 0,
                 1,
-                1,
+                10,
             ],
             function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
             type: 'entry_function_payload',
@@ -87,7 +83,7 @@ const ListToken: React.FC = () => {
     return (
         <>
             <button onClick={handleListToken}>ListToken</button> <br /> <br />
-            <button onClick={handleConnect}>Connect</button>
+            <button onClick={handleConnect}>Connect</button> <br /> <br />
         </>
     );
 };
@@ -101,16 +97,17 @@ const Marketplace: React.FC<PageProps> = () => {
         id: item?.id,
         name: item?.token?.name,
         image: item?.token?.uri,
-        avatar: item?.token?.uri,
-        author: item?.token?.name,
+        avatar: '',
+        author: item?.token?.creator,
         price: item?.price,
         status: item?.status,
     }));
+    console.log('cardNFTLIST', cardNftList);
 
     const handleOnChangePagination = (page: number, pageSize: number) => {
         console.log(page, pageSize);
         navigate(`?page=${page}`);
-        dispatch(getList(page));
+        dispatch(getList({ page, perPage: 12 }));
     };
 
     const handleChangeTabKey = async (id: string) => {
@@ -119,7 +116,7 @@ const Marketplace: React.FC<PageProps> = () => {
     };
 
     React.useEffect(() => {
-        dispatch(getList(1));
+        dispatch(getList({ page: 1, perPage: 12 }));
     }, []);
 
     return (
@@ -130,7 +127,7 @@ const Marketplace: React.FC<PageProps> = () => {
                 <div className="browse-market-place-content">
                     Browse ViRME NFTs on the NFT Marketplace.
                 </div>
-                <div className="browse-marketplace-search-bar-group">
+                <div className="browse-marketplace-search-bar-group" hidden>
                     <div className="browse-marketplace-search-bar w-full">
                         <input
                             className="browse-marketplace-search-bar-input"
@@ -160,7 +157,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">{dataNFT.data.length}</div>
+                                NFTs <div className="tabpane-count">{dataNFT.total}</div>
                             </span>
                         </>
                     }

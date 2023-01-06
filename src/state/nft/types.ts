@@ -5,8 +5,8 @@ export interface INftState {
 }
 
 export interface IDataNFT {
-    page: number,
-    limit: number,
+    page: number;
+    limit: number;
     data: [];
     total: number;
 }

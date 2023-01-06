@@ -1,31 +1,40 @@
-import * as React from 'react'
-import { HeadFC, PageProps } from 'gatsby'
-import { CardNFT, Layout } from '../components'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { IToken } from '../types/token'
-import { NFTStatus } from '../types/enum'
+import * as React from 'react';
+import { HeadFC, Link, PageProps } from 'gatsby';
+import { CardNFT, CardNFTSkeleton, Layout } from '../components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { IToken } from '../types/token';
+import { useDispatch, useSelector } from 'react-redux';
+import { getList, nftSelector } from '../state/nft';
 
 const NFTDetail: React.FC<PageProps> = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false
-  }
-  const temp: IToken = {
-    id: 2134,
-    image: '/images/card-nft/image-card-nft-1.png',
-    name: 'NFT Sai Gon 001',
-    avatar: '/images/avatars/avatar-1.png',
-    author: 'HoaLe',
-    price: '1000000',
-    status: NFTStatus.ON_GOING
-  }
-  return (
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
+
+    const dispatch = useDispatch<any>();
+    const { dataNFT, isLoading } = useSelector(nftSelector);
+    const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
+        id: item?.id,
+        name: item?.token?.name,
+        image: item?.token?.uri,
+        avatar: '',
+        author: item?.token?.creator,
+        price: item?.price,
+        status: item?.status,
+    }));
+
+    React.useEffect(() => {
+        dispatch(getList({ page: 1, perPage: 3 }));
+    }, []);
+
+    return (
         <Layout>
             <div className="nft-detail-background-image"></div>
             <div className="nft-detail-main">
@@ -159,23 +168,44 @@ const NFTDetail: React.FC<PageProps> = () => {
                             <div className="nft-detail-more-title">More from this Collection</div>
                         </div>
                         <div className="nft-detail-more-grid">
-                            <CardNFT token={temp} isLoading={false} attribute={'card-nft-dark'} />
-                            <CardNFT token={temp} isLoading={false} attribute={'card-nft-dark'} />
-                            <CardNFT token={temp} isLoading={false} attribute={'card-nft-dark'} />
+                            {!isLoading ? (
+                                cardNftList.map((token: IToken) => {
+                                    return (
+                                        <CardNFT
+                                            key={token.id}
+                                            token={token}
+                                            isLoading={isLoading}
+                                            attribute={'card-nft-dark'}
+                                        />
+                                    );
+                                })
+                            ) : (
+                                <>
+                                    <CardNFTSkeleton />
+                                    <CardNFTSkeleton />
+                                    <CardNFTSkeleton />
+                                </>
+                            )}
                         </div>
-                        <div className="nft-detail-go-to-marketplace-btn-group">
-                            <img className="w-5 h-5" src="/images/icon/arrow-right.png" alt="" />
-                            <div className="nft-detail-go-to-marketplace-btn">
-                                Go To Marketplace
+                        <Link to="/marketplace">
+                            <div className="nft-detail-go-to-marketplace-btn-group">
+                                <img
+                                    className="w-5 h-5"
+                                    src="/images/icon/arrow-right.png"
+                                    alt=""
+                                />
+                                <div className="nft-detail-go-to-marketplace-btn">
+                                    Go To Marketplace
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default NFTDetail
+export default NFTDetail;
 
-export const Head: HeadFC = () => <title>NFT Detail</title>
+export const Head: HeadFC = () => <title>NFT Detail</title>;

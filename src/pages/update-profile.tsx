@@ -1,10 +1,38 @@
-import * as React from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
-import { Layout } from '../components/'
+import * as React from 'react';
+import { HeadFC, navigate, PageProps } from 'gatsby';
+import { Layout } from '../components/';
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
+import axios from 'axios';
+import { UPDATE_PROFILE } from '../services/consts';
+
+const ListWallet: React.FC = () => {
+    const { connect } = useWallet();
+
+    return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>;
+};
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-  return (
+    // const [dataSubmit, setDataSubmit] = React.useState<string>();
+    const nameRef = React.useRef<HTMLInputElement>(null);
+    const handleUpdateProfile = async () => {
+        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+
+        if (nameRef.current) {
+            const res = await axios.put(
+                UPDATE_PROFILE,
+                { name: nameRef.current.value },
+                {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                }
+            );
+            console.log(res);
+        }
+        navigate('/');
+    };
+
+    return (
         <Layout>
+            <ListWallet />
             <div className="update-profile-body">
                 <div className="update-profile-image"></div>
                 <div className="update-profile-content-group">
@@ -33,6 +61,9 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                                 className="update-profile-form-item"
                                 type="text"
                                 placeholder="Username"
+                                name="username"
+                                // onChange={(e) => setDataSubmit(e.target.value)}
+                                ref={nameRef}
                             />
                         </div>
                         <div className="update-profile-form-item-group">
@@ -61,14 +92,21 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                                 placeholder="Phonenumber"
                             />
                         </div>
+                        <button
+                            type="submit"
+                            className="update-profile-btn"
+                            style={{ marginTop: '20px' }}
+                            onClick={handleUpdateProfile}
+                        >
+                            Update
+                        </button>
                     </div>
-                    <button className="update-profile-btn">Update</button>
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default UpdateProfilePage
+export default UpdateProfilePage;
 
-export const Head: HeadFC = () => <title>Update Profile</title>
+export const Head: HeadFC = () => <title>Update Profile</title>;
