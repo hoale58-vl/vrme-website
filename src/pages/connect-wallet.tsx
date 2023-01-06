@@ -101,19 +101,38 @@ const ListWalllet: React.FC = () => {
     //         console.log('Errrrrr');
     //     }
     // };
-
-    const accessToken: string | null = localStorage.getItem('accessToken');
-
+    let accessToken: string | null;
+    if (typeof window !== 'undefined') {
+        accessToken = localStorage.getItem('accessToken');
+    }
     //   let accessTokenRes: string | ''
     //   if (accessToken != null) {
     //     accessTokenRes = accessToken
     //   } else accessTokenRes = ''
 
     useEffect(() => {
-        localStorage.walletAddress = account?.address;
+        if (typeof window !== 'undefined') {
+            localStorage.walletAddress = account?.address;
+        }
         if (isConnected && accessToken === '') {
             handleSignIn();
         }
+        console.log('accessToken', typeof accessToken);
+
+        const getProfile = async () => {
+            if (accessToken !== '') {
+                try {
+                    await axios.get(PROFILE, {
+                        headers: { Authorization: `Bearer ${accessToken}` },
+                    });
+                    setIsLogin(true);
+                } catch (error) {
+                    console.log(error);
+                    navigate('/update-profile');
+                }
+            }
+        };
+        getProfile();
     }, [isConnected]);
 
     useEffect(() => {
@@ -140,8 +159,9 @@ const ListWalllet: React.FC = () => {
             })
         );
     };
-    localStorage.setItem('accessToken', dataLogin);
-
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('accessToken', dataLogin);
+    }
     // useEffect(() => {
     //     if (dataLogin) {
     //         navigate('/update-profile');
@@ -150,7 +170,10 @@ const ListWalllet: React.FC = () => {
 
     const handleConnectPetraWallet = async () => {
         connect(FewchaWalletName);
-        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        let accessToken: string = '';
+        if (typeof window !== 'undefined') {
+            accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        }
         console.log('accessToken', typeof accessToken);
 
         if (accessToken !== '') {
@@ -168,7 +191,10 @@ const ListWalllet: React.FC = () => {
     };
     const handleConnectMartianWallet = async () => {
         connect(MartianWalletName);
-        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        let accessToken: string = '';
+        if (typeof window !== 'undefined') {
+            accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        }
         console.log('accessToken', typeof accessToken);
 
         if (accessToken !== '') {
@@ -186,22 +212,7 @@ const ListWalllet: React.FC = () => {
     };
     const handleConnectFewchaWallet = async () => {
         await connect(FewchaWalletName);
-        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
-        console.log('accessToken', typeof accessToken);
-
-        if (accessToken !== '') {
-            try {
-                await axios.get(PROFILE, {
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                });
-                setIsLogin(true);
-            } catch (error) {
-                console.log(error);
-                navigate('/update-profile');
-            }
-        } else {
-            setIsConnected(true);
-        }
+        setIsConnected(true);
     };
 
     return (
