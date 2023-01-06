@@ -104,9 +104,9 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default UpdateProfilePage
+export default UpdateProfilePage;
 
-export const Head: HeadFC = () => <title>Update Profile</title>
+export const Head: HeadFC = () => <title>Update Profile</title>;

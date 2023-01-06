@@ -71,7 +71,7 @@ const TriggerNavbar2: React.FC = () => {
                 <div className="trigger-nav_disconnect-btn">Disconnect</div>
             </div>
         </>
-  )
-}
+    );
+};
 
-export default TriggerNavbar2
+export default TriggerNavbar2;
