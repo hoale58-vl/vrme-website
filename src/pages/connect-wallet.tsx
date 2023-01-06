@@ -116,6 +116,22 @@ const ListWalllet: React.FC = () => {
         } else {
             setHasAccessToken(true);
         }
+        console.log('accessToken', typeof accessToken);
+
+        const getProfile = async () => {
+            if (accessToken !== '') {
+                try {
+                    await axios.get(PROFILE, {
+                        headers: { Authorization: `Bearer ${accessToken}` },
+                    });
+                    setIsLogin(true);
+                } catch (error) {
+                    console.log(error);
+                    navigate('/update-profile');
+                }
+            }
+        };
+        getProfile();
     }, [isConnected]);
 
     useEffect(() => {
