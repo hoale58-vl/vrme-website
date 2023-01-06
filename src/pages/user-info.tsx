@@ -28,7 +28,10 @@ const UserInfoPage: React.FC<PageProps> = () => {
         status: NFTStatus.ON_GOING,
     };
 
-    const walletAddress: string = JSON.parse(localStorage.getItem('walletAddress') ?? '');
+    let walletAddress: string;
+    if (typeof window !== 'undefined') {
+        walletAddress = JSON.parse(localStorage.getItem('walletAddress') ?? '');
+    }
     React.useEffect(() => {
         const listTokenQuery = `query MyQuery {
                                     current_token_ownerships(

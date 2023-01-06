@@ -14,8 +14,11 @@ const ListWallet: React.FC = () => {
 const UpdateProfilePage: React.FC<PageProps> = () => {
     // const [dataSubmit, setDataSubmit] = React.useState<string>();
     const nameRef = React.useRef<HTMLInputElement>(null);
+    let accessToken: string;
     const handleUpdateProfile = async () => {
-        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        if (typeof window !== 'undefined') {
+            accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        }
 
         if (nameRef.current) {
             const res = await axios.put(
