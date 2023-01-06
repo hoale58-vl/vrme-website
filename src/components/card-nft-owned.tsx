@@ -1,50 +1,50 @@
-import { Link } from 'gatsby';
-import React from 'react';
-import { NFTStatus } from '../types/enum';
-import { IToken } from '../types/token';
-import CardNFTSkeleton from './card-nft-skeleton';
-import { Tooltip } from 'antd';
-import { useWallet } from '@manahippo/aptos-wallet-adapter';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import { Link } from 'gatsby'
+import React from 'react'
+import { NFTStatus } from '../types/enum'
+import { IToken } from '../types/token'
+import CardNFTSkeleton from './card-nft-skeleton'
+import { Tooltip } from 'antd'
+import { useWallet } from '@manahippo/aptos-wallet-adapter'
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
 
 interface CardProps {
-    token: IToken;
-    isLoading: boolean;
-    attribute?: string | undefined;
+  token: IToken
+  isLoading: boolean
+  attribute?: string | undefined
 }
 
 const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
-    const { image, name, author, status } = token;
+  const { image, name, author, status } = token
 
-    //   const [modalOpen, setModalOpen] = useState<boolean>(false)
-    const { signAndSubmitTransaction } = useWallet();
+  //   const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const { signAndSubmitTransaction } = useWallet()
 
-    const handleSellBtn = async (name: string) => {
-        const payload = {
-            arguments: [
-                MARKETPLACE_ADDR_ARG,
-                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
-                'Vietnamese Metaverse Real Estate',
-                name,
-                0,
-                1,
-                10,
-            ],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
-            type: 'entry_function_payload',
-            type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        };
-        const result = await signAndSubmitTransaction(payload);
-        console.log(result);
-        if (result) {
-            console.log('List Token Transaction Success');
-            // await hippoWallet?.refreshStores();
-        } else {
-            console.log('Errrrrr');
-        }
-    };
+  const handleSellBtn = async (name: string) => {
+    const payload = {
+      arguments: [
+        MARKETPLACE_ADDR_ARG,
+        '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
+        'Vietnamese Metaverse Real Estate',
+        name,
+        0,
+        1,
+        10
+      ],
+      function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
+      type: 'entry_function_payload',
+      type_arguments: ['0x1::aptos_coin::AptosCoin']
+    }
+    const result = await signAndSubmitTransaction(payload)
+    console.log(result)
+    if (result) {
+      console.log('List Token Transaction Success')
+      // await hippoWallet?.refreshStores();
+    } else {
+      console.log('Errrrrr')
+    }
+  }
 
-    return (
+  return (
         <>
             {image ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
@@ -66,13 +66,13 @@ const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
                                 className="w-5 h-5"
                                 src={
                                     status === NFTStatus.ON_GOING
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
+                                      ? '/images/icon/unverified.png'
+                                      : '/images/icon/verified.png'
                                 }
                                 alt={
                                     status === NFTStatus.ON_GOING
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
+                                      ? 'This token has been unverified'
+                                      : 'This token has been verifed'
                                 }
                             />
                         </div>
@@ -129,7 +129,7 @@ const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFTOwned;
+export default CardNFTOwned

@@ -1,40 +1,40 @@
-import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
-import { Layout } from '../components/';
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
-import axios from 'axios';
-import { UPDATE_PROFILE } from '../services/consts';
+import * as React from 'react'
+import { HeadFC, navigate, PageProps } from 'gatsby'
+import { Layout } from '../components/'
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
+import axios from 'axios'
+import { UPDATE_PROFILE } from '../services/consts'
 
 const ListWallet: React.FC = () => {
-    const { connect } = useWallet();
+  const { connect } = useWallet()
 
-    return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>;
-};
+  return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>
+}
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-    // const [dataSubmit, setDataSubmit] = React.useState<string>();
-    const nameRef = React.useRef<HTMLInputElement>(null);
-    let accessToken: string = '';
-    const handleUpdateProfile = async () => {
-        console.log(typeof localStorage.getItem('accessToken'));
-        if (typeof window !== 'undefined') {
-            accessToken = localStorage.getItem('accessToken') ?? '';
-        }
+  // const [dataSubmit, setDataSubmit] = React.useState<string>();
+  const nameRef = React.useRef<HTMLInputElement>(null)
+  let accessToken: string = ''
+  const handleUpdateProfile = async () => {
+    console.log(typeof localStorage.getItem('accessToken'))
+    if (typeof window !== 'undefined') {
+      accessToken = localStorage.getItem('accessToken') ?? ''
+    }
 
-        if (nameRef.current) {
-            const res = await axios.put(
-                UPDATE_PROFILE,
-                { name: nameRef.current.value },
-                {
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                }
-            );
-            console.log(res);
+    if (nameRef.current) {
+      const res = await axios.put(
+        UPDATE_PROFILE,
+        { name: nameRef.current.value },
+        {
+          headers: { Authorization: `Bearer ${accessToken}` }
         }
-        navigate('/marketplace');
-    };
+      )
+      console.log(res)
+    }
+    navigate('/marketplace')
+  }
 
-    return (
+  return (
         <Layout>
             <ListWallet />
             <div className="update-profile-body">
@@ -108,9 +108,9 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default UpdateProfilePage;
+export default UpdateProfilePage
 
-export const Head: HeadFC = () => <title>Update Profile</title>;
+export const Head: HeadFC = () => <title>Update Profile</title>
