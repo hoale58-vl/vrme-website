@@ -11,6 +11,7 @@ import { PROFILE } from '../services/consts';
 const ListWalllet: React.FC = () => {
     const { connect, wallet, signMessage, account } = useWallet();
     const [isConnected, setIsConnected] = React.useState<boolean>(false);
+    const [hasAccessToken, setHasAccessToken] = React.useState<boolean>(false);
     // const [accessToken, setAccessToken] = useState<string | null>('');
     const [isLogin, setIsLogin] = React.useState<boolean>(false);
 
@@ -102,38 +103,43 @@ const ListWalllet: React.FC = () => {
     //     }
     // };
     let accessToken: string | null;
-    if (typeof window !== 'undefined') {
-        accessToken = localStorage.getItem('accessToken');
-    }
-    //   let accessTokenRes: string | ''
-    //   if (accessToken != null) {
-    //     accessTokenRes = accessToken
-    //   } else accessTokenRes = ''
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
             localStorage.walletAddress = account?.address;
+            accessToken = localStorage.getItem('accessToken');
         }
-        if (isConnected && accessToken === '') {
+        if (!isConnected) {
+            navigate('/connect-wallet');
+        } else if (isConnected && accessToken == '') {
             handleSignIn();
+        } else {
+            setHasAccessToken(true);
         }
-        console.log('accessToken', typeof accessToken);
+    }, [isConnected]);
+
+    useEffect(() => {
+        console.log(3);
 
         const getProfile = async () => {
             if (accessToken !== '') {
+                console.log(4);
+
                 try {
                     await axios.get(PROFILE, {
                         headers: { Authorization: `Bearer ${accessToken}` },
                     });
                     setIsLogin(true);
                 } catch (error) {
+                    console.log(5);
+
                     console.log(error);
                     navigate('/update-profile');
                 }
             }
         };
         getProfile();
-    }, [isConnected]);
+    }, [hasAccessToken]);
 
     useEffect(() => {
         if (isLogin) {
@@ -158,21 +164,21 @@ const ListWalllet: React.FC = () => {
                 publicKey: wallet?.adapter._wallet.publicKey,
             })
         );
+        setHasAccessToken(true);
     };
-    if (typeof window !== 'undefined') {
-        localStorage.setItem('accessToken', dataLogin);
-    }
     // useEffect(() => {
     //     if (dataLogin) {
     //         navigate('/update-profile');
     //     }
     // }, [dataLogin]);
-
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('accessToken', dataLogin);
+    }
     const handleConnectPetraWallet = async () => {
         connect(FewchaWalletName);
-        let accessToken: string = '';
+        let accessToken: string | null = '';
         if (typeof window !== 'undefined') {
-            accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+            accessToken = localStorage.getItem('accessToken');
         }
         console.log('accessToken', typeof accessToken);
 

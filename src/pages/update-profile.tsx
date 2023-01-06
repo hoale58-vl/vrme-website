@@ -14,10 +14,11 @@ const ListWallet: React.FC = () => {
 const UpdateProfilePage: React.FC<PageProps> = () => {
     // const [dataSubmit, setDataSubmit] = React.useState<string>();
     const nameRef = React.useRef<HTMLInputElement>(null);
-    let accessToken: string;
+    let accessToken: string = '';
     const handleUpdateProfile = async () => {
+        console.log(typeof localStorage.getItem('accessToken'));
         if (typeof window !== 'undefined') {
-            accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+            accessToken = localStorage.getItem('accessToken') ?? '';
         }
 
         if (nameRef.current) {
@@ -30,7 +31,7 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
             );
             console.log(res);
         }
-        navigate('/');
+        navigate('/marketplace');
     };
 
     return (
