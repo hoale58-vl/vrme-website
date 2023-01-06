@@ -203,9 +203,9 @@ const NFTDetail: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default NFTDetail;
+export default NFTDetail
 
-export const Head: HeadFC = () => <title>NFT Detail</title>;
+export const Head: HeadFC = () => <title>NFT Detail</title>

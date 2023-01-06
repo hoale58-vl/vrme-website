@@ -11,21 +11,21 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-};
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+  key: 'root',
+  storage: AsyncStorage
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
-    reducer: persistedReducer,
-    preloadedState: {},
-    devTools: process.env.NODE_ENV === 'development',
-});
+  reducer: persistedReducer,
+  preloadedState: {},
+  devTools: process.env.NODE_ENV === 'development'
+})
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type Dispatch = typeof store.dispatch;
-export type Thunk = ThunkAction<void, RootState, null, Action<string>>;
+export type RootState = ReturnType<typeof rootReducer>
+export type Dispatch = typeof store.dispatch
+export type Thunk = ThunkAction<void, RootState, null, Action<string>>
 
 export default () => {
-    return store;
-};
+  return store
+}

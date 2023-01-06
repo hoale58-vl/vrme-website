@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
+import { HeadFC, Link, navigate, PageProps } from 'gatsby';
 import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
 import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
