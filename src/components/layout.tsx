@@ -20,10 +20,6 @@ const Layout: React.FC<AuxProps> = ({ children }: AuxProps) => {
             wallets={wallets}
             autoConnect
             onError={(error: Error) => {
-                let text = 'Unknow error';
-                if (error.name === 'WalletNotReadyError') {
-                    text = 'Wallet not ready';
-                }
                 console.log(error);
             }}
         >

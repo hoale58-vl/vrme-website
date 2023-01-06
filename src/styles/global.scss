@@ -662,6 +662,7 @@ a {
 .card-nft-dark {
     background-color: #3b3b3b !important;
 }
+
 .nft-detail-go-to-marketplace-btn-group {
     display: flex;
     justify-content: center;
@@ -675,6 +676,9 @@ a {
     position: absolute;
     top: 0;
     right: 0;
+}
+.nft-detail-go-to-marketplace-btn-group:hover {
+    background-color: #a259ff;
 }
 .nft-detail-more-group {
     position: relative;
@@ -834,6 +838,7 @@ a {
     border-radius: 20px !important;
     background-color: #3b3b3b !important;
     width: 359px;
+    margin: auto !important;
 }
 .ant-modal-header {
     background-color: #858584 !important;
@@ -919,4 +924,8 @@ a {
 }
 .card-nft-name {
     @apply truncate text-ellipsis overflow-hidden w-[240px];
+}
+.btn-sell {
+    background: linear-gradient(94.04deg, #a259ff 7.32%, #ff6250 90.14%) !important;
+    border: none !important;
 }

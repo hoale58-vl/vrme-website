@@ -1,16 +1,21 @@
 import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
+import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout } from '../components/';
-import {
-    AptosWalletName,
-    FewchaWalletName,
-    MartianWalletName,
-    useWallet,
-} from '@manahippo/aptos-wallet-adapter';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import { FewchaWalletName, MartianWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, loginSelector } from '../state/login';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { PROFILE } from '../services/consts';
 
 const ListWalllet: React.FC = () => {
-    const { connect, wallet, disconnect } = useWallet();
+    const { connect, wallet, signMessage, account } = useWallet();
+    const [isConnected, setIsConnected] = React.useState<boolean>(false);
+    // const [accessToken, setAccessToken] = useState<string | null>('');
+    const [isLogin, setIsLogin] = React.useState<boolean>(false);
+
+    const dispatch = useDispatch<any>();
+    const { dataLogin } = useSelector(loginSelector);
 
     // const handlePetraWallet = async () => {
     //     const payload = {
@@ -97,70 +102,107 @@ const ListWalllet: React.FC = () => {
     //     }
     // };
 
-    // const handleSignIn = async () => {
-    //     const signMessagePayLoad = {
-    //         message: 'hello',
-    //         nonce: 'random_string',
-    //     };
-    //     try {
-    //         await signMessage(signMessagePayLoad);
-    //         console.log('verified');
-    //     } catch (error) {
-    //         console.log('error');
+    const accessToken: string | null = localStorage.getItem('accessToken');
+
+    //   let accessTokenRes: string | ''
+    //   if (accessToken != null) {
+    //     accessTokenRes = accessToken
+    //   } else accessTokenRes = ''
+
+    useEffect(() => {
+        localStorage.walletAddress = account?.address;
+        if (isConnected && accessToken === '') {
+            handleSignIn();
+        }
+    }, [isConnected]);
+
+    useEffect(() => {
+        if (isLogin) {
+            navigate('/marketplace');
+        }
+    }, [isLogin]);
+
+    let signInMessageData: any;
+    const handleSignIn = async () => {
+        const signMessagePayLoad = {
+            address: true,
+            application: false,
+            chainId: true,
+            message: 'Require signature for login',
+            nonce: '0',
+        };
+        signInMessageData = await signMessage(signMessagePayLoad);
+        dispatch(
+            login({
+                address: signInMessageData.address,
+                signature: `0x${signInMessageData.signature.toString()}`,
+                publicKey: wallet?.adapter._wallet.publicKey,
+            })
+        );
+    };
+    localStorage.setItem('accessToken', dataLogin);
+
+    // useEffect(() => {
+    //     if (dataLogin) {
+    //         navigate('/update-profile');
     //     }
-    // };
+    // }, [dataLogin]);
+
     const handleConnectPetraWallet = async () => {
-        try {
-            console.log(wallet);
-            
-            if (wallet?.adapter.name != 'Petra') {
-                try {
-                    await disconnect();
-                    await connect(AptosWalletName);
-                    console.log('Connect successfully!');
-                } catch (error) {
-                    console.log('Disconnect failure!');
-                }
+        connect(FewchaWalletName);
+        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        console.log('accessToken', typeof accessToken);
+
+        if (accessToken !== '') {
+            try {
+                await axios.get(PROFILE, {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                });
+            } catch (error) {
+                console.log(error);
+                navigate('/update-profile');
             }
-        } catch (error) {
-            console.log(error);
+        } else {
+            setIsConnected(true);
         }
     };
     const handleConnectMartianWallet = async () => {
-        try {
-            console.log(wallet);
-            if (wallet?.adapter.name != 'Martian') {
-                try {
-                    await disconnect();
-                    await connect(MartianWalletName);
-                    console.log('Connect successfully!');
-                } catch (error) {
-                    console.log('Disconnect failure!');
-                }
+        connect(MartianWalletName);
+        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        console.log('accessToken', typeof accessToken);
+
+        if (accessToken !== '') {
+            try {
+                await axios.get(PROFILE, {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                });
+            } catch (error) {
+                console.log(error);
+                navigate('/update-profile');
             }
-        } catch (error) {
-            console.log(error);
+        } else {
+            setIsConnected(true);
         }
     };
     const handleConnectFewchaWallet = async () => {
-        try {
-            console.log(wallet);
-            console.log((window as any).fewcha);
+        await connect(FewchaWalletName);
+        const accessToken: string = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        console.log('accessToken', typeof accessToken);
 
-            if (wallet?.adapter.name != 'Fewcha') {
-                try {
-                    await disconnect();
-                    await connect(FewchaWalletName);
-                    console.log('Connect successfully!');
-                } catch (error) {
-                    console.log('Disconnect failure!');
-                }
+        if (accessToken !== '') {
+            try {
+                await axios.get(PROFILE, {
+                    headers: { Authorization: `Bearer ${accessToken}` },
+                });
+                setIsLogin(true);
+            } catch (error) {
+                console.log(error);
+                navigate('/update-profile');
             }
-        } catch (error) {
-            console.log(error);
+        } else {
+            setIsConnected(true);
         }
     };
-    console.log(wallet);
 
     return (
         <div className="connect-wallet-content">

@@ -1,8 +1,8 @@
-import React from 'react'
-import '../styles/skeleton.scss'
+import React from 'react';
+import '../styles/skeleton.scss';
 
 const CollectionSkeleton: React.FC = () => {
-  return (
+    return (
         <div className="collection">
             <div className="collection-main-image-skeleton"></div>
             <div className="collection-small-image-group">
@@ -16,7 +16,7 @@ const CollectionSkeleton: React.FC = () => {
                 <div className="collection-author-name h-full"></div>
             </div>
         </div>
-  )
-}
+    );
+};
 
-export default CollectionSkeleton
+export default CollectionSkeleton;
