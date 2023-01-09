@@ -1,9 +1,9 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useState } from 'react';
 import { NFTStatus } from '../types/enum';
 import { IToken } from '../types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
-import { Tooltip } from 'antd';
+import { Tooltip, Modal } from 'antd';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
 
@@ -15,6 +15,7 @@ interface CardProps {
 
 const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
     const { id, image, name, author, price, status } = token;
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const { signAndSubmitTransaction } = useWallet();
 
@@ -89,12 +90,12 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                         </div>
                         <button
                             className="btn btn-dark card-nft-btn"
-                            onClick={async (e) => await handleBuyBtn(id)}
+                            onClick={async (e) => setModalOpen(true)}
                         >
                             <img className="w-5 h-5" src="/images/icon/rocket-launch.png" alt="" />
                             Buy
                         </button>
-                        {/* <Modal
+                        <Modal
                             title="Are you sure about this?"
                             centered
                             open={modalOpen}
@@ -102,16 +103,24 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                             onCancel={() => setModalOpen(false)}
                             footer={[
                                 <div key={1} className="modal-footer">
-                                    <button className="btn btn-dark btn-small">Submit</button>
                                     <button
-                                        className="btn btn-light btn-small"
+                                        className="btn btn-dark btn-small btn-modal-buy"
+                                        onClick={() => handleBuyBtn(id)}
+                                    >
+                                        Submit
+                                    </button>
+                                    <button
+                                        className="btn btn-light btn-small btn-modal-buy"
                                         onClick={() => setModalOpen(false)}
                                     >
                                         Cancel
                                     </button>
                                 </div>,
                             ]}
-                        ></Modal> */}
+                        >
+                            You will pay ${Number(Number(price) / 100000000).toFixed(2)} for this
+                            token
+                        </Modal>
                     </div>
                 </div>
             ) : (
