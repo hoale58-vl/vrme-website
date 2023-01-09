@@ -30,7 +30,9 @@ const UserInfoPage: React.FC<PageProps> = () => {
 
   let walletAddress: string
   if (typeof window !== 'undefined') {
-    walletAddress = JSON.parse(localStorage.getItem('walletAddress') ?? '')
+    if (localStorage.getItem('walletAddress') !== 'undefined') {
+      walletAddress = localStorage.getItem('walletAddress') as string
+    }
   }
   React.useEffect(() => {
     const listTokenQuery = `query MyQuery {
@@ -75,8 +77,6 @@ const UserInfoPage: React.FC<PageProps> = () => {
     price: item?.price,
     status: item?.status
   }))
-
-  console.log('cardNFTList', cardNFTList)
 
   return (
         <Layout>

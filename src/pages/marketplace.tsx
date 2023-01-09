@@ -6,50 +6,46 @@ import { Tabs, Pagination } from 'antd'
 import { IToken } from '../types/token'
 import { useDispatch, useSelector } from 'react-redux'
 import { getList, nftSelector } from '../state/nft'
-import axios from 'axios'
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC, WALLET_ADDRESS } from '../constant/const'
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
-import { useState } from 'react'
 
 const ListToken: React.FC = () => {
   const { signAndSubmitTransaction, connect } = useWallet()
 
-  const [listToken, setListToken] = useState<any>([])
+  // const [listToken, setListToken] = useState<any>([])
   // new URLSearchParams(this.props.location.search).get('__firebase_request_key');
 
-  React.useEffect(() => {
-    const listTokenQuery = `query MyQuery {
-                                    current_token_ownerships(
-                                    where: {amount: {_eq: 1}, owner_address: {_eq: "${WALLET_ADDRESS}"}}
-                                    limit: 10
-                                    offset: 0
-                                    ) {
-                                    collection_name
-                                    creator_address
-                                    name
-                                    current_token_data {
-                                        metadata_uri
-                                    }
-                                    }
-                                }`
+  // React.useEffect(() => {
+  //   const listTokenQuery = `query MyQuery {
+  //                                   current_token_ownerships(
+  //                                   where: {amount: {_eq: 1}, owner_address: {_eq: "${WALLET_ADDRESS}"}}
+  //                                   limit: 10
+  //                                   offset: 0
+  //                                   ) {
+  //                                   collection_name
+  //                                   creator_address
+  //                                   name
+  //                                   current_token_data {
+  //                                       metadata_uri
+  //                                   }
+  //                                   }
+  //                               }`
 
-    const listToken = async () => {
-      try {
-        const res = await axios.post(
-          'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
-          {
-            query: listTokenQuery
-          }
-        )
-        setListToken(res.data.data.current_token_ownerships)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    listToken()
-  }, [])
-  const listTokenData = listToken
-  console.log('list_token', listTokenData)
+  //   const listToken = async () => {
+  //     try {
+  //       const res = await axios.post(
+  //         'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
+  //         {
+  //           query: listTokenQuery
+  //         }
+  //       )
+  //       // setListToken(res.data.data.current_token_ownerships)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   listToken()
+  // }, [])
 
   const handleConnect = () => {
     connect(FewchaWalletName)
@@ -71,7 +67,6 @@ const ListToken: React.FC = () => {
       type_arguments: ['0x1::aptos_coin::AptosCoin']
     }
     const result = await signAndSubmitTransaction(payload)
-    console.log(result)
     if (result) {
       console.log('List Token Transaction Success')
       // await hippoWallet?.refreshStores();
@@ -102,10 +97,8 @@ const Marketplace: React.FC<PageProps> = () => {
     price: item?.price,
     status: item?.status
   }))
-  console.log('cardNFTLIST', cardNftList)
 
   const handleOnChangePagination = (page: number, pageSize: number) => {
-    console.log(page, pageSize)
     navigate(`?page=${page}`)
     dispatch(getList({ page, perPage: 12 }))
   }

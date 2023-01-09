@@ -916,9 +916,11 @@ a {
 .anticon-double-right {
     top: -4px;
 }
-// .card-nft-img {
-// height: 330px;
-// }
+.card-nft-img {
+    height: 238px;
+    overflow: hidden;
+    object-fit: cover;
+}
 .card-nft-price-group {
     @apply mt-auto;
 }
@@ -928,4 +930,8 @@ a {
 .btn-sell {
     background: linear-gradient(94.04deg, #a259ff 7.32%, #ff6250 90.14%) !important;
     border: none !important;
+}
+.nft-detail-detail-title:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }

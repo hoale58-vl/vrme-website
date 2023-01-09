@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getList } from './action'
-import { INftState, IDataNFT } from './types'
+import { INftState } from './types'
 
 const defaultNftState: INftState = {
   dataNFT: { page: 0, limit: 0, data: [], total: 0 },

@@ -16,7 +16,6 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
   const nameRef = React.useRef<HTMLInputElement>(null)
   let accessToken: string = ''
   const handleUpdateProfile = async () => {
-    console.log(typeof localStorage.getItem('accessToken'))
     if (typeof window !== 'undefined') {
       accessToken = localStorage.getItem('accessToken') ?? ''
     }

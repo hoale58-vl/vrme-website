@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HeadFC, Link, PageProps } from 'gatsby'
+import { HeadFC, Link, navigate, PageProps } from 'gatsby'
 import { CardNFT, CardNFTSkeleton, Layout } from '../components'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -20,6 +20,7 @@ const NFTDetail: React.FC<PageProps> = () => {
 
   const dispatch = useDispatch<any>()
   const { dataNFT, isLoading } = useSelector(nftSelector)
+  // const { dataNFTDetail, isLoading } = useSelector(nftDetail);
   const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
     id: item?.id,
     name: item?.token?.name,
@@ -33,6 +34,11 @@ const NFTDetail: React.FC<PageProps> = () => {
   React.useEffect(() => {
     dispatch(getList({ page: 1, perPage: 3 }))
   }, [])
+
+  // React.useEffect(() => {
+  //     dispatch(getNFTDetail(id));
+  // });
+  // const tokenDetail: ITokenDetail;
 
   return (
         <Layout>
@@ -84,15 +90,14 @@ const NFTDetail: React.FC<PageProps> = () => {
                                 src="/images/social-media-logo/globe.png"
                                 alt=""
                             />
-                            <div className="nft-detail-detail-title">View on Etherscan</div>
-                        </div>
-                        <div className="nft-detail-detail-component">
-                            <img
-                                className="nft-detail-detail-icon"
-                                src="/images/social-media-logo/globe.png"
-                                alt=""
-                            />
-                            <div className="nft-detail-detail-title">View Original</div>
+                            <div
+                                className="nft-detail-detail-title"
+                                onClick={() => {
+                                  navigate('https://explorer.aptoslabs.com/')
+                                }}
+                            >
+                                View on Explore
+                            </div>
                         </div>
                     </div>
                 </div>

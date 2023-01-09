@@ -19,7 +19,6 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
   const { signAndSubmitTransaction } = useWallet()
 
   const handleBuyBtn = async (id: number) => {
-    console.log('token_id', id)
     const payload = {
       arguments: [MARKETPLACE_ADDR_ARG, id],
       function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
@@ -41,11 +40,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
             {image ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
                     <div className="card-nft-img">
-                        <img
-                            style={{ width: '100%', objectFit: 'cover' }}
-                            src={image}
-                            alt="image"
-                        />
+                        <img style={{ width: '100%' }} src={image} alt="image" />
                     </div>
                     <div className="card-nft-info">
                         <div className="card-nft-name-group">
