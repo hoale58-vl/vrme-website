@@ -51,7 +51,11 @@ const ListWalllet: React.FC = () => {
     }, [isConnected]);
 
     useEffect(() => {
-        accessToken = JSON.parse(localStorage.getItem('accessToken') ?? '');
+        if (!localStorage.getItem('accessToken')) {
+            console.warn('Token not found');
+        } else {
+            accessToken = localStorage.getItem('accessToken') as string;
+        }
         const getProfile = async () => {
             if (accessToken !== '') {
                 try {
@@ -90,9 +94,7 @@ const ListWalllet: React.FC = () => {
         signInMessageData = await signMessage(signMessagePayLoad);
         const loginParam: ILoginParam = {
             address: signInMessageData.address,
-            signature: JSON.parse(
-                signInMessageData.signature ? `0x${signInMessageData.signature}` : ''
-            ),
+            signature: `0x${signInMessageData.signature}`,
             publicKey: wallet?.adapter._wallet.publicKey,
         };
         dispatch(login(loginParam));
