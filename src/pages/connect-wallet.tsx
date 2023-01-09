@@ -36,7 +36,7 @@ const ListWalllet: React.FC = () => {
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            if (localStorage.getItem('walletAddress') === 'undefined') {
+            if (localStorage.getItem('walletAddress') !== account?.address) {
                 localStorage.walletAddress = account?.address;
             }
             accessToken = localStorage.getItem('accessToken');
@@ -52,7 +52,7 @@ const ListWalllet: React.FC = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('accessToken')) {
-            console.warn('Token not found');
+            console.warn('AccessToken not found');
         } else {
             accessToken = localStorage.getItem('accessToken') as string;
         }

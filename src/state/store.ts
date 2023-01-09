@@ -4,10 +4,12 @@ import { nftReducer } from './nft';
 import { loginReducer } from './login';
 import { persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { nftDetailReducer } from './nft-detail';
 
 const rootReducer = combineReducers({
     nft: nftReducer,
     login: loginReducer,
+    nftDetail: nftDetailReducer
 });
 
 const persistConfig = {
