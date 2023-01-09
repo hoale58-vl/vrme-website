@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Link } from 'gatsby'
-import TriggerNavbar2 from '../triggered-navbar-2'
-import { Modal } from 'antd'
+import React, { useState } from 'react';
+import { Link } from 'gatsby';
+import TriggerNavbar2 from '../triggered-navbar-2';
+import { Modal } from 'antd';
 
 const Header: React.FunctionComponent<{}> = () => {
-  const [modal2Open, setModal2Open] = useState(false)
-  return (
+    const [modal2Open, setModal2Open] = useState(false);
+    return (
         <header className="header-main">
             <nav className="header-main-nav">
                 <Link to="/">
@@ -77,7 +77,7 @@ const Header: React.FunctionComponent<{}> = () => {
                 <TriggerNavbar2 />
             </nav>
         </header>
-  )
-}
+    );
+};
 
-export default Header
+export default Header;
