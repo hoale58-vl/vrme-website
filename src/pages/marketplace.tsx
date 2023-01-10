@@ -87,6 +87,7 @@ const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
     const { dataNFT, isLoading } = useSelector(nftSelector);
+    console.log('total', dataNFT.data.length);
 
     const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
         id: item?.id,
@@ -180,7 +181,7 @@ const Marketplace: React.FC<PageProps> = () => {
                             <Pagination
                                 defaultCurrent={1}
                                 pageSize={12}
-                                total={dataNFT.total}
+                                total={dataNFT.data.length}
                                 onChange={handleOnChangePagination}
                             />
                         </>
