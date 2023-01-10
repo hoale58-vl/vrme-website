@@ -8,13 +8,14 @@ import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
 
 interface CardProps {
-    token: IToken;
+    tokenInfo: IToken;
     isLoading: boolean;
     attribute?: string | undefined;
 }
 
-const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
-    const { id, image, name, author, price, status } = token;
+const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
+    const { id, price, status, token, seller } = tokenInfo;
+    const { name, uri, verified, creator } = token;
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const { signAndSubmitTransaction } = useWallet();
@@ -38,14 +39,14 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
 
     return (
         <>
-            {image ? (
+            {uri ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
                     <div className="card-nft-img">
-                        <img style={{ width: '100%' }} src={image} alt="image" />
+                        <img style={{ width: '100%' }} src={uri} alt="image" />
                     </div>
                     <div className="card-nft-info">
                         <div className="card-nft-name-group">
-                            <Link to={'/nft-detail'}>
+                            <Link to={`/nft-detail`} state={{ id, price, status, token, seller }}>
                                 <Tooltip placement="top" color={'#a259ff'} title={name}>
                                     <div className="card-nft-name">{name}</div>
                                 </Tooltip>
@@ -53,12 +54,12 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                             <img
                                 className="w-5 h-5"
                                 src={
-                                    status === NFTStatus.ON_GOING
+                                    verified === false
                                         ? '/images/icon/unverified.png'
                                         : '/images/icon/verified.png'
                                 }
                                 alt={
-                                    status === NFTStatus.ON_GOING
+                                    verified === false
                                         ? 'This token has been unverified'
                                         : 'This token has been verifed'
                                 }
@@ -74,10 +75,10 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                     alt=""
                                 />
                             </div>
-                            <Link to={`author/${author}`}>
-                                <Tooltip placement="bottom" color={'#a259ff'} title={author}>
+                            <Link to={`author/${creator}`}>
+                                <Tooltip placement="bottom" color={'#a259ff'} title={creator}>
                                     <div className="card-nft-author-name">
-                                        {author?.slice(0, 4) + '..' + author?.slice(-2)}
+                                        {creator?.slice(0, 4) + '..' + creator?.slice(-2)}
                                     </div>
                                 </Tooltip>
                             </Link>
@@ -105,7 +106,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                 <div key={1} className="modal-footer">
                                     <button
                                         className="btn btn-dark btn-small btn-modal-buy"
-                                        onClick={() => handleBuyBtn(id)}
+                                        onClick={async () => await handleBuyBtn(id)}
                                     >
                                         Submit
                                     </button>

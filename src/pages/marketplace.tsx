@@ -87,16 +87,31 @@ const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
     const { dataNFT, isLoading } = useSelector(nftSelector);
+    console.log('total', dataNFT.data.length);
 
-    const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
+    const cardNftList: IToken[] = dataNFT.data.map((item: IToken) => ({
         id: item?.id,
-        name: item?.token?.name,
-        image: item?.token?.uri,
-        avatar: '',
-        author: item?.token?.creator,
+        buyer: item?.buyer,
+        seller: item?.seller,
         price: item?.price,
         status: item?.status,
+        createAt: item?.createAt,
+        updateAt: item?.updateAt,
+        token: {
+            id: item?.token?.id,
+            propertyVersion: item?.token?.propertyVersion,
+            creator: item?.token?.creator,
+            collection: item?.token?.collection,
+            name: item?.token?.name,
+            uri: item?.token?.uri,
+            description: item?.token?.description,
+            metadata: item?.token?.metadata,
+            verified: item?.token?.verified,
+            maximum: item?.token?.maximum,
+            supply: item?.token?.supply,
+        },
     }));
+    console.log('dsadasdas', cardNftList);
 
     const handleOnChangePagination = (page: number, pageSize: number) => {
         navigate(`?page=${page}`);
@@ -164,7 +179,7 @@ const Marketplace: React.FC<PageProps> = () => {
                                         return (
                                             <CardNFT
                                                 key={token.id}
-                                                token={token}
+                                                tokenInfo={token}
                                                 isLoading={isLoading}
                                             />
                                         );
@@ -180,7 +195,7 @@ const Marketplace: React.FC<PageProps> = () => {
                             <Pagination
                                 defaultCurrent={1}
                                 pageSize={12}
-                                total={dataNFT.total}
+                                total={dataNFT.data.length}
                                 onChange={handleOnChangePagination}
                             />
                         </>

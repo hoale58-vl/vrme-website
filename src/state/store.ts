@@ -9,7 +9,7 @@ import { nftDetailReducer } from './nft-detail';
 const rootReducer = combineReducers({
     nft: nftReducer,
     login: loginReducer,
-    nftDetail: nftDetailReducer
+    nftDetail: nftDetailReducer,
 });
 
 const persistConfig = {

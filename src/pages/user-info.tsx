@@ -18,15 +18,15 @@ const UserInfoPage: React.FC<PageProps> = () => {
     const [listToken, setListToken] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    const temp: IToken = {
-        id: 2134,
-        image: '/images/card-nft/image-card-nft-1.png',
-        name: 'NFT Sai Gon 001',
-        avatar: '/images/avatars/avatar-1.png',
-        author: 'HoaLe',
-        price: '1000000',
-        status: NFTStatus.ON_GOING,
-    };
+    //   const temp: IToken = {
+    //     id: 2134,
+    //     image: '/images/card-nft/image-card-nft-1.png',
+    //     name: 'NFT Sai Gon 001',
+    //     avatar: '/images/avatars/avatar-1.png',
+    //     author: 'HoaLe',
+    //     price: '1000000',
+    //     status: NFTStatus.ON_GOING
+    //   }
 
     let walletAddress: string;
     if (typeof window !== 'undefined') {
@@ -162,7 +162,7 @@ const UserInfoPage: React.FC<PageProps> = () => {
                 </div>
             </div>
             <div className="user-info-hline"></div>
-            <Tabs defaultActiveKey="1" centered={true} className="marketplace-tabs">
+            <Tabs defaultActiveKey="2" centered={true} className="marketplace-tabs">
                 <Tabs.TabPane
                     className="tabpane"
                     tab={
@@ -178,7 +178,7 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     key="1"
                 >
                     <div className="tabpane-content">
-                        <CardNFT token={temp} isLoading={false} />
+                        {/* <CardNFT token={temp} isLoading={false} /> */}
                     </div>
                     <Pagination defaultCurrent={6} total={500} />
                 </Tabs.TabPane>
