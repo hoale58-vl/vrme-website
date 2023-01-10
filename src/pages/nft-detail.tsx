@@ -18,6 +18,8 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
         arrows: false,
     };
 
+    console.log(location.state);
+
     const dispatch = useDispatch<any>();
     const { dataNFT, isLoading } = useSelector(nftSelector);
     // const { dataNFTDetail, isLoading } = useSelector(nftDetail);
