@@ -16,7 +16,6 @@ interface CardProps {
 const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
     const { image, name, author, status } = token;
 
-
     //   const [modalOpen, setModalOpen] = useState<boolean>(false)
     const { signAndSubmitTransaction } = useWallet();
 
