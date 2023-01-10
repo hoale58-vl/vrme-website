@@ -1,42 +1,42 @@
-import { Link } from 'gatsby';
-import React, { useState } from 'react';
-import { NFTStatus } from '../types/enum';
-import { IToken } from '../types/token';
-import CardNFTSkeleton from './card-nft-skeleton';
-import { Tooltip, Modal } from 'antd';
-import { useWallet } from '@manahippo/aptos-wallet-adapter';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import { Link } from 'gatsby'
+import React, { useState } from 'react'
+import { NFTStatus } from '../types/enum'
+import { IToken } from '../types/token'
+import CardNFTSkeleton from './card-nft-skeleton'
+import { Tooltip, Modal } from 'antd'
+import { useWallet } from '@manahippo/aptos-wallet-adapter'
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
 
 interface CardProps {
-    token: IToken;
-    isLoading: boolean;
-    attribute?: string | undefined;
+  token: IToken
+  isLoading: boolean
+  attribute?: string | undefined
 }
 
 const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
-    const { id, image, name, author, price, status } = token;
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const { id, image, name, author, price, status } = token
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
-    const { signAndSubmitTransaction } = useWallet();
+  const { signAndSubmitTransaction } = useWallet()
 
-    const handleBuyBtn = async (id: number) => {
-        const payload = {
-            arguments: [MARKETPLACE_ADDR_ARG, id],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
-            type: 'entry_function_payload',
-            type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        };
-        console.log(payload);
-        const result = await signAndSubmitTransaction(payload);
-        if (result) {
-            console.log('Transaction Success');
-            // await hippoWallet?.refreshStores();
-        } else {
-            console.log('Errrrrr');
-        }
-    };
+  const handleBuyBtn = async (id: number) => {
+    const payload = {
+      arguments: [MARKETPLACE_ADDR_ARG, id],
+      function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
+      type: 'entry_function_payload',
+      type_arguments: ['0x1::aptos_coin::AptosCoin']
+    }
+    console.log(payload)
+    const result = await signAndSubmitTransaction(payload)
+    if (result) {
+      console.log('Transaction Success')
+      // await hippoWallet?.refreshStores();
+    } else {
+      console.log('Errrrrr')
+    }
+  }
 
-    return (
+  return (
         <>
             {image ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
@@ -54,13 +54,13 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                 className="w-5 h-5"
                                 src={
                                     status === NFTStatus.ON_GOING
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
+                                      ? '/images/icon/unverified.png'
+                                      : '/images/icon/verified.png'
                                 }
                                 alt={
                                     status === NFTStatus.ON_GOING
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
+                                      ? 'This token has been unverified'
+                                      : 'This token has been verifed'
                                 }
                             />
                         </div>
@@ -105,7 +105,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                 <div key={1} className="modal-footer">
                                     <button
                                         className="btn btn-dark btn-small btn-modal-buy"
-                                        onClick={() => handleBuyBtn(id)}
+                                        onClick={async () => await handleBuyBtn(id)}
                                     >
                                         Submit
                                     </button>
@@ -115,7 +115,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                                     >
                                         Cancel
                                     </button>
-                                </div>,
+                                </div>
                             ]}
                         >
                             You will pay ${Number(Number(price) / 100000000).toFixed(2)} for this
@@ -127,7 +127,7 @@ const CardNFT: React.FC<CardProps> = ({ token, attribute }) => {
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFT;
+export default CardNFT

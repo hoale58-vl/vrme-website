@@ -1,3 +1,3 @@
-import { RootState } from '../store';
+import { RootState } from '../store'
 
-export const nftSelector = (state: RootState) => state.nft;
+export const nftSelector = (state: RootState) => state.nft

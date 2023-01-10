@@ -1,119 +1,119 @@
-import * as React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
-import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components';
-import { CollectionData } from '../data/';
-import { Tabs, Pagination } from 'antd';
-import { IToken } from '../types/token';
-import { useDispatch, useSelector } from 'react-redux';
-import { getList, nftSelector } from '../state/nft';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
+import * as React from 'react'
+import { HeadFC, navigate, PageProps } from 'gatsby'
+import { Layout, CardNFT, Collection, CollectionSkeleton, CardNFTSkeleton } from '../components'
+import { CollectionData } from '../data/'
+import { Tabs, Pagination } from 'antd'
+import { IToken } from '../types/token'
+import { useDispatch, useSelector } from 'react-redux'
+import { getList, nftSelector } from '../state/nft'
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
 
 const ListToken: React.FC = () => {
-    const { signAndSubmitTransaction, connect } = useWallet();
+  const { signAndSubmitTransaction, connect } = useWallet()
 
-    // const [listToken, setListToken] = useState<any>([])
-    // new URLSearchParams(this.props.location.search).get('__firebase_request_key');
+  // const [listToken, setListToken] = useState<any>([])
+  // new URLSearchParams(this.props.location.search).get('__firebase_request_key');
 
-    // React.useEffect(() => {
-    //   const listTokenQuery = `query MyQuery {
-    //                                   current_token_ownerships(
-    //                                   where: {amount: {_eq: 1}, owner_address: {_eq: "${WALLET_ADDRESS}"}}
-    //                                   limit: 10
-    //                                   offset: 0
-    //                                   ) {
-    //                                   collection_name
-    //                                   creator_address
-    //                                   name
-    //                                   current_token_data {
-    //                                       metadata_uri
-    //                                   }
-    //                                   }
-    //                               }`
+  // React.useEffect(() => {
+  //   const listTokenQuery = `query MyQuery {
+  //                                   current_token_ownerships(
+  //                                   where: {amount: {_eq: 1}, owner_address: {_eq: "${WALLET_ADDRESS}"}}
+  //                                   limit: 10
+  //                                   offset: 0
+  //                                   ) {
+  //                                   collection_name
+  //                                   creator_address
+  //                                   name
+  //                                   current_token_data {
+  //                                       metadata_uri
+  //                                   }
+  //                                   }
+  //                               }`
 
-    //   const listToken = async () => {
-    //     try {
-    //       const res = await axios.post(
-    //         'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
-    //         {
-    //           query: listTokenQuery
-    //         }
-    //       )
-    //       // setListToken(res.data.data.current_token_ownerships)
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-    //   }
-    //   listToken()
-    // }, [])
+  //   const listToken = async () => {
+  //     try {
+  //       const res = await axios.post(
+  //         'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
+  //         {
+  //           query: listTokenQuery
+  //         }
+  //       )
+  //       // setListToken(res.data.data.current_token_ownerships)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   listToken()
+  // }, [])
 
-    const handleConnect = () => {
-        connect(FewchaWalletName);
-    };
+  const handleConnect = () => {
+    connect(FewchaWalletName)
+  }
 
-    const handleListToken = async () => {
-        const payload = {
-            arguments: [
-                MARKETPLACE_ADDR_ARG,
-                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
-                'Vietnamese Metaverse Real Estate',
-                'Somebody Home #5',
-                0,
-                1,
-                10,
-            ],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
-            type: 'entry_function_payload',
-            type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        };
-        const result = await signAndSubmitTransaction(payload);
-        if (result) {
-            console.log('List Token Transaction Success');
-            // await hippoWallet?.refreshStores();
-        } else {
-            console.log('Errrrrr');
-        }
-    };
+  const handleListToken = async () => {
+    const payload = {
+      arguments: [
+        MARKETPLACE_ADDR_ARG,
+        '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
+        'Vietnamese Metaverse Real Estate',
+        'Somebody Home #5',
+        0,
+        1,
+        10
+      ],
+      function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
+      type: 'entry_function_payload',
+      type_arguments: ['0x1::aptos_coin::AptosCoin']
+    }
+    const result = await signAndSubmitTransaction(payload)
+    if (result) {
+      console.log('List Token Transaction Success')
+      // await hippoWallet?.refreshStores();
+    } else {
+      console.log('Errrrrr')
+    }
+  }
 
-    return (
+  return (
         <>
             <button onClick={handleListToken}>ListToken</button> <br /> <br />
             <button onClick={handleConnect}>Connect</button> <br /> <br />
         </>
-    );
-};
+  )
+}
 
 const Marketplace: React.FC<PageProps> = () => {
-    const dispatch = useDispatch<any>();
-    const [tab, setTab] = React.useState<number>(1);
-    const { dataNFT, isLoading } = useSelector(nftSelector);
-    console.log('total', dataNFT.data.length);
+  const dispatch = useDispatch<any>()
+  const [tab, setTab] = React.useState<number>(1)
+  const { dataNFT, isLoading } = useSelector(nftSelector)
+  console.log('total', dataNFT.data.length)
 
-    const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
-        id: item?.id,
-        name: item?.token?.name,
-        image: item?.token?.uri,
-        avatar: '',
-        author: item?.token?.creator,
-        price: item?.price,
-        status: item?.status,
-    }));
+  const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
+    id: item?.id,
+    name: item?.token?.name,
+    image: item?.token?.uri,
+    avatar: '',
+    author: item?.token?.creator,
+    price: item?.price,
+    status: item?.status
+  }))
 
-    const handleOnChangePagination = (page: number, pageSize: number) => {
-        navigate(`?page=${page}`);
-        dispatch(getList({ page, perPage: 12 }));
-    };
+  const handleOnChangePagination = (page: number, pageSize: number) => {
+    navigate(`?page=${page}`)
+    dispatch(getList({ page, perPage: 12 }))
+  }
 
-    const handleChangeTabKey = async (id: string) => {
-        setTab(+id);
-        navigate(`?tab=${id}`);
-    };
+  const handleChangeTabKey = async (id: string) => {
+    setTab(+id)
+    navigate(`?tab=${id}`)
+  }
 
-    React.useEffect(() => {
-        dispatch(getList({ page: 1, perPage: 12 }));
-    }, []);
+  React.useEffect(() => {
+    dispatch(getList({ page: 1, perPage: 12 }))
+  }, [])
 
-    return (
+  return (
         <Layout>
             <ListToken />
             <div className="browse-marketplace">
@@ -161,15 +161,15 @@ const Marketplace: React.FC<PageProps> = () => {
                         <>
                             <div className="tabpane-content">
                                 {!isLoading ? (
-                                    cardNftList.map((token: IToken) => {
-                                        return (
+                                  cardNftList.map((token: IToken) => {
+                                    return (
                                             <CardNFT
                                                 key={token.id}
                                                 token={token}
                                                 isLoading={isLoading}
                                             />
-                                        );
-                                    })
+                                    )
+                                  })
                                 ) : (
                                     <>
                                         <CardNFTSkeleton />
@@ -200,19 +200,19 @@ const Marketplace: React.FC<PageProps> = () => {
                         <>
                             <div className="tabpane-content">
                                 {CollectionData.map(
-                                    (
-                                        item: {
-                                            name: string;
-                                            avatar: string;
-                                            author: string;
-                                            images: string[];
-                                        },
-                                        index
-                                    ) => {
-                                        return (
+                                  (
+                                    item: {
+                                      name: string
+                                      avatar: string
+                                      author: string
+                                      images: string[]
+                                    },
+                                    index
+                                  ) => {
+                                    return (
                                             <Collection onSetTab={setTab} key={index} {...item} />
-                                        );
-                                    }
+                                    )
+                                  }
                                 )}
                                 <CollectionSkeleton />
                             </div>
@@ -226,9 +226,9 @@ const Marketplace: React.FC<PageProps> = () => {
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
-    );
-};
+  )
+}
 
-export default Marketplace;
+export default Marketplace
 
-export const Head: HeadFC = () => <title>Marketplace</title>;
+export const Head: HeadFC = () => <title>Marketplace</title>
