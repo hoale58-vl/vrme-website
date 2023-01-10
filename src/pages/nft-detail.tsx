@@ -18,8 +18,6 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
         arrows: false,
     };
 
-    console.log(location.state);
-
     const dispatch = useDispatch<any>();
     const { dataNFT, isLoading } = useSelector(nftSelector);
     // const { dataNFTDetail, isLoading } = useSelector(nftDetail);
@@ -60,8 +58,8 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
             <div className="nft-detail-background-image"></div>
             <div className="nft-detail-main">
                 <div className="ntf-detail-name-group">
-                    <div className="nft-detail-name">{location.state.token.name}</div>
-                    {location.state.verifed ? (
+                    <div className="nft-detail-name">{location.state?.token?.name}</div>
+                    {location.state?.verifed ? (
                         <img className="w-8 h-8" src="/images/icon/verified.png" alt="" />
                     ) : (
                         <img className="w-8 h-8" src="/images/icon/unverified.png" alt="" />
@@ -71,13 +69,13 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                 <div className="nft-detail-main-component">
                     <div className="nft-detail-collection-title">Collection</div>
                     <div className="nft-detail-collection-name">
-                        {location.state.token.collection}
+                        {location.state?.token?.collection}
                     </div>
                 </div>
                 <div className="nft-detail-price-group">
                     <div className="nft-detail-onsalenow-title">On sale now!</div>
                     <div className="nft-detail-price">
-                        {Number(location.state.price) / 100000000}
+                        {Number(location.state?.price) / 100000000}
                     </div>
                     <div className="nft-detail-price-unit">USDT</div>
                     <div className="nft-detail-buynow-btn-group btn">
@@ -89,10 +87,10 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                     <div className="nft-detail-main-component nft-detail-main-component-1">
                         <div className="nft-detail-collection-title">Created By</div>
                         <div className="nft-detail-collection-name">
-                            {`${location.state.token.creator.slice(
+                            {`${location.state?.token?.creator.slice(
                                 0,
                                 4
-                            )}..${location.state.token.creator.slice(-2)}`}
+                            )}..${location.state?.token?.creator.slice(-2)}`}
                         </div>
                     </div>
                     <div className="nft-detail-main-component nft-detail-main-component-1">
@@ -134,8 +132,8 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                         Tags
                     </div>
                     <div className="nft-detail-tags-group">
-                        {location.state.token.metadata ? (
-                            JSON.parse(location.state.token.metadata).tags.map((item: any) => {
+                        {location.state?.token?.metadata ? (
+                            JSON.parse(location.state?.token?.metadata).tags.map((item: any) => {
                                 <div className="nft-detail-tags-button">{item}</div>;
                             })
                         ) : (
