@@ -90,6 +90,7 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
                                     <div
                                         className="card-nft-author-name"
                                         onClick={() => setCopied(true)}
+                                        onMouseOver={() => setCopied(false)}
                                     >
                                         {creator?.slice(0, 6) + '..' + creator?.slice(-4)}
                                     </div>
