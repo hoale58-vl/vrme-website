@@ -103,14 +103,21 @@ const UserInfoPage: React.FC<PageProps> = () => {
                         <div className="user-info-btn-group">
                             <div className="token-btn btn btn-medium btn-dark">
                                 <img className="w-5" src="/images/icon/copy.png" alt="" />
-                                <div className="token-btn-content">0xc0E3...B79C</div>
+                                <div
+                                    className="token-btn-content"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(location.state.textToCopy);
+                                    }}
+                                >
+                                    0xc0E3...B79C
+                                </div>
                             </div>
-                            <div className="follow-btn btn btn-medium btn-light">
+                            <div className="follow-btn btn btn-medium btn-light" hidden>
                                 <img src="/images/icon/plus.png" alt="" />
                                 <div className="token-btn-content">Follow</div>
                             </div>
                         </div>
-                        <div className="user-info-social-group">
+                        <div className="user-info-social-group" hidden>
                             <div className="user-info-social-item">
                                 <div className="user-info-social-item-quantity">250k+</div>
                                 <div className="user-info-social-item-desc">Volume</div>
@@ -124,11 +131,11 @@ const UserInfoPage: React.FC<PageProps> = () => {
                                 <div className="user-info-social-item-desc">Followers</div>
                             </div>
                         </div>
-                        <div className="user-info-bio-group">
+                        <div className="user-info-bio-group" hidden>
                             <div className="user-info-header">Bio</div>
                             <div className="user-info-bio-content">HoaLe - super Idol</div>
                         </div>
-                        <div className="user-info-link-group">
+                        <div className="user-info-link-group" hidden>
                             <div className="user-info-header">Links</div>
                             <div className="user-info-social-logo-group">
                                 <img
