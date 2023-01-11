@@ -7,6 +7,8 @@ import { NFTStatus } from '../types/enum';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 import axios from 'axios';
 import CardNFTOwned from '../components/card-nft-owned';
+import { Tooltip } from 'antd';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const ListWallet: React.FC = () => {
     const { connect } = useWallet();
@@ -17,6 +19,7 @@ const ListWallet: React.FC = () => {
 const UserInfoPage: React.FC<PageProps> = () => {
     const [listToken, setListToken] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [copied, setCopied] = useState<boolean>(false);
 
     //   const temp: IToken = {
     //     id: 2134,
@@ -101,16 +104,28 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     </div>
                     <div className="user-info-desc-info">
                         <div className="user-info-btn-group">
-                            <div className="token-btn btn btn-medium btn-dark">
-                                <img className="w-5" src="/images/icon/copy.png" alt="" />
-                                <div className="token-btn-content">0xc0E3...B79C</div>
-                            </div>
-                            <div className="follow-btn btn btn-medium btn-light">
+                            <CopyToClipboard text={'0xc0E3...B79C'}>
+                                <Tooltip
+                                    placement="top"
+                                    color={'#a259ff'}
+                                    title={!copied ? 'Copy to clipboard' : 'Copied'}
+                                >
+                                    <div
+                                        className="token-btn btn btn-medium btn-dark"
+                                        onClick={() => setCopied(true)}
+                                        onMouseOver={() => setCopied(false)}
+                                    >
+                                        <img className="w-5" src="/images/icon/copy.png" alt="" />
+                                        <div className="token-btn-content">0xc0E3...B79C</div>
+                                    </div>
+                                </Tooltip>
+                            </CopyToClipboard>
+                            <div className="follow-btn btn btn-medium btn-light" hidden>
                                 <img src="/images/icon/plus.png" alt="" />
                                 <div className="token-btn-content">Follow</div>
                             </div>
                         </div>
-                        <div className="user-info-social-group">
+                        <div className="user-info-social-group" hidden>
                             <div className="user-info-social-item">
                                 <div className="user-info-social-item-quantity">250k+</div>
                                 <div className="user-info-social-item-desc">Volume</div>
@@ -124,11 +139,11 @@ const UserInfoPage: React.FC<PageProps> = () => {
                                 <div className="user-info-social-item-desc">Followers</div>
                             </div>
                         </div>
-                        <div className="user-info-bio-group">
+                        <div className="user-info-bio-group" hidden>
                             <div className="user-info-header">Bio</div>
                             <div className="user-info-bio-content">HoaLe - super Idol</div>
                         </div>
-                        <div className="user-info-link-group">
+                        <div className="user-info-link-group" hidden>
                             <div className="user-info-header">Links</div>
                             <div className="user-info-social-logo-group">
                                 <img

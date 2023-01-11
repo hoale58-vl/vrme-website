@@ -180,7 +180,7 @@ a {
 
 .card-nft {
     @apply overflow-hidden flex flex-col;
-    height: 507px;
+    height: 472px;
 }
 
 .collection-image {
@@ -961,4 +961,7 @@ a {
     text-align: center;
     margin-bottom: 20px;
     width: 157px;
+}
+.ant-tabs-nav {
+    display: none !important;
 }

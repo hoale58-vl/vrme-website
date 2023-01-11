@@ -129,7 +129,7 @@ const Marketplace: React.FC<PageProps> = () => {
 
     return (
         <Layout>
-            <ListToken />
+            {/* <ListToken /> */}
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
                 <div className="browse-market-place-content">
@@ -192,12 +192,16 @@ const Marketplace: React.FC<PageProps> = () => {
                                     </>
                                 )}
                             </div>
-                            <Pagination
-                                defaultCurrent={1}
-                                pageSize={12}
-                                total={dataNFT.data.length}
-                                onChange={handleOnChangePagination}
-                            />
+                            {dataNFT.data.length > 12 ? (
+                                <Pagination
+                                    defaultCurrent={1}
+                                    pageSize={12}
+                                    total={dataNFT.data.length}
+                                    onChange={handleOnChangePagination}
+                                />
+                            ) : (
+                                <></>
+                            )}
                         </>
                     )}
                 </Tabs.TabPane>

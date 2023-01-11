@@ -1,11 +1,12 @@
 import { Link } from 'gatsby';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NFTStatus } from '../types/enum';
 import { IToken } from '../types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
 import { Tooltip, Modal } from 'antd';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 interface CardProps {
     tokenInfo: IToken;
@@ -17,6 +18,7 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
     const { id, price, status, token, seller } = tokenInfo;
     const { name, uri, verified, creator } = token;
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+    const [copied, setCopied] = useState<boolean>(false);
 
     const { signAndSubmitTransaction } = useWallet();
 
@@ -41,30 +43,34 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
         <>
             {uri ? (
                 <div className={`card-nft ${attribute ?? ''}`}>
-                    <div className="card-nft-img">
-                        <img style={{ width: '100%' }} src={uri} alt="image" />
-                    </div>
+                    <Link to={`/nft-detail`} state={{ id, price, status, token, seller }}>
+                        <div className="card-nft-img">
+                            <img style={{ width: '100%' }} src={uri} alt="image" />
+                        </div>
+                    </Link>
+
                     <div className="card-nft-info">
-                        <div className="card-nft-name-group">
-                            <Link to={`/nft-detail`} state={{ id, price, status, token, seller }}>
+                        <Link to={`/nft-detail`} state={{ id, price, status, token, seller }}>
+                            <div className="card-nft-name-group">
                                 <Tooltip placement="top" color={'#a259ff'} title={name}>
                                     <div className="card-nft-name">{name}</div>
                                 </Tooltip>
-                            </Link>
-                            <img
-                                className="w-5 h-5"
-                                src={
-                                    verified === false
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
-                                }
-                                alt={
-                                    verified === false
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
-                                }
-                            />
-                        </div>
+                                <img
+                                    className="w-5 h-5"
+                                    src={
+                                        verified === false
+                                            ? '/images/icon/unverified.png'
+                                            : '/images/icon/verified.png'
+                                    }
+                                    alt={
+                                        verified === false
+                                            ? 'This token has been unverified'
+                                            : 'This token has been verifed'
+                                    }
+                                />
+                            </div>
+                        </Link>
+
                         <div className="card-nft-author-group">
                             <div className="card-nft-author-avatar">
                                 <img
@@ -75,14 +81,23 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
                                     alt=""
                                 />
                             </div>
-                            <Link to={`author/${creator}`}>
-                                <Tooltip placement="bottom" color={'#a259ff'} title={creator}>
-                                    <div className="card-nft-author-name">
-                                        {creator?.slice(0, 4) + '..' + creator?.slice(-2)}
+                            <CopyToClipboard text={creator}>
+                                <Tooltip
+                                    placement="top"
+                                    color={'#a259ff'}
+                                    title={!copied ? 'Copy to clipboard' : 'Copied'}
+                                >
+                                    <div
+                                        className="card-nft-author-name"
+                                        onClick={() => setCopied(true)}
+                                        onMouseOver={() => setCopied(false)}
+                                    >
+                                        {creator?.slice(0, 6) + '..' + creator?.slice(-4)}
                                     </div>
                                 </Tooltip>
-                            </Link>
+                            </CopyToClipboard>
                         </div>
+
                         <div className="card-nft-price-group">
                             <div className="price-label">Price</div>
                             <div className="card-nft-price gap-1">
