@@ -1,3 +1,3 @@
-import { NftStatus } from './nft-status';
+import { NftStatus } from './nft-status'
 
-export { NftStatus };
+export { NftStatus }

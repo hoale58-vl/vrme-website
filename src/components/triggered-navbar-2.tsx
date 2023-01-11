@@ -1,10 +1,10 @@
-import { Link } from 'gatsby';
-import React, { useState } from 'react';
-import { Modal } from 'antd';
+import { Link } from 'gatsby'
+import React, { useState } from 'react'
+import { Modal } from 'antd'
 
 const TriggerNavbar2: React.FC = () => {
-    const [modal2Open, setModal2Open] = useState(false);
-    return (
+  const [modal2Open, setModal2Open] = useState(false)
+  return (
         <>
             <div className="trigger-navbar-2">
                 <button className="trigger-nav_mint-btn" onClick={() => setModal2Open(true)}>
@@ -21,7 +21,7 @@ const TriggerNavbar2: React.FC = () => {
                         <div key={1} className="modal-footer">
                             <button className="btn btn-dark btn-small">Submit</button>
                             <button className="btn btn-light btn-small">Cancel</button>
-                        </div>,
+                        </div>
                     ]}
                 >
                     <div className="modal-token-name">RME SaiGon 0001</div>
@@ -71,7 +71,7 @@ const TriggerNavbar2: React.FC = () => {
                 <div className="trigger-nav_disconnect-btn">Disconnect</div>
             </div>
         </>
-    );
-};
+  )
+}
 
-export default TriggerNavbar2;
+export default TriggerNavbar2
