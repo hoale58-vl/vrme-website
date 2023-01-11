@@ -51,33 +51,9 @@ const ListToken: React.FC = () => {
         connect(FewchaWalletName);
     };
 
-    const handleListToken = async () => {
-        const payload = {
-            arguments: [
-                MARKETPLACE_ADDR_ARG,
-                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
-                'Vietnamese Metaverse Real Estate',
-                'Somebody Home #5',
-                0,
-                1,
-                10,
-            ],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
-            type: 'entry_function_payload',
-            type_arguments: ['0x1::aptos_coin::AptosCoin'],
-        };
-        const result = await signAndSubmitTransaction(payload);
-        if (result) {
-            console.log('List Token Transaction Success');
-            // await hippoWallet?.refreshStores();
-        } else {
-            console.log('Errrrrr');
-        }
-    };
-
     return (
         <>
-            <button onClick={handleListToken}>ListToken</button> <br /> <br />
+            {/* <button onClick={handleListToken}>ListToken</button> <br /> <br /> */}
             <button onClick={handleConnect}>Connect</button> <br /> <br />
         </>
     );

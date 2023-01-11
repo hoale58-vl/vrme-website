@@ -1,13 +1,11 @@
 import { HeadFC, PageProps } from 'gatsby';
 import React, { useState } from 'react';
-import { CardNFT, Layout } from '../components';
-import { Tabs, Pagination } from 'antd';
+import { Layout } from '../components';
+import { Tabs, Pagination, Tooltip } from 'antd';
 import { IToken } from '../types/token';
-import { NFTStatus } from '../types/enum';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 import axios from 'axios';
 import CardNFTOwned from '../components/card-nft-owned';
-import { Tooltip } from 'antd';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const ListWallet: React.FC = () => {

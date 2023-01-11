@@ -4,9 +4,9 @@ import { NFTStatus } from '../types/enum';
 import { IToken } from '../types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
 import { Tooltip, Modal } from 'antd';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 interface CardProps {
     tokenInfo: IToken;
