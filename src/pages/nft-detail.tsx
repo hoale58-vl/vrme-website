@@ -152,7 +152,7 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                     </div>
                     <div className="nft-detail-main-component nft-detail-main-component-1">
                         <div className="nft-detail-collection-title">Owned By</div>
-                        <CopyToClipboard text={location.state.seller}>
+                        <CopyToClipboard text={location.state?.seller}>
                             <Tooltip
                                 placement="topLeft"
                                 color={'#a259ff'}
@@ -163,10 +163,10 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                                     onClick={() => setCopied(true)}
                                     onMouseOver={() => setCopied(false)}
                                 >
-                                    {`${location.state.seller.slice(
+                                    {`${location.state?.seller.slice(
                                         0,
                                         6
-                                    )}..${location.state.seller.slice(-4)}`}
+                                    )}..${location.state?.seller.slice(-4)}`}
                                 </div>
                             </Tooltip>
                         </CopyToClipboard>
@@ -175,7 +175,7 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                 <div className="nft-detail-main-component">
                     <div className="nft-detail-collection-title">Description</div>
                     <div className="nft-detail-collection-name">
-                        {location.state.token.description}
+                        {location.state?.token.description}
                     </div>
                 </div>
                 <div className="nft-detail-main-component">
