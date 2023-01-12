@@ -9,4 +9,3 @@ export interface IUserProfile {
     name: string;
     verified: boolean;
 }
-

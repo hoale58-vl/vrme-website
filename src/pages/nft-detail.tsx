@@ -56,14 +56,14 @@ const BuyBtn: React.FC<IBuyBtn> = ({ id }) => {
 };
 
 const NFTDetail: React.FC<PageProps> = ({ location }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false
-  }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
 
     const [copied, setCopied] = useState<boolean>(false);
     const dispatch = useDispatch<any>();
@@ -190,7 +190,7 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                             <div
                                 className="nft-detail-detail-title"
                                 onClick={() => {
-                                  navigate('https://explorer.aptoslabs.com/')
+                                    navigate('https://explorer.aptoslabs.com/');
                                 }}
                             >
                                 View on Explore
@@ -248,16 +248,16 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                         </div>
                         <div className="nft-detail-more-grid">
                             {!isLoading ? (
-                              cardNftList.map((token: IToken) => {
-                                return (
+                                cardNftList.map((token: IToken) => {
+                                    return (
                                         <CardNFT
                                             key={token.id}
                                             tokenInfo={token}
                                             isLoading={isLoading}
                                             attribute={'card-nft-dark'}
                                         />
-                                )
-                              })
+                                    );
+                                })
                             ) : (
                                 <>
                                     <CardNFTSkeleton />
@@ -282,9 +282,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default NFTDetail
+export default NFTDetail;
 
-export const Head: HeadFC = () => <title>NFT Detail</title>
+export const Head: HeadFC = () => <title>NFT Detail</title>;
