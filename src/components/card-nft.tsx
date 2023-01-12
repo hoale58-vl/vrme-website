@@ -9,9 +9,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 
 interface CardProps {
-    tokenInfo: IToken;
-    isLoading: boolean;
-    attribute?: string | undefined;
+  tokenInfo: IToken
+  isLoading: boolean
+  attribute?: string | undefined
 }
 
 const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
@@ -46,7 +46,7 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
         }
     };
 
-    return (
+  return (
         <>
             {uri ? (
                 <Link to={'/nft-detail'} state={{ id, price, status, token, seller }}>
@@ -167,7 +167,7 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
                 <CardNFTSkeleton />
             )}
         </>
-    );
-};
+  )
+}
 
-export default CardNFT;
+export default CardNFT
