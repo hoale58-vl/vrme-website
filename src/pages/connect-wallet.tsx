@@ -99,25 +99,21 @@ const ListWalllet: React.FC = () => {
                 className="btn btn-light connect-wallet-btn"
                 onClick={async () => await connect(AptosWalletName)}
             >
-                <img className="w-10 h-auto" src="/images/connect-wallet/metamask.png" alt="" />
+                <img className="w-10 h-auto" src="/images/connect-wallet/petra.png" alt="" />
                 <div className="">Petra</div>
             </button>
             <button
                 className="btn btn-light connect-wallet-btn"
                 onClick={async () => await connect(MartianWalletName)}
             >
-                <img
-                    className="w-10 h-auto"
-                    src="/images/connect-wallet/wallet-connect.png"
-                    alt=""
-                />
+                <img className="w-10 h-auto" src="/images/connect-wallet/martian.png" alt="" />
                 <div className="">Martian</div>
             </button>
             <button
                 className="btn btn-light connect-wallet-btn"
                 onClick={async () => await connect(FewchaWalletName)}
             >
-                <img className="w-10 h-auto" src="/images/connect-wallet/coinbase.png" alt="" />
+                <img className="w-10 h-auto" src="/images/connect-wallet/fewcha.png" alt="" />
                 <div className="">Fewcha</div>
             </button>
         </div>
