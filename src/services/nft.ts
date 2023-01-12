@@ -1,9 +1,22 @@
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { NftStatus } from '../enum';
-import { LIST_NFT } from './consts';
+import { API, ENDPOINT } from './consts';
 
-export const getListNft = async (page: number, perPage: number) => {
-    return await axios.get(LIST_NFT, {
-        params: { page, limit: perPage, status: NftStatus.ON_GOING },
-    });
-};
+export class NftService {
+    private readonly client: Axios;
+
+    constructor() {
+        this.client = new Axios({
+            baseURL: ENDPOINT,
+            headers: {
+                Authorization: '',
+            },
+        });
+    }
+
+    public async getListNft(page: number, perPage: number) {
+        return await this.client.get(API.LIST_TOKEN, {
+            params: { page, limit: perPage, status: NftStatus.ON_GOING },
+        });
+    }
+}

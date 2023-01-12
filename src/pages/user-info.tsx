@@ -1,44 +1,32 @@
-import { HeadFC, PageProps } from 'gatsby';
-import React, { useState } from 'react';
-import { CardNFT, Layout } from '../components';
-import { Tabs, Pagination } from 'antd';
-import { IToken } from '../types/token';
-import { NFTStatus } from '../types/enum';
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
-import axios from 'axios';
-import CardNFTOwned from '../components/card-nft-owned';
-import { Tooltip } from 'antd';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { HeadFC, PageProps } from 'gatsby'
+import React, { useState } from 'react'
+import { Layout } from '../components'
+import { Tabs, Pagination, Tooltip } from 'antd'
+import { IToken } from '../types/token'
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
+import axios from 'axios'
+import CardNFTOwned from '../components/card-nft-owned'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const ListWallet: React.FC = () => {
-    const { connect } = useWallet();
+  const { connect } = useWallet()
 
-    return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>;
-};
+  return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>
+}
 
 const UserInfoPage: React.FC<PageProps> = () => {
-    const [listToken, setListToken] = useState<any>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [copied, setCopied] = useState<boolean>(false);
+  const [listToken, setListToken] = useState<any>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [copied, setCopied] = useState<boolean>(false)
 
-    //   const temp: IToken = {
-    //     id: 2134,
-    //     image: '/images/card-nft/image-card-nft-1.png',
-    //     name: 'NFT Sai Gon 001',
-    //     avatar: '/images/avatars/avatar-1.png',
-    //     author: 'HoaLe',
-    //     price: '1000000',
-    //     status: NFTStatus.ON_GOING
-    //   }
-
-    let walletAddress: string;
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('walletAddress') !== 'undefined') {
-            walletAddress = localStorage.getItem('walletAddress') as string;
-        }
+  let walletAddress: string
+  if (typeof window !== 'undefined') {
+    if (localStorage.getItem('walletAddress') !== 'undefined') {
+      walletAddress = localStorage.getItem('walletAddress') as string
     }
-    React.useEffect(() => {
-        const listTokenQuery = `query MyQuery {
+  }
+  React.useEffect(() => {
+    const listTokenQuery = `query MyQuery {
                                     current_token_ownerships(
                                     where: {amount: {_eq: 1}, owner_address: {_eq: 
                                     "${walletAddress}"}}
@@ -52,36 +40,36 @@ const UserInfoPage: React.FC<PageProps> = () => {
                                         metadata_uri
                                     }
                                     }
-                                }`;
+                                }`
 
-        const listToken = async () => {
-            try {
-                const res = await axios.post(
-                    'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
-                    {
-                        query: listTokenQuery,
-                    }
-                );
-                setIsLoading(false);
-                setListToken(res.data.data.current_token_ownerships);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        listToken();
-    }, []);
+    const listToken = async () => {
+      try {
+        const res = await axios.post(
+          'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
+          {
+            query: listTokenQuery
+          }
+        )
+        setIsLoading(false)
+        setListToken(res.data.data.current_token_ownerships)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    listToken()
+  }, [])
 
-    const cardNFTList: IToken[] = listToken.map((item: any) => ({
-        id: null,
-        name: item?.name,
-        image: item?.current_token_data.metadata_uri,
-        avatar: item?.current_token_data.metadata_uri,
-        author: null,
-        price: item?.price,
-        status: item?.status,
-    }));
+  const cardNFTList: IToken[] = listToken.map((item: any) => ({
+    id: null,
+    name: item?.name,
+    image: item?.current_token_data.metadata_uri,
+    avatar: item?.current_token_data.metadata_uri,
+    author: null,
+    price: item?.price,
+    status: item?.status
+  }))
 
-    return (
+  return (
         <Layout>
             <ListWallet />
             <div className="user-info-background-group">
@@ -215,11 +203,11 @@ const UserInfoPage: React.FC<PageProps> = () => {
                                 <div style={{ textAlign: 'center' }}></div>
                             </>
                         ) : (
-                            cardNFTList.map((token: IToken, index: number) => {
-                                return (
+                          cardNFTList.map((token: IToken, index: number) => {
+                            return (
                                     <CardNFTOwned key={index} token={token} isLoading={isLoading} />
-                                );
-                            })
+                            )
+                          })
                         )}
                     </div>
                     {/* <Pagination defaultCurrent={6} total={500} /> */}
@@ -238,9 +226,9 @@ const UserInfoPage: React.FC<PageProps> = () => {
                 </Tabs.TabPane>
             </Tabs>
         </Layout>
-    );
-};
+  )
+}
 
-export default UserInfoPage;
+export default UserInfoPage
 
-export const Head: HeadFC = () => <title>User Info Page</title>;
+export const Head: HeadFC = () => <title>User Info Page</title>

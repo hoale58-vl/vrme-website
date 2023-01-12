@@ -5,7 +5,7 @@ import { CollectionData } from '../data/';
 import { Tabs, Pagination } from 'antd';
 import { IToken } from '../types/token';
 import { useDispatch, useSelector } from 'react-redux';
-import { getList, nftSelector } from '../state/nft';
+import { getList, tokenSelector } from '../state/token';
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 
@@ -86,10 +86,9 @@ const ListToken: React.FC = () => {
 const Marketplace: React.FC<PageProps> = () => {
     const dispatch = useDispatch<any>();
     const [tab, setTab] = React.useState<number>(1);
-    const { dataNFT, isLoading } = useSelector(nftSelector);
-    console.log('total', dataNFT.data.length);
+    const { data, isLoading } = useSelector(tokenSelector);
 
-    const cardNftList: IToken[] = dataNFT.data.map((item: IToken) => ({
+    const cardNftList: IToken[] = data.data.map((item: IToken) => ({
         id: item?.id,
         buyer: item?.buyer,
         seller: item?.seller,
@@ -111,7 +110,6 @@ const Marketplace: React.FC<PageProps> = () => {
             supply: item?.token?.supply,
         },
     }));
-    console.log('dsadasdas', cardNftList);
 
     const handleOnChangePagination = (page: number, pageSize: number) => {
         navigate(`?page=${page}`);
@@ -165,7 +163,7 @@ const Marketplace: React.FC<PageProps> = () => {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">{dataNFT.total}</div>
+                                NFTs <div className="tabpane-count">{data.total}</div>
                             </span>
                         </>
                     }
@@ -192,11 +190,11 @@ const Marketplace: React.FC<PageProps> = () => {
                                     </>
                                 )}
                             </div>
-                            {dataNFT.data.length > 12 ? (
+                            {data.data.length > 12 ? (
                                 <Pagination
                                     defaultCurrent={1}
                                     pageSize={12}
-                                    total={dataNFT.data.length}
+                                    total={data.data.length}
                                     onChange={handleOnChangePagination}
                                 />
                             ) : (

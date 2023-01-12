@@ -1,61 +1,53 @@
-import * as React from 'react';
-import { HeadFC, Link, navigate, PageProps } from 'gatsby';
-import { CardNFT, CardNFTSkeleton, Layout } from '../components';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { IToken } from '../types/token';
-import { useDispatch, useSelector } from 'react-redux';
-import { getList, nftSelector } from '../state/nft';
+import * as React from 'react'
+import { HeadFC, Link, navigate, PageProps } from 'gatsby'
+import { CardNFT, CardNFTSkeleton, Layout } from '../components'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { IToken } from '../types/token'
+import { useDispatch, useSelector } from 'react-redux'
+import { getList, tokenSelector } from '../state/token'
 
 const NFTDetail: React.FC<PageProps> = ({ location }) => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-    };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false
+  }
 
-    console.log(location.state);
+  const dispatch = useDispatch<any>()
+  const { data, isLoading } = useSelector(tokenSelector)
+  const cardNftList: IToken[] = data.data.map((item: any) => ({
+    id: item?.id,
+    buyer: item?.buyer,
+    seller: item?.seller,
+    price: item?.price,
+    status: item?.status,
+    createAt: item?.createAt,
+    updateAt: item?.updateAt,
+    token: {
+      id: item?.token?.id,
+      propertyVersion: item?.token?.propertyVersion,
+      creator: item?.token?.creator,
+      collection: item?.token?.collection,
+      name: item?.token?.name,
+      uri: item?.token?.uri,
+      description: item?.token?.description,
+      metadata: item?.token?.metadata,
+      verified: item?.token?.verified,
+      maximum: item?.token?.maximum,
+      supply: item?.token?.supply
+    }
+  }))
 
-    const dispatch = useDispatch<any>();
-    const { dataNFT, isLoading } = useSelector(nftSelector);
-    // const { dataNFTDetail, isLoading } = useSelector(nftDetail);
-    const cardNftList: IToken[] = dataNFT.data.map((item: any) => ({
-        id: item?.id,
-        buyer: item?.buyer,
-        seller: item?.seller,
-        price: item?.price,
-        status: item?.status,
-        createAt: item?.createAt,
-        updateAt: item?.updateAt,
-        token: {
-            id: item?.token?.id,
-            propertyVersion: item?.token?.propertyVersion,
-            creator: item?.token?.creator,
-            collection: item?.token?.collection,
-            name: item?.token?.name,
-            uri: item?.token?.uri,
-            description: item?.token?.description,
-            metadata: item?.token?.metadata,
-            verified: item?.token?.verified,
-            maximum: item?.token?.maximum,
-            supply: item?.token?.supply,
-        },
-    }));
+  React.useEffect(() => {
+    dispatch(getList({ page: 1, perPage: 3 }))
+  }, [])
 
-    React.useEffect(() => {
-        dispatch(getList({ page: 1, perPage: 3 }));
-    }, []);
-
-    // React.useEffect(() => {
-    //     dispatch(getNFTDetail(id));
-    // });
-    // const tokenDetail: ITokenDetail;
-
-    return (
+  return (
         <Layout>
             <div className="nft-detail-background-image"></div>
             <div className="nft-detail-main">
@@ -121,7 +113,7 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                             <div
                                 className="nft-detail-detail-title"
                                 onClick={() => {
-                                    navigate('https://explorer.aptoslabs.com/');
+                                  navigate('https://explorer.aptoslabs.com/')
                                 }}
                             >
                                 View on Explore
@@ -135,9 +127,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                     </div>
                     <div className="nft-detail-tags-group">
                         {location.state?.token?.metadata ? (
-                            JSON.parse(location.state?.token?.metadata).tags.map((item: any) => {
-                                <div className="nft-detail-tags-button">{item}</div>;
-                            })
+                          JSON.parse(location.state?.token?.metadata).tags.map((item: any) => {
+                                <div className="nft-detail-tags-button">{item}</div>
+                          })
                         ) : (
                             <div className="nft-detail-tags-button"></div>
                         )}
@@ -206,16 +198,16 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                         </div>
                         <div className="nft-detail-more-grid">
                             {!isLoading ? (
-                                cardNftList.map((token: IToken) => {
-                                    return (
+                              cardNftList.map((token: IToken) => {
+                                return (
                                         <CardNFT
                                             key={token.id}
                                             tokenInfo={token}
                                             isLoading={isLoading}
                                             attribute={'card-nft-dark'}
                                         />
-                                    );
-                                })
+                                )
+                              })
                             ) : (
                                 <>
                                     <CardNFTSkeleton />
@@ -240,9 +232,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default NFTDetail;
+export default NFTDetail
 
-export const Head: HeadFC = () => <title>NFT Detail</title>;
+export const Head: HeadFC = () => <title>NFT Detail</title>

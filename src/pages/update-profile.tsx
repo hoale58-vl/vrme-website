@@ -3,7 +3,8 @@ import { HeadFC, navigate, PageProps } from 'gatsby';
 import { Layout } from '../components/';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 import axios from 'axios';
-import { UPDATE_PROFILE } from '../services/consts';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProfile, userSelector } from '../state/user';
 
 const ListWallet: React.FC = () => {
     const { connect } = useWallet();
@@ -12,25 +13,17 @@ const ListWallet: React.FC = () => {
 };
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-    // const [dataSubmit, setDataSubmit] = React.useState<string>();
+    const dispatch = useDispatch<any>();
     const nameRef = React.useRef<HTMLInputElement>(null);
-    let accessToken: string = '';
-    const handleUpdateProfile = async () => {
-        if (typeof window !== 'undefined') {
-            accessToken = localStorage.getItem('accessToken') ?? '';
-        }
+    const { profile } = useSelector(userSelector);
 
+    const handleUpdateProfile = async () => {
         if (nameRef.current) {
-            const res = await axios.put(
-                UPDATE_PROFILE,
-                { name: nameRef.current.value },
-                {
-                    headers: { Authorization: `Bearer ${accessToken}` },
-                }
-            );
-            console.log(res);
+            dispatch(updateProfile(nameRef.current.value));
         }
-        navigate('/marketplace');
+        if (profile) {
+            navigate('/marketplace');
+        }
     };
 
     return (

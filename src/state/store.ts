@@ -1,15 +1,13 @@
 import { configureStore, combineReducers, Action } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
-import { nftReducer } from './nft';
-import { loginReducer } from './login';
+import { tokenReducer } from './token';
+import { userReducer } from './user';
 import { persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { nftDetailReducer } from './nft-detail';
 
 const rootReducer = combineReducers({
-    nft: nftReducer,
-    login: loginReducer,
-    nftDetail: nftDetailReducer,
+    token: tokenReducer,
+    user: userReducer,
 });
 
 const persistConfig = {
