@@ -19,16 +19,6 @@ const UserInfoPage: React.FC<PageProps> = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [copied, setCopied] = useState<boolean>(false)
 
-  //   const temp: IToken = {
-  //     id: 2134,
-  //     image: '/images/card-nft/image-card-nft-1.png',
-  //     name: 'NFT Sai Gon 001',
-  //     avatar: '/images/avatars/avatar-1.png',
-  //     author: 'HoaLe',
-  //     price: '1000000',
-  //     status: NFTStatus.ON_GOING
-  //   }
-
   let walletAddress: string
   if (typeof window !== 'undefined') {
     if (localStorage.getItem('walletAddress') !== 'undefined') {

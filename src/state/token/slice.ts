@@ -18,7 +18,7 @@ const tokenSlice = createSlice({
       state.isLoading = true
     },
     [getList.fulfilled.toString()]: (state: ITokenState, action: PayloadAction<{}>) => {
-      return { ...state, isLoading: false, dataNFT: action.payload }
+      return { ...state, isLoading: false, data: action.payload }
     },
     [getList.rejected.toString()]: (state: ITokenState, action: PayloadAction<{}>) => {
       state.isLoading = false

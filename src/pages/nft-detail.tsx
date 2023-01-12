@@ -18,8 +18,6 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
     arrows: false
   }
 
-  console.log(location.state)
-
   const dispatch = useDispatch<any>()
   const { data, isLoading } = useSelector(tokenSelector)
   const cardNftList: IToken[] = data.data.map((item: any) => ({
