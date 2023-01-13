@@ -29,9 +29,9 @@ const userSlice = createSlice({
         [getProfile.pending.toString()]: (state: ILoginState) => {
             state.isLoading = true;
         },
-      [getProfile.fulfilled.toString()]: (state: ILoginState, action: PayloadAction<{}>) => {
-          toast.success('Get profile successfully!')
-          return { ...state, isLoading: false, profile: action.payload };
+        [getProfile.fulfilled.toString()]: (state: ILoginState, action: PayloadAction<{}>) => {
+            toast.success('Get profile successfully!');
+            return { ...state, isLoading: false, profile: action.payload };
         },
         [getProfile.rejected.toString()]: (state: ILoginState, action: PayloadAction<string>) => {
             state.isLoading = false;

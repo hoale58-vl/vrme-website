@@ -180,7 +180,7 @@ a {
 
 .card-nft {
     @apply overflow-hidden flex flex-col;
-    height: 472px;
+    height: 420px;
 }
 
 .collection-image {
@@ -318,6 +318,9 @@ a {
     text-align: left;
     @apply truncate text-ellipsis overflow-hidden;
     width: 200px;
+}
+.card-nft-author-name:hover {
+    cursor: pointer;
 }
 .card-nft-name-group {
     display: flex;
