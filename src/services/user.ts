@@ -20,7 +20,6 @@ export class UserService {
     public async loginService(obj: LoginBody) {
         // const res = await axios.post(`${ENDPOINT}${API.LOGIN}`, obj);
         const { address, signature, publicKey } = obj;
-        console.log(obj);
 
         // console.log(this.client);
 
@@ -29,7 +28,12 @@ export class UserService {
             signature: signature,
             publicKey: publicKey,
         });
-        console.log(res);
+
+        console.log('res.data.token', res.data.token);
+
+        // if (res) {
+        //     await this.setAuthHeader(res.data.token);
+        // }
 
         return res;
     }
@@ -53,13 +57,17 @@ export class UserService {
     }
 
     public async setAuthHeader(accessToken: string) {
-        this.client.interceptors.request.use((config) => {
-            if (accessToken) {
+        console.log('accessTokensalkdnsa', accessToken);
+        await this.client.interceptors.request.use(
+            async (config) => {
                 config.headers!.Authorization = `Bearer ${accessToken}`;
-            }
-            console.log(config);
+                console.log(config);
 
-            return config;
-        });
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
     }
 }
