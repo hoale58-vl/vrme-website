@@ -25,6 +25,7 @@ export const login = createAsyncThunk(
             publicKey,
         });
         console.log('data', data);
+        // new UserService().setAuthHeader(data.data.token);
 
         return data.data.token;
     }
@@ -32,8 +33,6 @@ export const login = createAsyncThunk(
 
 export const getProfile = createAsyncThunk('user/getProfile', async (_, { getState }) => {
     const state = getState() as any;
-    console.log('state ', state.user.accessToken);
-
     const data = await new UserService().getProfile(state.user.accessToken);
     return data.data;
 });

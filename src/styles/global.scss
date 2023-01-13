@@ -476,9 +476,17 @@ a {
     margin-bottom: 10px;
 }
 .nft-detail-background-image {
-    background-image: url('/images/introduce/nft-detail.png');
-    background-position: center;
-    height: 560px;
+    // background-image: url('/images/introduce/nft-detail.png');
+    // background-position: center;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+.nft-detail-background {
+    width: 100%;
+    top: 50%;
+    margin-top: -500px;
+    position: absolute;
 }
 .nft-detail-main {
     margin: 40px 115px;

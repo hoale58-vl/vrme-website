@@ -99,7 +99,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
 
     return (
         <Layout>
-            <div className="nft-detail-background-image"></div>
+            <div className="nft-detail-background-image">
+                <img className="nft-detail-background" src={location.state?.token.uri} alt="" />
+            </div>
             <div className="nft-detail-main">
                 <div className="ntf-detail-name-group">
                     <div className="nft-detail-name">{location.state?.token?.name}</div>
