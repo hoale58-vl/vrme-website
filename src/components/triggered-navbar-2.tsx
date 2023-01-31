@@ -1,13 +1,13 @@
-import { Link } from 'gatsby';
-import React, { useState } from 'react';
-import { Modal } from 'antd';
+import { Link, navigate } from 'gatsby'
+import React, { useState } from 'react'
+import { Modal } from 'antd'
 
 const TriggerNavbar2: React.FC = () => {
-    const [modal2Open, setModal2Open] = useState(false);
-    return (
+  const [modal2Open, setModal2Open] = useState(false)
+  return (
         <>
             <div className="trigger-navbar-2">
-                <button className="trigger-nav_mint-btn" onClick={() => setModal2Open(true)}>
+                <button className="trigger-nav_mint-btn" onClick={async () => await navigate('/mint-token')}>
                     <img className="w-5 h-5" src="/images/icon/create-fff.png" alt="" />
                     <div className="trigger-nav_mint">Mint ViRME</div>
                 </button>
@@ -21,7 +21,7 @@ const TriggerNavbar2: React.FC = () => {
                         <div key={1} className="modal-footer">
                             <button className="btn btn-dark btn-small">Submit</button>
                             <button className="btn btn-light btn-small">Cancel</button>
-                        </div>,
+                        </div>
                     ]}
                 >
                     <div className="modal-token-name">RME SaiGon 0001</div>
@@ -71,7 +71,7 @@ const TriggerNavbar2: React.FC = () => {
                 <div className="trigger-nav_disconnect-btn">Disconnect</div>
             </div>
         </>
-    );
-};
+  )
+}
 
-export default TriggerNavbar2;
+export default TriggerNavbar2

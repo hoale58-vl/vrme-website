@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { HeadFC, Link, PageProps } from 'gatsby';
-import { Layout, CardGetStarted } from '../components/';
-import { CardGetStartedData } from '../data';
+import * as React from 'react'
+import { HeadFC, Link, PageProps } from 'gatsby'
+import { Layout, CardGetStarted } from '../components/'
+import { CardGetStartedData } from '../data'
 
 const IndexPage: React.FC<PageProps> = () => {
-    return (
+  return (
         <Layout>
             <main className="landing-main">
                 <div className="landing-main-group">
@@ -33,12 +33,12 @@ const IndexPage: React.FC<PageProps> = () => {
                     </div>
                     <div className="how-it-work-grid">
                         {CardGetStartedData.map(
-                            (
-                                item: { image: string; title: string; content: string },
-                                index: number
-                            ) => {
-                                return <CardGetStarted key={index} {...item} />;
-                            }
+                          (
+                            item: { image: string, title: string, content: string },
+                            index: number
+                          ) => {
+                            return <CardGetStarted key={index} {...item} />
+                          }
                         )}
                     </div>
                 </div>
@@ -62,9 +62,9 @@ const IndexPage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = () => <title>Home Page</title>
