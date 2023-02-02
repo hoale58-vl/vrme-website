@@ -1,72 +1,99 @@
-import { HeadFC, PageProps } from 'gatsby'
-import * as React from 'react'
-import { Layout, WheelComponent } from '../components'
-import { SegColors } from '../styles/segcolor'
-import { ILuckyWheel } from '../types/lucky-wheel'
+import { HeadFC, PageProps } from 'gatsby';
+import * as React from 'react';
+import { Layout, WheelComponent } from '../components';
+import { SegColors } from '../styles/segcolor';
+import { ILuckyWheel } from '../types/lucky-wheel';
 
 const CreateLuckyWheel: React.FC<PageProps> = () => {
-  const [prize, setPrize] = React.useState<ILuckyWheel[]>([
-    {
-      prize: '',
-      winningRate: 0
-    }
-  ])
+    const [prize, setPrize] = React.useState<ILuckyWheel[]>([
+        {
+            prize: '',
+            winningRate: 0,
+        },
+    ]);
+    const [noPrizeRate, setNoPrizeRate] = React.useState<number>(100);
+    let total = React.useRef<number>(100);
 
-  const insert = (arr: ILuckyWheel[], index: number, newItem: ILuckyWheel) => [
-    // part of the array before the specified index
-    ...arr.slice(0, index),
-    // inserted item
-    newItem,
-    // part of the array after the specified index
-    ...arr.slice(index)
-  ]
+    const insert = (arr: ILuckyWheel[], index: number, newItem: ILuckyWheel) => [
+        // part of the array before the specified index
+        ...arr.slice(0, index),
+        // inserted item
+        newItem,
+        // part of the array after the specified index
+        ...arr.slice(index),
+    ];
 
-  const handleAdd = (index: number) => {
-    const temp: ILuckyWheel[] = insert(prize, index + 1, {
-      prize: '',
-      winningRate: index
-    })
-    setPrize(temp)
-  }
+    const handleAdd = (index: number) => {
+        const temp: ILuckyWheel[] = insert(prize, index + 1, {
+            prize: '',
+            winningRate: 100 - Number(total.current),
+        });
+        total.current = 100;
+        setPrize(temp);
+    };
 
-  const handleRemove = (index: number) => {
-    const temp: ILuckyWheel[] = [...prize.slice(0, index), ...prize.slice(index + 1)]
-    // console.log(temp);
-    setPrize(temp)
-  }
+    const handleRemove = (index: number) => {
+        const temp: ILuckyWheel[] = [...prize.slice(0, index), ...prize.slice(index + 1)];
+        // console.log(temp);
+        setPrize(temp);
+    };
 
-  const handleInputChange = (e: any, index: number) => {
-    setPrize((prize) => {
-      const items: ILuckyWheel[] = prize.map((item, i) => {
-        if (i === index) {
-          return { ...item, prize: e.target.value }
+    const handlePrizeInputChange = (e: any, index: number) => {
+        setPrize((prize) => {
+            const items: ILuckyWheel[] = prize.map((item, i) => {
+                if (i === index) {
+                    return { ...item, prize: e.target.value };
+                }
+                return item;
+            });
+            return items;
+        });
+    };
+
+    const handleChangeNoPrizeRate = (e: any) => {
+        total.current = Number(total.current) - noPrizeRate + Number(e.target.value);
+        console.log(total.current);
+
+        setNoPrizeRate(Number(e.target.value));
+    };
+
+    const handleWinningRateInputChange = (e: any, index: number) => {
+        if (Number(e.target.value) < 0) {
+            e.target.value = 0;
         }
-        return item
-      })
-      return items
-    })
-  }
+        setPrize((prize) => {
+            const winningRate = e.target.value ? parseInt(e.target.value) : 0;
+            const items: ILuckyWheel[] = prize.map((item, i) => {
+                if (i === index) {
+                    total.current =
+                        Number(total.current) - Number(item.winningRate) + Number(e.target.value);
+                    return { ...item, winningRate };
+                }
+                return item;
+            });
+            return items;
+        });
+    };
 
-  const [segments, setSegments] = React.useState<string[]>(['No prize'])
+    const [segments, setSegments] = React.useState<string[]>(['No prize']);
 
-  const segColors = SegColors
+    const segColors = SegColors;
 
-  const onFinished = (winner: any) => {
-    console.log(winner)
-  }
+    const onFinished = (winner: any) => {
+        console.log(winner);
+    };
 
-  React.useEffect(() => {
-    setSegments(
-      ['No prize'].concat(
-        prize.map((item: ILuckyWheel) => {
-          return item.prize
-        })
-      )
-    )
-  }, [prize])
-  console.log('kk', segments)
+    React.useEffect(() => {
+        setSegments(
+            ['No prize0' + noPrizeRate.toString()].concat(
+                prize.map((item: ILuckyWheel) => {
+                    return item.prize + item.winningRate;
+                })
+            )
+        );
+    }, [prize]);
 
-  return (
+    return (
         <Layout>
             <div className="lucky-wheel-body">
                 <div className="lucky-wheel-grid">
@@ -83,8 +110,8 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                             segColors={segColors}
                             winningSegment=""
                             onFinished={(winner: any) => onFinished(winner)}
-                            primaryColor="black"
-                            primaryColoraround="#ffffffb4"
+                            primaryColor="white"
+                            primaryColoraround="white"
                             contrastColor="white"
                             isOnlyOnce={false}
                             size={190}
@@ -111,12 +138,16 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                                 className="prize-type prize-type-default"
                                 type="text"
                                 placeholder="No prize"
+                                value={'No prize'}
+                                disabled
                             />
                             <input
                                 className="prize-rate prize-rate-default"
                                 type="number"
+                                name="prize-rate"
                                 placeholder="100"
-                                defaultValue={100}
+                                value={noPrizeRate}
+                                onChange={(e) => handleChangeNoPrizeRate(e)}
                                 min={0}
                                 max={100}
                             />
@@ -133,8 +164,8 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                             style={{ height: '420px', marginTop: '30px' }}
                         >
                             {prize.length > 0 ? (
-                              prize.map((sub: ILuckyWheel, index: number) => {
-                                return (
+                                prize.map((sub: ILuckyWheel, index: number) => {
+                                    return (
                                         <div
                                             className="lucky-wheel-prize-winning-rate-ele"
                                             key={index}
@@ -144,14 +175,16 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                                                 type="text"
                                                 placeholder=""
                                                 value={sub.prize}
-                                                onChange={(e) => handleInputChange(e, index)}
+                                                onChange={(e) => handlePrizeInputChange(e, index)}
                                             />
                                             <input
                                                 className="prize-rate"
                                                 type="number"
                                                 placeholder="0"
-                                                min={0}
-                                                max={100}
+                                                value={sub.winningRate}
+                                                onChange={(e) =>
+                                                    handleWinningRateInputChange(e, index)
+                                                }
                                             />
                                             <img
                                                 onClick={() => handleAdd(index)}
@@ -164,8 +197,8 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                                                 alt=""
                                             />
                                         </div>
-                                )
-                              })
+                                    );
+                                })
                             ) : (
                                 <></>
                             )}
@@ -174,9 +207,9 @@ const CreateLuckyWheel: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default CreateLuckyWheel
+export default CreateLuckyWheel;
 
-export const Head: HeadFC = () => <title>Create Lucky Wheel</title>
+export const Head: HeadFC = () => <title>Create Lucky Wheel</title>;
