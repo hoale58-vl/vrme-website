@@ -509,4 +509,141 @@
     .trigger-navbar-2 {
         display: none;
     }
+    .lucky-wheel-body {
+        display: flex;
+        gap: 30px;
+        padding: 50px 60px;
+    }
+    .lucky-wheel-grid {
+        flex: 1;
+    }
+    .lucky-wheel-title {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 51px;
+        line-height: 110%;
+        display: flex;
+        align-items: center;
+        text-transform: capitalize;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+    .lucky-wheel-content {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 160%;
+        color: #ffffff;
+    }
+    .lucky-wheel-preview {
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 160%;
+        color: #ffffff;
+        margin: 40px auto 40px auto;
+        text-align: center;
+    }
+    .lucky-wheel-token-info {
+        margin-top: 30px;
+        background: #3b3b3b;
+        border-radius: 50px;
+        padding: 30px;
+    }
+    .lucky-wheel-token-name {
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 51px;
+        line-height: 110%;
+        display: flex;
+        align-items: center;
+        text-transform: capitalize;
+        color: #ffffff;
+    }
+    .lucky-wheel-token-name-group {
+        display: flex;
+        gap: 15px;
+    }
+    .lucky-wheel-token-listing-price-label {
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 160%;
+        text-transform: capitalize;
+        color: #858584;
+    }
+    .lucky-wheel-token-price {
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 120%;
+        text-transform: capitalize;
+        color: #ffffff;
+    }
+    .lucky-wheel-token-price-unit {
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 110%;
+        margin-top: 5px;
+        color: #ffffff;
+    }
+    .lucky-wheel-prize-winning-rate {
+        text-align: center;
+        font-family: 'Space Mono';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 160%;
+        color: #ffffff;
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+    .lucky-wheel-prize-winning-rate-ele {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .prize-type {
+        flex: 6;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 20px;
+        gap: 12px;
+        width: 300px;
+        height: 54px;
+        background: #ffffff;
+        border: 1px solid #858584;
+        // color: #2b2b2b;
+        border-radius: 20px;
+    }
+    .prize-rate {
+        flex: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px 20px;
+        gap: 12px;
+        width: 100px;
+        height: 54px;
+        background: #ffffff;
+        border: 1px solid #858584;
+        // color: #2b2b2b;
+        border-radius: 20px;
+    }
+    .lucky-wheel-prize-winning-rate-ele + .lucky-wheel-prize-winning-rate-ele {
+        margin-top: 30px;
+    }
+    #wheel {
+        margin-top: -60px;
+        margin-bottom: 40px;
+        transform: rotate(180deg);
+    }
 }
