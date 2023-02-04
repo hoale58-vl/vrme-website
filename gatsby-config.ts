@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from 'gatsby';
+import path from 'path';
 
 const config: GatsbyConfig = {
     siteMetadata: {
@@ -43,6 +44,15 @@ const config: GatsbyConfig = {
                 },
             },
         },
+        {
+            resolve: `gatsby-plugin-alias-imports`,
+            options: {
+            alias: {
+                "envConfig": path.resolve(__dirname, `src/config/${process.env.ENV}`)
+            },
+            extensions: []
+            }
+        }
     ],
 };
 

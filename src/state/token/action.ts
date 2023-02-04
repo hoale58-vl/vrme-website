@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { NftService } from '../../services/nft'
+import { NftService } from '../../services/offers'
 export interface Query {
   page: number
   perPage: number

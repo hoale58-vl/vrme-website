@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import TriggerNavbar2 from '../triggered-navbar-2'
-import { Modal } from 'antd'
 
 const Header: React.FunctionComponent<{}> = () => {
   const [modal2Open, setModal2Open] = useState(false)
@@ -24,45 +23,18 @@ const Header: React.FunctionComponent<{}> = () => {
                         <div className="market-place">Marketplace</div>
                     </Link>
                     <Link to="/connect-wallet">
-                        <div className="btn btn-dark btn-medium px-[30px]">
+                        <div className="btn btn-dark btn-small px-[30px] mr-2">
                             <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                             <div className="">Connect a wallet</div>
                         </div>
                     </Link>
                     <button
-                        className="btn btn-dark btn-medium px-[30px]"
+                        className="btn btn-dark btn-small px-[30px] ml-2"
                         onClick={async () => await navigate('/mint-token')}
-                        // hidden
                     >
                         <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                         <div className="">Mint ViRME</div>
                     </button>
-                    {/* <Modal
-                        title="Listing your token"
-                        centered
-                        open={modal2Open}
-                        onOk={() => setModal2Open(false)}
-                        onCancel={() => setModal2Open(false)}
-                    >
-                        <div className="modal-token-name">RME SaiGon 0001</div>
-                        <img
-                            className="modal-token-image"
-                            src="/images/card-nft/image-card-nft-2.png"
-                            alt=""
-                        />
-                        <div className="modal-token-price-group">
-                            <img
-                                className="w-5 h-5 modal-wallet-icon"
-                                src="/images/icon/wallet-dark.png"
-                                alt=""
-                            />
-                            <input
-                                className="modal-token-price-input"
-                                type="text"
-                                placeholder="Price"
-                            />
-                        </div>
-                    </Modal> */}
                 </div>
                 <input
                     type="checkbox"

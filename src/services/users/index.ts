@@ -1,6 +1,6 @@
 import axios, { Axios } from 'axios'
-import { LoginBody } from '../state/user'
-import { API, ENDPOINT } from './consts'
+import { LoginBody } from '../../state/user'
+import configs from '../../config/config'
 
 export class UserService {
   private readonly client: Axios
@@ -9,7 +9,7 @@ export class UserService {
     // TODO: redux store -> accessToken -> axios header
 
     this.client = axios.create({
-      baseURL: ENDPOINT,
+      baseURL: configs.baseUrl,
       headers: {
         'Content-Type': 'application/json'
       }
@@ -22,7 +22,7 @@ export class UserService {
 
     // console.log(this.client);
 
-    const res = await this.client.post(API.LOGIN, {
+    const res = await this.client.post(configs.api.user.login, {
       address,
       signature,
       publicKey
@@ -39,24 +39,15 @@ export class UserService {
 
   public async getProfile (accessToken: string) {
     await this.setAuthHeader(accessToken)
-    return await this.client.get(API.PROFILE)
+    return await this.client.get(configs.api.user.profile)
   }
 
   public async updateProfile (accessToken: string, name: string) {
     await this.setAuthHeader(accessToken)
-    return await this.client.put(API.UPDATE_PROFILE, { name })
-
-    // return await axios.put(
-    //     `${ENDPOINT}${API.UPDATE_PROFILE}`,
-    //     { name: name },
-    //     {
-    //         headers: { Authorization: `Bearer ${accessToken}` },
-    //     }
-    // );
+    return await this.client.put(configs.api.user.update, { name })
   }
 
   public async setAuthHeader (accessToken: string) {
-    console.log('accessTokensalkdnsa', accessToken)
     await this.client.interceptors.request.use(
       async (config) => {
         config.headers!.Authorization = `Bearer ${accessToken}`

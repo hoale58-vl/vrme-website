@@ -29,7 +29,6 @@ const Layout: React.FC<AuxProps> = ({ children }: AuxProps) => {
               if (error.name === 'WalletNotReadyError') {
                 text = 'Wallet not ready'
               }
-              console.log(error)
               toast.error(error.message || text)
             }}
         >

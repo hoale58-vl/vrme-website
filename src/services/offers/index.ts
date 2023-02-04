@@ -1,13 +1,13 @@
 import { Axios } from 'axios'
-import { NftStatus } from '../enum'
-import { API, ENDPOINT } from './consts'
+import configs from '../../config/config'
+import { NftStatus } from '../../enum'
 
 export class NftService {
   private readonly client: Axios
 
   constructor () {
     this.client = new Axios({
-      baseURL: ENDPOINT,
+      baseURL: configs.baseUrl,
       headers: {
         Authorization: ''
       }
@@ -15,7 +15,7 @@ export class NftService {
   }
 
   public async getListNft (page: number, perPage: number) {
-    return await this.client.get(API.LIST_TOKEN, {
+    return await this.client.get(configs.api.offers.list, {
       params: { page, limit: perPage, status: NftStatus.ON_GOING }
     })
   }

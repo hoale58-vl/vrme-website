@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { UserService } from '../../services/user'
+import { UserService } from '../../services/users'
 
 export interface LoginBody {
   address: string

@@ -15,7 +15,7 @@ const IndexPage: React.FC<PageProps> = () => {
                             than 20k NFT Landlord.
                         </div>
                         <Link to="/marketplace">
-                            <button className="btn-get-started btn btn-dark btn-medium">
+                            <button className="btn-get-started btn btn-dark btn-small">
                                 <img className="icon" src="/images/icon/rocket-launch.png" alt="" />
                                 <div className="">Get Started</div>
                             </button>
