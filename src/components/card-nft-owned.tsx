@@ -1,51 +1,51 @@
-import { Link } from 'gatsby'
-import React, { useState } from 'react'
-import { IToken } from '../types/token'
-import CardNFTSkeleton from './card-nft-skeleton'
-import { useWallet } from '@manahippo/aptos-wallet-adapter'
-import { Tooltip, Modal } from 'antd'
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
+import { Link } from 'gatsby';
+import React, { useState } from 'react';
+import { IToken } from '../types/token';
+import CardNFTSkeleton from './card-nft-skeleton';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
+import { Tooltip, Modal } from 'antd';
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
 
 interface CardProps {
-  tokenInfo: IToken
-  isLoading: boolean
-  attribute?: string | undefined
+    tokenInfo: IToken;
+    isLoading: boolean;
+    attribute?: string | undefined;
 }
 
 const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
-  const { id, price, status, token, seller } = tokenInfo
-  const { name, uri, verified } = token
+    const { id, price, status, token, seller } = tokenInfo;
+    const { name, uri, verified } = token;
 
-  //   const [modalOpen, setModalOpen] = useState<boolean>(false)
-  const { signAndSubmitTransaction } = useWallet()
-  const [modalOpen, setModalOpen] = useState<boolean>(false)
+    //   const [modalOpen, setModalOpen] = useState<boolean>(false)
+    const { signAndSubmitTransaction } = useWallet();
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const handleSellBtn = async (name: string) => {
-    const payload = {
-      arguments: [
-        MARKETPLACE_ADDR_ARG,
-        '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
-        'Vietnamese Metaverse Real Estate',
-        name,
-        0,
-        1,
-        10
-      ],
-      function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
-      type: 'entry_function_payload',
-      type_arguments: ['0x1::aptos_coin::AptosCoin']
-    }
-    const result = await signAndSubmitTransaction(payload)
-    console.log(result)
-    if (result) {
-      console.log('List Token Transaction Success')
-      // await hippoWallet?.refreshStores();
-    } else {
-      console.log('Errrrrr')
-    }
-  }
+    const handleSellBtn = async (name: string) => {
+        const payload = {
+            arguments: [
+                MARKETPLACE_ADDR_ARG,
+                '0x603f483e806badfe8ebf83e59a719f1b8e2bdf14a06452910cfcf82f43ffb95',
+                'Vietnamese Metaverse Real Estate',
+                name,
+                0,
+                1,
+                10,
+            ],
+            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::list_token`,
+            type: 'entry_function_payload',
+            type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        };
+        const result = await signAndSubmitTransaction(payload);
+        console.log(result);
+        if (result) {
+            console.log('List Token Transaction Success');
+            // await hippoWallet?.refreshStores();
+        } else {
+            console.log('Errrrrr');
+        }
+    };
 
-  return (
+    return (
         <>
             {uri ? (
                 <Link to={'/nft-detail'} state={{ id, price, status, token, seller }}>
@@ -63,13 +63,13 @@ const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
                                     className="w-5 h-5"
                                     src={
                                         !verified
-                                          ? '/images/icon/unverified.png'
-                                          : '/images/icon/verified.png'
+                                            ? '/images/icon/unverified.png'
+                                            : '/images/icon/verified.png'
                                     }
                                     alt={
                                         !verified
-                                          ? 'This token has been unverified'
-                                          : 'This token has been verifed'
+                                            ? 'This token has been unverified'
+                                            : 'This token has been verifed'
                                     }
                                 />
                             </div>
@@ -110,8 +110,8 @@ const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
                             <button
                                 className="btn btn-dark card-nft-btn"
                                 onClick={async (e) => {
-                                  e.preventDefault()
-                                  setModalOpen(true)
+                                    e.preventDefault();
+                                    setModalOpen(true);
                                 }}
                             >
                                 <img
@@ -126,20 +126,20 @@ const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
                                 centered
                                 open={modalOpen}
                                 onOk={(e: any) => {
-                                  e.preventDefault()
-                                  setModalOpen(false)
+                                    e.preventDefault();
+                                    setModalOpen(false);
                                 }}
                                 onCancel={(e) => {
-                                  e.preventDefault()
-                                  setModalOpen(false)
+                                    e.preventDefault();
+                                    setModalOpen(false);
                                 }}
                                 footer={[
                                     <div key={1} className="modal-footer">
                                         <button
                                             className="btn btn-dark btn-small btn-modal-buy"
                                             onClick={async (e) => {
-                                              e.preventDefault()
-                                              await handleSellBtn(token.name)
+                                                e.preventDefault();
+                                                await handleSellBtn(token.name);
                                             }}
                                         >
                                             Submit
@@ -147,13 +147,13 @@ const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
                                         <button
                                             className="btn btn-light btn-small btn-modal-buy"
                                             onClick={(e) => {
-                                              e.preventDefault()
-                                              setModalOpen(false)
+                                                e.preventDefault();
+                                                setModalOpen(false);
                                             }}
                                         >
                                             Cancel
                                         </button>
-                                    </div>
+                                    </div>,
                                 ]}
                             >
                                 You will pay ${Number(Number(price) / 100000000).toFixed(2)} for
@@ -166,7 +166,7 @@ const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
                 <CardNFTSkeleton />
             )}
         </>
-  )
-}
+    );
+};
 
-export default CardNFTOwned
+export default CardNFTOwned;

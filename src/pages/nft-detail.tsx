@@ -1,103 +1,103 @@
-import * as React from 'react'
-import { HeadFC, Link, navigate, PageProps } from 'gatsby'
-import { CardNFT, CardNFTSkeleton, Layout } from '../components'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { IToken } from '../types/token'
-import { useDispatch, useSelector } from 'react-redux'
-import { getList, tokenSelector } from '../state/token'
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
-import { useWallet } from '@manahippo/aptos-wallet-adapter'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { Tooltip } from 'antd'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
+import * as React from 'react';
+import { HeadFC, Link, navigate, PageProps } from 'gatsby';
+import { CardNFT, CardNFTSkeleton, Layout } from '../components';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { IToken } from '../types/token';
+import { useDispatch, useSelector } from 'react-redux';
+import { getList, tokenSelector } from '../state/token';
+import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Tooltip } from 'antd';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IBuyBtn {
-  id: number
+    id: number;
 }
 
 const BuyBtn: React.FC<IBuyBtn> = ({ id }) => {
-  const { signAndSubmitTransaction, connected } = useWallet()
-  const handleBuyBtn = async (id: number) => {
-    if (!connected) {
-      navigate('/connect-wallet')
-      toast('Please connect a wallet')
-    }
-    const payload = {
-      arguments: [MARKETPLACE_ADDR_ARG, id],
-      function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
-      type: 'entry_function_payload',
-      type_arguments: ['0x1::aptos_coin::AptosCoin']
-    }
-    console.log(payload)
-    const result = await signAndSubmitTransaction(payload)
-    if (result) {
-      console.log('Transaction Success')
-      // await hippoWallet?.refreshStores();
-    } else {
-      console.log('Errrrrr')
-    }
-  }
-  return (
+    const { signAndSubmitTransaction, connected } = useWallet();
+    const handleBuyBtn = async (id: number) => {
+        if (!connected) {
+            navigate('/connect-wallet');
+            toast('Please connect a wallet');
+        }
+        const payload = {
+            arguments: [MARKETPLACE_ADDR_ARG, id],
+            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
+            type: 'entry_function_payload',
+            type_arguments: ['0x1::aptos_coin::AptosCoin'],
+        };
+        console.log(payload);
+        const result = await signAndSubmitTransaction(payload);
+        if (result) {
+            console.log('Transaction Success');
+            // await hippoWallet?.refreshStores();
+        } else {
+            console.log('Errrrrr');
+        }
+    };
+    return (
         <div className="nft-detail-buynow-btn-group btn">
             <img className="w-5 h-5" src="/images/icon/wallet.png" alt="" />
             <div
                 className="nft-detail-buynow-btn"
                 onClick={async () => {
-                  await handleBuyBtn(id)
+                    await handleBuyBtn(id);
                 }}
             >
                 Buy now
             </div>
         </div>
-  )
-}
+    );
+};
 
 const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false
-  }
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
 
-  const [copied, setCopied] = useState<boolean>(false)
-  const dispatch = useDispatch<any>()
-  const { data, isLoading } = useSelector(tokenSelector)
-  const cardNftList: IToken[] = data.data.map((item: any) => ({
-    id: item?.id,
-    buyer: item?.buyer,
-    seller: item?.seller,
-    price: item?.price,
-    status: item?.status,
-    createAt: item?.createAt,
-    updateAt: item?.updateAt,
-    token: {
-      id: item?.token?.id,
-      propertyVersion: item?.token?.propertyVersion,
-      creator: item?.token?.creator,
-      collection: item?.token?.collection,
-      name: item?.token?.name,
-      uri: item?.token?.uri,
-      description: item?.token?.description,
-      metadata: item?.token?.metadata,
-      verified: item?.token?.verified,
-      maximum: item?.token?.maximum,
-      supply: item?.token?.supply
-    }
-  }))
+    const [copied, setCopied] = useState<boolean>(false);
+    const dispatch = useDispatch<any>();
+    const { data, isLoading } = useSelector(tokenSelector);
+    const cardNftList: IToken[] = data.data.map((item: any) => ({
+        id: item?.id,
+        buyer: item?.buyer,
+        seller: item?.seller,
+        price: item?.price,
+        status: item?.status,
+        createAt: item?.createAt,
+        updateAt: item?.updateAt,
+        token: {
+            id: item?.token?.id,
+            propertyVersion: item?.token?.propertyVersion,
+            creator: item?.token?.creator,
+            collection: item?.token?.collection,
+            name: item?.token?.name,
+            uri: item?.token?.uri,
+            description: item?.token?.description,
+            metadata: item?.token?.metadata,
+            verified: item?.token?.verified,
+            maximum: item?.token?.maximum,
+            supply: item?.token?.supply,
+        },
+    }));
 
-  console.log('location.state.token?.images', location.state)
+    console.log('location.state.token?.images', location.state);
 
-  React.useEffect(() => {
-    dispatch(getList({ page: 1, perPage: 3 }))
-  }, [])
+    React.useEffect(() => {
+        dispatch(getList({ page: 1, perPage: 3 }));
+    }, []);
 
-  return (
+    return (
         <Layout>
             <div className="nft-detail-background-image">
                 <img className="nft-detail-background" src={location.state?.token.uri} alt="" />
@@ -190,7 +190,7 @@ const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
                             <div
                                 className="nft-detail-detail-title"
                                 onClick={() => {
-                                  navigate('https://explorer.aptoslabs.com/')
+                                    navigate('https://explorer.aptoslabs.com/');
                                 }}
                             >
                                 View on Explore
@@ -204,15 +204,15 @@ const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
                     </div>
                     <div className="nft-detail-tags-group">
                         {location.state?.token.metadata ? (
-                          JSON.parse(location.state?.token.metadata).tags.map(
-                            (item: any, index: number) => {
-                              return (
+                            JSON.parse(location.state?.token.metadata).tags.map(
+                                (item: any, index: number) => {
+                                    return (
                                         <div className="nft-detail-tags-button" key={index}>
                                             {item}
                                         </div>
-                              )
-                            }
-                          )
+                                    );
+                                }
+                            )
                         ) : (
                             <div className="nft-detail-collection-name">No Tag</div>
                         )}
@@ -232,15 +232,15 @@ const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
                     <div className="nft-detail-slide-image">
                         <Slider {...settings}>
                             {location.state?.token.metadata ? (
-                              JSON.parse(location.state?.token.metadata).images.map(
-                                (item: any, index: number) => {
-                                  return (
+                                JSON.parse(location.state?.token.metadata).images.map(
+                                    (item: any, index: number) => {
+                                        return (
                                             <div className="nft-detail-image" key={index}>
                                                 <img width="100%" src={item} alt="" />
                                             </div>
-                                  )
-                                }
-                              )
+                                        );
+                                    }
+                                )
                             ) : (
                                 <div className="nft-detail-image text-center text-2xl">
                                     No Image
@@ -254,16 +254,16 @@ const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
                         </div>
                         <div className="nft-detail-more-grid">
                             {!isLoading ? (
-                              cardNftList.map((token: IToken) => {
-                                return (
+                                cardNftList.map((token: IToken) => {
+                                    return (
                                         <CardNFT
                                             key={token.id}
                                             tokenInfo={token}
                                             isLoading={isLoading}
                                             attribute={'card-nft-dark'}
                                         />
-                                )
-                              })
+                                    );
+                                })
                             ) : (
                                 <>
                                     <CardNFTSkeleton />
@@ -288,9 +288,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default NFTDetail
+export default NFTDetail;
 
-export const Head: HeadFC = () => <title>NFT Detail</title>
+export const Head: HeadFC = () => <title>NFT Detail</title>;

@@ -1,38 +1,38 @@
-import * as React from 'react'
-import { HeadFC, PageProps } from 'gatsby'
-import { Layout } from '../components'
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
+import * as React from 'react';
+import { HeadFC, PageProps } from 'gatsby';
+import { Layout } from '../components';
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 
 const SubmitMintToken: React.FC = () => {
-  const { connect, signAndSubmitTransaction } = useWallet()
-  const handleMintToken = async () => {
-    const payload = {
-      arguments: [
-        'Vietnamese Metaverse Real Estate',
-        'Nhà lầu Q8 #169',
-        'Nhà rất đẹp',
-        1,
-        1,
-        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FImage&psig=AOvVaw06NgeMR75bcseMvsEhOXI4&ust=1673975851390000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODu3pHMzPwCFQAAAAAdAAAAABAE',
-        '0x2e32173fa3128bcf0c5353b10039a7598bd40718ede961b29a0099a8abcbf213',
-        100,
-        2,
-        [false, false, false, false, false],
-        [],
-        [],
-        []
-      ],
-      function: '0x3::token::create_token_script',
-      type: 'entry_function_payload',
-      type_arguments: []
-    }
-    await signAndSubmitTransaction(payload)
-  }
-  return (
+    const { connect, signAndSubmitTransaction } = useWallet();
+    const handleMintToken = async () => {
+        const payload = {
+            arguments: [
+                'Vietnamese Metaverse Real Estate',
+                'Nhà lầu Q8 #169',
+                'Nhà rất đẹp',
+                1,
+                1,
+                'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FImage&psig=AOvVaw06NgeMR75bcseMvsEhOXI4&ust=1673975851390000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCODu3pHMzPwCFQAAAAAdAAAAABAE',
+                '0x2e32173fa3128bcf0c5353b10039a7598bd40718ede961b29a0099a8abcbf213',
+                100,
+                2,
+                [false, false, false, false, false],
+                [],
+                [],
+                [],
+            ],
+            function: '0x3::token::create_token_script',
+            type: 'entry_function_payload',
+            type_arguments: [],
+        };
+        await signAndSubmitTransaction(payload);
+    };
+    return (
         <>
             <button
                 onClick={() => {
-                  connect(FewchaWalletName)
+                    connect(FewchaWalletName);
                 }}
             >
                 Connect
@@ -40,11 +40,11 @@ const SubmitMintToken: React.FC = () => {
             <br /> <br />
             <button onClick={handleMintToken}>HAUHSUHDAD</button>
         </>
-  )
-}
+    );
+};
 
 const MintToken: React.FC<PageProps> = () => {
-  return (
+    return (
         <Layout>
             <SubmitMintToken />
             <div className="mint-token-page">
@@ -133,9 +133,9 @@ const MintToken: React.FC<PageProps> = () => {
             </div>
             <button className="btn btn-small btn-dark mint-token-submit-btn">Submit</button>
         </Layout>
-  )
-}
+    );
+};
 
-export default MintToken
+export default MintToken;
 
-export const Head: HeadFC = () => <title>Mint Token</title>
+export const Head: HeadFC = () => <title>Mint Token</title>;

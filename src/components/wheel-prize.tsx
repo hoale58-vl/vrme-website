@@ -134,7 +134,6 @@ const WheelComponent = ({
 
     const drawSegment = (key: number, lastAngle: number, angle: number) => {
         const ctx = canvasContext;
-        const value = segments[key];
         ctx.save();
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
