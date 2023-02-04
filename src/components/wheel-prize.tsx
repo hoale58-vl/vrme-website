@@ -1,4 +1,3 @@
-import { Callback } from '@react-native-async-storage/async-storage/lib/typescript/types';
 import React, { useEffect, useState } from 'react';
 
 const WheelComponent = ({
