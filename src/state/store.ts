@@ -1,12 +1,10 @@
 import { configureStore, combineReducers, Action } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
-import { tokenReducer } from './token'
 import { userReducer } from './user'
 import { persistReducer } from 'redux-persist'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const rootReducer = combineReducers({
-  token: tokenReducer,
   user: userReducer
 })
 

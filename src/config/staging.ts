@@ -1,7 +1,7 @@
-import { EnvConfig } from '../services/types'
+import { EnvConfig } from 'services/types';
 
 const config: EnvConfig = {
-  baseUrl: 'https://staging.vimre.online'
-}
+    baseUrl: 'https://api.vimre.online',
+};
 
-export default config
+export default config;

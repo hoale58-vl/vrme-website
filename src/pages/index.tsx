@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { HeadFC, Link, PageProps } from 'gatsby'
-import { Layout, CardGetStarted } from '../components/'
-import { CardGetStartedData } from '../data'
+import React from 'react';
+import { HeadFC, Link, PageProps } from 'gatsby';
+import CardGetStarted from 'components/card-get-started';
+import Layout from 'components/layout';
 
 const IndexPage: React.FC<PageProps> = () => {
-  return (
+    return (
         <Layout>
             <main className="landing-main">
                 <div className="landing-main-group">
@@ -32,13 +32,31 @@ const IndexPage: React.FC<PageProps> = () => {
                         <div className="landing-content">Find Out How To Get Started</div>
                     </div>
                     <div className="how-it-work-grid">
-                        {CardGetStartedData.map(
-                          (
-                            item: { image: string, title: string, content: string },
-                            index: number
-                          ) => {
-                            return <CardGetStarted key={index} {...item} />
-                          }
+                        {[
+                            {
+                                image: 'images/cards/setup.png',
+                                title: 'Setup Your wallet',
+                                content:
+                                    'Set up your wallet of choice. Connect it to the ViRME by clicking the wallet icon in the top right corner.',
+                            },
+                            {
+                                image: 'images/cards/create.png',
+                                title: 'Create NFT',
+                                content:
+                                    'Upload your estate. Add a description, social links and extra information.',
+                            },
+                            {
+                                image: 'images/cards/start.png',
+                                title: 'Start Earning',
+                                content: 'Start earning by selling your NFTs or trading others.',
+                            },
+                        ].map(
+                            (
+                                item: { image: string; title: string; content: string },
+                                index: number
+                            ) => {
+                                return <CardGetStarted key={index} {...item} />;
+                            }
                         )}
                     </div>
                 </div>
@@ -62,9 +80,9 @@ const IndexPage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default IndexPage
+export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head: HeadFC = () => <title>Home Page</title>;

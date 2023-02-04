@@ -1,31 +1,31 @@
-import * as React from 'react'
-import { HeadFC, navigate, PageProps } from 'gatsby'
-import { Layout } from '../components/'
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateProfile, userSelector } from '../state/user'
+import React from 'react';
+import { HeadFC, navigate, PageProps } from 'gatsby';
+import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateProfile, userSelector } from 'state/user';
+import Layout from 'components/layout';
 
 const ListWallet: React.FC = () => {
-  const { connect } = useWallet()
+    const { connect } = useWallet();
 
-  return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>
-}
+    return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>;
+};
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-  const dispatch = useDispatch<any>()
-  const nameRef = React.useRef<HTMLInputElement>(null)
-  const { profile } = useSelector(userSelector)
+    const dispatch = useDispatch<any>();
+    const nameRef = React.useRef<HTMLInputElement>(null);
+    const { profile } = useSelector(userSelector);
 
-  const handleUpdateProfile = async () => {
-    if (nameRef.current) {
-      dispatch(updateProfile(nameRef.current.value))
-    }
-    if (profile) {
-      navigate('/marketplace')
-    }
-  }
+    const handleUpdateProfile = async () => {
+        if (nameRef.current) {
+            dispatch(updateProfile(nameRef.current.value));
+        }
+        if (profile) {
+            navigate('/marketplace');
+        }
+    };
 
-  return (
+    return (
         <Layout>
             <ListWallet />
             <div className="update-profile-body">
@@ -99,9 +99,9 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-  )
-}
+    );
+};
 
-export default UpdateProfilePage
+export default UpdateProfilePage;
 
-export const Head: HeadFC = () => <title>Update Profile</title>
+export const Head: HeadFC = () => <title>Update Profile</title>;
