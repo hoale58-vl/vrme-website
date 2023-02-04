@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, navigate } from 'gatsby';
-import TriggerNavbar2 from 'triggered-navbar-2';
+import NavBar from 'components/navBar';
 
 const Header: React.FunctionComponent<{}> = () => {
     const [modal2Open, setModal2Open] = useState(false);
@@ -46,7 +46,7 @@ const Header: React.FunctionComponent<{}> = () => {
                     <img src="/images/icon/list.png" alt="" />
                 </label>
                 <label htmlFor="nav-mobile-input" className="nav-overlay"></label>
-                <TriggerNavbar2 />
+                <NavBar />
             </nav>
         </header>
     );

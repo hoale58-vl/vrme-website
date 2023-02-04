@@ -4,7 +4,7 @@ import { Tabs, Pagination, Tooltip } from 'antd';
 import { IToken } from 'types/token';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
 import axios from 'axios';
-import CardNFTOwned from 'components/card-nft-owned';
+// import CardNFTOwned from 'components/card-nft-owned';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Layout from 'components/layout';
 
@@ -203,7 +203,8 @@ const UserInfoPage: React.FC<PageProps> = () => {
                         ) : (
                             cardNFTList.map((token: IToken, index: number) => {
                                 return (
-                                    <CardNFTOwned key={index} token={token} isLoading={isLoading} />
+                                    <></>
+                                    // <CardNFTOwned key={index} token={token} isLoading={isLoading} />
                                 );
                             })
                         )}

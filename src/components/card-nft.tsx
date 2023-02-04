@@ -4,9 +4,9 @@ import { IToken } from 'types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
 import { Tooltip, Modal } from 'antd';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from 'constant/const';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
+import configs from 'config/config';
 
 interface CardProps {
     tokenInfo: IToken;
@@ -31,10 +31,10 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
             toast('Please connect a wallet');
         }
         const payload = {
-            arguments: [MARKETPLACE_ADDR_ARG, id],
-            function: `${MARKETPLACE_ADDR_FUNC}::marketplace::buy_token`,
+            arguments: [configs.smc.marketplace, id],
+            function: `${configs.smc.marketplace}::marketplace::buy_token`,
             type: 'entry_function_payload',
-            type_arguments: ['0x1::aptos_coin::AptosCoin'],
+            type_arguments: [configs.smc.marketplace_coin],
         };
         const result = await signAndSubmitTransaction(payload);
         if (result) {

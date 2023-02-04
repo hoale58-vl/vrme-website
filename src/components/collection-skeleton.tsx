@@ -1,5 +1,4 @@
 import React from 'react';
-import 'styles/skeleton.scss';
 
 const CollectionSkeleton: React.FC = () => {
     return (

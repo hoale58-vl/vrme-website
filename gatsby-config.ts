@@ -11,6 +11,7 @@ const config: GatsbyConfig = {
     // Learn more at: https://gatsby.dev/graphql-typegen
     graphqlTypegen: true,
     plugins: [
+        'gatsby-plugin-resolve-src',
         'gatsby-plugin-postcss',
         'gatsby-plugin-sass',
         'gatsby-plugin-antd',
@@ -35,24 +36,14 @@ const config: GatsbyConfig = {
             __key: 'pages',
         },
         {
-            resolve: `gatsby-plugin-react-redux`,
-            options: {
-                pathToCreateStoreModule: './src/state/store',
-                cleanupOnClient: false,
-                serialize: {
-                    isJSON: false,
-                },
-            },
-        },
-        {
             resolve: `gatsby-plugin-alias-imports`,
             options: {
-            alias: {
-                "envConfig": path.resolve(__dirname, `src/config/${process.env.ENV}`)
+                alias: {
+                    envConfig: path.resolve(__dirname, `src/config/${process.env.ENV}`),
+                },
+                extensions: [],
             },
-            extensions: []
-            }
-        }
+        },
     ],
 };
 

@@ -1,8 +1,6 @@
 import React from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
+import { HeadFC, PageProps } from 'gatsby';
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile, userSelector } from 'state/user';
 import Layout from 'components/layout';
 
 const ListWallet: React.FC = () => {
@@ -12,18 +10,7 @@ const ListWallet: React.FC = () => {
 };
 
 const UpdateProfilePage: React.FC<PageProps> = () => {
-    const dispatch = useDispatch<any>();
     const nameRef = React.useRef<HTMLInputElement>(null);
-    const { profile } = useSelector(userSelector);
-
-    const handleUpdateProfile = async () => {
-        if (nameRef.current) {
-            dispatch(updateProfile(nameRef.current.value));
-        }
-        if (profile) {
-            navigate('/marketplace');
-        }
-    };
 
     return (
         <Layout>
@@ -91,7 +78,6 @@ const UpdateProfilePage: React.FC<PageProps> = () => {
                             type="submit"
                             className="update-profile-btn"
                             style={{ marginTop: '20px' }}
-                            onClick={handleUpdateProfile}
                         >
                             Update
                         </button>

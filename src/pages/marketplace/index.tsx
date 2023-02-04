@@ -6,11 +6,12 @@ import useSWR from 'swr';
 import { fetcher } from 'services/fetcher';
 import configs from 'config/config';
 import { toast } from 'react-toastify';
-import { NftStatus } from 'enum/nft-status';
 import Layout from 'components/layout';
+import CardNFT from 'components/card-nft';
+import CardNFTSkeleton from 'components/card-nft-skeleton';
+import CollectionSkeleton from 'components/collection-skeleton';
 
 const LIMIT = 12;
-const STATUS = NftStatus.ON_GOING;
 
 export default function Marketplace() {
     const [tab, setTab] = useState(1);
@@ -19,7 +20,6 @@ export default function Marketplace() {
     const search = new URLSearchParams({
         page: page.toString(),
         limit: LIMIT.toString(),
-        status: STATUS,
     }).toString();
     const endpoint = `${configs.api.offers.list}?${search}`;
 
@@ -29,7 +29,6 @@ export default function Marketplace() {
         },
     });
 
-    const cardNftList: IToken[] = data.data.map((item: IToken) => item);
     const handleOnChangePagination = (page: number) => {
         setPage(page);
     };
@@ -40,7 +39,6 @@ export default function Marketplace() {
 
     return (
         <Layout>
-            {/* <ListToken /> */}
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
                 <div className="browse-market-place-content">
@@ -76,7 +74,7 @@ export default function Marketplace() {
                     tab={
                         <>
                             <span className="tabpane-title">
-                                NFTs <div className="tabpane-count">{data.total}</div>
+                                NFTs <div className="tabpane-count">{data?.total ?? 0}</div>
                             </span>
                         </>
                     }
@@ -85,8 +83,8 @@ export default function Marketplace() {
                     {tab === 1 && (
                         <>
                             <div className="tabpane-content">
-                                {!isLoading ? (
-                                    cardNftList.map((token: IToken) => {
+                                {!isLoading && data && data.data ? (
+                                    data.data.map((token: IToken) => {
                                         return (
                                             <CardNFT
                                                 key={token.id}
@@ -103,16 +101,12 @@ export default function Marketplace() {
                                     </>
                                 )}
                             </div>
-                            {data.data.length > 12 ? (
-                                <Pagination
-                                    defaultCurrent={1}
-                                    pageSize={LIMIT}
-                                    total={data.data.length}
-                                    onChange={handleOnChangePagination}
-                                />
-                            ) : (
-                                <></>
-                            )}
+                            <Pagination
+                                current={page}
+                                pageSize={LIMIT}
+                                total={data?.total ?? 0}
+                                onChange={handleOnChangePagination}
+                            />
                         </>
                     )}
                 </Tabs.TabPane>
@@ -128,24 +122,13 @@ export default function Marketplace() {
                     {tab === 2 && (
                         <>
                             <div className="tabpane-content">
-                                {CollectionData.map(
-                                    (
-                                        item: {
-                                            name: string;
-                                            avatar: string;
-                                            author: string;
-                                            images: string[];
-                                        },
-                                        index
-                                    ) => {
-                                        return (
-                                            <Collection onSetTab={setTab} key={index} {...item} />
-                                        );
-                                    }
-                                )}
                                 <CollectionSkeleton />
                             </div>
-                            <Pagination onChange={handleOnChangePagination} />
+                            <Pagination
+                                onChange={handleOnChangePagination}
+                                current={page}
+                                total={data?.total ?? 0}
+                            />
                         </>
                     )}
                 </Tabs.TabPane>
