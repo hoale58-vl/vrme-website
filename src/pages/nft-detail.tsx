@@ -55,7 +55,7 @@ const BuyBtn: React.FC<IBuyBtn> = ({ id }) => {
   )
 }
 
-const NFTDetail: React.FC<PageProps> = ({ location }) => {
+const NFTDetail: React.FC<PageProps> = ({ location }: any) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -144,10 +144,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                                     onClick={() => setCopied(true)}
                                     onMouseOver={() => setCopied(false)}
                                 >
-                                    {`${location.state?.token?.creator.slice(
-                                        0,
-                                        6
-                                    )}..${location.state?.token?.creator.slice(-4)}`}
+                                    {`${location.state?.token?.creator.slice(0, 6) as string}..${
+                                        location.state?.token?.creator?.slice(-4) as string
+                                    }`}
                                 </div>
                             </Tooltip>
                         </CopyToClipboard>
@@ -165,10 +164,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                                     onClick={() => setCopied(true)}
                                     onMouseOver={() => setCopied(false)}
                                 >
-                                    {`${location.state?.seller.slice(
-                                        0,
-                                        6
-                                    )}..${location.state?.seller.slice(-4)}`}
+                                    {`${location.state?.seller.slice(0, 6) as string}..${
+                                        location.state?.seller.slice(-4) as string
+                                    }`}
                                 </div>
                             </Tooltip>
                         </CopyToClipboard>
@@ -206,9 +204,15 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                     </div>
                     <div className="nft-detail-tags-group">
                         {location.state?.token.metadata ? (
-                          JSON.parse(location.state?.token.metadata).tags.map((item: any) => {
-                            return <div className="nft-detail-tags-button">{item}</div>
-                          })
+                          JSON.parse(location.state?.token.metadata).tags.map(
+                            (item: any, index: number) => {
+                              return (
+                                        <div className="nft-detail-tags-button" key={index}>
+                                            {item}
+                                        </div>
+                              )
+                            }
+                          )
                         ) : (
                             <div className="nft-detail-collection-name">No Tag</div>
                         )}
@@ -229,9 +233,9 @@ const NFTDetail: React.FC<PageProps> = ({ location }) => {
                         <Slider {...settings}>
                             {location.state?.token.metadata ? (
                               JSON.parse(location.state?.token.metadata).images.map(
-                                (item: any) => {
+                                (item: any, index: number) => {
                                   return (
-                                            <div className="nft-detail-image">
+                                            <div className="nft-detail-image" key={index}>
                                                 <img width="100%" src={item} alt="" />
                                             </div>
                                   )

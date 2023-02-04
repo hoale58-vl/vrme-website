@@ -1,3 +1,4 @@
+import { Callback } from '@react-native-async-storage/async-storage/lib/typescript/types';
 import React, { useEffect, useState } from 'react';
 
 const WheelComponent = ({
@@ -5,12 +6,9 @@ const WheelComponent = ({
     segColors,
     winningSegment,
     onFinished,
-    onRotate,
-    onRotatefinish,
     primaryColor,
     primaryColoraround,
     contrastColor,
-    buttonText,
     isOnlyOnce = true,
     size = 290,
     upDuration = 1000,
@@ -18,16 +16,31 @@ const WheelComponent = ({
     fontFamily = 'proxima-nova',
     width = 100,
     height = 100,
+}: {
+    segments: string[];
+    segColors: string[];
+    winningSegment: '';
+    onFinished: (result: any) => any;
+    primaryColor: string;
+    primaryColoraround: string;
+    contrastColor: string;
+    isOnlyOnce: boolean;
+    size: number;
+    upDuration: number;
+    downDuration: number;
+    fontFamily: string;
+    width: number;
+    height: number;
 }) => {
     let currentSegment = '';
     let isStarted = false;
     const [isFinished, setFinished] = useState(false);
-    let timerHandle = 0;
+    let timerHandle: number = 0;
     const timerDelay = segments.length;
     let angleCurrent = 0;
     let angleDelta = 0;
-    let canvasContext = null;
-    let maxSpeed = Math.PI / `${segments.length}`;
+    let canvasContext: any = null;
+    let maxSpeed = Math.PI / segments.length;
     const upTime = segments.length * upDuration;
     const downTime = segments.length * downDuration;
     let spinStart = 0;
@@ -43,13 +56,13 @@ const WheelComponent = ({
     };
 
     const initCanvas = () => {
-        let canvas = document.getElementById('canvas');
+        let canvas: any = document.getElementById('canvas');
         if (navigator.appVersion.includes('MSIE')) {
             canvas = document.createElement('canvas');
-            canvas.setAttribute('width', width);
-            canvas.setAttribute('height', height);
+            canvas.setAttribute('width', `${width}`);
+            canvas.setAttribute('height', `${height}`);
             canvas.setAttribute('id', 'canvas');
-            document.getElementById('wheel').appendChild(canvas);
+            document.getElementById('wheel')?.appendChild(canvas);
         }
         canvas.addEventListener('click', spin, false);
         canvasContext = canvas.getContext('2d');
@@ -63,7 +76,7 @@ const WheelComponent = ({
             // maxSpeed = Math.PI / ((segments.length*2) + Math.random())
             maxSpeed = Math.PI / segments.length;
             frames = 0;
-            timerHandle = setInterval(onTimerTick, timerDelay);
+            timerHandle = window.setInterval(onTimerTick, timerDelay);
         }
     };
     const onTimerTick = () => {
@@ -120,7 +133,7 @@ const WheelComponent = ({
         drawNeedle();
     };
 
-    const drawSegment = (key, lastAngle, angle) => {
+    const drawSegment = (key: number, lastAngle: number, angle: number) => {
         const ctx = canvasContext;
         const value = segments[key];
         ctx.save();
@@ -135,9 +148,9 @@ const WheelComponent = ({
         ctx.save();
         ctx.translate(centerX, centerY);
         ctx.rotate((lastAngle + angle) / 2);
-        ctx.fillStyle = contrastColor || 'white';
-        ctx.font = 'bold 1em ' + fontFamily;
-        ctx.fillText(value.substr(0, 21), size / 2 + 20, 0);
+        // ctx.fillStyle = contrastColor || 'white';
+        // ctx.font = 'bold 1em ' + fontFamily;
+        // ctx.fillText(value.substr(0, 21), size / 2 + 20, 0);
         ctx.restore();
     };
 

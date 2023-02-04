@@ -59,7 +59,10 @@ export class UserService {
     console.log('accessTokensalkdnsa', accessToken)
     await this.client.interceptors.request.use(
       async (config) => {
-        config.headers!.Authorization = `Bearer ${accessToken}`
+        config = { headers: {} }
+        if (config.headers) {
+          config.headers.Authorization = `Bearer ${accessToken}`
+        }
         console.log(config)
 
         return config

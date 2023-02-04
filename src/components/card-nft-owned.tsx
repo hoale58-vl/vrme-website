@@ -1,23 +1,24 @@
 import { Link } from 'gatsby'
-import React from 'react'
-import { NFTStatus } from '../types/enum'
+import React, { useState } from 'react'
 import { IToken } from '../types/token'
 import CardNFTSkeleton from './card-nft-skeleton'
-import { Tooltip } from 'antd'
 import { useWallet } from '@manahippo/aptos-wallet-adapter'
+import { Tooltip, Modal } from 'antd'
 import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
 
 interface CardProps {
-  token: IToken
+  tokenInfo: IToken
   isLoading: boolean
   attribute?: string | undefined
 }
 
-const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
-  const { image, name, author, status } = token
+const CardNFTOwned: React.FC<CardProps> = ({ tokenInfo }) => {
+  const { id, price, status, token, seller } = tokenInfo
+  const { name, uri, verified } = token
 
   //   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const { signAndSubmitTransaction } = useWallet()
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
   const handleSellBtn = async (name: string) => {
     const payload = {
@@ -46,85 +47,121 @@ const CardNFTOwned: React.FC<CardProps> = ({ token, isLoading, attribute }) => {
 
   return (
         <>
-            {image ? (
-                <div className={`card-nft ${attribute ?? ''}`}>
-                    <div className="card-nft-img">
-                        <img
-                            style={{ width: '100%', objectFit: 'cover' }}
-                            src={image}
-                            alt="image"
-                        />
-                    </div>
-                    <div className="card-nft-info">
-                        <div className="card-nft-name-group">
-                            <Link to={'/nft-detail'}>
+            {uri ? (
+                <Link to={'/nft-detail'} state={{ id, price, status, token, seller }}>
+                    <div className={'card-nft'}>
+                        <div className="card-nft-img">
+                            <img style={{ width: '100%' }} src={uri} alt="image" />
+                        </div>
+
+                        <div className="card-nft-info">
+                            <div className="card-nft-name-group">
                                 <Tooltip placement="top" color={'#a259ff'} title={name}>
                                     <div className="card-nft-name">{name}</div>
                                 </Tooltip>
-                            </Link>
-                            <img
-                                className="w-5 h-5"
-                                src={
-                                    status === NFTStatus.ON_GOING
-                                      ? '/images/icon/unverified.png'
-                                      : '/images/icon/verified.png'
-                                }
-                                alt={
-                                    status === NFTStatus.ON_GOING
-                                      ? 'This token has been unverified'
-                                      : 'This token has been verifed'
-                                }
-                            />
-                        </div>
-                        <div className="card-nft-author-group" hidden>
-                            <div className="card-nft-author-avatar">
                                 <img
-                                    className="w-6 h-6"
-                                    src={`/images/avatars/avatar-${Math.ceil(
-                                        Math.random() * 20
-                                    )}.png`}
-                                    alt=""
+                                    className="w-5 h-5"
+                                    src={
+                                        !verified
+                                          ? '/images/icon/unverified.png'
+                                          : '/images/icon/verified.png'
+                                    }
+                                    alt={
+                                        !verified
+                                          ? 'This token has been unverified'
+                                          : 'This token has been verifed'
+                                    }
                                 />
                             </div>
-                            <Link to={`author/${author}`}>
-                                <Tooltip placement="bottom" color={'#a259ff'} title={author}>
-                                    <div className="card-nft-author-name">
-                                        {author?.slice(0, 4) + '..' + author?.slice(-2)}
-                                    </div>
-                                </Tooltip>
-                            </Link>
-                        </div>
-                        <div className="card-nft-price-group">
-                            <div className="price-label">Price</div>
-                            <div className="card-nft-price gap-1">{Number(1).toFixed(2)} ETH</div>
-                        </div>
-                        <button
-                            className="btn btn-dark card-nft-btn btn-sell"
-                            onClick={async (e) => await handleSellBtn(name)}
-                        >
-                            <img className="w-5 h-5" src="/images/icon/rocket-launch.png" alt="" />
-                            Sell
-                        </button>
-                        {/* <Modal
-                            title="Are you sure about this?"
-                            centered
-                            open={modalOpen}
-                            onOk={() => setModalOpen(false)}
-                            onCancel={() => setModalOpen(false)}
-                            footer={[
-                                <div key={1} className="modal-footer">
-                                    <button className="btn btn-dark btn-small">Submit</button>
-                                    <button
-                                        className="btn btn-light btn-small"
-                                        onClick={() => setModalOpen(false)}
+
+                            {/* <div className="card-nft-author-group">
+                                <div className="card-nft-author-avatar">
+                                    <img
+                                        className="w-6 h-6"
+                                        src={`/images/avatars/avatar-${avatar}.png`}
+                                        alt=""
+                                    />
+                                </div>
+                                <CopyToClipboard text={creator}>
+                                    <Tooltip
+                                        placement="top"
+                                        color={'#a259ff'}
+                                        title={!copied ? 'Copy to clipboard' : 'Copied'}
                                     >
-                                        Cancel
-                                    </button>
-                                </div>,
-                            ]}
-                        ></Modal> */}
+                                        <div
+                                            className="card-nft-author-name"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                toast('Copied');
+                                            }}
+                                        >
+                                            {creator?.slice(0, 6) + '..' + creator?.slice(-4)}
+                                        </div>
+                                    </Tooltip>
+                                </CopyToClipboard>
+                            </div> */}
+
+                            <div className="card-nft-price-group">
+                                <div className="price-label">Price</div>
+                                <div className="card-nft-price gap-1">
+                                    {Number(Number(price) / 100000000).toFixed(2)} USDT
+                                </div>
+                            </div>
+                            <button
+                                className="btn btn-dark card-nft-btn"
+                                onClick={async (e) => {
+                                  e.preventDefault()
+                                  setModalOpen(true)
+                                }}
+                            >
+                                <img
+                                    className="w-5 h-5"
+                                    src="/images/icon/rocket-launch.png"
+                                    alt=""
+                                />
+                                Buy
+                            </button>
+                            <Modal
+                                title="Are you sure about this?"
+                                centered
+                                open={modalOpen}
+                                onOk={(e: any) => {
+                                  e.preventDefault()
+                                  setModalOpen(false)
+                                }}
+                                onCancel={(e) => {
+                                  e.preventDefault()
+                                  setModalOpen(false)
+                                }}
+                                footer={[
+                                    <div key={1} className="modal-footer">
+                                        <button
+                                            className="btn btn-dark btn-small btn-modal-buy"
+                                            onClick={async (e) => {
+                                              e.preventDefault()
+                                              await handleSellBtn(token.name)
+                                            }}
+                                        >
+                                            Submit
+                                        </button>
+                                        <button
+                                            className="btn btn-light btn-small btn-modal-buy"
+                                            onClick={(e) => {
+                                              e.preventDefault()
+                                              setModalOpen(false)
+                                            }}
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+                                ]}
+                            >
+                                You will pay ${Number(Number(price) / 100000000).toFixed(2)} for
+                                this token
+                            </Modal>
+                        </div>
                     </div>
-                </div>
+                </Link>
             ) : (
                 <CardNFTSkeleton />
             )}

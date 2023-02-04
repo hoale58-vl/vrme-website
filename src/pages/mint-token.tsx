@@ -2,7 +2,6 @@ import * as React from 'react'
 import { HeadFC, PageProps } from 'gatsby'
 import { Layout } from '../components'
 import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
-import { WALLET_ADDRESS } from '../constant/const'
 
 const SubmitMintToken: React.FC = () => {
   const { connect, signAndSubmitTransaction } = useWallet()

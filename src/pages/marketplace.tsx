@@ -6,8 +6,6 @@ import { Tabs, Pagination } from 'antd'
 import { IToken } from '../types/token'
 import { useDispatch, useSelector } from 'react-redux'
 import { getList, tokenSelector } from '../state/token'
-import { MARKETPLACE_ADDR_ARG, MARKETPLACE_ADDR_FUNC } from '../constant/const'
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter'
 
 // const ListToken: React.FC = () => {
 //   const { signAndSubmitTransaction, connect } = useWallet()

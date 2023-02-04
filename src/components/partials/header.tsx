@@ -37,7 +37,7 @@ const Header: React.FunctionComponent<{}> = () => {
                         <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                         <div className="">Mint ViRME</div>
                     </button>
-                    {/* <Modal
+                    <Modal
                         title="Listing your token"
                         centered
                         open={modal2Open}
@@ -62,7 +62,7 @@ const Header: React.FunctionComponent<{}> = () => {
                                 placeholder="Price"
                             />
                         </div>
-                    </Modal> */}
+                    </Modal>
                 </div>
                 <input
                     type="checkbox"
