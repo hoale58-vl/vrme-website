@@ -1,7 +1,6 @@
-import * as React from 'react'
+import React from 'react'
 import { HeadFC, Link, PageProps } from 'gatsby'
-import { Layout, CardGetStarted } from '../components/'
-import { CardGetStartedData } from '../data'
+import Layout from 'components/layout'
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -15,7 +14,7 @@ const IndexPage: React.FC<PageProps> = () => {
                             than 20k NFT Landlord.
                         </div>
                         <Link to="/marketplace">
-                            <button className="btn-get-started btn btn-dark btn-medium">
+                            <button className="btn-get-started btn btn-dark btn-small">
                                 <img className="icon" src="/images/icon/rocket-launch.png" alt="" />
                                 <div className="">Get Started</div>
                             </button>
@@ -32,14 +31,41 @@ const IndexPage: React.FC<PageProps> = () => {
                         <div className="landing-content">Find Out How To Get Started</div>
                     </div>
                     <div className="how-it-work-grid">
-                        {CardGetStartedData.map(
-                          (
-                            item: { image: string, title: string, content: string },
-                            index: number
-                          ) => {
-                            return <CardGetStarted key={index} {...item} />
+                        {[
+                          {
+                            image: 'images/cards/setup.png',
+                            title: 'Setup Your wallet',
+                            content:
+                                    'Set up your wallet of choice. Connect it to the ViMRE by clicking the wallet icon in the top right corner.'
+                          },
+                          {
+                            image: 'images/cards/create.png',
+                            title: 'Create NFT',
+                            content:
+                                    'Upload your estate. Add a description, social links and extra information.'
+                          },
+                          {
+                            image: 'images/cards/start.png',
+                            title: 'Start Earning',
+                            content: 'Start earning by selling your NFTs or trading others.'
                           }
-                        )}
+                        ].map((item, index: number) => {
+                          return (
+                                <div key={index} className={'card-get-started'}>
+                                    <img
+                                        className="card-get-started-image"
+                                        src={item.image}
+                                        alt=""
+                                    />
+                                    <div className="card-get-started-group">
+                                        <div className="card-get-started-title">{item.title}</div>
+                                        <div className="card-get-started-content">
+                                            {item.content}
+                                        </div>
+                                    </div>
+                                </div>
+                          )
+                        })}
                     </div>
                 </div>
             </main>

@@ -1,11 +1,11 @@
-import { NFTStatus } from './enum'
+import { NftStatus } from 'enum/nft-status'
 
 export interface IToken {
   id: number
   buyer: string
   seller: string
   price: number
-  status: NFTStatus
+  status: NftStatus
   createAt: Date
   updateAt: Date
   token: ITokenDetail

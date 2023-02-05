@@ -1,5 +1,5 @@
 export enum NftStatus {
-  ON_GOING = 'ongoing',
+  ONGOING = 'ongoing',
   REVOKED = 'revoked',
   FINISHED = 'finished',
 }
