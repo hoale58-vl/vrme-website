@@ -1,6 +1,6 @@
 import { HeadFC } from 'gatsby';
 import React, { useState } from 'react';
-import { Tabs, Pagination, Tooltip } from 'antd';
+import { Pagination, Tooltip } from 'antd';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Layout from 'components/layout';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
@@ -11,6 +11,7 @@ import { truncateLongHexString } from 'services/utilities';
 import configs from 'config/config';
 import { TokenData } from 'components/profile/types';
 import CardToken from 'components/profile/card-token';
+import CardTokenSkeleton from 'components/marketplace/card-token-skeleton';
 
 const LIMIT = 12;
 
@@ -35,11 +36,56 @@ const Profile = () => {
         }
     }`;
 
-    const { data, isLoading } = useSWR(query, graphqlFetcher, {
+    const { data, isLoading, mutate } = useSWR(query, graphqlFetcher, {
         onError: (error) => {
             toast.error(error);
         },
     });
+
+    const ListTokens = () => {
+        if (isLoading) {
+            return (
+                <div className="tabpane-content">
+                    {Array.from(Array(12).keys()).map((_, index) => (
+                        <CardTokenSkeleton key={index} />
+                    ))}
+                </div>
+            );
+        }
+        if (data) {
+            if (data.total == 0) {
+                return (
+                    <div className="min-h-screen">
+                        <div className="text-center">
+                            <h4 className="text-white">No data</h4>
+                            <button
+                                className="btn btn-dark btn-small m-auto"
+                                onClick={() => mutate(query)}
+                            >
+                                Reload
+                            </button>
+                        </div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="tabpane-content">
+                        {data.data.current_token_ownerships.map((token: TokenData) => {
+                            return <CardToken key={token.name} token={token} />;
+                        })}
+                    </div>
+                );
+            }
+        }
+        return (
+            <div className="min-h-screen">
+                <div className="text-center">
+                    <h4 className="text-white">Loading failed! Please try again</h4>
+                    <button onClick={() => mutate(query)}>Reload</button>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <>
@@ -144,64 +190,17 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className="user-info-hline"></div>
-            <Tabs defaultActiveKey="2" centered={true} className="marketplace-tabs">
-                <Tabs.TabPane
-                    className="tabpane"
-                    tab={
-                        <>
-                            <span className="tabpane-title">
-                                Created
-                                <div className="tabpane-count tabpane-count-user-info-page">
-                                    302
-                                </div>
-                            </span>
-                        </>
-                    }
-                    key="1"
-                >
-                    <div className="tabpane-content">
-                        {/* <CardNFT token={temp} isLoading={false} /> */}
-                    </div>
-                    <Pagination defaultCurrent={6} total={500} />
-                </Tabs.TabPane>
-                <Tabs.TabPane
-                    className="tabpane"
-                    tab={
-                        <span className="tabpane-title">
-                            Owned
-                            <div className="tabpane-count tabpane-count-user-info-page">67</div>
-                        </span>
-                    }
-                    key="2"
-                >
-                    <div className="tabpane-content">
-                        {data &&
-                            data.data &&
-                            data.data.current_token_ownerships.map((token: TokenData) => {
-                                return <CardToken key={token.name} token={token} />;
-                            })}
-                    </div>
-                    <Pagination
-                        current={page}
-                        pageSize={LIMIT}
-                        total={data?.total ?? 0}
-                        onChange={setPage}
-                    />
-                </Tabs.TabPane>
-                <Tabs.TabPane
-                    className="tabpane"
-                    tab={
-                        <span className="tabpane-title">
-                            Activities
-                            <div className="tabpane-count tabpane-count-user-info-page">67</div>
-                        </span>
-                    }
-                    key="3"
-                >
-                    <h1>Activities</h1>
-                </Tabs.TabPane>
-            </Tabs>
+            <div className="min-h-screen">
+                <ListTokens />
+            </div>
+            {data && data.total > 0 && (
+                <Pagination
+                    current={page}
+                    pageSize={LIMIT}
+                    total={data?.total ?? 0}
+                    onChange={setPage}
+                />
+            )}
         </>
     );
 };

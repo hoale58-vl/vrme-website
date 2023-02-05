@@ -25,7 +25,6 @@ const Layout: React.FC<AuxProps> = ({ children }: AuxProps) => {
     const [user, setUser] = useState<LogginUser | null>(null);
 
     const wallets = useMemo(() => [new FewchaWallet(), new PetraWallet(), new MartianWallet()], []);
-    wallets.map((wallet) => wallet.provider?.account().then(console.log));
 
     return (
         <AptosWalletAdapterProvider plugins={wallets} autoConnect>
