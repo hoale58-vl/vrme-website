@@ -44,7 +44,7 @@ const Footer = () => {
                         <Link to="/user-info">
                             <div className="footer-marketplace mt-5 footer-text">Profile</div>
                         </Link>
-                        <Link to="/connect-wallet/">
+                        <Link to="/connect">
                             <div className="footer-connect-wallet mt-5 footer-text">
                                 Connect a wallet
                             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { HeadFC, Link, PageProps } from 'gatsby';
-import CardGetStarted from 'components/card-get-started';
 import Layout from 'components/layout';
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -37,7 +36,7 @@ const IndexPage: React.FC<PageProps> = () => {
                                 image: 'images/cards/setup.png',
                                 title: 'Setup Your wallet',
                                 content:
-                                    'Set up your wallet of choice. Connect it to the ViRME by clicking the wallet icon in the top right corner.',
+                                    'Set up your wallet of choice. Connect it to the ViMRE by clicking the wallet icon in the top right corner.',
                             },
                             {
                                 image: 'images/cards/create.png',
@@ -50,14 +49,23 @@ const IndexPage: React.FC<PageProps> = () => {
                                 title: 'Start Earning',
                                 content: 'Start earning by selling your NFTs or trading others.',
                             },
-                        ].map(
-                            (
-                                item: { image: string; title: string; content: string },
-                                index: number
-                            ) => {
-                                return <CardGetStarted key={index} {...item} />;
-                            }
-                        )}
+                        ].map((item, index: number) => {
+                            return (
+                                <div key={index} className={'card-get-started'}>
+                                    <img
+                                        className="card-get-started-image"
+                                        src={item.image}
+                                        alt=""
+                                    />
+                                    <div className="card-get-started-group">
+                                        <div className="card-get-started-title">{item.title}</div>
+                                        <div className="card-get-started-content">
+                                            {item.content}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </main>

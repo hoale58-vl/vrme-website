@@ -19,7 +19,6 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
     const { name, uri, verified, creator } = token;
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const copied: boolean = false;
-    // const [copied, setCopied] = useState<boolean>(false);
 
     const avatar = Math.ceil(Math.random() * 20);
 
@@ -27,7 +26,7 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
 
     const handleBuyBtn = async (id: number) => {
         if (!connected) {
-            navigate('/connect-wallet');
+            navigate('/connect');
             toast('Please connect a wallet');
         }
         const payload = {

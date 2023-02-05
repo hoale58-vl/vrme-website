@@ -7,6 +7,7 @@ import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react';
 import { FewchaWallet } from 'fewcha-plugin-wallet-adapter';
 import { PetraWallet } from 'petra-plugin-wallet-adapter';
 import { MartianWallet } from '@martianwallet/aptos-wallet-adapter';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 interface AuxProps {
     children?: React.ReactNode;
@@ -29,7 +30,9 @@ const Layout: React.FC<AuxProps> = ({ children }: AuxProps) => {
     return (
         <AptosWalletAdapterProvider plugins={wallets} autoConnect>
             <UserContext.Provider value={{ user, setUser }}>
-                <Body> {children}</Body>
+                <SkeletonTheme baseColor="#171f26" highlightColor="#ffffff">
+                    <Body>{children}</Body>
+                </SkeletonTheme>
             </UserContext.Provider>
         </AptosWalletAdapterProvider>
     );

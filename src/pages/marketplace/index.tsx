@@ -13,7 +13,7 @@ import CollectionSkeleton from 'components/collection-skeleton';
 
 const LIMIT = 12;
 
-export default function Marketplace() {
+function ListTokens() {
     const [tab, setTab] = useState(1);
     const [page, setPage] = useState(1);
 
@@ -29,20 +29,16 @@ export default function Marketplace() {
         },
     });
 
-    const handleOnChangePagination = (page: number) => {
-        setPage(page);
-    };
-
     const handleChangeTabKey = async (id: string) => {
         setTab(+id);
     };
 
     return (
-        <Layout>
+        <>
             <div className="browse-marketplace">
                 <div className="browse-marketplace-title">Browse Marketplace</div>
                 <div className="browse-market-place-content">
-                    Browse ViRME NFTs on the NFT Marketplace.
+                    Browse ViMRE NFTs on the NFT Marketplace.
                 </div>
                 <div className="browse-marketplace-search-bar-group" hidden>
                     <div className="browse-marketplace-search-bar w-full">
@@ -105,7 +101,7 @@ export default function Marketplace() {
                                 current={page}
                                 pageSize={LIMIT}
                                 total={data?.total ?? 0}
-                                onChange={handleOnChangePagination}
+                                onChange={setPage}
                             />
                         </>
                     )}
@@ -125,7 +121,7 @@ export default function Marketplace() {
                                 <CollectionSkeleton />
                             </div>
                             <Pagination
-                                onChange={handleOnChangePagination}
+                                onChange={setPage}
                                 current={page}
                                 total={data?.total ?? 0}
                             />
@@ -133,6 +129,14 @@ export default function Marketplace() {
                     )}
                 </Tabs.TabPane>
             </Tabs>
+        </>
+    );
+}
+
+export default function Marketplace() {
+    return (
+        <Layout>
+            <ListTokens />
         </Layout>
     );
 }

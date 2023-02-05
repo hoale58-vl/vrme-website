@@ -1,75 +1,48 @@
-import { HeadFC, PageProps } from 'gatsby';
+import { HeadFC } from 'gatsby';
 import React, { useState } from 'react';
 import { Tabs, Pagination, Tooltip } from 'antd';
-import { IToken } from 'types/token';
-import { FewchaWalletName, useWallet } from '@manahippo/aptos-wallet-adapter';
-import axios from 'axios';
-// import CardNFTOwned from 'components/card-nft-owned';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Layout from 'components/layout';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
+import useSWR from 'swr';
+import { graphqlFetcher } from 'services/fetcher';
+import { toast } from 'react-toastify';
+import { truncateLongHexString } from 'services/utilities';
+import configs from 'config/config';
+import { TokenData } from 'components/profile/types';
+import CardToken from 'components/profile/card-token';
 
-const ListWallet: React.FC = () => {
-    const { connect } = useWallet();
+const LIMIT = 12;
 
-    return <button onClick={async () => await connect(FewchaWalletName)}>Connect</button>;
-};
+const Profile = () => {
+    const { account } = useWallet();
+    const [page, setPage] = useState(1);
 
-const UserInfoPage: React.FC<PageProps> = () => {
-    const [listToken, setListToken] = useState<any>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [copied, setCopied] = useState<boolean>(false);
-
-    let walletAddress: string;
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('walletAddress') !== 'undefined') {
-            walletAddress = localStorage.getItem('walletAddress') as string;
+    const query = `query OwnedTokens {
+        current_token_ownerships(
+            where: {
+                owner_address: {_eq: "${account?.address}"},
+                creator_address: {_eq: "${configs.smc.creator_addr}"},
+                collection_name: {_eq: "${configs.smc.collection_name}"}
+            }
+            limit: ${LIMIT}
+            offset: ${(page - 1) * LIMIT}
+        ) {
+            name
+            current_token_data {
+                metadata_uri
+            }
         }
-    }
-    React.useEffect(() => {
-        const listTokenQuery = `query MyQuery {
-                                    current_token_ownerships(
-                                    where: {amount: {_eq: 1}, owner_address: {_eq: 
-                                    "${walletAddress}"}}
-                                    limit: 10
-                                    offset: 0
-                                    ) {
-                                    collection_name
-                                    creator_address
-                                    name
-                                    current_token_data {
-                                        metadata_uri
-                                    }
-                                    }
-                                }`;
+    }`;
 
-        const listToken = async () => {
-            try {
-                const res = await axios.post(
-                    'https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql',
-                    {
-                        query: listTokenQuery,
-                    }
-                );
-                setIsLoading(false);
-                setListToken(res.data.data.current_token_ownerships);
-            } catch (error) {}
-        };
-        listToken();
-    }, []);
-
-    const cardNFTList: IToken[] = listToken.map((item: any) => ({
-        id: null,
-        name: item?.name,
-        image: item?.current_token_data.metadata_uri,
-        avatar: item?.current_token_data.metadata_uri,
-        author: null,
-        price: item?.price,
-        status: item?.status,
-    }));
+    const { data, isLoading } = useSWR(query, graphqlFetcher, {
+        onError: (error) => {
+            toast.error(error);
+        },
+    });
 
     return (
-        <Layout>
-            <ListWallet />
+        <>
             <div className="user-info-background-group">
                 <div className="user-info-background-image"></div>
                 <div className="user-info-avatar">
@@ -94,15 +67,24 @@ const UserInfoPage: React.FC<PageProps> = () => {
                                 <Tooltip
                                     placement="top"
                                     color={'#a259ff'}
-                                    title={!copied ? 'Copy to clipboard' : 'Copied'}
+                                    title={'Copy to clipboard'}
                                 >
                                     <div
                                         className="token-btn btn btn-medium btn-dark"
-                                        onClick={() => setCopied(true)}
-                                        onMouseOver={() => setCopied(false)}
+                                        onClick={() =>
+                                            navigator.clipboard
+                                                .writeText(account?.address ?? '')
+                                                .then(() => {
+                                                    toast.success(
+                                                        'Copied owner address to clipboard'
+                                                    );
+                                                })
+                                        }
                                     >
                                         <img className="w-5" src="/images/icon/copy.png" alt="" />
-                                        <div className="token-btn-content">0xc0E3...B79C</div>
+                                        <div className="token-btn-content">
+                                            {account ? truncateLongHexString(account.address) : ''}
+                                        </div>
                                     </div>
                                 </Tooltip>
                             </CopyToClipboard>
@@ -194,22 +176,18 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     key="2"
                 >
                     <div className="tabpane-content">
-                        {cardNFTList.length === 0 ? (
-                            <>
-                                <div style={{ textAlign: 'center' }}></div>
-                                <div style={{ textAlign: 'center' }}>No NFT to display</div>
-                                <div style={{ textAlign: 'center' }}></div>
-                            </>
-                        ) : (
-                            cardNFTList.map((token: IToken, index: number) => {
-                                return (
-                                    <></>
-                                    // <CardNFTOwned key={index} token={token} isLoading={isLoading} />
-                                );
-                            })
-                        )}
+                        {data &&
+                            data.data &&
+                            data.data.current_token_ownerships.map((token: TokenData) => {
+                                return <CardToken key={token.name} token={token} />;
+                            })}
                     </div>
-                    {/* <Pagination defaultCurrent={6} total={500} /> */}
+                    <Pagination
+                        current={page}
+                        pageSize={LIMIT}
+                        total={data?.total ?? 0}
+                        onChange={setPage}
+                    />
                 </Tabs.TabPane>
                 <Tabs.TabPane
                     className="tabpane"
@@ -221,13 +199,19 @@ const UserInfoPage: React.FC<PageProps> = () => {
                     }
                     key="3"
                 >
-                    <h1>tab3</h1>
+                    <h1>Activities</h1>
                 </Tabs.TabPane>
             </Tabs>
-        </Layout>
+        </>
     );
 };
 
-export default UserInfoPage;
+export default function ProfilePage() {
+    return (
+        <Layout>
+            <Profile />
+        </Layout>
+    );
+}
 
 export const Head: HeadFC = () => <title>User Info Page</title>;

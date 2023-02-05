@@ -9,3 +9,14 @@ export const fetcher = async (url: string) =>
             return res.data;
         }
     });
+
+export const graphqlFetcher = async (query: string) =>
+    await HttpUtility.post(configs.graphqlUrl, {
+        query: query,
+    }).then((res) => {
+        if (isHttpErrorResponseModel(res)) {
+            throw new Error(res.message);
+        } else {
+            return res.data;
+        }
+    });

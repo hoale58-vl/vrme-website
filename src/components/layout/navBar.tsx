@@ -10,10 +10,10 @@ const NavBar: React.FC = () => {
             <div className="trigger-navbar-2">
                 <button
                     className="trigger-nav_mint-btn"
-                    onClick={async () => await navigate('/mint-token')}
+                    onClick={async () => await navigate('/token')}
                 >
                     <img className="w-5 h-5" src="/images/icon/create-fff.png" alt="" />
-                    <div className="trigger-nav_mint">Mint ViRME</div>
+                    <div className="trigger-nav_mint">Mint ViMRE</div>
                 </button>
                 <div className="trigger-nav_token-btn">
                     <img className="w-5 h-5" src="/images/icon/copy.png" alt="" />
