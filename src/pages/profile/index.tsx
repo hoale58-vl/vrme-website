@@ -1,24 +1,24 @@
-import { HeadFC } from 'gatsby';
-import React, { useState } from 'react';
-import { Pagination, Tooltip } from 'antd';
-import Layout from 'components/layout';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import useSWR from 'swr';
-import { graphqlFetcher } from 'services/fetcher';
-import { toast } from 'react-toastify';
-import { truncateLongHexString } from 'services/utilities';
-import configs from 'config/config';
-import { TokenData } from 'components/profile/types';
-import CardToken from 'components/profile/card-token';
-import CardTokenSkeleton from 'components/marketplace/card-token-skeleton';
+import { HeadFC } from 'gatsby'
+import React, { useState } from 'react'
+import { Pagination, Tooltip } from 'antd'
+import Layout from 'components/layout'
+import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import useSWR from 'swr'
+import { graphqlFetcher } from 'services/fetcher'
+import { toast } from 'react-toastify'
+import { truncateLongHexString } from 'services/utilities'
+import configs from 'config/config'
+import { TokenData } from 'components/profile/types'
+import CardToken from 'components/profile/card-token'
+import CardTokenSkeleton from 'components/marketplace/card-token-skeleton'
 
-const LIMIT = 12;
+const LIMIT = 12
 
 const Profile = () => {
-    const { account } = useWallet();
-    const [page, setPage] = useState(1);
+  const { account } = useWallet()
+  const [page, setPage] = useState(1)
 
-    const query = `query OwnedTokens {
+  const query = `query OwnedTokens {
         current_token_ownerships(
             where: {
                 owner_address: {_eq: "${account?.address}"},
@@ -37,60 +37,60 @@ const Profile = () => {
             }
             last_transaction_timestamp
         }
-    }`;
+    }`
 
-    const { data, isLoading, mutate } = useSWR(query, graphqlFetcher, {
-        onError: (error) => {
-            toast.error(error);
-        },
-    });
+  const { data, isLoading, mutate } = useSWR(query, graphqlFetcher, {
+    onError: (error) => {
+      toast.error(error)
+    }
+  })
 
-    const ListTokens = () => {
-        if (isLoading) {
-            return (
+  const ListTokens = () => {
+    if (isLoading) {
+      return (
                 <div className="tabpane-content">
                     {Array.from(Array(12).keys()).map((_, index) => (
                         <CardTokenSkeleton key={index} />
                     ))}
                 </div>
-            );
-        }
-        if (data) {
-            if (data.data.current_token_ownerships.length == 0) {
-                return (
+      )
+    }
+    if (data) {
+      if (data.data.current_token_ownerships.length === 0) {
+        return (
                     <div className="min-h-screen">
                         <div className="text-center">
                             <h4 className="text-white">No data</h4>
                             <button
                                 className="btn btn-dark btn-small m-auto"
-                                onClick={() => mutate()}
+                                onClick={async () => await mutate()}
                             >
                                 Reload
                             </button>
                         </div>
                     </div>
-                );
-            } else {
-                return (
+        )
+      } else {
+        return (
                     <div className="tabpane-content">
                         {data.data.current_token_ownerships.map((token: TokenData) => {
-                            return <CardToken key={token.name} token={token} />;
+                          return <CardToken key={token.name} token={token} />
                         })}
                     </div>
-                );
-            }
-        }
-        return (
+        )
+      }
+    }
+    return (
             <div className="min-h-screen">
                 <div className="text-center">
                     <h4 className="text-white">Loading failed! Please try again</h4>
-                    <button onClick={() => mutate()}>Reload</button>
+                    <button onClick={async () => await mutate()}>Reload</button>
                 </div>
             </div>
-        );
-    };
+    )
+  }
 
-    return (
+  return (
         <>
             <div className="user-info-background-group">
                 <div className="user-info-background-image"></div>
@@ -115,12 +115,12 @@ const Profile = () => {
                             <Tooltip placement="top" color={'#a259ff'} title={'Copy to clipboard'}>
                                 <div
                                     className="token-btn btn btn-medium btn-dark"
-                                    onClick={() =>
-                                        navigator.clipboard
-                                            .writeText(account?.address ?? '')
-                                            .then(() => {
-                                                toast.success('Copied owner address to clipboard');
-                                            })
+                                    onClick={async () =>
+                                      await navigator.clipboard
+                                        .writeText(account?.address ?? '')
+                                        .then(() => {
+                                          toast.success('Copied owner address to clipboard')
+                                        })
                                     }
                                 >
                                     <img className="w-5" src="/images/icon/copy.png" alt="" />
@@ -197,15 +197,15 @@ const Profile = () => {
                 />
             )}
         </>
-    );
-};
+  )
+}
 
-export default function ProfilePage() {
-    return (
+export default function ProfilePage () {
+  return (
         <Layout>
             <Profile />
         </Layout>
-    );
+  )
 }
 
-export const Head: HeadFC = () => <title>User Info Page</title>;
+export const Head: HeadFC = () => <title>User Info Page</title>

@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import React, { createContext, useMemo, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { LogginUser } from 'services/user/types';
 import Body from './body';

@@ -32,10 +32,7 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
             type: 'entry_function_payload',
             type_arguments: [configs.smc.marketplace_coin],
         };
-        const result = await signAndSubmitTransaction(payload);
-        if (result) {
-        } else {
-        }
+        await signAndSubmitTransaction(payload);
     };
 
     return (

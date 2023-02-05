@@ -1,31 +1,31 @@
-import React from 'react';
-import './spinner-table.scss';
-import { WheelColor } from './types';
-import { css } from '@emotion/css';
+import React from 'react'
+import './spinner-table.scss'
+import { WheelColor } from './types'
+import { css } from '@emotion/css'
 
-export type SpinnerTableProps = {
-    numberOfSlices: number;
-};
+export interface SpinnerTableProps {
+  numberOfSlices: number
+}
 
-export function SpinnerTable({ numberOfSlices }: SpinnerTableProps) {
-    const diameter = 350;
-    const radius = diameter / 2;
-    const circumfrance = 6.283185307 * radius;
-    const sliceHeight = circumfrance / numberOfSlices;
-    const sliceOffeset = sliceHeight / 2;
-    const sliceColor = WheelColor;
-    const rotation = 360 / numberOfSlices;
+export function SpinnerTable ({ numberOfSlices }: SpinnerTableProps) {
+  const diameter = 350
+  const radius = diameter / 2
+  const circumfrance = 6.283185307 * radius
+  const sliceHeight = circumfrance / numberOfSlices
+  const sliceOffeset = sliceHeight / 2
+  const sliceColor = WheelColor
+  const rotation = 360 / numberOfSlices
 
-    const sliceEleStyle = Array.from(Array(numberOfSlices).keys()).map(
-        (index) => `
+  const sliceEleStyle = Array.from(Array(numberOfSlices).keys()).map(
+    (index) => `
     &:nth-child(${index}) {
         transform: rotate(${index * rotation}deg);
     }
     `
-    ).join(`
-    `);
+  ).join(`
+    `)
 
-    return (
+  return (
         <div className="spinner-table" style={{ height: diameter - 2, width: diameter - 2 }}>
             <div className="dial">
                 {Array.from(Array(numberOfSlices).keys()).map((index) => (
@@ -68,5 +68,5 @@ export function SpinnerTable({ numberOfSlices }: SpinnerTableProps) {
                 ))}
             </div>
         </div>
-    );
+  )
 }

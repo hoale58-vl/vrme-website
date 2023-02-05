@@ -72,9 +72,7 @@ const CreateLuckyWheel = () => {
         });
     };
 
-    const [segments, setSegments] = React.useState<string[]>(['No prize']);
-
-    const onFinished = (winner: any) => {};
+    const [_, setSegments] = React.useState<string[]>(['No prize']);
 
     React.useEffect(() => {
         setSegments(
@@ -97,18 +95,6 @@ const CreateLuckyWheel = () => {
                 </div>
                 <div className="lucky-wheel-preview">Preview</div>
                 <div className="wheel-component-group">
-                    {/* <WheelComponent
-                            segments={segments}
-                            segColors={segColors}
-                            winningSegment=""
-                            onFinished={(winner: any) => onFinished(winner)}
-                            primaryColor="white"
-                            primaryColoraround="white"
-                            contrastColor="white"
-                            isOnlyOnce={false}
-                            size={190}
-                            // isActive={false}
-                        /> */}
                     <SpinnerTable numberOfSlices={24} />
                     <div className="wheel-component-cover"></div>
                 </div>

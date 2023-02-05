@@ -1,8 +1,8 @@
-import { Link } from 'gatsby';
-import React from 'react';
+import { Link } from 'gatsby'
+import React from 'react'
 
 const Footer = () => {
-    return (
+  return (
         <>
             <footer className="footer">
                 <div className="footer-contact">
@@ -82,7 +82,7 @@ const Footer = () => {
                 <div className="footer-copyright">Ⓒ ViMRE - Copyright 2022</div>
             </footer>
         </>
-    );
-};
+  )
+}
 
-export default Footer;
+export default Footer

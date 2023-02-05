@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { HeadFC, navigate, PageProps } from 'gatsby';
+import { HeadFC, navigate } from 'gatsby';
 import Layout, { UserContext } from 'components/layout';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { SIGNIN_MESSAGE } from 'services/user/types';
@@ -17,7 +17,10 @@ function UpdateProfile() {
     const Button = () => {
         if (!connected || !account) {
             return (
-                <button className="update-profile-btn" onClick={() => navigate('/connect')}>
+                <button
+                    className="update-profile-btn"
+                    onClick={async () => await navigate('/connect')}
+                >
                     Connect
                 </button>
             );

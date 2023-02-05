@@ -1,5 +1,4 @@
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import { NftStatus } from 'enum/nft-status';
 import configs from 'config/config';
 import { TokenData } from './types';
 import React, { useState } from 'react';
@@ -25,10 +24,7 @@ export default function CardToken({ token }: { token: TokenData }) {
             type: 'entry_function_payload',
             type_arguments: [configs.smc.marketplace_coin],
         };
-        const result = await signAndSubmitTransaction(payload);
-        if (result) {
-        } else {
-        }
+        await signAndSubmitTransaction(payload);
     };
 
     return (
@@ -57,7 +53,7 @@ export default function CardToken({ token }: { token: TokenData }) {
                                     alt=""
                                 />
                             </div>
-                            <Link to={`/profile`}>
+                            <Link to={'/profile'}>
                                 <Tooltip placement="bottom" color={'#a259ff'}>
                                     <div className="card-nft-author-name">Author</div>
                                 </Tooltip>

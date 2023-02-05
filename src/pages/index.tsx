@@ -1,9 +1,9 @@
-import React from 'react';
-import { HeadFC, Link, PageProps } from 'gatsby';
-import Layout from 'components/layout';
+import React from 'react'
+import { HeadFC, Link, PageProps } from 'gatsby'
+import Layout from 'components/layout'
 
 const IndexPage: React.FC<PageProps> = () => {
-    return (
+  return (
         <Layout>
             <main className="landing-main">
                 <div className="landing-main-group">
@@ -32,25 +32,25 @@ const IndexPage: React.FC<PageProps> = () => {
                     </div>
                     <div className="how-it-work-grid">
                         {[
-                            {
-                                image: 'images/cards/setup.png',
-                                title: 'Setup Your wallet',
-                                content:
-                                    'Set up your wallet of choice. Connect it to the ViMRE by clicking the wallet icon in the top right corner.',
-                            },
-                            {
-                                image: 'images/cards/create.png',
-                                title: 'Create NFT',
-                                content:
-                                    'Upload your estate. Add a description, social links and extra information.',
-                            },
-                            {
-                                image: 'images/cards/start.png',
-                                title: 'Start Earning',
-                                content: 'Start earning by selling your NFTs or trading others.',
-                            },
+                          {
+                            image: 'images/cards/setup.png',
+                            title: 'Setup Your wallet',
+                            content:
+                                    'Set up your wallet of choice. Connect it to the ViMRE by clicking the wallet icon in the top right corner.'
+                          },
+                          {
+                            image: 'images/cards/create.png',
+                            title: 'Create NFT',
+                            content:
+                                    'Upload your estate. Add a description, social links and extra information.'
+                          },
+                          {
+                            image: 'images/cards/start.png',
+                            title: 'Start Earning',
+                            content: 'Start earning by selling your NFTs or trading others.'
+                          }
                         ].map((item, index: number) => {
-                            return (
+                          return (
                                 <div key={index} className={'card-get-started'}>
                                     <img
                                         className="card-get-started-image"
@@ -64,7 +64,7 @@ const IndexPage: React.FC<PageProps> = () => {
                                         </div>
                                     </div>
                                 </div>
-                            );
+                          )
                         })}
                     </div>
                 </div>
@@ -88,9 +88,9 @@ const IndexPage: React.FC<PageProps> = () => {
                 </div>
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = () => <title>Home Page</title>
