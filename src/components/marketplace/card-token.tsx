@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { IToken } from 'types/token';
 import { Tooltip, Modal } from 'antd';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 import configs from 'config/config';
 import { ethers } from 'ethers';
+import { truncateLongHexString } from 'services/utilities';
 
 interface CardProps {
     tokenInfo: IToken;
@@ -16,7 +16,6 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
     const { id, price, status, token, seller } = tokenInfo;
     const { name, uri, verified, creator } = token;
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const copied: boolean = false;
 
     const avatar = Math.ceil(Math.random() * 20);
 
@@ -41,7 +40,7 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
 
     return (
         <>
-            <Link to={'/nft-detail'} state={{ id, price, status, token, seller }}>
+            <Link to={`/token/${name}`} state={{ id, price, status, token, seller }}>
                 <div className="card-nft">
                     <div className="card-nft-img">
                         <img style={{ width: '100%' }} src={uri} alt="image" />
@@ -75,23 +74,16 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                                     alt=""
                                 />
                             </div>
-                            <CopyToClipboard text={creator}>
-                                <Tooltip
-                                    placement="top"
-                                    color={'#a259ff'}
-                                    title={!copied ? 'Copy to clipboard' : 'Copied'}
-                                >
-                                    <div
-                                        className="card-nft-author-name"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            toast('Copied');
-                                        }}
-                                    >
-                                        {creator?.slice(0, 6) + '..' + creator?.slice(-4)}
-                                    </div>
-                                </Tooltip>
-                            </CopyToClipboard>
+                            <div
+                                className="card-nft-author-name"
+                                onClick={(e) => {
+                                    navigator.clipboard.writeText(creator).then(() => {
+                                        toast.success('Copied creator address to clipboard');
+                                    });
+                                }}
+                            >
+                                {truncateLongHexString(creator)}
+                            </div>
                         </div>
 
                         <div className="card-nft-price-group">

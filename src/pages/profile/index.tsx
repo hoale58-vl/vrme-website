@@ -1,7 +1,6 @@
 import { HeadFC } from 'gatsby';
 import React, { useState } from 'react';
 import { Pagination, Tooltip } from 'antd';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Layout from 'components/layout';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import useSWR from 'swr';
@@ -29,10 +28,14 @@ const Profile = () => {
             limit: ${LIMIT}
             offset: ${(page - 1) * LIMIT}
         ) {
+            token_data_id_hash
             name
+            owner_address
             current_token_data {
                 metadata_uri
+                description
             }
+            last_transaction_timestamp
         }
     }`;
 
@@ -53,14 +56,14 @@ const Profile = () => {
             );
         }
         if (data) {
-            if (data.total == 0) {
+            if (data.data.current_token_ownerships.length == 0) {
                 return (
                     <div className="min-h-screen">
                         <div className="text-center">
                             <h4 className="text-white">No data</h4>
                             <button
                                 className="btn btn-dark btn-small m-auto"
-                                onClick={() => mutate(query)}
+                                onClick={() => mutate()}
                             >
                                 Reload
                             </button>
@@ -81,7 +84,7 @@ const Profile = () => {
             <div className="min-h-screen">
                 <div className="text-center">
                     <h4 className="text-white">Loading failed! Please try again</h4>
-                    <button onClick={() => mutate(query)}>Reload</button>
+                    <button onClick={() => mutate()}>Reload</button>
                 </div>
             </div>
         );
@@ -109,31 +112,23 @@ const Profile = () => {
                     </div>
                     <div className="user-info-desc-info">
                         <div className="user-info-btn-group">
-                            <CopyToClipboard text={'0xc0E3...B79C'}>
-                                <Tooltip
-                                    placement="top"
-                                    color={'#a259ff'}
-                                    title={'Copy to clipboard'}
+                            <Tooltip placement="top" color={'#a259ff'} title={'Copy to clipboard'}>
+                                <div
+                                    className="token-btn btn btn-medium btn-dark"
+                                    onClick={() =>
+                                        navigator.clipboard
+                                            .writeText(account?.address ?? '')
+                                            .then(() => {
+                                                toast.success('Copied owner address to clipboard');
+                                            })
+                                    }
                                 >
-                                    <div
-                                        className="token-btn btn btn-medium btn-dark"
-                                        onClick={() =>
-                                            navigator.clipboard
-                                                .writeText(account?.address ?? '')
-                                                .then(() => {
-                                                    toast.success(
-                                                        'Copied owner address to clipboard'
-                                                    );
-                                                })
-                                        }
-                                    >
-                                        <img className="w-5" src="/images/icon/copy.png" alt="" />
-                                        <div className="token-btn-content">
-                                            {account ? truncateLongHexString(account.address) : ''}
-                                        </div>
+                                    <img className="w-5" src="/images/icon/copy.png" alt="" />
+                                    <div className="token-btn-content">
+                                        {account ? truncateLongHexString(account.address) : ''}
                                     </div>
-                                </Tooltip>
-                            </CopyToClipboard>
+                                </div>
+                            </Tooltip>
                             <div className="follow-btn btn btn-medium btn-light" hidden>
                                 <img src="/images/icon/plus.png" alt="" />
                                 <div className="token-btn-content">Follow</div>

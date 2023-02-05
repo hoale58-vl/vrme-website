@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeadFC, PageProps } from 'gatsby';
+import { HeadFC } from 'gatsby';
 import Layout from 'components/layout';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { truncateLongHexString } from 'services/utilities';
