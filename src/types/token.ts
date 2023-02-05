@@ -1,6 +1,6 @@
 import { NftStatus } from 'enum/nft-status';
 
-export interface IToken {
+export type IToken = {
     id: number;
     buyer: string;
     seller: string;
@@ -9,9 +9,9 @@ export interface IToken {
     createAt: Date;
     updateAt: Date;
     token: ITokenDetail;
-}
+};
 
-export interface ITokenDetail {
+export type ITokenDetail = {
     id: number;
     propertyVersion: number;
     creator: string;
@@ -23,4 +23,4 @@ export interface ITokenDetail {
     verified: boolean;
     maximum: number;
     supply: number;
-}
+};
