@@ -7,6 +7,7 @@ import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 import configs from 'config/config';
+import { ethers } from 'ethers';
 
 interface CardProps {
     tokenInfo: IToken;
@@ -100,7 +101,11 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
                             <div className="card-nft-price-group">
                                 <div className="price-label">Price</div>
                                 <div className="card-nft-price gap-1">
-                                    {Number(Number(price) / 100000000).toFixed(2)} USDT
+                                    {ethers.formatUnits(
+                                        price,
+                                        configs.smc.marketplace_coin_decimals
+                                    )}{' '}
+                                    {configs.smc.marketplace_coin_symbol}
                                 </div>
                             </div>
                             <button
@@ -152,8 +157,9 @@ const CardNFT: React.FC<CardProps> = ({ tokenInfo, attribute }) => {
                                     </div>,
                                 ]}
                             >
-                                You will pay ${Number(Number(price) / 100000000).toFixed(2)} for
-                                this token
+                                You will pay{' '}
+                                {ethers.formatUnits(price, configs.smc.marketplace_coin_decimals)}{' '}
+                                for this token
                             </Modal>
                         </div>
                     </div>
