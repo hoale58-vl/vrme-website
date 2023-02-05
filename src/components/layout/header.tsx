@@ -1,9 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, navigate } from 'gatsby';
-import NavBar from 'components/navBar';
+import NavBar from 'components/layout/navBar';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
-const Header: React.FunctionComponent<{}> = () => {
-    const [modal2Open, setModal2Open] = useState(false);
+const Header = () => {
+    const { connected } = useWallet();
+
+    const HeaderButton = () => {
+        if (!connected) {
+            return (
+                <Link to="/connect-wallet">
+                    <div className="btn btn-dark btn-small px-[30px] mr-2">
+                        <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
+                        <div className="">Connect a wallet</div>
+                    </div>
+                </Link>
+            );
+        }
+        return (
+            <button
+                className="btn btn-dark btn-small px-[30px] ml-2"
+                onClick={async () => await navigate('/mint-token')}
+            >
+                <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
+                <div className="">Mint ViRME</div>
+            </button>
+        );
+    };
+
     return (
         <header className="header-main">
             <nav className="header-main-nav">
@@ -22,19 +46,10 @@ const Header: React.FunctionComponent<{}> = () => {
                     <Link to="/marketplace">
                         <div className="market-place">Marketplace</div>
                     </Link>
-                    <Link to="/connect-wallet">
-                        <div className="btn btn-dark btn-small px-[30px] mr-2">
-                            <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
-                            <div className="">Connect a wallet</div>
-                        </div>
+                    <Link to="/profile">
+                        <div className="market-place">Profile</div>
                     </Link>
-                    <button
-                        className="btn btn-dark btn-small px-[30px] ml-2"
-                        onClick={async () => await navigate('/mint-token')}
-                    >
-                        <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
-                        <div className="">Mint ViRME</div>
-                    </button>
+                    <HeaderButton />
                 </div>
                 <input
                     type="checkbox"

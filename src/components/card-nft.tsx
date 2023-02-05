@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { IToken } from 'types/token';
 import CardNFTSkeleton from './card-nft-skeleton';
 import { Tooltip, Modal } from 'antd';
-import { useWallet } from '@manahippo/aptos-wallet-adapter';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 import configs from 'config/config';

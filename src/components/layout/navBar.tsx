@@ -1,9 +1,10 @@
 import { Link, navigate } from 'gatsby';
-import React, { useState } from 'react';
-import { Modal } from 'antd';
+import React from 'react';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 const NavBar: React.FC = () => {
-    const [modal2Open, setModal2Open] = useState(false);
+    const { account } = useWallet();
+
     return (
         <>
             <div className="trigger-navbar-2">
@@ -14,41 +15,9 @@ const NavBar: React.FC = () => {
                     <img className="w-5 h-5" src="/images/icon/create-fff.png" alt="" />
                     <div className="trigger-nav_mint">Mint ViRME</div>
                 </button>
-                <Modal
-                    title="Listing your token"
-                    centered
-                    open={modal2Open}
-                    onOk={() => setModal2Open(false)}
-                    onCancel={() => setModal2Open(false)}
-                    footer={[
-                        <div key={1} className="modal-footer">
-                            <button className="btn btn-dark btn-small">Submit</button>
-                            <button className="btn btn-light btn-small">Cancel</button>
-                        </div>,
-                    ]}
-                >
-                    <div className="modal-token-name">RME SaiGon 0001</div>
-                    <img
-                        className="modal-token-image"
-                        src="/images/card-nft/image-card-nft-2.png"
-                        alt=""
-                    />
-                    <div className="modal-token-price-group">
-                        <img
-                            className="w-5 h-5 modal-wallet-icon"
-                            src="/images/icon/wallet-dark.png"
-                            alt=""
-                        />
-                        <input
-                            className="modal-token-price-input"
-                            type="text"
-                            placeholder="Price"
-                        />
-                    </div>
-                </Modal>
                 <div className="trigger-nav_token-btn">
                     <img className="w-5 h-5" src="/images/icon/copy.png" alt="" />
-                    <div className="trigger-nav_token">0xc0E3...B79C</div>
+                    <div className="trigger-nav_token">{account?.address}</div>
                 </div>
                 <div className="trigger-nav_hline"></div>
                 <div className="trigger-nav-group">
