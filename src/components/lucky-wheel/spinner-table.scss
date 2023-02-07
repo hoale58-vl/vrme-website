@@ -4,7 +4,7 @@ $radius: ($diameter / 2);
 $circumfrance: (6.283185307 * $radius);
 $sliceHeight: ($circumfrance / $numberOfSlices);
 $sliceOffeset: ($sliceHeight / 2);
-$sliceColor: #095b8d;
+$sliceColor: #1cd1bf;
 $rotation: 360deg / $numberOfSlices;
 
 .spinner-table {
@@ -13,6 +13,7 @@ $rotation: 360deg / $numberOfSlices;
     position: relative;
     border-radius: 100%;
     overflow: hidden;
+    margin: auto;
 
     .dial {
         height: 100%;
@@ -101,53 +102,7 @@ $rotation: 360deg / $numberOfSlices;
                 text-align: right;
                 padding-left: 20px;
             }
-
-            // &:nth-child(1) {
-            //     transform: rotate(0deg);
-            // }
-            // &:nth-child(2) {
-            //     transform: rotate(30deg);
-            // }
-            // &:nth-child(3) {
-            //     transform: rotate(60deg);
-            // }
-            // &:nth-child(4) {
-            //     transform: rotate(90deg);
-            // }
-            // &:nth-child(5) {
-            //     transform: rotate(120deg);
-            // }
-            // &:nth-child(6) {
-            //     transform: rotate(150deg);
-            // }
-            // &:nth-child(7) {
-            //     transform: rotate(180deg);
-            // }
-            // &:nth-child(8) {
-            //     transform: rotate(210deg);
-            // }
-            // &:nth-child(9) {
-            //     transform: rotate(240deg);
-            // }
-            // &:nth-child(10) {
-            //     transform: rotate(270deg);
-            // }
-            // &:nth-child(11) {
-            //     transform: rotate(300deg);
-            // }
-            // &:nth-child(12) {
-            //     transform: rotate(330deg);
-            // }
         }
-    }
-}
-
-@keyframes rotating {
-    from {
-        transform: rotate(0);
-    }
-    to {
-        transform: rotate(360deg);
     }
 }
 
