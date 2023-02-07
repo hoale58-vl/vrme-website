@@ -59,7 +59,7 @@ export function SpinnerTable ({ numberOfSlices }: SpinnerTableProps) {
                                 line-height: ${sliceHeight}px;
                             }
 
-                            ${d}
+                            ${sliceEleStyle}
                         `}`}
                     >
                         <div className="label">{index}</div>
