@@ -18,12 +18,11 @@ export function SpinnerTable ({ numberOfSlices }: SpinnerTableProps) {
 
   const sliceEleStyle = Array.from(Array(numberOfSlices).keys()).map(
     (index) => `
-    &:nth-child(${index}) {
-        transform: rotate(${index * rotation}deg);
-    }
-    `
-  ).join(`
-    `)
+            &:nth-child(${index}) {
+                transform: rotate(${index * rotation}deg);
+            }
+            `
+  )
 
   return (
         <div className="spinner-table" style={{ height: diameter - 2, width: diameter - 2 }}>
@@ -60,7 +59,7 @@ export function SpinnerTable ({ numberOfSlices }: SpinnerTableProps) {
                                 line-height: ${sliceHeight}px;
                             }
 
-                            ${sliceEleStyle}
+                            ${d}
                         `}`}
                     >
                         <div className="label">{index}</div>

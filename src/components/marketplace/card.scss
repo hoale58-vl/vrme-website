@@ -1,0 +1,208 @@
+.card-nft-author-group {
+    @apply flex gap-[12px];
+}
+
+.card-nft-price {
+    font-family: 'Space Mono';
+}
+
+.price-label {
+    color: #858584;
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.card-nft-price {
+    font-family: 'Space Mono';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.card-nft-price-group {
+    margin-top: 27px;
+}
+
+.card-nft-info {
+    @apply relative flex-1 flex flex-col;
+}
+
+.card-nft-btn {
+    padding: 12px 21.5px;
+    @apply absolute bottom-0 right-0;
+}
+
+.card-nft {
+    @apply overflow-hidden flex flex-col;
+    height: 420px;
+}
+
+.collection-image {
+    @apply rounded-[20px] block mx-auto h-full;
+}
+
+.market-place {
+    font-family: 'Work Sans';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    padding: 19px 30px;
+}
+
+.market-place:hover {
+    color: #858584;
+}
+
+.collection-small-image-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.collection-small-image {
+    flex: 1;
+    aspect-ratio: 1/1;
+}
+
+.collection-small-image-count {
+    background-color: #a259ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Space Mono';
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.collection-main-image {
+    aspect-ratio: 1/1;
+}
+
+.ant-tabs-tab:active {
+    color: pink;
+}
+
+.collection-name {
+    font-family: 'Work Sans';
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 31px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.collection-author-group {
+    @apply flex items-center gap-3 mt-[10px];
+}
+
+.collection-author-name {
+    font-family: 'Work Sans';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+.ant-pagination {
+    background-color: #3b3b3b;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ant-pagination-item-link {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link {
+    justify-content: end;
+}
+
+.ant-pagination-next .ant-pagination-item-link {
+    justify-content: center;
+}
+
+.ant-pagination-item {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.ant-pagination-item-ellipsis {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.ant-select-selector {
+    background: none !important;
+    color: #fff !important;
+    border: none !important;
+}
+.anticon-double-right {
+    color: #fff !important;
+    position: relative;
+    top: -3px;
+    right: -8px;
+}
+.anticon-double-left {
+    color: #fff !important;
+}
+.card-nft-author-avatar {
+    border-radius: 20px;
+    overflow: hidden;
+}
+.card-nft-author-name {
+    font-family: Space Mono;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    @apply truncate text-ellipsis overflow-hidden;
+    width: 200px;
+}
+.card-nft-author-name:hover {
+    cursor: pointer;
+}
+.card-nft-name-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @apply mb-[5px];
+}
+.browse-marketplace-search-bar {
+    position: relative;
+}
+.browse-marketplace-search-bar-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.browse-marketplace-filter {
+    padding: 10px 20px;
+    border: 2px solid #858584;
+    border-radius: 20px;
+    @apply hover:cursor-pointer;
+}
+.browse-marketplace-search-bar-input {
+    border-color: #858584;
+}

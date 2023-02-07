@@ -1,41 +1,45 @@
-import { Link, navigate } from 'gatsby';
-import React, { useState } from 'react';
-import { IToken } from 'types/token';
-import { Tooltip, Modal } from 'antd';
-import { useWallet } from '@aptos-labs/wallet-adapter-react';
-import { toast } from 'react-toastify';
-import configs from 'config/config';
-import { ethers } from 'ethers';
-import { truncateLongHexString } from 'services/utilities';
+import { Link, navigate } from 'gatsby'
+import React, { useState } from 'react'
+import { IToken } from 'types/token'
+import { Tooltip, Modal } from 'antd'
+import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import { toast } from 'react-toastify'
+import configs from 'config/config'
+import { ethers } from 'ethers'
+import { truncateLongHexString } from 'services/utilities'
 
 interface CardProps {
-    tokenInfo: IToken;
+  tokenInfo: IToken
 }
 
 const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
-    const { id, price, status, token, seller } = tokenInfo;
-    const { name, uri, verified, creator } = token;
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const { id, price, status, token, seller } = tokenInfo
+  const { name, uri, verified, creator } = token
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
 
-    const avatar = Math.ceil(Math.random() * 20);
+  const avatar = Math.ceil(Math.random() * 20)
 
-    const { signAndSubmitTransaction, connected } = useWallet();
+  const { signAndSubmitTransaction, connected } = useWallet()
 
-    const handleBuyBtn = async (id: number) => {
-        if (!connected) {
-            navigate('/connect');
-            toast('Please connect a wallet');
-        }
-        const payload = {
-            arguments: [configs.smc.marketplace, id],
-            function: `${configs.smc.marketplace}::marketplace::buy_token`,
-            type: 'entry_function_payload',
-            type_arguments: [configs.smc.marketplace_coin],
-        };
-        await signAndSubmitTransaction(payload);
-    };
+  const handleBuyBtn = async (id: number) => {
+    console.log(id)
 
-    return (
+    if (!connected) {
+      navigate('/connect')
+      toast('Please connect a wallet')
+    }
+    const payload = {
+      arguments: [configs.smc.marketplace, id],
+      function: `${configs.smc.marketplace}::marketplace::buy_token`,
+      type: 'entry_function_payload',
+      type_arguments: [configs.smc.marketplace_coin]
+    }
+    console.log(payload)
+
+    await signAndSubmitTransaction(payload)
+  }
+
+  return (
         <>
             <Link to={`/token/${name}`} state={{ id, price, status, token, seller }}>
                 <div className="card-nft">
@@ -52,13 +56,13 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                                 className="w-5 h-5"
                                 src={
                                     !verified
-                                        ? '/images/icon/unverified.png'
-                                        : '/images/icon/verified.png'
+                                      ? '/images/icon/unverified.png'
+                                      : '/images/icon/verified.png'
                                 }
                                 alt={
                                     !verified
-                                        ? 'This token has been unverified'
-                                        : 'This token has been verifed'
+                                      ? 'This token has been unverified'
+                                      : 'This token has been verifed'
                                 }
                             />
                         </div>
@@ -74,9 +78,9 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                             <div
                                 className="card-nft-author-name"
                                 onClick={(e) => {
-                                    navigator.clipboard.writeText(creator).then(() => {
-                                        toast.success('Copied creator address to clipboard');
-                                    });
+                                  navigator.clipboard.writeText(creator).then(() => {
+                                    toast.success('Copied creator address to clipboard')
+                                  })
                                 }}
                             >
                                 {truncateLongHexString(creator)}
@@ -93,8 +97,8 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                         <button
                             className="btn btn-dark card-nft-btn"
                             onClick={async (e) => {
-                                e.preventDefault();
-                                setModalOpen(true);
+                              e.preventDefault()
+                              setModalOpen(true)
                             }}
                         >
                             <img className="w-5 h-5" src="/images/icon/rocket-launch.png" alt="" />
@@ -105,20 +109,20 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                             centered
                             open={modalOpen}
                             onOk={(e) => {
-                                e.preventDefault();
-                                setModalOpen(false);
+                              e.preventDefault()
+                              setModalOpen(false)
                             }}
                             onCancel={(e) => {
-                                e.preventDefault();
-                                setModalOpen(false);
+                              e.preventDefault()
+                              setModalOpen(false)
                             }}
                             footer={[
                                 <div key={1} className="modal-footer">
                                     <button
                                         className="btn btn-dark btn-small btn-modal-buy"
                                         onClick={async (e) => {
-                                            e.preventDefault();
-                                            await handleBuyBtn(id);
+                                          e.preventDefault()
+                                          await handleBuyBtn(id)
                                         }}
                                     >
                                         Submit
@@ -126,13 +130,13 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                                     <button
                                         className="btn btn-light btn-small btn-modal-buy"
                                         onClick={(e) => {
-                                            e.preventDefault();
-                                            setModalOpen(false);
+                                          e.preventDefault()
+                                          setModalOpen(false)
                                         }}
                                     >
                                         Cancel
                                     </button>
-                                </div>,
+                                </div>
                             ]}
                         >
                             You will pay{' '}
@@ -143,7 +147,7 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                 </div>
             </Link>
         </>
-    );
-};
+  )
+}
 
-export default CardToken;
+export default CardToken

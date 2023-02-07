@@ -21,7 +21,7 @@ const Profile = () => {
   const query = `query OwnedTokens {
         current_token_ownerships(
             where: {
-                owner_address: {_eq: "${account?.address}"},
+                owner_address: {_eq: "${account ? account?.address : ''}"},
                 creator_address: {_eq: "${configs.smc.creator_addr}"},
                 collection_name: {_eq: "${configs.smc.collection_name}"}
             }

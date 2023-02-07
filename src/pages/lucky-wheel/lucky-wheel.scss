@@ -1,0 +1,20 @@
+.lucky-wheel-prize-color {
+    height: 54px;
+    background-color: #ca498c;
+    width: 54px;
+    border-radius: 20px;
+}
+
+.lucky-wheel-prize-winning-rate-ele {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    align-items: center;
+}
+.lucky-wheel-prize-winning-rate-ele + .lucky-wheel-prize-winning-rate-ele {
+    margin-top: 30px;
+}
+.prize-addsub-row {
+    height: 32px;
+    width: 32px;
+}
