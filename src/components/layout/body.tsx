@@ -1,15 +1,15 @@
-import React from 'react'
-import { ToastContainer } from 'react-toastify'
-import Footer from './footer'
-import Header from './header'
-import Favicon from 'react-favicon'
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import Footer from './footer';
+import Header from './header';
+import Favicon from 'react-favicon';
 
 interface AuxProps {
-  children?: React.ReactNode
+    children?: React.ReactNode;
 }
 
 const Body = ({ children }: AuxProps) => {
-  return (
+    return (
         <>
             <Favicon url="/images/logo/vector.png" />
             <ToastContainer />
@@ -19,7 +19,7 @@ const Body = ({ children }: AuxProps) => {
                 <Footer />
             </div>
         </>
-  )
-}
+    );
+};
 
-export default Body
+export default Body;

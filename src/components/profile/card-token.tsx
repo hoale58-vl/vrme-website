@@ -1,33 +1,33 @@
-import { useWallet } from '@aptos-labs/wallet-adapter-react'
-import configs from 'config/config'
-import { TokenData } from './types'
-import React, { useState } from 'react'
-import { Tooltip, Modal } from 'antd'
-import { Link } from 'gatsby'
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
+import configs from 'config/config';
+import { TokenData } from './types';
+import React, { useState } from 'react';
+import { Tooltip, Modal } from 'antd';
+import { Link } from 'gatsby';
 
-export default function CardToken ({ token }: { token: TokenData }) {
-  const { signAndSubmitTransaction } = useWallet()
-  const [openModal, setOpenModal] = useState(false)
+export default function CardToken({ token }: { token: TokenData }) {
+    const { signAndSubmitTransaction } = useWallet();
+    const [openModal, setOpenModal] = useState(false);
 
-  const listToken = async () => {
-    const payload = {
-      arguments: [
-        configs.smc.marketplace,
-        configs.smc.creator_addr,
-        configs.smc.collection_name,
-        token.name,
-        0, // property_version
-        1, // amount
-        10 // price
-      ],
-      function: `${configs.smc.marketplace}::marketplace::list_token`,
-      type: 'entry_function_payload',
-      type_arguments: [configs.smc.marketplace_coin]
-    }
-    await signAndSubmitTransaction(payload)
-  }
+    const listToken = async () => {
+        const payload = {
+            arguments: [
+                configs.smc.marketplace,
+                configs.smc.creator_addr,
+                configs.smc.collection_name,
+                token.name,
+                0, // property_version
+                1, // amount
+                10, // price
+            ],
+            function: `${configs.smc.marketplace}::marketplace::list_token`,
+            type: 'entry_function_payload',
+            type_arguments: [configs.smc.marketplace_coin],
+        };
+        await signAndSubmitTransaction(payload);
+    };
 
-  return (
+    return (
         <>
             <Link to={`/token/${token.token_data_id_hash}`}>
                 <div className="card-nft">
@@ -93,9 +93,9 @@ export default function CardToken ({ token }: { token: TokenData }) {
                         >
                             No
                         </button>
-                    </div>
+                    </div>,
                 ]}
             ></Modal>
         </>
-  )
+    );
 }

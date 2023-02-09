@@ -1,23 +1,23 @@
-import React from 'react'
-import { Link, navigate } from 'gatsby'
-import NavBar from 'components/layout/navBar'
-import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import React from 'react';
+import { Link, navigate } from 'gatsby';
+import NavBar from 'components/layout/navBar';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 const Header = () => {
-  const { connected, disconnect } = useWallet()
+    const { connected, disconnect } = useWallet();
 
-  const HeaderButton = () => {
-    if (!connected) {
-      return (
+    const HeaderButton = () => {
+        if (!connected) {
+            return (
                 <Link to="/connect">
                     <div className="btn btn-dark btn-small px-[30px] mr-2">
                         <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                         <div className="">Connect a wallet</div>
                     </div>
                 </Link>
-      )
-    }
-    return (
+            );
+        }
+        return (
             <button
                 className="btn btn-dark btn-small px-[30px] ml-2"
                 onClick={async () => await navigate('/token')}
@@ -25,10 +25,10 @@ const Header = () => {
                 <img className="w-5" src="/images/icon/rocket-launch.png" alt="" />
                 <div className="">Mint ViMRE</div>
             </button>
-    )
-  }
+        );
+    };
 
-  return (
+    return (
         <header className="header-main">
             <nav className="header-main-nav">
                 <Link to="/">
@@ -54,7 +54,7 @@ const Header = () => {
                             <div
                                 className="market-place"
                                 onClick={() => {
-                                  disconnect()
+                                    disconnect();
                                 }}
                             >
                                 Logout
@@ -76,7 +76,7 @@ const Header = () => {
                 <NavBar />
             </nav>
         </header>
-  )
-}
+    );
+};
 
-export default Header
+export default Header;

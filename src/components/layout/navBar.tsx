@@ -1,11 +1,11 @@
-import { Link, navigate } from 'gatsby'
-import React from 'react'
-import { useWallet } from '@aptos-labs/wallet-adapter-react'
+import { Link, navigate } from 'gatsby';
+import React from 'react';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 const NavBar: React.FC = () => {
-  const { account } = useWallet()
+    const { account } = useWallet();
 
-  return (
+    return (
         <>
             <div className="trigger-navbar-2">
                 <button
@@ -43,7 +43,7 @@ const NavBar: React.FC = () => {
                 <div className="trigger-nav_disconnect-btn">Disconnect</div>
             </div>
         </>
-  )
-}
+    );
+};
 
-export default NavBar
+export default NavBar;

@@ -1,12 +1,12 @@
 export interface TokenData {
-  token_data_id_hash: string
-  name: string
-  owner_address: string
-  current_token_data: {
-    metadata_uri: string
-    description: string
-  }
-  last_transaction_timestamp: string
+    token_data_id_hash: string;
+    name: string;
+    owner_address: string;
+    current_token_data: {
+        metadata_uri: string;
+        description: string;
+    };
+    last_transaction_timestamp: string;
 }
 
 // https://cloud.hasura.io/public/graphiql?endpoint=https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql

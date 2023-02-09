@@ -1,78 +1,87 @@
-import Layout from 'components/layout'
-import { SpinnerTable } from 'components/lucky-wheel/spinner-table'
-import { HeadFC } from 'gatsby'
-import React from 'react'
-import { ILuckyWheel } from 'types/lucky-wheel'
+import Layout from 'components/layout';
+import { SpinnerTable } from 'components/lucky-wheel/spinner-table';
+import { HeadFC } from 'gatsby';
+import React from 'react';
+import { ILuckyWheel } from 'types/lucky-wheel';
+import configs from 'config/config';
 
 const CreateLuckyWheel = () => {
-  const [prize, setPrize] = React.useState<ILuckyWheel[]>([
-    {
-      prize: '',
-      winningRate: 0
-    }
-  ])
-  const [noPrizeRate, setNoPrizeRate] = React.useState<number>(100)
-  const total = React.useRef<number>(100)
+    const [prize, setPrize] = React.useState<ILuckyWheel[]>([
+        {
+            prize: 'No prize',
+            winningRate: 0,
+        },
+    ]);
+    const [noPrizeRate, setNoPrizeRate] = React.useState<number>(100);
+    const total = React.useRef<number>(100);
 
-  const insert = (arr: ILuckyWheel[], index: number, newItem: ILuckyWheel) => [
-    // part of the array before the specified index
-    ...arr.slice(0, index),
-    // inserted item
-    newItem,
-    // part of the array after the specified index
-    ...arr.slice(index)
-  ]
+    const insert = (arr: ILuckyWheel[], index: number, newItem: ILuckyWheel) => [
+        // part of the array before the specified index
+        ...arr.slice(0, index),
+        // inserted item
+        newItem,
+        // part of the array after the specified index
+        ...arr.slice(index),
+    ];
 
-  const handleAdd = (index: number) => {
-    const temp: ILuckyWheel[] = insert(prize, index + 1, {
-      prize: '',
-      winningRate: 100 - Number(total.current)
-    })
-    total.current = 100
-    setPrize(temp)
-  }
+    const handleAdd = (index: number) => {
+        const temp: ILuckyWheel[] = insert(prize, index + 1, {
+            prize: '',
+            winningRate: 100 - Number(total.current),
+        });
+        total.current = 100;
+        setPrize(temp);
+    };
 
-  const handleRemove = (index: number) => {
-    const temp: ILuckyWheel[] = [...prize.slice(0, index), ...prize.slice(index + 1)]
-    setPrize(temp)
-  }
+    const handleRemove = (index: number) => {
+        const temp: ILuckyWheel[] = [...prize.slice(0, index), ...prize.slice(index + 1)];
+        setPrize(temp);
+    };
 
-  const handlePrizeInputChange = (e: any, index: number) => {
-    setPrize((prize) => {
-      const items: ILuckyWheel[] = prize.map((item, i) => {
-        if (i === index) {
-          return { ...item, prize: e.target.value }
+    const handlePrizeInputChange = (e: any, index: number) => {
+        setPrize((prize) => {
+            const items: ILuckyWheel[] = prize.map((item, i) => {
+                if (i === index) {
+                    return { ...item, prize: e.target.value };
+                }
+                return item;
+            });
+            return items;
+        });
+    };
+
+    const handleChangeNoPrizeRate = (e: any) => {
+        total.current = Number(total.current) - noPrizeRate + Number(e.target.value);
+        setNoPrizeRate(Number(e.target.value));
+    };
+
+    const handleWinningRateInputChange = (e: any, index: number) => {
+        if (Number(e.target.value) < 0) {
+            e.target.value = 0;
         }
-        return item
-      })
-      return items
-    })
-  }
+        setPrize((prize) => {
+            const winningRate = e.target.value ? parseInt(e.target.value) : 0;
+            const items: ILuckyWheel[] = prize.map((item, i) => {
+                if (i === index) {
+                    total.current =
+                        Number(total.current) - Number(item.winningRate) + Number(e.target.value);
+                    return { ...item, winningRate };
+                }
+                return item;
+            });
+            return items;
+        });
+    };
 
-  const handleChangeNoPrizeRate = (e: any) => {
-    total.current = Number(total.current) - noPrizeRate + Number(e.target.value)
-    setNoPrizeRate(Number(e.target.value))
-  }
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        console.log(prize);
 
-  const handleWinningRateInputChange = (e: any, index: number) => {
-    if (Number(e.target.value) < 0) {
-      e.target.value = 0
-    }
-    setPrize((prize) => {
-      const winningRate = e.target.value ? parseInt(e.target.value) : 0
-      const items: ILuckyWheel[] = prize.map((item, i) => {
-        if (i === index) {
-          total.current =
-                        Number(total.current) - Number(item.winningRate) + Number(e.target.value)
-          return { ...item, winningRate }
-        }
-        return item
-      })
-      return items
-    })
-  }
+        const endpoint = `${configs.api.offers.list}`;
+        console.log(endpoint);
+    };
 
-  return (
+    return (
         <div className="lucky-wheel-body">
             <div className="lucky-wheel-grid">
                 <h1 className="lucky-wheel-title">ViMRE Lucky Wheel</h1>
@@ -130,10 +139,10 @@ const CreateLuckyWheel = () => {
                             alt=""
                         />
                     </div>
-                    <div className="overflow-auto">
+                    <form className="overflow-auto" onSubmit={handleSubmit}>
                         {prize.length > 0 ? (
-                          prize.map((sub: ILuckyWheel, index: number) => {
-                            return (
+                            prize.map((sub: ILuckyWheel, index: number) => {
+                                return (
                                     <div className="lucky-wheel-prize-winning-rate-ele" key={index}>
                                         <input
                                             className="prize-type"
@@ -160,24 +169,25 @@ const CreateLuckyWheel = () => {
                                             alt=""
                                         />
                                     </div>
-                            )
-                          })
+                                );
+                            })
                         ) : (
                             <></>
                         )}
-                    </div>
+                        <input type="submit" value="Submit" className="lucky-wheel-submit-btn" />
+                    </form>
                 </div>
             </div>
         </div>
-  )
-}
+    );
+};
 
-export default function CreateLuckyWheelPage () {
-  return (
+export default function CreateLuckyWheelPage() {
+    return (
         <Layout>
             <CreateLuckyWheel />
         </Layout>
-  )
+    );
 }
 
-export const Head: HeadFC = () => <title>Create Lucky Wheel</title>
+export const Head: HeadFC = () => <title>Create Lucky Wheel</title>;

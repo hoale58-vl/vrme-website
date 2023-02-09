@@ -1,1 +1,1 @@
-export const WheelColor = '#CA498C'
+export const WheelColor = '#CA498C';
