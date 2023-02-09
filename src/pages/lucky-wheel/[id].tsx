@@ -1,11 +1,11 @@
-import React from 'react';
-import { HeadFC } from 'gatsby';
-import Layout from 'components/layout';
-import { TokenDetailProps } from 'components/token/types';
-import { SpinnerTable } from 'components/lucky-wheel/spinner-table';
+import React from 'react'
+import { HeadFC } from 'gatsby'
+import Layout from 'components/layout'
+import { TokenDetailProps } from 'components/token/types'
+import { SpinnerTable } from 'components/lucky-wheel/spinner-table'
 
 const LuckyWheel = () => {
-    return (
+  return (
         <div className="lucky-wheel-body">
             <div className="lucky-wheel-grid">
                 <h1 className="lucky-wheel-title">ViMRE Lucky Wheel</h1>
@@ -55,15 +55,15 @@ const LuckyWheel = () => {
                 </div>
             </div>
         </div>
-    );
-};
+  )
+}
 
-export default function LuckyWheelPage(props: TokenDetailProps) {
-    return (
+export default function LuckyWheelPage (props: TokenDetailProps) {
+  return (
         <Layout>
             <LuckyWheel />
         </Layout>
-    );
+  )
 }
 
-export const Head: HeadFC = () => <title>Lucky Wheel</title>;
+export const Head: HeadFC = () => <title>Lucky Wheel</title>

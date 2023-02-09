@@ -1,8 +1,8 @@
-import React from 'react';
-import Skeleton from 'react-loading-skeleton';
+import React from 'react'
+import Skeleton from 'react-loading-skeleton'
 
-export default function TokenDetailSkeleton() {
-    return (
+export default function TokenDetailSkeleton () {
+  return (
         <>
             <Skeleton className="nft-detail-background-image" />
             <div className="nft-detail-main">
@@ -47,5 +47,5 @@ export default function TokenDetailSkeleton() {
                 </div>
             </div>
         </>
-    );
+  )
 }

@@ -1,3 +1,3 @@
 export interface TokenDetailProps {
-    id: string;
+  id: string
 }

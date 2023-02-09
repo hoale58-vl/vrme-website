@@ -1,4 +1,4 @@
 export interface ILuckyWheel {
-    prize: string;
-    winningRate: number;
+  prize: string
+  winningRate: number
 }

@@ -1,18 +1,18 @@
-import React from 'react';
-import { Link, navigate } from 'gatsby';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { IToken } from 'types/token';
-import { toast } from 'react-toastify';
-import configs from 'config/config';
-import { fetcher } from 'services/fetcher';
-import useSWR, { mutate } from 'swr';
-import CardToken from 'components/marketplace/card-token';
-import CardTokenSkeleton from 'components/marketplace/card-token-skeleton';
-import TokenDetailSkeleton from 'components/token/tokenDetailSkeleton';
-import { TokenData } from 'components/profile/types';
-import { truncateLongHexString } from 'services/utilities';
+import React from 'react'
+import { Link, navigate } from 'gatsby'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { IToken } from 'types/token'
+import { toast } from 'react-toastify'
+import configs from 'config/config'
+import { fetcher } from 'services/fetcher'
+import useSWR, { mutate } from 'swr'
+import CardToken from 'components/marketplace/card-token'
+import CardTokenSkeleton from 'components/marketplace/card-token-skeleton'
+import TokenDetailSkeleton from 'components/token/tokenDetailSkeleton'
+import { TokenData } from 'components/profile/types'
+import { truncateLongHexString } from 'services/utilities'
 
 // interface IBuyBtn {
 //     id: number;
@@ -51,31 +51,31 @@ import { truncateLongHexString } from 'services/utilities';
 //     );
 // };
 
-function ListTokens() {
-    const search = new URLSearchParams({
-        page: '1',
-        limit: '4',
-    }).toString();
-    const endpoint = `${configs.api.offers.list}?${search}`;
+function ListTokens () {
+  const search = new URLSearchParams({
+    page: '1',
+    limit: '4'
+  }).toString()
+  const endpoint = `${configs.api.offers.list}?${search}`
 
-    const { data, isLoading } = useSWR(endpoint, fetcher, {
-        onError: (error) => {
-            toast.error(error);
-        },
-    });
+  const { data, isLoading } = useSWR(endpoint, fetcher, {
+    onError: (error) => {
+      toast.error(error)
+    }
+  })
 
-    if (isLoading) {
-        return (
+  if (isLoading) {
+    return (
             <div className="nft-detail-more-grid">
                 {Array.from(Array(3).keys()).map((_, index) => (
                     <CardTokenSkeleton key={index} />
                 ))}
             </div>
-        );
-    }
-    if (data) {
-        if (data.total === 0) {
-            return (
+    )
+  }
+  if (data) {
+    if (data.total === 0) {
+      return (
                 <div className="text-center">
                     <h4 className="text-white">No data</h4>
                     <button
@@ -85,44 +85,44 @@ function ListTokens() {
                         Reload
                     </button>
                 </div>
-            );
-        } else {
-            return (
+      )
+    } else {
+      return (
                 <div className="nft-detail-more-grid">
                     {data.data.map((token: IToken) => {
-                        return <CardToken key={token.id} tokenInfo={token} />;
+                      return <CardToken key={token.id} tokenInfo={token} />
                     })}
                 </div>
-            );
-        }
+      )
     }
-    return (
+  }
+  return (
         <div className="text-center">
             <h4 className="text-white">Loading failed! Please try again</h4>
             <button onClick={async () => await mutate(endpoint)}>Reload</button>
         </div>
-    );
+  )
 }
 
-export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
-    const search = new URLSearchParams({
-        tokenDataIdHash: 'ee9ac24cb7a85b114609ca30572e604584dbf35e92f14f09bfa19af98bdf5f3e',
-    });
-    const endpoint = `${configs.api.offers.list}?${search.toString()}`;
-    console.log(endpoint);
+export function TokenDetail ({ id: tokenDataIdHash }: { id: string }) {
+  const search = new URLSearchParams({
+    tokenDataIdHash: 'ee9ac24cb7a85b114609ca30572e604584dbf35e92f14f09bfa19af98bdf5f3e'
+  })
+  const endpoint = `${configs.api.offers.list}?${search.toString()}`
+  console.log(endpoint)
 
-    const { data, isLoading, mutate } = useSWR(endpoint, fetcher, {
-        onError: (error) => {
-            toast.error(error);
-        },
-    });
-
-    if (isLoading) {
-        return <TokenDetailSkeleton />;
+  const { data, isLoading, mutate } = useSWR(endpoint, fetcher, {
+    onError: (error) => {
+      toast.error(error)
     }
-    if (data) {
-        if (data.data?.length === 0) {
-            return (
+  })
+
+  if (isLoading) {
+    return <TokenDetailSkeleton />
+  }
+  if (data) {
+    if (data.data?.length === 0) {
+      return (
                 <div className="min-h-screen">
                     <div className="text-center">
                         <h4 className="text-white">No data</h4>
@@ -134,23 +134,23 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                         </button>
                     </div>
                 </div>
-            );
-        } else {
-            const token = data.data[0] as TokenData;
-            console.log(token);
+      )
+    } else {
+      const token = data.data[0] as TokenData
+      console.log(token)
 
-            const settings = {
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-            };
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false
+      }
 
-            console.log(configs);
+      console.log(configs)
 
-            return (
+      return (
                 <>
                     <div className="nft-detail-background-image">
                         <img
@@ -192,11 +192,11 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                                 <div
                                     className="nft-detail-collection-name"
                                     onClick={async () =>
-                                        await navigator.clipboard
-                                            .writeText(token.owner_address)
-                                            .then(() => {
-                                                toast.success('Copied owner address to clipboard');
-                                            })
+                                      await navigator.clipboard
+                                        .writeText(token.owner_address)
+                                        .then(() => {
+                                          toast.success('Copied owner address to clipboard')
+                                        })
                                     }
                                 >
                                     {truncateLongHexString(token.token.creator)}
@@ -207,9 +207,9 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                                 <div
                                     className="nft-detail-collection-name"
                                     onClick={async () =>
-                                        await navigator.clipboard.writeText('Seller').then(() => {
-                                            toast.success('Copied owner address to clipboard');
-                                        })
+                                      await navigator.clipboard.writeText('Seller').then(() => {
+                                        toast.success('Copied owner address to clipboard')
+                                      })
                                     }
                                 >
                                     Seller
@@ -232,7 +232,7 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                                     <div
                                         className="nft-detail-detail-title"
                                         onClick={() => {
-                                            navigate('https://explorer.aptoslabs.com/');
+                                          navigate('https://explorer.aptoslabs.com/')
                                         }}
                                     >
                                         View on Explore
@@ -246,13 +246,13 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                             </div>
                             <div className="nft-detail-tags-group">
                                 {token?.token.metadata ? (
-                                    JSON.parse(token?.token.metadata).tags.map((item: any) => {
-                                        return (
+                                  JSON.parse(token?.token.metadata).tags.map((item: any) => {
+                                    return (
                                             <div className="nft-detail-tags-button" key={item}>
                                                 {item}
                                             </div>
-                                        );
-                                    })
+                                    )
+                                  })
                                 ) : (
                                     <div className="nft-detail-collection-name">No Tag</div>
                                 )}
@@ -272,14 +272,14 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                             <div className="nft-detail-slide-image">
                                 <Slider {...settings}>
                                     {token.token.metadata ? (
-                                        JSON.parse(token.token.metadata).images.map((item: any) => {
-                                            console.log(item);
-                                            return (
+                                      JSON.parse(token.token.metadata).images.map((item: any) => {
+                                        console.log(item)
+                                        return (
                                                 <div className="nft-detail-image" key={item}>
                                                     <img width="100%" src={item} alt="" />
                                                 </div>
-                                            );
-                                        })
+                                        )
+                                      })
                                     ) : (
                                         <div className="nft-detail-image text-center text-2xl">
                                             No Image
@@ -308,15 +308,15 @@ export function TokenDetail({ id: tokenDataIdHash }: { id: string }) {
                         </div>
                     </div>
                 </>
-            );
-        }
+      )
     }
-    return (
+  }
+  return (
         <div className="min-h-screen">
             <div className="text-center">
                 <h4 className="text-white">Loading failed! Please try again</h4>
                 <button onClick={async () => await mutate()}>Reload</button>
             </div>
         </div>
-    );
+  )
 }

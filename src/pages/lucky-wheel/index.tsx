@@ -1,19 +1,19 @@
-import Layout from 'components/layout';
-import { SpinnerTable } from 'components/lucky-wheel/spinner-table';
-import { HeadFC } from 'gatsby';
-import React from 'react';
-import { ILuckyWheel } from 'types/lucky-wheel';
-import configs from 'config/config';
+import Layout from 'components/layout'
+import { SpinnerTable } from 'components/lucky-wheel/spinner-table'
+import { HeadFC } from 'gatsby'
+import React from 'react'
+import { ILuckyWheel } from 'types/lucky-wheel'
+import configs from 'config/config'
 
 const CreateLuckyWheel = () => {
-    const [prize, setPrize] = React.useState<ILuckyWheel[]>([
-        {
-            prize: 'No prize',
-            winningRate: 0,
-        },
-    ]);
-    const [noPrizeRate, setNoPrizeRate] = React.useState<number>(100);
-    const total = React.useRef<number>(100);
+  const [prize, setPrize] = React.useState<ILuckyWheel[]>([
+    {
+      prize: 'No prize',
+      winningRate: 0
+    }
+  ])
+  const [noPrizeRate, setNoPrizeRate] = React.useState<number>(100)
+  const total = React.useRef<number>(100)
 
   const insert = (arr: ILuckyWheel[], index: number, newItem: ILuckyWheel) => [
     // part of the array before the specified index
@@ -50,13 +50,13 @@ const CreateLuckyWheel = () => {
     })
   }
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        console.log(prize);
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    console.log(prize)
 
-        const endpoint = `${configs.api.offers.list}`;
-        console.log(endpoint);
-    };
+    const endpoint = `${configs.api.offers.list}`
+    console.log(endpoint)
+  }
   const handleChangeNoPrizeRate = (e: any) => {
     total.current = Number(total.current) - noPrizeRate + Number(e.target.value)
     setNoPrizeRate(Number(e.target.value))

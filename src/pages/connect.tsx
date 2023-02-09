@@ -1,21 +1,21 @@
-import React from 'react';
-import { HeadFC, PageProps } from 'gatsby';
-import Layout from 'components/layout';
-import { toast } from 'react-toastify';
-import { useWallet, WalletName } from '@aptos-labs/wallet-adapter-react';
+import React from 'react'
+import { HeadFC, PageProps } from 'gatsby'
+import Layout from 'components/layout'
+import { toast } from 'react-toastify'
+import { useWallet, WalletName } from '@aptos-labs/wallet-adapter-react'
 
 const ListWalllet: React.FC = () => {
-    const { connect, connected, wallets } = useWallet();
+  const { connect, connected, wallets } = useWallet()
 
-    const handleConnect = (walletName: WalletName) => {
-        if (!connected) {
-            connect(walletName);
-        } else {
-            toast.warning('Already connect to a wallet');
-        }
-    };
+  const handleConnect = (walletName: WalletName) => {
+    if (!connected) {
+      connect(walletName)
+    } else {
+      toast.warning('Already connect to a wallet')
+    }
+  }
 
-    return (
+  return (
         <div className="connect-wallet-content">
             <div className="connect-wallet-title">Connect a wallet</div>
             <h5 className="connect-wallet-intro">
@@ -33,20 +33,20 @@ const ListWalllet: React.FC = () => {
                 </button>
             ))}
         </div>
-    );
-};
+  )
+}
 
 const ConnectWalletPage: React.FC<PageProps> = () => {
-    return (
+  return (
         <Layout>
             <div className="connect-wallet-body">
                 <div className="connect-wallet-image"></div>
                 <ListWalllet />
             </div>
         </Layout>
-    );
-};
+  )
+}
 
-export default ConnectWalletPage;
+export default ConnectWalletPage
 
-export const Head: HeadFC = () => <title>Connect a wallet</title>;
+export const Head: HeadFC = () => <title>Connect a wallet</title>
