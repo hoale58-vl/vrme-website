@@ -16,6 +16,7 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
   const { id, price, status, token, seller } = tokenInfo
   const { name, uri, verified, creator } = token
   const [modalOpen, setModalOpen] = useState<boolean>(false)
+  console.log(tokenInfo.id)
 
   const avatar = Math.ceil(Math.random() * 20)
 
@@ -139,7 +140,7 @@ const CardToken: React.FC<CardProps> = ({ tokenInfo }) => {
                                 </div>
                             ]}
                         >
-                            You will pay{' '}
+                            You will pay
                             {ethers.formatUnits(price, configs.smc.marketplace_coin_decimals)} for
                             this token
                         </Modal>

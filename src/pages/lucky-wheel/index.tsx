@@ -3,11 +3,12 @@ import { SpinnerTable } from 'components/lucky-wheel/spinner-table'
 import { HeadFC } from 'gatsby'
 import React from 'react'
 import { ILuckyWheel } from 'types/lucky-wheel'
+import configs from 'config/config'
 
 const CreateLuckyWheel = () => {
   const [prize, setPrize] = React.useState<ILuckyWheel[]>([
     {
-      prize: '',
+      prize: 'No prize',
       winningRate: 0
     }
   ])
@@ -49,6 +50,13 @@ const CreateLuckyWheel = () => {
     })
   }
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    console.log(prize)
+
+    const endpoint = `${configs.api.offers.list}`
+    console.log(endpoint)
+  }
   const handleChangeNoPrizeRate = (e: any) => {
     total.current = Number(total.current) - noPrizeRate + Number(e.target.value)
     setNoPrizeRate(Number(e.target.value))
@@ -130,7 +138,7 @@ const CreateLuckyWheel = () => {
                             alt=""
                         />
                     </div>
-                    <div className="overflow-auto">
+                    <form className="overflow-auto" onSubmit={handleSubmit}>
                         {prize.length > 0 ? (
                           prize.map((sub: ILuckyWheel, index: number) => {
                             return (
@@ -165,7 +173,8 @@ const CreateLuckyWheel = () => {
                         ) : (
                             <></>
                         )}
-                    </div>
+                        <input type="submit" value="Submit" className="lucky-wheel-submit-btn" />
+                    </form>
                 </div>
             </div>
         </div>

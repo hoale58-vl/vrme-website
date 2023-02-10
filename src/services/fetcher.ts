@@ -20,3 +20,13 @@ export const graphqlFetcher = async (query: string) =>
       return res.data
     }
   })
+
+export const postWheel = async (url: string, offerId: number, data: string) => {
+  await HttpUtility.post(configs.baseUrl + url, { offerId, data }).then((res) => {
+    if (isHttpErrorResponseModel(res)) {
+      throw new Error(res.message)
+    } else {
+      return res.data
+    }
+  })
+}

@@ -51,9 +51,7 @@ const LuckyWheel = () => {
                             disabled
                         />
                     </div>
-                    <div
-                        className="overflow-auto"
-                    ></div>
+                    <div className="overflow-auto"></div>
                 </div>
             </div>
         </div>

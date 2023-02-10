@@ -13,6 +13,9 @@ const configs = {
       login: '/login',
       profile: '/profile',
       update: '/update-profile'
+    },
+    wheel: {
+      create: '/wheel'
     }
   }
 }
