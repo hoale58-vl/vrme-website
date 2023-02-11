@@ -1,23 +1,26 @@
 // @ts-expect-error
-import envConfig from 'envConfig'
-import { EnvConfig } from 'config/types'
+import envConfig from 'envConfig';
+import { EnvConfig } from 'config/types';
 
 const configs = {
-  ...(envConfig as EnvConfig),
-  api: {
-    offers: {
-      list: '/offers',
-      orders: '/luna/orders'
+    ...(envConfig as EnvConfig),
+    api: {
+        offers: {
+            list: '/offers',
+            orders: '/luna/orders',
+        },
+        user: {
+            login: '/login',
+            profile: '/profile',
+            update: '/update-profile',
+        },
+        wheel: {
+            create: '/wheel',
+        },
+        token: {
+            details: '/token/',
+        },
     },
-    user: {
-      login: '/login',
-      profile: '/profile',
-      update: '/update-profile'
-    },
-    wheel: {
-      create: '/wheel'
-    }
-  }
-}
+};
 
-export default configs
+export default configs;

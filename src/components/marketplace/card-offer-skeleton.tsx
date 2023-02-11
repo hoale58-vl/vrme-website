@@ -1,8 +1,8 @@
-import React from 'react'
-import Skeleton from 'react-loading-skeleton'
+import React from 'react';
+import Skeleton from 'react-loading-skeleton';
 
-export default function CardTokenSkeleton () {
-  return (
+export default function CardOfferSkeleton() {
+    return (
         <>
             <div className="card-nft">
                 <Skeleton className="card-nft-img" />
@@ -14,5 +14,5 @@ export default function CardTokenSkeleton () {
                 </div>
             </div>
         </>
-  )
+    );
 }

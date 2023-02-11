@@ -1,26 +1,51 @@
-import { NftStatus } from 'enum/nft-status'
+import { NftStatus } from 'enum/nft-status';
 
-export interface IToken {
-  id: number
-  buyer: string
-  seller: string
-  price: number
-  status: NftStatus
-  createAt: Date
-  updateAt: Date
-  token: ITokenDetail
-}
+export type Offer = {
+    id: number;
+    buyer: string;
+    seller: string;
+    price: number;
+    status: NftStatus;
+    createAt: Date;
+    updateAt: Date;
+    token: TokenData;
+};
 
-export interface ITokenDetail {
-  id: number
-  propertyVersion: number
-  creator: string
-  collection: string
-  name: string
-  uri: string
-  description: string
-  metadata: string
-  verified: boolean
-  maximum: number
-  supply: number
-}
+export type TokenData = {
+    id: number;
+    propertyVersion: number;
+    creator: string;
+    collection: string;
+    name: string;
+    uri: string;
+    description: string;
+    metadata: string;
+    verified: boolean;
+    maximum: number;
+    supply: number;
+    token_data_id_hash: string;
+};
+
+export type TokenOfferDetails = {
+    token_data_id_hash: string;
+    collection: string;
+    name: string;
+    uri: string;
+    description: string;
+    metadata: string;
+    verified: boolean;
+    propertyVersion: string;
+    price: number | null;
+    seller: string | null;
+    buyer: string | null;
+    status: string | null;
+};
+
+export type TokenMetadata = {
+    tags: string[];
+    location: {
+        lat: number;
+        long: number;
+    };
+    images: string[];
+};

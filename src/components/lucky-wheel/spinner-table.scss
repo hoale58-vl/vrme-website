@@ -1,11 +1,11 @@
-$diameter: 350px;
-$numberOfSlices: 12;
-$radius: ($diameter / 2);
-$circumfrance: (6.283185307 * $radius);
-$sliceHeight: ($circumfrance / $numberOfSlices);
-$sliceOffeset: ($sliceHeight / 2);
-$sliceColor: #1cd1bf;
-$rotation: 360deg / $numberOfSlices;
+// $diameter: 350px;
+// $numberOfSlices: 12;
+// $radius: ($diameter / 2);
+// $circumfrance: (6.283185307 * $radius);
+// $sliceHeight: ($circumfrance / $numberOfSlices);
+// $sliceOffeset: ($sliceHeight / 2);
+// $sliceColor: #1cd1bf;
+// $rotation: 360deg / $numberOfSlices;
 
 .spinner-table {
     // height: ($diameter - 2px);
@@ -81,14 +81,14 @@ $rotation: 360deg / $numberOfSlices;
                 // border-color: transparent $sliceColor transparent transparent;
             }
 
-            &:nth-child(even) {
-                &:after {
-                    border-color: transparent darken($sliceColor, 10%) transparent transparent;
-                }
-                &:before {
-                    border-color: transparent transparent darken($sliceColor, 10%) transparent;
-                }
-            }
+            // &:nth-child(even) {
+            //     &:after {
+            //         border-color: transparent darken($sliceColor, 10%) transparent transparent;
+            //     }
+            //     &:before {
+            //         border-color: transparent transparent darken($sliceColor, 10%) transparent;
+            //     }
+            // }
 
             .label {
                 position: absolute;
