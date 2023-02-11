@@ -4,6 +4,7 @@ import { EnvConfig } from 'config/types';
 
 const configs = {
     ...(envConfig as EnvConfig),
+    ipfs: 'ipfs.kfive.sg',
     api: {
         offers: {
             list: '/offers',

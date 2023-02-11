@@ -43,9 +43,6 @@ export type TokenOfferDetails = {
 
 export type TokenMetadata = {
     tags: string[];
-    location: {
-        lat: number;
-        long: number;
-    };
+    location: string;
     images: string[];
 };

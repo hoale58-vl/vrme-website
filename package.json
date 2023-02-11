@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "develop": "ENV=staging gatsby develop",
-        "start": "ENV=staging gatsby develop",
+        "start": "ENV=testnet gatsby develop",
         "build": "ENV=staging gatsby build",
         "serve": "gatsby serve",
         "clean": "gatsby clean",
@@ -52,6 +52,7 @@
         "google-map-react": "^2.2.0",
         "graphql": "^16.6.0",
         "i": "^0.3.7",
+        "ipfs-http-client": "^60.0.0",
         "jquery": "^3.6.2",
         "jsonwebtoken": "^9.0.0",
         "npm": "^9.2.0",

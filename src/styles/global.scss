@@ -216,7 +216,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 32px 15px;
+    padding: 8px;
     gap: 10px;
     background: #a259ff;
     border-radius: 20px;
@@ -227,15 +227,25 @@ a {
     letter-spacing: 0em;
     text-align: center;
 }
+.mint-token-grid-1_image-main {
+    height: 400px;
+    image {
+        border-radius: inherit;
+    }
+}
 .mint-token-grid-1_image-child-3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 32px 15px;
+    padding: 8px;
     gap: 10px;
     background: #ffffff;
     border-radius: 20px;
+
+    img {
+        border-radius: inherit;
+    }
 }
 .mint-token-submit-btn {
     margin: auto;
