@@ -5,8 +5,13 @@ export type TokenGraphQLData = {
     current_token_data: {
         metadata_uri: string;
         description: string;
+        default_properties: {
+            TOKEN_METADATA: string;
+        };
     };
     last_transaction_timestamp: string;
+
+    last_transaction_version: number;
 };
 
 // https://cloud.hasura.io/public/graphiql?endpoint=https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql
