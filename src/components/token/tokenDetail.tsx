@@ -165,8 +165,8 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
+            slidesToShow: 2,
+            slidesToScroll: 2,
             arrows: false,
         };
 
@@ -279,7 +279,7 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
                             Tags
                         </div>
                         <div className="nft-detail-tags-group">
-                            {tokenMetadata ? (
+                            {tokenMetadata !== null ? (
                                 tokenMetadata.tags.map((item: any) => {
                                     return (
                                         <div className="nft-detail-tags-button" key={item}>
@@ -298,18 +298,24 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
                             <img src="/images/icon/location.png" alt="" />
                             <div className="nft-detail-location">Location</div>
                         </div>
-                        <div className="nft-detail-google-maps"></div>
+                        {tokenMetadata !== null && (
+                            <iframe
+                                width="600"
+                                height="500"
+                                src={`https://maps.google.com/maps?q=${tokenMetadata.location.lat},${tokenMetadata.location.long}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                            ></iframe>
+                        )}
                         <div className="nft-detail-location-group">
                             <img src="/images/icon/images.png" alt="" />
                             <div className="nft-detail-location">Images</div>
                         </div>
                         <div className="nft-detail-slide-image">
                             <Slider {...settings}>
-                                {tokenMetadata ? (
+                                {tokenMetadata !== null ? (
                                     tokenMetadata.images.map((item: any) => {
                                         return (
                                             <div className="nft-detail-image" key={item}>
-                                                <img width="100%" src={item} alt="" />
+                                                <img width={400} height={300} src={item} alt="" />
                                             </div>
                                         );
                                     })

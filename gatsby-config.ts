@@ -44,6 +44,12 @@ const config: GatsbyConfig = {
                 extensions: [],
             },
         },
+        {
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+                icon: `static/images/favico.png`,
+            },
+        },
     ],
 };
 
