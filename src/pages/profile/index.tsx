@@ -1,4 +1,4 @@
-import { HeadFC } from 'gatsby';
+import { HeadFC, navigate } from 'gatsby';
 import React, { useState } from 'react';
 import { Pagination, Tooltip } from 'antd';
 import Layout from 'components/layout';
@@ -11,11 +11,17 @@ import configs from 'config/config';
 import { TokenGraphQLData } from 'components/profile/types';
 import CardToken from 'components/profile/card-token';
 import CardTokenSkeleton from 'components/marketplace/card-offer-skeleton';
+import NotConnected from 'components/common/NotConnected';
 
 const LIMIT = 12;
 
 const Profile = () => {
-    const { account } = useWallet();
+    const { account, connected } = useWallet();
+
+    if (!connected) {
+        return NotConnected();
+    }
+
     const [page, setPage] = useState(1);
 
     const query = `query OwnedTokens {
@@ -60,12 +66,18 @@ const Profile = () => {
                 return (
                     <div className="min-h-screen">
                         <div className="text-center">
-                            <h4 className="text-white">No data</h4>
+                            <h4 className="text-white">
+                                <p>
+                                    <b>No Data!</b>
+                                </p>
+                                <p>Do you own any estate?</p>
+                                <p>Create new NFT based on your own estate now!!</p>
+                            </h4>
                             <button
                                 className="btn btn-dark btn-small m-auto"
-                                onClick={async () => await mutate()}
+                                onClick={() => navigate('/token')}
                             >
-                                Reload
+                                Mint ViMRE
                             </button>
                         </div>
                     </div>

@@ -485,7 +485,7 @@
         line-height: 26px;
         letter-spacing: 0em;
         text-align: left;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
     }
     .mint-token-page {
         margin: 60px 100px 50px 100px;
@@ -526,11 +526,15 @@
         width: 100%;
         margin-bottom: 40px;
     }
-    .mint-token-maps {
-        height: 330px;
-        margin-bottom: 70px;
-    }
     .mint-token-grid-1_image-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px 15px;
+        gap: 10px;
+        background: #ffffff;
+        border-radius: 20px;
         margin-bottom: 15px;
     }
     .mint-token-grid-1_image-child-group {

@@ -379,9 +379,6 @@
         display: flex;
         gap: 30px;
     }
-    .mint-token-grid {
-        width: 50%;
-    }
     .mint-token-title {
         //styleName: H2 - Work Sans;
         font-family: Work Sans;
@@ -405,13 +402,20 @@
         line-height: 35px;
         letter-spacing: 0em;
         text-align: left;
-        margin-bottom: 120px;
+        margin-bottom: 20px;
     }
     .mint-token-grid-1_image-child-group {
         display: grid;
         @apply grid-cols-4 gap-[15px];
     }
     .mint-token-grid-1_image-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 32px 15px;
+        gap: 10px;
+        background: #ffffff;
         border-radius: 20px;
         margin-bottom: 20px;
     }
