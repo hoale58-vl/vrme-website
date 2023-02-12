@@ -59,6 +59,7 @@ function SellModal({ name }: { name: string }) {
             <Modal
                 title="Sell token"
                 centered
+                onCancel={() => setOpenModal(false)}
                 open={openModal}
                 footer={[
                     <div className="modal-footer justify-end">

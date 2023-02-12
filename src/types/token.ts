@@ -4,7 +4,7 @@ export type Offer = {
     id: number;
     buyer: string;
     seller: string;
-    price: number;
+    price: string;
     status: NftStatus;
     createAt: Date;
     updateAt: Date;
