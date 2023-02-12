@@ -1,6 +1,6 @@
 import { NftStatus } from 'enum/nft-status';
 
-export type Offer = {
+export interface Offer {
     id: number;
     buyer: string;
     seller: string;
@@ -9,9 +9,9 @@ export type Offer = {
     createAt: Date;
     updateAt: Date;
     token: TokenData;
-};
+}
 
-export type TokenData = {
+export interface TokenData {
     id: number;
     propertyVersion: number;
     creator: string;
@@ -24,9 +24,9 @@ export type TokenData = {
     maximum: number;
     supply: number;
     token_data_id_hash: string;
-};
+}
 
-export type TokenOfferDetails = {
+export interface TokenOfferDetails {
     token_data_id_hash: string;
     collection: string;
     name: string;
@@ -39,10 +39,10 @@ export type TokenOfferDetails = {
     seller: string | null;
     buyer: string | null;
     status: string | null;
-};
+}
 
-export type TokenMetadata = {
+export interface TokenMetadata {
     tags: string[];
     location: string;
     images: string[];
-};
+}

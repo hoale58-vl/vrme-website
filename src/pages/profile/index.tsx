@@ -75,7 +75,7 @@ const Profile = () => {
                             </h4>
                             <button
                                 className="btn btn-dark btn-small m-auto"
-                                onClick={() => navigate('/token')}
+                                onClick={async () => await navigate('/token')}
                             >
                                 Mint ViMRE
                             </button>
@@ -137,9 +137,7 @@ const Profile = () => {
                                 >
                                     <img className="w-5" src="/images/icon/copy.png" alt="" />
                                     <div className="token-btn-content">
-                                        {account && account.address
-                                            ? truncateLongHexString(account.address)
-                                            : ''}
+                                        {account?.address && truncateLongHexString(account.address)}
                                     </div>
                                 </div>
                             </Tooltip>

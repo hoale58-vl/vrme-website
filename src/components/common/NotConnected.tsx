@@ -14,7 +14,7 @@ export default function NotConnected() {
                 </h4>
                 <button
                     className="btn btn-dark btn-small m-auto"
-                    onClick={() => navigate('/connect')}
+                    onClick={async () => await navigate('/connect')}
                 >
                     Connect to Wallet
                 </button>

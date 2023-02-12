@@ -5,7 +5,7 @@ import HttpUtility, { isHttpErrorResponseModel } from './utilities';
 export const rawFetcher = async (url: string) =>
     await axios({
         method: 'GET',
-        url: url,
+        url,
         headers: {
             'Content-Type': 'application/json',
         },

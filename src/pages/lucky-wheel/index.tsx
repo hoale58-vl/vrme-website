@@ -3,7 +3,6 @@ import { SpinnerTable } from 'components/lucky-wheel/spinner-table';
 import { HeadFC } from 'gatsby';
 import React from 'react';
 import { ILuckyWheel } from 'types/lucky-wheel';
-import configs from 'config/config';
 
 const CreateLuckyWheel = () => {
     const [prize, setPrize] = React.useState<ILuckyWheel[]>([
@@ -50,11 +49,7 @@ const CreateLuckyWheel = () => {
         });
     };
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-
-        const endpoint = `${configs.api.offers.list}`;
-    };
+    const handleSubmit = () => {};
     const handleChangeNoPrizeRate = (e: any) => {
         total.current = Number(total.current) - noPrizeRate + Number(e.target.value);
         setNoPrizeRate(Number(e.target.value));

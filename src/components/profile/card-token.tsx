@@ -62,7 +62,7 @@ function SellModal({ name }: { name: string }) {
                 onCancel={() => setOpenModal(false)}
                 open={openModal}
                 footer={[
-                    <div className="modal-footer justify-end">
+                    <div key="sell_token" className="modal-footer justify-end">
                         <button
                             className="btn btn-dark btn-small text-white"
                             onClick={() => {

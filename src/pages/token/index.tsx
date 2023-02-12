@@ -105,7 +105,7 @@ const MintToken = () => {
                                     <div className="my-4">
                                         <p>
                                             Please upload 1 main image represent for your assets
-                                            "Your NFT".
+                                            Your NFT.
                                         </p>
                                         <p>
                                             <i>
@@ -208,8 +208,8 @@ const MintToken = () => {
                                             ref={mainImageInputRef}
                                             type="file"
                                             accept="image/png, image/jpeg"
-                                            onChange={(event) =>
-                                                onUpload(event, (url: string) => {
+                                            onChange={async (event) =>
+                                                await onUpload(event, (url: string) => {
                                                     setFieldValue(event.target.name, url);
                                                 })
                                             }
@@ -220,8 +220,8 @@ const MintToken = () => {
                                             ref={subImageInputRef1}
                                             type="file"
                                             accept="image/png, image/jpeg"
-                                            onChange={(event) =>
-                                                onUpload(event, (url: string) => {
+                                            onChange={async (event) =>
+                                                await onUpload(event, (url: string) => {
                                                     setFieldValue(event.target.name, url);
                                                 })
                                             }
@@ -232,8 +232,8 @@ const MintToken = () => {
                                             ref={subImageInputRef2}
                                             type="file"
                                             accept="image/png, image/jpeg"
-                                            onChange={(event) =>
-                                                onUpload(event, (url: string) => {
+                                            onChange={async (event) =>
+                                                await onUpload(event, (url: string) => {
                                                     setFieldValue(event.target.name, url);
                                                 })
                                             }
@@ -244,8 +244,8 @@ const MintToken = () => {
                                             ref={subImageInputRef3}
                                             type="file"
                                             accept="image/png, image/jpeg"
-                                            onChange={(event) =>
-                                                onUpload(event, (url: string) => {
+                                            onChange={async (event) =>
+                                                await onUpload(event, (url: string) => {
                                                     setFieldValue(event.target.name, url);
                                                 })
                                             }
@@ -256,8 +256,8 @@ const MintToken = () => {
                                             ref={subImageInputRef4}
                                             type="file"
                                             accept="image/png, image/jpeg"
-                                            onChange={(event) =>
-                                                onUpload(event, (url: string) => {
+                                            onChange={async (event) =>
+                                                await onUpload(event, (url: string) => {
                                                     setFieldValue(event.target.name, url);
                                                 })
                                             }
@@ -270,12 +270,12 @@ const MintToken = () => {
                                 <div>
                                     <div className="my-4">
                                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Creator (You can't edit this field)
+                                            Creator <i>You can not edit this field</i>
                                         </label>
                                         <input
                                             type="text"
                                             value={
-                                                account && account.address
+                                                account?.address
                                                     ? truncateLongHexString(account.address)
                                                     : 'Required Wallet connect'
                                             }

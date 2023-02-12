@@ -55,7 +55,7 @@ function BuyToken({ offer }: CardOfferProps) {
                 onCancel={() => setOpenModal(false)}
                 open={openModal}
                 footer={[
-                    <div className="modal-footer">
+                    <div key="buy_token" className="modal-footer">
                         <button
                             className="btn btn-dark btn-small btn-modal-buy"
                             onClick={async (e) => {
@@ -128,7 +128,7 @@ function CancelListing({ offer }: CardOfferProps) {
                 onCancel={() => setOpenModal(false)}
                 open={openModal}
                 footer={[
-                    <div className="modal-footer">
+                    <div key="cancel_listing" className="modal-footer">
                         <button
                             className="btn btn-dark btn-small btn-modal-buy"
                             onClick={() => {

@@ -1,4 +1,4 @@
-export type TokenGraphQLData = {
+export interface TokenGraphQLData {
     token_data_id_hash: string;
     name: string;
     owner_address: string;
@@ -12,7 +12,7 @@ export type TokenGraphQLData = {
     last_transaction_timestamp: string;
 
     last_transaction_version: number;
-};
+}
 
 // https://cloud.hasura.io/public/graphiql?endpoint=https://indexer-devnet.staging.gcp.aptosdev.com/v1/graphql
 // query MyQuery {
