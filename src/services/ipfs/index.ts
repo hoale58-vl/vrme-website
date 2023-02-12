@@ -1,18 +1,38 @@
+import axios from 'axios';
 import configs from 'config/config';
-import { create } from 'ipfs-http-client';
-
-const client = create({
-    host: configs.ipfs,
-    protocol: 'https',
-    port: 443,
-});
 
 export async function uploadIpfsFile(file: File) {
-    const added = await client.add(file);
-    return `https://${configs.ipfs}/ipfs/${added.path}`;
+    const formdata = new FormData();
+    formdata.append('file', file);
+
+    const response = await axios({
+        method: 'POST',
+        url: `https://${configs.ipfs}/api/v0/add`,
+        data: formdata,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    const hash: string = response.data.Hash;
+    return `https://${configs.ipfs}/ipfs/${hash}`;
 }
 
 export async function uploadIpfs(content: string) {
-    const added = await client.add(content);
-    return `https://${configs.ipfs}/ipfs/${added.path}`;
+    const formdata = new FormData();
+    const blob = new Blob([content], { type: 'text/plain' });
+    const file = new File([blob], 'content', { type: 'text/plain' });
+    formdata.append('file', file);
+
+    const response = await axios({
+        method: 'POST',
+        url: `https://${configs.ipfs}/api/v0/add`,
+        data: formdata,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    const hash: string = response.data.Hash;
+    return `https://${configs.ipfs}/ipfs/${hash}`;
 }
