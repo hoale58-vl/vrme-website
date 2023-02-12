@@ -275,7 +275,7 @@ const MintToken = () => {
                                         <input
                                             type="text"
                                             value={
-                                                account
+                                                account && account.address
                                                     ? truncateLongHexString(account.address)
                                                     : 'Required Wallet connect'
                                             }

@@ -117,10 +117,10 @@ const Profile = () => {
             <div className="user-info-main-group">
                 <div className="user-info-main-user-group">
                     <div className="user-info-main-username-group">
-                        <div className="user-info-main-username">HoaLe</div>
-                        <div className="user-info-main-verify-user">
+                        <div className="user-info-main-username">Anonymous User</div>
+                        {/* <div className="user-info-main-verify-user">
                             <img className="w-8" src="/images/icon/verified.png" alt="" />
-                        </div>
+                        </div> */}
                     </div>
                     <div className="user-info-desc-info">
                         <div className="user-info-btn-group">
@@ -137,62 +137,12 @@ const Profile = () => {
                                 >
                                     <img className="w-5" src="/images/icon/copy.png" alt="" />
                                     <div className="token-btn-content">
-                                        {account ? truncateLongHexString(account.address) : ''}
+                                        {account && account.address
+                                            ? truncateLongHexString(account.address)
+                                            : ''}
                                     </div>
                                 </div>
                             </Tooltip>
-                            <div className="follow-btn btn btn-medium btn-light" hidden>
-                                <img src="/images/icon/plus.png" alt="" />
-                                <div className="token-btn-content">Follow</div>
-                            </div>
-                        </div>
-                        <div className="user-info-social-group" hidden>
-                            <div className="user-info-social-item">
-                                <div className="user-info-social-item-quantity">250k+</div>
-                                <div className="user-info-social-item-desc">Volume</div>
-                            </div>
-                            <div className="user-info-social-item">
-                                <div className="user-info-social-item-quantity">50+</div>
-                                <div className="user-info-social-item-desc">NFTs Sold</div>
-                            </div>
-                            <div className="user-info-social-item">
-                                <div className="user-info-social-item-quantity">3000+</div>
-                                <div className="user-info-social-item-desc">Followers</div>
-                            </div>
-                        </div>
-                        <div className="user-info-bio-group" hidden>
-                            <div className="user-info-header">Bio</div>
-                            <div className="user-info-bio-content">HoaLe - super Idol</div>
-                        </div>
-                        <div className="user-info-link-group" hidden>
-                            <div className="user-info-header">Links</div>
-                            <div className="user-info-social-logo-group">
-                                <img
-                                    src="/images/social-media-logo/globe.png"
-                                    alt=""
-                                    className="user-info-social-logo-item"
-                                />
-                                <img
-                                    src="/images/social-media-logo/discord-logo.png"
-                                    alt=""
-                                    className="user-info-social-logo-item"
-                                />
-                                <img
-                                    src="/images/social-media-logo/youtube-logo.png"
-                                    alt=""
-                                    className="user-info-social-logo-item"
-                                />
-                                <img
-                                    src="/images/social-media-logo/twitter-logo.png"
-                                    alt=""
-                                    className="user-info-social-logo-item"
-                                />
-                                <img
-                                    src="/images/social-media-logo/instagram-logo.png"
-                                    alt=""
-                                    className="user-info-social-logo-item"
-                                />
-                            </div>
                         </div>
                     </div>
                 </div>

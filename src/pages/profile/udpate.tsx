@@ -1,71 +1,71 @@
-import React, { useContext } from 'react'
-import { HeadFC, navigate } from 'gatsby'
-import Layout, { UserContext } from 'components/layout'
-import { useWallet } from '@aptos-labs/wallet-adapter-react'
-import { SIGNIN_MESSAGE } from 'services/user/types'
-import { SignMessageResponse } from '@aptos-labs/wallet-adapter-core'
-import { login } from 'services/user'
-import { toast } from 'react-toastify'
-import { truncateLongHexString } from 'services/utilities'
+import React, { useContext } from 'react';
+import { HeadFC, navigate } from 'gatsby';
+import Layout, { UserContext } from 'components/layout';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
+import { SIGNIN_MESSAGE } from 'services/user/types';
+import { SignMessageResponse } from '@aptos-labs/wallet-adapter-core';
+import { login } from 'services/user';
+import { toast } from 'react-toastify';
+import { truncateLongHexString } from 'services/utilities';
 
-function UpdateProfile () {
-  const nameRef = React.useRef<HTMLInputElement>(null)
+function UpdateProfile() {
+    const nameRef = React.useRef<HTMLInputElement>(null);
 
-  const { connected, signMessage, account } = useWallet()
-  const { user, setUser } = useContext(UserContext)
+    const { connected, signMessage, account } = useWallet();
+    const { user, setUser } = useContext(UserContext);
 
-  const Button = () => {
-    if (!connected || !account) {
-      return (
+    const Button = () => {
+        if (!connected || !account) {
+            return (
                 <button
                     className="update-profile-btn"
                     onClick={async () => await navigate('/connect')}
                 >
                     Connect
                 </button>
-      )
-    }
-    if (user === null) {
-      return (
+            );
+        }
+        if (user === null) {
+            return (
                 <button
                     className="update-profile-btn"
                     onClick={() => {
-                      signMessage({
-                        address: true,
-                        application: false,
-                        chainId: true,
-                        message: SIGNIN_MESSAGE,
-                        nonce: '0'
-                      }).then((signedMsg) => {
-                        const publicKey = account.publicKey
-                        if (publicKey) {
-                          const { address, signature } = signedMsg as SignMessageResponse
-                          login(address, `0x${signature}`, publicKey.toString())
-                            .then((_user) => {
-                              if (_user) {
-                                toast.success('Login success')
-                                setUser(_user)
-                              }
-                            })
-                            .catch((error) => toast.error(error.toString()))
-                        } else {
-                          toast.error('Get current account public key failed')
-                        }
-                      })
+                        signMessage({
+                            address: true,
+                            application: false,
+                            chainId: true,
+                            message: SIGNIN_MESSAGE,
+                            nonce: '0',
+                        }).then((signedMsg) => {
+                            const publicKey = account.publicKey;
+                            if (publicKey) {
+                                const { address, signature } = signedMsg as SignMessageResponse;
+                                login(address, `0x${signature}`, publicKey.toString())
+                                    .then((_user) => {
+                                        if (_user) {
+                                            toast.success('Login success');
+                                            setUser(_user);
+                                        }
+                                    })
+                                    .catch((error) => toast.error(error.toString()));
+                            } else {
+                                toast.error('Get current account public key failed');
+                            }
+                        });
                     }}
                 >
                     Login
                 </button>
-      )
-    }
-    return (
+            );
+        }
+        return (
             <button className="update-profile-btn" type="submit">
                 Update
             </button>
-    )
-  }
+        );
+    };
 
-  return (
+    return (
         <>
             <div className="update-profile-body">
                 <div className="update-profile-image"></div>
@@ -83,10 +83,10 @@ function UpdateProfile () {
                                 alt=""
                             />
                             {connected && account
-                              ? truncateLongHexString(account.address)
-                              : 'Required wallet connect'}
+                                ? truncateLongHexString(account.address)
+                                : 'Required wallet connect'}
                         </div>
-                        {connected && account && (
+                        {connected && account && account.address && (
                             <>
                                 <div className="update-profile-form-item-group">
                                     <img
@@ -136,15 +136,15 @@ function UpdateProfile () {
                 </div>
             </div>
         </>
-  )
+    );
 }
 
-export default function UpdateProfilePage () {
-  return (
+export default function UpdateProfilePage() {
+    return (
         <Layout>
             <UpdateProfile />
         </Layout>
-  )
+    );
 }
 
-export const Head: HeadFC = () => <title>Update Profile</title>
+export const Head: HeadFC = () => <title>Update Profile</title>;
