@@ -7,7 +7,7 @@ import { Offer, TokenMetadata } from 'types/token';
 import { toast } from 'react-toastify';
 import configs from 'config/config';
 import { rawFetcher, fetcher, graphqlFetcher } from 'services/fetcher';
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import CardTokenSkeleton from 'components/marketplace/card-offer-skeleton';
 import TokenDetailSkeleton from 'components/token/tokenDetailSkeleton';
 import { truncateLongHexString } from 'services/utilities';
@@ -15,6 +15,8 @@ import { TokenDetailProps } from './types';
 import CardOffer from 'components/marketplace/card-offer';
 import Skeleton from 'react-loading-skeleton';
 import { TokenGraphQLData } from 'components/profile/types';
+import { ethers } from 'ethers';
+import { useWallet } from '@aptos-labs/wallet-adapter-react';
 
 function ListTokens() {
     const search = new URLSearchParams({
@@ -23,7 +25,7 @@ function ListTokens() {
     }).toString();
     const endpoint = `${configs.api.offers.list}?${search}`;
 
-    const { data, isLoading } = useSWR(endpoint, fetcher, {
+    const { data, isLoading, mutate } = useSWR(endpoint, fetcher, {
         onError: (error) => {
             toast.error(error);
         },
@@ -71,6 +73,7 @@ function ListTokens() {
 
 export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
     const [tokenMetadata, setTokenMetadata] = useState<TokenMetadata>();
+    const { account, connected } = useWallet();
 
     // Query data from GraphQL
     const query = `query OwnedTokens {
@@ -94,14 +97,28 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
         }
     }`;
 
-    const { data, isLoading, mutate } = useSWR(query, graphqlFetcher, {
+    const {
+        data: indexedData,
+        isLoading: indexedLoading,
+        mutate: indexedMutate,
+    } = useSWR(query, graphqlFetcher, {
         onError: (error) => {
             toast.error(error);
         },
     });
 
     const onchainData =
-        !isLoading && data ? (data.data.current_token_ownerships[0] as TokenGraphQLData) : null;
+        !indexedLoading && indexedData
+            ? (indexedData.data.current_token_ownerships[0] as TokenGraphQLData)
+            : null;
+
+    const endpoint = `${configs.api.token.details}/${tokenDataIdHash}`;
+
+    const { data, mutate } = useSWR(endpoint, fetcher, {
+        onError: (error) => {
+            toast.error(error);
+        },
+    });
 
     useEffect(() => {
         if (onchainData) {
@@ -109,11 +126,12 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
                 (value) => setTokenMetadata(value)
             );
         }
-    }, data);
+    }, [indexedData]);
 
-    if (isLoading) {
+    if (indexedLoading) {
         return <TokenDetailSkeleton />;
     }
+    console.log(data);
 
     if (!onchainData) {
         return (
@@ -122,6 +140,7 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
                     <h4 className="text-white">Loading failed! Please try again</h4>
                     <button
                         onClick={() => {
+                            indexedMutate();
                             mutate();
                         }}
                     >
@@ -155,21 +174,65 @@ export function TokenDetail({ id: tokenDataIdHash }: TokenDetailProps) {
                 )}
             </div>
             <div className="nft-detail-main">
-                {onchainData ? (
-                    <div className="ntf-detail-name-group">
-                        <div className="nft-detail-name">{onchainData.name}</div>
+                <div className="flex">
+                    <div className="flex-1">
+                        {onchainData ? (
+                            <div className="ntf-detail-name-group">
+                                <div className="nft-detail-name">{onchainData.name}</div>
+                            </div>
+                        ) : (
+                            <Skeleton className="ntf-detail-name-group" />
+                        )}
+                        <div className="nft-detail-release-date">
+                            Last transaction at{' '}
+                            {onchainData ? onchainData.last_transaction_timestamp : '...'}
+                        </div>
+                        {connected &&
+                            account &&
+                            account.address &&
+                            data.seller === account.address && (
+                                <button
+                                    className="btn btn-dark btn-small px-[30px] my-4"
+                                    onClick={async () =>
+                                        await navigate(`/lucky-wheel/${tokenDataIdHash}`)
+                                    }
+                                >
+                                    <img
+                                        className="w-10"
+                                        src="/images/card-nft/lucky-wheel-icon.png"
+                                        alt=""
+                                    />
+                                    <div className="">
+                                        Create lucky wheel program for this token
+                                    </div>
+                                </button>
+                            )}
+
+                        <div className="nft-detail-main-component">
+                            <div className="nft-detail-collection-title">Collection</div>
+                            <div className="nft-detail-collection-name">
+                                {configs.smc.collection_name}
+                            </div>
+                        </div>
                     </div>
-                ) : (
-                    <Skeleton className="ntf-detail-name-group" />
-                )}
-                <div className="nft-detail-release-date">
-                    Last transaction at{' '}
-                    {onchainData ? onchainData.last_transaction_timestamp : '...'}
+                    {data && data.price && (
+                        <div className="lucky-wheel-token-info h-min">
+                            <div className="lucky-wheel-token-listing-price-label">
+                                Listing Price
+                            </div>
+                            <div className="lucky-wheel-token-price">
+                                {ethers
+                                    .formatUnits(data.price, configs.smc.marketplace_coin_decimals)
+                                    .toString()}
+                            </div>
+                            <div className="lucky-wheel-token-price-unit">
+                                {' '}
+                                {configs.smc.marketplace_coin_symbol}
+                            </div>
+                        </div>
+                    )}
                 </div>
-                <div className="nft-detail-main-component">
-                    <div className="nft-detail-collection-title">Collection</div>
-                    <div className="nft-detail-collection-name">{configs.smc.collection_name}</div>
-                </div>
+
                 <div className="nft-detail-createby-group">
                     <div className="nft-detail-main-component nft-detail-main-component-1">
                         <div className="nft-detail-collection-title">Created By</div>

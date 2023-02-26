@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "@ant-design/plots": "^1.2.4",
-        "@aptos-labs/wallet-adapter-react": "^0.2.3",
+        "@aptos-labs/wallet-adapter-react": "^0.2.4",
         "@babel/core": "^7.20.5",
         "@babel/preset-env": "^7.20.2",
         "@emotion/css": "^11.10.5",

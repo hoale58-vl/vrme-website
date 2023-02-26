@@ -33,8 +33,11 @@ export const graphqlFetcher = async (query: string) =>
         }
     });
 
-export const postWheel = async (url: string, offerId: number, data: string) => {
-    await HttpUtility.post(configs.baseUrl + url, { offerId, data }).then((res) => {
+export const postWheel = async (offerId: bigint, data: string) => {
+    return await HttpUtility.post(configs.baseUrl + configs.api.wheel.create, {
+        offerId,
+        data,
+    }).then((res) => {
         if (isHttpErrorResponseModel(res)) {
             throw new Error(res.message);
         } else {

@@ -1,4 +1,4 @@
-export interface ILuckyWheel {
-  prize: string
-  winningRate: number
-}
+export type LuckyWheelPrize = {
+    name: string;
+    winningRate: number;
+};

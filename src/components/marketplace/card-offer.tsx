@@ -177,14 +177,26 @@ const CardOffer = ({ offer }: CardOfferProps) => {
         return <BuyToken offer={offer} />;
     };
 
+    const RenderLuckyWheelIcon = () => {
+        return (
+            <Tooltip placement="top" color={'#a259ff'} title="This token has lucky wheel program">
+                <Link to={`/lucky-wheel/${token.token_data_id_hash}`}>
+                    <img
+                        className="absolute top-0 right-0 blink cursor-pointer"
+                        src="/images/card-nft/lucky-wheel-icon.png"
+                    />
+                </Link>
+            </Tooltip>
+        );
+    };
+
     return (
         <>
             <div className="card-nft">
-                <Link to={`/token/${token.token_data_id_hash}`}>
-                    <div className="card-nft-img">
-                        <img style={{ width: '100%' }} src={uri} alt="image" />
-                    </div>
-                </Link>
+                <div className="card-nft-img relative">
+                    <RenderLuckyWheelIcon />
+                    <img style={{ width: '100%' }} src={uri} alt="image" />
+                </div>
 
                 <div className="card-nft-info">
                     <div className="card-nft-name-group">
@@ -193,19 +205,7 @@ const CardOffer = ({ offer }: CardOfferProps) => {
                                 <div className="card-nft-name">{name}</div>
                             </Tooltip>
                         </Link>
-                        {/* <img
-                            className="w-5 h-5"
-                            src={
-                                !verified
-                                    ? '/images/icon/unverified.png'
-                                    : '/images/icon/verified.png'
-                            }
-                            alt={
-                                !verified
-                                    ? 'This token has been unverified'
-                                    : 'This token has been verifed'
-                            }
-                        /> */}
+                        <img className="w-5 h-5" src={'/images/icon/unverified.png'} alt="" />
                     </div>
 
                     <div className="card-nft-author-group">

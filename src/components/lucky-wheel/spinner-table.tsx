@@ -1,71 +1,72 @@
-import React from 'react'
-import './spinner-table.scss'
-import { WheelColor } from './types'
-import { css } from '@emotion/css'
+import React from 'react';
+import './spinner-table.scss';
+import { WheelColorHex } from './types';
+import { css } from '@emotion/css';
+import { darkenColor, toColor } from './utils';
+import { LuckyWheelPrize } from 'types/lucky-wheel';
 
-export interface SpinnerTableProps {
-  numberOfSlices: number
-}
+export type SpinnerTableProps = {
+    slices: LuckyWheelPrize[];
+};
 
-export function SpinnerTable ({ numberOfSlices }: SpinnerTableProps) {
-  const diameter = 350
-  const radius = diameter / 2
-  const circumfrance = 6.283185307 * radius
-  const sliceHeight = circumfrance / numberOfSlices
-  const sliceOffeset = sliceHeight / 2
-  const sliceColor = WheelColor
-  const rotation = 360 / numberOfSlices
+export function SpinnerTable({ slices }: SpinnerTableProps) {
+    const numberOfSlices = slices.length;
+    const diameter = 350;
+    const radius = diameter / 2;
+    const circumfrance = 6.283185307 * radius;
+    const sliceHeight = circumfrance / numberOfSlices;
+    const sliceOffeset = sliceHeight / 2;
 
-  const sliceEleStyle = Array.from(Array(numberOfSlices).keys()).map(
-    (index) => `
-            &:nth-child(${index}) {
+    const sliceEleStyle = slices.map((_, index) => {
+        const rotation = 360 / numberOfSlices;
+
+        return `
+            &:nth-child(${index + 1}) {
                 transform: rotate(${index * rotation}deg);
             }
-            `
-  )
+            `;
+    });
 
-  return (
-        <div className="spinner-table" style={{ height: diameter - 2, width: diameter - 2 }}>
+    return (
+        <div
+            className={`spinner-table ${css`
+                height: ${diameter - 2}px;
+                width: ${diameter - 2}px;
+            `}`}
+        >
             <div className="dial">
-                {Array.from(Array(numberOfSlices).keys()).map((index) => (
-                    <div
-                        key={index}
-                        className={`slice ${css`
-                            top: calc(50% - ${sliceOffeset}px);
-                            height: ${sliceHeight}px;
+                {slices.map((slice, index) => {
+                    const darkenPercentage = (numberOfSlices - index / 3) / numberOfSlices;
+                    const sliceColor = toColor(darkenColor(WheelColorHex, index, darkenPercentage));
+                    return (
+                        <div
+                            key={index}
+                            className={`slice ${css`
+                                top: calc(50% - ${sliceOffeset}px);
+                                height: ${sliceHeight}px;
 
-                            &:before {
-                                border-width: 0 0 ${sliceHeight / 2 + 4}px ${radius}px;
-                                border-color: transparent transparent ${sliceColor} transparent;
-                            }
-
-                            &:after {
-                                border-width: 0 ${radius}px ${sliceHeight / 2 + 4}px 0;
-                                border-color: transparent ${sliceColor} transparent transparent;
-                            }
-
-                            &:nth-child(even) {
-                                &:after {
-                                    border-color: transparent darken(${sliceColor}, 10%) transparent
-                                        transparent;
-                                }
                                 &:before {
-                                    border-color: transparent transparent darken(${sliceColor}, 10%)
-                                        transparent;
+                                    border-width: 0 0 ${sliceHeight / 2 + 4}px ${radius}px;
+                                    border-color: transparent transparent ${sliceColor} transparent !important;
                                 }
-                            }
 
-                            .label {
-                                line-height: ${sliceHeight}px;
-                            }
+                                &:after {
+                                    border-width: 0 ${radius}px ${sliceHeight / 2 + 4}px 0;
+                                    border-color: transparent ${sliceColor} transparent transparent !important;
+                                }
 
-                            ${sliceEleStyle}
-                        `}`}
-                    >
-                        <div className="label">{index}</div>
-                    </div>
-                ))}
+                                .label {
+                                    line-height: ${sliceHeight}px;
+                                }
+
+                                ${sliceEleStyle}
+                            `}`}
+                        >
+                            <div className="label">{slice.name}</div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
-  )
+    );
 }

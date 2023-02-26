@@ -25,22 +25,18 @@
     text-align: left;
 }
 
-.card-nft-price-group {
-    margin-top: 27px;
-}
-
 .card-nft-info {
     @apply relative flex-1 flex flex-col;
 }
 
 .card-nft-btn {
-    padding: 12px 21.5px;
+    padding: 4px 21.5px;
     @apply absolute bottom-0 right-0;
 }
 
 .card-nft {
     @apply overflow-hidden flex flex-col;
-    height: 420px;
+    height: 400px;
 }
 
 .collection-image {
@@ -205,4 +201,17 @@
 }
 .browse-marketplace-search-bar-input {
     border-color: #858584;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+
+    &:hover {
+        animation: none;
+    }
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }
